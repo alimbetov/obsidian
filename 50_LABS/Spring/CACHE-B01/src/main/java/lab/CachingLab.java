@@ -78,8 +78,6 @@ public final class CachingLab {
             ProductDto afterUpdate = catalog.find(1L);
             System.out.println("updated     = " + updated);
             System.out.println("afterUpdate = " + afterUpdate);
-            System.out.println("repository loads unchanged after cached read = " +
-                    repository.loadCount());
 
             System.out.println("\n-- @CacheEvict forces the next read to load --");
             int beforeEvictRead = repository.loadCount();
@@ -103,8 +101,7 @@ public final class CachingLab {
                     context.getBean(CountingProductRepository.class);
             CacheManager cacheManager = context.getBean(CacheManager.class);
 
-            Cache cache = requiredCache(cacheManager, "productById");
-            cache.clear();
+            requiredCache(cacheManager, "productById").clear();
 
             ProductDto first = catalog.find(42L);
             ProductDto second = catalog.find(42L);
@@ -126,10 +123,10 @@ public final class CachingLab {
             CacheManager cacheManager,
             String cacheName
     ) {
-        Cache springCache = requiredCache(cacheManager, cacheName);
-        CaffeineCache caffeineCache = (CaffeineCache) springCache;
+        CaffeineCache springCache =
+                (CaffeineCache) requiredCache(cacheManager, cacheName);
         com.github.benmanes.caffeine.cache.Cache<Object, Object> nativeCache =
-                caffeineCache.getNativeCache();
+                springCache.getNativeCache();
         CacheStats stats = nativeCache.stats();
 
         System.out.println("\nCaffeine estimated size = " + nativeCache.estimatedSize());
@@ -139,13 +136,10 @@ public final class CachingLab {
         System.out.println("Caffeine eviction count = " + stats.evictionCount());
     }
 
-    private static Cache requiredCache(
-            CacheManager cacheManager,
-            String cacheName
-    ) {
-        Cache cache = cacheManager.getCache(cacheName);
+    private static Cache requiredCache(CacheManager manager, String name) {
+        Cache cache = manager.getCache(name);
         if (cache == null) {
-            throw new IllegalStateException("Cache not found: " + cacheName);
+            throw new IllegalStateException("Cache not found: " + name);
         }
         return cache;
     }
@@ -169,12 +163,7 @@ class CachedProductCatalog implements ProductCatalog {
     }
 
     @Override
-    @Cacheable(
-            cacheNames = "productById",
-            key = "#id",
-            unless = "#result == null",
-            sync = true
-    )
+    @Cacheable(cacheNames = "productById", key = "#id", sync = true)
     public ProductDto find(Long id) {
         System.out.println("repository load for product " + id);
         return repository.load(id);
@@ -205,18 +194,9 @@ class CountingProductRepository {
     private final Map<Long, ProductDto> storage = new HashMap<Long, ProductDto>();
 
     CountingProductRepository() {
-        storage.put(
-                1L,
-                new ProductDto(1L, "Laptop", new BigDecimal("1499.00"))
-        );
-        storage.put(
-                2L,
-                new ProductDto(2L, "Monitor", new BigDecimal("499.00"))
-        );
-        storage.put(
-                42L,
-                new ProductDto(42L, "Redis Product", new BigDecimal("42.00"))
-        );
+        storage.put(1L, new ProductDto(1L, "Laptop", new BigDecimal("1499.00")));
+        storage.put(2L, new ProductDto(2L, "Monitor", new BigDecimal("499.00")));
+        storage.put(42L, new ProductDto(42L, "Redis Product", new BigDecimal("42.00")));
     }
 
     ProductDto load(Long id) {
@@ -251,9 +231,7 @@ class CaffeineConfiguration {
 
     @Bean
     CacheManager cacheManager() {
-        CaffeineCacheManager manager =
-                new CaffeineCacheManager("productById");
-
+        CaffeineCacheManager manager = new CaffeineCacheManager("productById");
         manager.setCaffeine(
                 Caffeine.newBuilder()
                         .maximumSize(1_000)
@@ -293,9 +271,7 @@ class RedisConfiguration {
                 RedisCacheConfiguration.defaultCacheConfig()
                         .entryTtl(Duration.ofMinutes(10))
                         .disableCachingNullValues()
-                        .computePrefixWith(
-                                cacheName -> "lab:v1:" + cacheName + "::"
-                        )
+                        .computePrefixWith(name -> "lab:v1:" + name + "::")
                         .serializeKeysWith(
                                 RedisSerializationContext.SerializationPair
                                         .fromSerializer(new StringRedisSerializer())
@@ -307,10 +283,7 @@ class RedisConfiguration {
 
         Map<String, RedisCacheConfiguration> caches =
                 new HashMap<String, RedisCacheConfiguration>();
-        caches.put(
-                "productById",
-                defaults.entryTtl(Duration.ofMinutes(5))
-        );
+        caches.put("productById", defaults.entryTtl(Duration.ofMinutes(5)));
 
         return RedisCacheManager.builder(connectionFactory)
                 .cacheDefaults(defaults)
