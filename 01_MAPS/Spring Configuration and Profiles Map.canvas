@@ -1,0 +1,198 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties.md",
+      "x": 0,
+      "y": -760,
+      "width": 500,
+      "height": 220,
+      "color": "4"
+    },
+    {
+      "id": "graph-group",
+      "type": "group",
+      "label": "1. Bean graph — definitions and composition",
+      "x": -1120,
+      "y": -370,
+      "width": 1300,
+      "height": 470,
+      "color": "2"
+    },
+    {
+      "id": "value-group",
+      "type": "group",
+      "label": "2. Runtime values — Environment and PropertySources",
+      "x": 260,
+      "y": -370,
+      "width": 1360,
+      "height": 470,
+      "color": "3"
+    },
+    {
+      "id": "decision-group",
+      "type": "group",
+      "label": "3. Architecture decisions",
+      "x": -850,
+      "y": 190,
+      "width": 1300,
+      "height": 430,
+      "color": "1"
+    },
+    {
+      "id": "practice-group",
+      "type": "group",
+      "label": "4. Recall, cases and experiments",
+      "x": 540,
+      "y": 190,
+      "width": 1080,
+      "height": 430,
+      "color": "5"
+    },
+    {
+      "id": "full",
+      "type": "text",
+      "text": "# Full @Configuration\n\nInter-bean calls are container-aware and preserve managed scope semantics.",
+      "x": -1040,
+      "y": -270,
+      "width": 350,
+      "height": 220
+    },
+    {
+      "id": "lite",
+      "type": "text",
+      "text": "# Lite mode / proxyBeanMethods=false\n\nDirect @Bean calls are ordinary Java calls. Prefer method parameters.",
+      "x": -640,
+      "y": -270,
+      "width": 370,
+      "height": 220
+    },
+    {
+      "id": "import",
+      "type": "text",
+      "text": "# Composition\n\n@Import, selectors, registrars and focused component scanning shape the graph.",
+      "x": -220,
+      "y": -270,
+      "width": 330,
+      "height": 220
+    },
+    {
+      "id": "profile",
+      "type": "text",
+      "text": "# Profiles\n\nConditionally include BeanDefinitions before refresh. Not a runtime feature flag.",
+      "x": -640,
+      "y": -10,
+      "width": 370,
+      "height": 210
+    },
+    {
+      "id": "env",
+      "type": "text",
+      "text": "# Environment\n\nProfiles + ordered property resolution.",
+      "x": 340,
+      "y": -270,
+      "width": 300,
+      "height": 220
+    },
+    {
+      "id": "sources",
+      "type": "text",
+      "text": "# PropertySource chain\n\nThe winning value comes from the highest-precedence source that contains the key.",
+      "x": 690,
+      "y": -270,
+      "width": 350,
+      "height": 220
+    },
+    {
+      "id": "value",
+      "type": "text",
+      "text": "# @Value and placeholders\n\n${key:default} resolves a scalar. #{...} evaluates SpEL.",
+      "x": 1090,
+      "y": -270,
+      "width": 350,
+      "height": 220
+    },
+    {
+      "id": "typed",
+      "type": "text",
+      "text": "# Typed configuration\n\nBind cohesive settings into a validated configuration contract.",
+      "x": 690,
+      "y": -10,
+      "width": 350,
+      "height": 210
+    },
+    {
+      "id": "choose",
+      "type": "text",
+      "text": "# Selection rule\n\nDifferent graph → profile/import\nSame graph, different values → properties\nRuntime rollout → feature flag",
+      "x": -770,
+      "y": 290,
+      "width": 400,
+      "height": 230
+    },
+    {
+      "id": "diagnose",
+      "type": "text",
+      "text": "# Incident diagnosis\n\nIdentify Spring/Boot version, active profiles and the exact PropertySource that won.",
+      "x": -310,
+      "y": 290,
+      "width": 400,
+      "height": 230
+    },
+    {
+      "id": "validation",
+      "type": "text",
+      "text": "# Fail-fast validation\n\nRequired values, ranges, URLs, cross-field invariants and forbidden production defaults.",
+      "x": 150,
+      "y": 290,
+      "width": 230,
+      "height": 230
+    },
+    {
+      "id": "cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards.md",
+      "x": 620,
+      "y": 290,
+      "width": 300,
+      "height": 220
+    },
+    {
+      "id": "cases",
+      "type": "file",
+      "file": "40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases.md",
+      "x": 970,
+      "y": 290,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "lab",
+      "type": "file",
+      "file": "50_LABS/Spring/Core-B05/README.md",
+      "x": 1340,
+      "y": 290,
+      "width": 210,
+      "height": 220
+    }
+  ],
+  "edges": [
+    {"id":"e01","fromNode":"root","toNode":"full","label":"definition semantics","fromSide":"bottom","toSide":"top"},
+    {"id":"e02","fromNode":"full","toNode":"lite","label":"contrast","fromSide":"right","toSide":"left"},
+    {"id":"e03","fromNode":"lite","toNode":"import","label":"compose explicitly","fromSide":"right","toSide":"left"},
+    {"id":"e04","fromNode":"import","toNode":"profile","label":"condition graph"},
+    {"id":"e05","fromNode":"root","toNode":"env","label":"value resolution","fromSide":"bottom","toSide":"top"},
+    {"id":"e06","fromNode":"env","toNode":"sources","label":"ordered lookup","fromSide":"right","toSide":"left"},
+    {"id":"e07","fromNode":"sources","toNode":"value","label":"resolve scalar","fromSide":"right","toSide":"left"},
+    {"id":"e08","fromNode":"sources","toNode":"typed","label":"bind namespace"},
+    {"id":"e09","fromNode":"profile","toNode":"choose","label":"architecture choice"},
+    {"id":"e10","fromNode":"typed","toNode":"validation","label":"validate contract"},
+    {"id":"e11","fromNode":"sources","toNode":"diagnose","label":"find winner"},
+    {"id":"e12","fromNode":"choose","toNode":"cards","label":"active recall"},
+    {"id":"e13","fromNode":"diagnose","toNode":"cases","label":"production transfer"},
+    {"id":"e14","fromNode":"validation","toNode":"cases","label":"failure prevention"},
+    {"id":"e15","fromNode":"cards","toNode":"cases","label":"apply"},
+    {"id":"e16","fromNode":"cases","toNode":"lab","label":"experiment","fromSide":"right","toSide":"left"}
+  ]
+}
