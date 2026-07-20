@@ -64,6 +64,8 @@ flowchart TD
 
 ### Подготовиться к Spring certification
 
+#### Spring Core
+
 1. [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
 2. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
 3. [[10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection]]
@@ -78,6 +80,14 @@ flowchart TD
 12. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards]]
 13. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 
+#### AOP and Cache
+
+14. [[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics]]
+15. [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards]]
+16. [[10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis]]
+17. [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards]]
+18. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
+
 ### Открыть визуальную карту
 
 - [[01_MAPS/Java Backend Map.canvas]]
@@ -89,6 +99,7 @@ flowchart TD
 - [[01_MAPS/Spring Container Extension Points Map.canvas]]
 - [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
 - [[01_MAPS/Spring Advanced Core Map.canvas]]
+- [[01_MAPS/Spring AOP and Caching Map.canvas]]
 
 ## Current Published Vertical Slices
 
@@ -115,6 +126,20 @@ CORE-B06: scopes, FactoryBean, lazy and context hierarchy     24 cards
 TOTAL                                                         140 cards
 ```
 
+### Spring AOP and Cache
+
+```text
+AOP-B01:   proxy mechanics, self-invocation and advisors      24 cards
+CACHE-B01: Spring Cache, Caffeine and Redis                   20 cards
+TOTAL                                                          44 cards
+```
+
+Практика:
+
+- [[50_LABS/Spring/AOP-B01/README]];
+- [[50_LABS/Spring/CACHE-B01/README]];
+- [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]].
+
 ## Spring learning sequence
 
 ```mermaid
@@ -125,6 +150,8 @@ flowchart LR
     B4 --> B5[Configuration and profiles]
     B5 --> B6[Advanced Core]
     B6 --> AOP[AOP and Proxies]
+    AOP --> CACHE[Caffeine and Redis caching]
+    CACHE --> TX[Transaction Management]
 ```
 
 ## Процесс повторения
@@ -153,7 +180,7 @@ flowchart TD
 ## Очерёдность наполнения
 
 1. Java Concurrency и JVM.
-2. Spring AOP and Proxies, затем Transactions.
+2. Spring Transaction Management после AOP/Cache.
 3. Database transactions, locks, indexes и execution plans.
 4. Kafka и RabbitMQ delivery semantics.
 5. Reliability patterns распределённых систем.
