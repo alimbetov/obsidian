@@ -41,6 +41,24 @@ tags:
 
 Не объект `ThreadLocal` хранит значения потоков. Каждый `Thread` содержит собственную внутреннюю таблицу, где экземпляр `ThreadLocal` используется как ключ.
 
+```mermaid
+flowchart LR
+    TL[ThreadLocal instance]
+    T1[Thread A]
+    T2[Thread B]
+    M1[ThreadLocalMap A]
+    M2[ThreadLocalMap B]
+    V1[Value A]
+    V2[Value B]
+
+    T1 --> M1
+    T2 --> M2
+    M1 -->|weak key| TL
+    M2 -->|weak key| TL
+    M1 -->|strong reference| V1
+    M2 -->|strong reference| V2
+```
+
 ## Как работает внутри
 
 - У потока может существовать `ThreadLocalMap`.
@@ -48,6 +66,18 @@ tags:
 - Значение удерживается обычной сильной ссылкой.
 - Очистка устаревших записей выполняется не мгновенно, а во время некоторых операций с таблицей.
 - Долгоживущий поток пула может удерживать значение намного дольше бизнес-операции.
+
+## Жизненный цикл безопасного использования
+
+```mermaid
+flowchart TD
+    A[Начало операции] --> B[ThreadLocal.set]
+    B --> C[Business logic]
+    C --> D{Успех или исключение}
+    D --> E[finally]
+    E --> F[ThreadLocal.remove]
+    F --> G[Поток безопасно возвращается в пул]
+```
 
 ## Основной API
 

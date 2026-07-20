@@ -11,6 +11,36 @@ tags:
 > [!summary] Назначение
 > Единая система для глубокого изучения, быстрого вспоминания, собеседований, сертификационных тестов и решения production-проблем.
 
+## Общая карта
+
+```mermaid
+flowchart TD
+    HOME[Java Backend Knowledge System]
+
+    HOME --> JAVA[Java]
+    HOME --> SPRING[Spring]
+    HOME --> DB[Databases]
+    HOME --> MSG[Messaging]
+    HOME --> DS[Distributed Systems]
+
+    JAVA --> IQ[Interview Questions]
+    SPRING --> IQ
+    DB --> IQ
+    MSG --> IQ
+    DS --> IQ
+
+    JAVA --> CERT[Certification]
+    SPRING --> CERT
+
+    JAVA --> CASES[Production Cases]
+    SPRING --> CASES
+    DB --> CASES
+    MSG --> CASES
+    DS --> CASES
+
+    CASES --> LABS[Labs]
+```
+
 ## Выберите режим
 
 ### Изучить предметную область
@@ -35,20 +65,33 @@ tags:
 ### Открыть визуальную карту
 
 - [[01_MAPS/Java Backend Map.canvas]]
+- [[01_MAPS/Java Concurrency Map.canvas]]
 
 ## Слои знаний
 
-```text
-Map
-  → Domain MOC
-    → Concept
-      → Interview question
-      → Certification question
-      → Production case
-      → Lab
+```mermaid
+flowchart LR
+    MAP[Map] --> MOC[Domain MOC]
+    MOC --> CONCEPT[Concept]
+    CONCEPT --> INTERVIEW[Interview Question]
+    CONCEPT --> CERTIFICATION[Certification Question]
+    CONCEPT --> CASE[Production Case]
+    CONCEPT --> LAB[Executable Lab]
 ```
 
 ## Процесс повторения
+
+```mermaid
+flowchart TD
+    A[Выбрать тему с низким confidence] --> B[Прочитать блок За 30 секунд]
+    B --> C[Ответить на вопросы без подсказки]
+    C --> D{Ответ уверенный?}
+    D -- Да --> E[Открыть полное объяснение]
+    D -- Нет --> F[Изучить внутренний механизм]
+    F --> E
+    E --> G[Разобрать production case]
+    G --> H[Обновить confidence и next_review]
+```
 
 1. Откройте карту предметной области.
 2. Выберите concept с низким `confidence`.
