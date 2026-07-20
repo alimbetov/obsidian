@@ -28,10 +28,10 @@ mindmap
       Optional
       Parallel streams
     Concurrency
-      Java Memory Model
-      Locks
+      Memory model
+      Synchronization
       Executors
-      ThreadLocal
+      CompletableFuture
       Virtual threads
     JVM
       Class loading
@@ -76,19 +76,35 @@ mindmap
 
 ## Concurrency
 
-- [[01_MAPS/Java Concurrency Map.canvas]]
-- Java Memory Model
-- happens-before
-- synchronized
-- volatile
-- Locks
-- Atomic classes
-- Executors
-- CompletableFuture
+> [!tip] Рекомендуемый вход
+> Начни с [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path|Concurrency Learning Path]], а Canvas используй для пространственной навигации.
+
+- [[01_MAPS/Java Concurrency Map.canvas|Java Concurrency Canvas]]
+- [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path|Concurrency Learning Path]]
+- [[10_CONCEPTS/Java/Concurrency/Visibility Atomicity Ordering|Visibility, Atomicity and Ordering]]
+- [[10_CONCEPTS/Java/Concurrency/Race Condition|Race Condition]]
+- [[10_CONCEPTS/Java/Concurrency/Java Memory Model|Java Memory Model]]
+- [[10_CONCEPTS/Java/Concurrency/Happens-Before|Happens-Before]]
+- [[10_CONCEPTS/Java/Concurrency/volatile|volatile]]
+- [[10_CONCEPTS/Java/Concurrency/synchronized|synchronized]]
+- [[10_CONCEPTS/Java/Concurrency/ReentrantLock|ReentrantLock]]
+- Atomic classes and CAS
+- [[10_CONCEPTS/Java/Concurrency/ExecutorService|ExecutorService]]
+- [[10_CONCEPTS/Java/Concurrency/CompletableFuture|CompletableFuture]]
 - ForkJoinPool
-- [[10_CONCEPTS/Java/Concurrency/ThreadLocal]]
-- Virtual threads
+- [[10_CONCEPTS/Java/Concurrency/ThreadLocal|ThreadLocal]]
+- [[10_CONCEPTS/Java/Concurrency/Virtual Threads|Virtual Threads]]
 - Structured concurrency
+- [[50_LABS/Java/Concurrency/README|Runnable Concurrency Labs]]
+
+### Проверка понимания
+
+- [[20_QUESTIONS/Interview/Java/Concurrency/Why volatile does not make increment atomic]]
+- [[20_QUESTIONS/Interview/Java/Concurrency/What does happens-before actually guarantee]]
+- [[20_QUESTIONS/Interview/Java/Concurrency/How synchronized provides visibility]]
+- [[20_QUESTIONS/Interview/Java/Concurrency/execute vs submit]]
+- [[20_QUESTIONS/Interview/Java/Concurrency/thenApply vs thenCompose]]
+- [[20_QUESTIONS/Interview/Java/Concurrency/Are virtual threads faster]]
 
 ## JVM
 
@@ -111,8 +127,8 @@ mindmap
 
 ## Практические маршруты
 
-- Interview questions
-- Certification questions
+- [[20_QUESTIONS/Interview/Interview Questions MOC|Interview Questions]]
+- [[30_CERTIFICATIONS/Certification MOC|Certification Questions]]
 - Code-output questions
 - Production cases
 - Executable labs

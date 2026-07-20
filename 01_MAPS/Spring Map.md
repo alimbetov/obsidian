@@ -9,6 +9,21 @@ tags:
 
 # Spring Map
 
+## Сертификационный маршрут
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Certification Card System|Spring Certification Card System]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap|Spring Core Card Roadmap]]
+
+```mermaid
+flowchart LR
+    A[Concept note] --> B[English certification card]
+    B --> C[Russian translation]
+    C --> D[Answer and explanation]
+    D --> E[Exam trap]
+    E --> F[Mini example]
+    F --> G[Review outcome]
+```
+
 ## Spring Core
 
 - IoC container
@@ -19,6 +34,14 @@ tags:
 - Bean scopes
 - Bean lifecycle
 - Profiles and properties
+
+### Приоритетные contrast topics
+
+- Bean vs Component
+- Qualifier vs Primary
+- BeanPostProcessor vs BeanFactoryPostProcessor
+- Full vs lite configuration
+- FactoryBean vs BeanFactory
 
 ## AOP и proxies
 
