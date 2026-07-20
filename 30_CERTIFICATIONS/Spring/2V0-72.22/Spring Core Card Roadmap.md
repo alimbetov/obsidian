@@ -5,6 +5,7 @@ domain: spring
 subdomain: spring-core
 status: active
 base_cards_available: 174
+published_in_vault: 20
 batches:
   - CORE-B01
   - CORE-B02
@@ -21,164 +22,100 @@ tags:
 # Spring Core Card Roadmap
 
 > [!summary] Текущее состояние
-> В предыдущем плане уже сформирована линия `CORE-B01`–`CORE-B06`, суммарно 174 карточки Spring Core. В Obsidian они должны переноситься партиями, проходить technical/pedagogical review и связываться с каноническими concept notes.
+> Первая фактическая партия [[CORE-B01/CORE-B01 Cards|CORE-B01]] опубликована: 20 карточек связаны с [[10_CONCEPTS/Spring/Core/Spring Core Foundations|Spring Core Foundations]] и визуальной [[01_MAPS/Spring Core Foundation Map.canvas|Canvas-картой]].
 
-## Карта Spring Core
+## Progress
 
-```mermaid
-mindmap
-  root((Spring Core))
-    Container
-      BeanFactory
-      ApplicationContext
-      BeanDefinition
-    Registration
-      Component scanning
-      @Bean
-      @Import
-    Dependency Injection
-      Constructor injection
-      @Autowired
-      @Qualifier
-      @Primary
-    Lifecycle
-      Instantiation
-      Population
-      BeanPostProcessor
-      Init callbacks
-      Destruction
-    Configuration
-      @Configuration
-      Full and lite mode
-      Profiles
-      Environment
-    Advanced
-      BeanFactoryPostProcessor
-      FactoryBean
-      Scopes
-      Circular dependencies
+```text
+CORE-B01  20 cards  PUBLISHED
+CORE-B02  planned   candidate selection
+CORE-B03  planned   lifecycle
+CORE-B04  planned   extension points
+CORE-B05  planned   configuration
+CORE-B06  planned   advanced core
 ```
 
-## Batch strategy
+## Sequence
 
-Карточки не следует переносить одной массой. Рабочий порядок:
+```mermaid
+flowchart LR
+    B1[CORE-B01 IoC and registration] --> B2[CORE-B02 Candidate selection]
+    B2 --> B3[CORE-B03 Lifecycle]
+    B3 --> B4[CORE-B04 Extension points]
+    B4 --> B5[CORE-B05 Configuration]
+    B5 --> B6[CORE-B06 Advanced Core]
+```
 
-1. импортировать 20–30 карточек;
-2. унифицировать metadata;
-3. связать с concept notes;
-4. проверить английский question stem;
-5. проверить русский перевод;
-6. добавить Exam Trap;
-7. для сложных тем добавить Mini Example и Memory Hook;
-8. выполнить review batch;
-9. только затем переходить к следующей партии.
+## CORE-B01 — published
 
-## Batch manifests
+- IoC vs DI;
+- Spring bean;
+- BeanDefinition;
+- BeanFactory vs ApplicationContext;
+- component scanning and stereotypes;
+- `@Bean` vs `@Component`;
+- `@Configuration`;
+- constructor, setter and field injection.
 
-### CORE-B01
+### Quality gate
 
-Фокус первой партии:
+- [x] 20 cards in one reviewable batch.
+- [x] English question.
+- [x] Russian translation.
+- [x] Direct answer.
+- [x] Mechanism explanation.
+- [x] Specific exam trap.
+- [x] Memory hook.
+- [x] Selected mini examples.
+- [x] Canonical concept link.
+- [ ] Real attempt outcomes collected.
 
-- IoC container basics;
-- bean definition;
-- stereotypes;
-- basic dependency injection;
-- `@Bean` и component registration.
+## CORE-B02 — next
 
-### CORE-B02
-
-Продолжение:
-
-- constructor/setter/field injection;
-- required dependencies;
-- candidate selection;
+- multiple candidates;
 - `@Primary`;
-- `@Qualifier`.
+- `@Qualifier`;
+- bean-name fallback nuances;
+- collection and map injection;
+- optional dependencies;
+- `ObjectProvider` basics;
+- contrast drills.
 
-### CORE-B03
+## CORE-B03
 
-Lifecycle foundation:
-
-- bean instantiation;
+- instantiation;
 - dependency population;
 - aware callbacks;
-- initialization callbacks;
+- init callbacks;
 - destruction callbacks.
 
-### CORE-B04
-
-Extension points:
+## CORE-B04
 
 - `BeanPostProcessor`;
 - `BeanFactoryPostProcessor`;
 - `BeanDefinitionRegistryPostProcessor`;
 - ordering and lifecycle boundaries.
 
-### CORE-B05
+## CORE-B05
 
-Configuration:
-
-- `@Configuration`;
-- full vs lite mode;
+- full vs lite configuration;
 - `@Import`;
 - profiles;
 - properties and Environment.
 
-### CORE-B06
+## CORE-B06
 
-Advanced Core:
-
-- scopes;
-- scoped proxies;
+- scopes and scoped proxies;
 - `FactoryBean`;
 - circular dependencies;
 - lazy initialization;
 - parent/child contexts.
 
-> [!note]
-> Точная раскладка существующих 174 карточек должна сохранять их исходные IDs и фактическое содержание; этот roadmap задаёт педагогическую группировку для переноса и проверки.
+## Review rule
 
-## Приоритетные contrast modules
+После batch пользователь должен не только выбрать ответ, но и:
 
-### `@Bean` vs `@Component`
-
-```mermaid
-flowchart TD
-    A{Кто создаёт объект?} -->|Component scanning| B[@Component family]
-    A -->|Factory method in configuration| C[@Bean]
-    B --> D[Class-level registration]
-    C --> E[Method-level registration]
-    C --> F[Useful for third-party classes]
-```
-
-### `@Primary` vs `@Qualifier`
-
-```mermaid
-flowchart TD
-    A[Multiple candidates] --> B{Injection point has @Qualifier?}
-    B -->|Yes| C[Choose matching qualified bean]
-    B -->|No| D{Exactly one @Primary?}
-    D -->|Yes| E[Choose primary bean]
-    D -->|No| F[Ambiguity or name-based fallback rules]
-```
-
-### Processor distinction
-
-| Extension point | Работает с | Когда |
-|---|---|---|
-| BeanFactoryPostProcessor | BeanDefinition metadata | до создания обычных beans |
-| BeanPostProcessor | bean instances | вокруг initialization callbacks |
-| BeanDefinitionRegistryPostProcessor | registry of definitions | ранняя регистрация definitions |
-
-## Проверка готовности batch
-
-- [ ] 20–30 карточек имеют IDs.
-- [ ] English question проверен.
-- [ ] Russian translation точен.
-- [ ] Answer краткий.
-- [ ] Explanation раскрывает механизм.
-- [ ] Exam Trap конкретен.
-- [ ] Complex cards имеют Mini Example.
-- [ ] Confusing cards имеют Memory Hook.
-- [ ] Все concept links разрешаются.
-- [ ] Multiple-choice разбирает неправильные варианты.
+1. объяснить механизм;
+2. назвать confusing alternative;
+3. привести minimal example;
+4. зафиксировать outcome: confident, guessed, concept error, attention error или confusion.
