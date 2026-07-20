@@ -42,10 +42,20 @@ flowchart LR
 1. [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
 2. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
 3. [[10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection]]
-4. [[01_MAPS/Spring Dependency Resolution Map.canvas]]
-5. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards]]
-6. [[40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases]]
-7. [[50_LABS/Spring/Core-B02/README]]
+4. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards]]
+5. [[10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction]]
+6. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards]]
+7. [[10_CONCEPTS/Spring/Core/Container Extension Points]]
+8. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards]]
+9. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+
+```text
+CORE-B01  20 cards
+CORE-B02  24 cards
+CORE-B03  24 cards
+CORE-B04  24 cards
+TOTAL     92 cards
+```
 
 ## Confidence Scale
 
@@ -68,12 +78,10 @@ flowchart LR
 | `correct-confident` | ответ точный и объяснён | увеличить interval |
 | `correct-guessed` | вариант выбран без механизма | повторить как ошибку |
 | `wrong-concept` | неверна модель | перечитать concept + lab |
-| `wrong-attention` | пропущено NOT/select 3/тип dependency | attention drill |
+| `wrong-attention` | пропущено NOT/select N/phase | attention drill |
 | `wrong-confusion` | перепутаны похожие механизмы | comparison card |
 
 ## Dynamic Search — Unverified Concepts
-
-Следующий встроенный поиск показывает заметки с `confidence: 0`.
 
 ```query
 [confidence:0]
@@ -91,37 +99,60 @@ flowchart LR
 [type:certification-question]
 ```
 
-Batch-файлы, содержащие несколько карточек, дополнительно доступны через:
+Batch routes:
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards]]
 
-## Weekly Review Protocol
+## Spring contrast drills
 
-### Step 1. Coverage
+### CORE-B01
 
-- Какие domains вообще не повторялись?
-- Какие maps имеют placeholder nodes без concept notes?
-- Есть ли certification objectives без карточек?
+- `@Bean` vs `@Component`;
+- BeanFactory vs ApplicationContext;
+- constructor vs setter vs field injection.
 
-### Step 2. Retention
+### CORE-B02
 
-- Какие ответы были `correct-guessed`?
-- Какие ошибки повторились дважды?
-- Какие memory hooks не помогли?
+- `@Primary` vs `@Qualifier`;
+- `Optional<T>` vs `ObjectProvider<T>`;
+- collection ordering vs startup ordering.
 
-### Step 3. Transfer
+### CORE-B03
 
-- Могу ли я объяснить production failure без терминов из вопроса?
-- Могу ли выбрать механизм и назвать trade-off?
-- Могу ли написать минимальный reproducer?
+- instantiation vs initialization;
+- raw target vs published proxy;
+- `@PostConstruct` vs `afterPropertiesSet()` vs custom init;
+- singleton destruction vs prototype ownership.
 
-### Step 4. Maintenance
+### CORE-B04
 
-- Обновить `last_reviewed`.
-- Назначить `next_review`.
-- Увеличить `confidence` максимум на один уровень.
-- Создать comparison note для повторяющейся confusion pair.
+- BFPP vs BPP;
+- BDRPP vs BFPP;
+- before-instantiation vs before-initialization;
+- auto-detected ordering vs programmatic registration order;
+- metadata mutation vs instance wrapping;
+- normal reference vs early reference;
+- BPP dependency vs auto-proxy eligibility.
+
+CORE-B04 memory model:
+
+```text
+Registry adds recipes.
+Factory processor edits recipes.
+Bean processor edits or replaces objects.
+Instantiation-aware hooks surround creation and population.
+Smart hooks predict type, constructors and early references.
+Destruction-aware hooks clean before destruction.
+```
+
+Practice:
+
+- [[01_MAPS/Spring Container Extension Points Map.canvas]]
+- [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]]
+- [[50_LABS/Spring/Core-B04/README]]
 
 ## Active Weakness Register
 
@@ -130,6 +161,11 @@ Batch-файлы, содержащие несколько карточек, до
 | `@Primary` vs `@Qualifier` | default preference против semantic filter |
 | `Optional<T>` vs `ObjectProvider<T>` | construction-time absence против lazy lookup |
 | List ordering vs bean startup order | `@Order` против dependency lifecycle |
+| instantiation vs initialization | constructor против init pipeline |
+| BFPP vs BPP | metadata против instance |
+| before-instantiation vs before-initialization | target ещё не существует против target уже создан |
+| programmatic vs auto-detected BPP | registration order против Ordered semantics |
+| early bean creation vs full proxying | infrastructure timing против annotations |
 | visibility vs atomicity | `volatile` против compound operation |
 | deadlock vs contention | permanent cycle против long wait |
 | `thenApply` vs `thenCompose` | transform против async flattening |
@@ -152,18 +188,29 @@ Batch-файлы, содержащие несколько карточек, до
 5 min   summary from memory
 ```
 
+## Weekly Review Protocol
+
+1. Найти все `correct-guessed` outcomes.
+2. Найти recurring confusion pairs.
+3. Выбрать одну тему confidence 2 и довести до 3.
+4. Выбрать одну тему confidence 3 и решить новый production case.
+5. Проверить, какие labs ещё не запускались в реальном environment.
+6. Не добавлять новый batch, если предыдущий не получил хотя бы первый review cycle.
+
 ## Rule of Completion
 
-Тема считается готовой не когда заметка заполнена, а когда выполнены четыре проверки:
+Тема считается готовой не когда заметка заполнена, а когда выполнены проверки:
 
 - [ ] Definition recall.
 - [ ] Mechanism explanation.
+- [ ] Lifecycle phase identification.
 - [ ] Trap discrimination.
 - [ ] Production transfer.
+- [ ] Lab trace prediction.
 
 ## Next Planned Modules
 
-- Spring `CORE-B03`: bean lifecycle.
+- Spring `CORE-B05`: configuration and profiles.
 - Java: ForkJoinPool and parallel streams.
 - Databases: transactions, isolation and locks.
 - Messaging: delivery semantics and idempotency.
