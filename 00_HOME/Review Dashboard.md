@@ -27,9 +27,9 @@ flowchart LR
     F -->|strong| H[Increase interval]
 ```
 
-## Current Learning Routes
+# Current Learning Routes
 
-### Java Concurrency
+## Java Concurrency
 
 1. [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path]]
 2. [[01_MAPS/Java Concurrency Map.canvas]]
@@ -37,7 +37,7 @@ flowchart LR
 4. [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
 5. [[50_LABS/Java/Concurrency/README]]
 
-### Spring Core — complete route
+## Spring Core — complete route
 
 1. [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
 2. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
@@ -54,16 +54,28 @@ flowchart LR
 13. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 
 ```text
-CORE-B01  20 cards
-CORE-B02  24 cards
-CORE-B03  24 cards
-CORE-B04  24 cards
-CORE-B05  24 cards
-CORE-B06  24 cards
-TOTAL    140 cards
+Spring Core: 140 cards
 ```
 
-## Confidence Scale
+## Spring AOP and Cache — active route
+
+1. [[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics]]
+2. [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards]]
+3. [[50_LABS/Spring/AOP-B01/README]]
+4. [[10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis]]
+5. [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards]]
+6. [[50_LABS/Spring/CACHE-B01/README]]
+7. [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]]
+8. [[01_MAPS/Spring AOP and Caching Map.canvas]]
+9. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
+
+```text
+AOP-B01    24 cards
+CACHE-B01  20 cards
+TOTAL      44 cards
+```
+
+# Confidence Scale
 
 | confidence | Реальное значение |
 |---:|---|
@@ -77,7 +89,7 @@ TOTAL    140 cards
 > [!danger]
 > Confidence повышается не после чтения, а после самостоятельного recall и transfer task.
 
-## Outcome Taxonomy
+# Outcome Taxonomy
 
 | outcome | Что произошло | Следующее действие |
 |---|---|---|
@@ -87,7 +99,7 @@ TOTAL    140 cards
 | `wrong-attention` | пропущено NOT/select N/phase | attention drill |
 | `wrong-confusion` | перепутаны механизмы | comparison drill |
 
-## Dynamic Search
+# Dynamic Search
 
 ```query
 [confidence:0]
@@ -101,7 +113,9 @@ TOTAL    140 cards
 [type:certification-question]
 ```
 
-## Batch routes
+# Batch routes
+
+## Core
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards]]
@@ -110,115 +124,112 @@ TOTAL    140 cards
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards]]
 
-## Spring contrast drills
+## AOP and Cache
 
-### CORE-B01
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards]]
 
-- `@Bean` vs `@Component`;
-- BeanFactory vs ApplicationContext;
-- constructor vs setter vs field injection.
+# Spring contrast drills
 
-### CORE-B02
+## Core selected contrasts
 
 - `@Primary` vs `@Qualifier`;
-- `Optional<T>` vs `ObjectProvider<T>`;
-- collection ordering vs startup ordering.
-
-### CORE-B03
-
 - instantiation vs initialization;
-- raw target vs published proxy;
-- init callbacks vs destruction callbacks;
-- singleton destruction vs prototype ownership.
-
-### CORE-B04
-
 - BFPP vs BPP;
-- BDRPP vs BFPP;
-- before-instantiation vs before-initialization;
-- auto-detected ordering vs programmatic order;
-- normal reference vs early reference.
-
-### CORE-B05
-
 - full vs lite configuration;
-- direct bean-method call vs method-parameter injection;
-- profile vs property;
-- profile vs feature flag;
-- `@PropertySource` vs Boot Config Data;
-- `@Value` vs typed configuration.
+- singleton vs thread-safe;
+- prototype vs provider;
+- FactoryBean product vs factory;
+- lazy timing vs scope;
+- parent vs child visibility.
 
-### CORE-B06
+## AOP-B01
 
-- singleton identity vs thread safety;
-- prototype lookup vs business method call;
-- prototype initialization vs destruction ownership;
-- direct injection vs provider lookup;
-- scoped proxy vs target scope;
-- `ObjectProvider` optionality vs ambiguity;
-- `FactoryBean` product vs factory;
-- FactoryBean scope vs product identity;
-- lazy timing vs bean scope;
-- constructor cycle vs setter/field cycle;
-- early reference vs fully initialized proxy;
-- parent visibility vs child visibility;
-- Resource vs File;
-- message code vs localized text.
+- aspect vs advisor;
+- pointcut vs advice;
+- JDK proxy vs CGLIB;
+- interface contract vs target class;
+- proxy call vs self-invocation;
+- external collaborator vs self-injection;
+- public overridable method vs final/private method;
+- advisor order on entry vs exit;
+- audit rethrow vs swallowed exception;
+- runtime proxy vs raw object created with `new`;
+- external `@Async` vs self-invoked method;
+- annotation presence vs actual interceptor boundary.
 
-CORE-B06 memory model:
+### AOP memory model
 
 ```text
-Identity: how many instances?
-Resolution: when is target selected?
-Lifetime: how long does it live?
-Ownership: who destroys it?
-
-Singleton: one per definition per container.
-Prototype: new per lookup; caller owns cleanup.
-Scoped proxy: stable handle, contextual target.
-Provider: ask container now.
-FactoryBean: name → product, &name → factory.
-Lazy: later creation, same scope.
-Hierarchy: child sees parent, parent does not see child.
+Caller enters proxy.
+Proxy calculates applicable advisors.
+Advisors form a nested interceptor chain.
+Target executes only after inner proceed.
+this.method() does not re-enter proxy.
+JDK implements interfaces.
+CGLIB subclasses target.
 ```
 
-Practice:
+## CACHE-B01
 
-- [[01_MAPS/Spring Advanced Core Map.canvas]]
-- [[40_PRODUCTION_CASES/Spring/Advanced Core Production Cases]]
-- [[50_LABS/Spring/Core-B06/README]]
+- Spring Cache abstraction vs storage provider;
+- `@Cacheable` vs `@CachePut`;
+- after-success eviction vs `beforeInvocation`;
+- `condition` vs `unless`;
+- cache key identity vs method argument identity;
+- Caffeine local state vs Redis shared state;
+- `maximumSize` vs `maximumWeight`;
+- `expireAfterWrite` vs `expireAfterAccess`;
+- TTL vs invalidation;
+- JSON serializer vs JDK serialization;
+- `sync=true` local coordination vs distributed lock;
+- cache outage fallback vs database protection;
+- L1 Redis eviction vs L1 Caffeine invalidation;
+- high hit rate vs correct fresh data.
 
-## Active Weakness Register
+### Cache memory model
+
+```text
+Spring decides whether and when to cache.
+CacheManager chooses a named provider cache.
+Key defines identity and isolation.
+Caffeine lives inside one JVM.
+Redis is shared through network and serialization.
+TTL bounds time, not business correctness.
+Every extra cache layer adds another stale copy.
+```
+
+# Active Weakness Register
 
 | Confusion pair | Проверка |
 |---|---|
-| `@Primary` vs `@Qualifier` | preference против semantic filter |
-| `Optional<T>` vs `ObjectProvider<T>` | absence против runtime lookup |
-| instantiation vs initialization | constructor против init pipeline |
-| BFPP vs BPP | metadata против instance |
-| full vs lite configuration | managed lookup против ordinary call |
-| profile vs property | graph selection против value selection |
-| singleton vs thread-safe | identity против synchronization |
-| prototype vs provider | scope policy против lookup timing |
-| scoped proxy vs target | stable reference против contextual instance |
-| FactoryBean vs `@Bean` | managed factory bean против factory method |
-| lazy vs prototype | creation timing против identity |
-| early reference vs final proxy | partial lifecycle против published bean |
-| parent vs child visibility | downward lookup против bidirectional discovery |
-| Resource vs File | abstraction против storage assumption |
-| visibility vs atomicity | volatile против compound operation |
-| deadlock vs contention | cycle против long wait |
+| JDK proxy vs CGLIB | interface implementation против subclass |
+| proxy type vs self-invocation | implementation choice против caller path |
+| pointcut vs advice | selection против action |
+| aspect vs advisor | module против pointcut/advice pair |
+| final/private method vs proxy | Java dispatch limitation |
+| `@Transactional` external vs internal | transaction interceptor crossing |
+| `@Async` external vs internal | executor submission boundary |
+| cache abstraction vs provider | orchestration против storage policy |
+| Caffeine vs Redis | local latency против shared state |
+| `@Cacheable` vs `@CachePut` | skip-on-hit против always-invoke |
+| condition vs unless | before invocation против result veto |
+| TTL vs eviction | time bound против explicit invalidation |
+| local stampede vs distributed stampede | one provider/JVM против multiple nodes |
+| L1 vs L2 invalidation | one copy против replicated copies |
+| serializer vs Java object | distributed bytes contract |
+| Redis outage vs DB fallback | optimization failure против capacity cascade |
 
-## Ten-Minute Review Session
+# Ten-Minute Review Session
 
 1. Выбрать одну confusion pair.
 2. Проговорить различие без notes.
 3. Ответить на 3 связанные cards.
-4. Нарисовать mechanism diagram.
+4. Нарисовать caller → proxy → advisor → target либо L1 → L2 → DB.
 5. Открыть concept и исправить пропуски.
 6. Зафиксировать outcome.
 
-## Thirty-Minute Deep Session
+# Thirty-Minute Deep Session
 
 ```text
 5 min   recall map
@@ -227,7 +238,15 @@ Practice:
 5 min   summary from memory
 ```
 
-## Weekly Review Protocol
+Suggested lab rotation:
+
+- Day 1: JDK/CGLIB and advisor chain.
+- Day 2: self-invoked transaction and async.
+- Day 3: Caffeine hits, put and evict.
+- Day 4: Redis TTL, prefix and serializer.
+- Day 5: Redis outage or stampede design exercise.
+
+# Weekly Review Protocol
 
 1. Найти `correct-guessed` outcomes.
 2. Найти recurring confusion pairs.
@@ -236,19 +255,21 @@ Practice:
 5. Проверить labs, ещё не запущенные в real environment.
 6. Не считать route mastered до первого полного review cycle.
 
-## Rule of Completion
+# Rule of Completion
 
 - [ ] Definition recall.
 - [ ] Mechanism explanation.
-- [ ] Lifecycle/configuration phase identification.
-- [ ] Identity/resolution/lifetime/ownership explanation.
-- [ ] Trap discrimination.
+- [ ] Proxy path diagram.
+- [ ] Advisor order prediction.
+- [ ] Self-invocation diagnosis.
+- [ ] Cache key and topology explanation.
+- [ ] Cache outage policy.
 - [ ] Production transfer.
 - [ ] Lab trace prediction.
 
-## Next Planned Modules
+# Next Planned Modules
 
-- Spring AOP and Proxies.
+- Spring Transaction Management deep dive.
 - Java ForkJoinPool and parallel streams.
 - Databases: transactions, isolation and locks.
 - Messaging: delivery semantics and idempotency.
