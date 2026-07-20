@@ -15,6 +15,7 @@ tags:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards|CORE-B01 — 20 cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards|CORE-B02 — 24 cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards|CORE-B03 — 24 cards]]
 - [[00_HOME/Review Dashboard]]
 
 ```mermaid
@@ -26,10 +27,11 @@ flowchart LR
     E --> F[Exam trap]
     F --> G[Memory hook]
     G --> H[Production transfer]
-    H --> I[Review outcome]
+    H --> I[Executable experiment]
+    I --> J[Review outcome]
 ```
 
-## Spring Core — published foundation
+## Spring Core — published modules
 
 ### CORE-B01: container and registration
 
@@ -69,18 +71,42 @@ flowchart LR
 - constructor resolution;
 - generics as qualifiers.
 
-## Next Spring Core batch
+### CORE-B03: bean lifecycle
 
-`CORE-B03 — Bean Lifecycle`:
+- [[10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction]]
+- [[01_MAPS/Spring Bean Lifecycle Map.canvas]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards]]
+- [[40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases]]
+- [[50_LABS/Spring/Core-B03/README]]
 
-- instantiation;
+Покрытие:
+
+- BeanDefinition to raw instance;
+- instantiation vs initialization;
 - dependency population;
 - aware callbacks;
-- before-initialization post-processing;
-- init callbacks;
-- after-initialization post-processing;
-- destruction callbacks;
-- prototype lifecycle boundaries.
+- BeanPostProcessor before/after initialization;
+- `@PostConstruct`;
+- `afterPropertiesSet()`;
+- custom init method;
+- proxy publication;
+- `SmartInitializingSingleton`;
+- destruction callback order;
+- context close;
+- prototype destruction boundary;
+- initialization callbacks vs `Lifecycle`.
+
+## Next Spring Core batch
+
+`CORE-B04 — Container Extension Points`:
+
+- BeanPostProcessor deep dive;
+- InstantiationAware and SmartInstantiationAware processors;
+- BeanFactoryPostProcessor;
+- BeanDefinitionRegistryPostProcessor;
+- metadata phase vs instance phase;
+- processor ordering and early initialization;
+- custom annotation and proxy patterns.
 
 ## AOP and proxies
 
