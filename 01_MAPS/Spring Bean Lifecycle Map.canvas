@@ -1,0 +1,236 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md",
+      "x": 0,
+      "y": -760,
+      "width": 500,
+      "height": 230,
+      "color": "4"
+    },
+    {
+      "id": "creation-group",
+      "type": "group",
+      "label": "1. Definition and creation",
+      "x": -1180,
+      "y": -390,
+      "width": 1120,
+      "height": 410,
+      "color": "2"
+    },
+    {
+      "id": "init-group",
+      "type": "group",
+      "label": "2. Initialization pipeline",
+      "x": 10,
+      "y": -390,
+      "width": 1500,
+      "height": 410,
+      "color": "3"
+    },
+    {
+      "id": "ready-group",
+      "type": "group",
+      "label": "3. Published runtime reference",
+      "x": -1030,
+      "y": 110,
+      "width": 1080,
+      "height": 390,
+      "color": "5"
+    },
+    {
+      "id": "destroy-group",
+      "type": "group",
+      "label": "4. Destruction and ownership",
+      "x": 120,
+      "y": 110,
+      "width": 1210,
+      "height": 390,
+      "color": "1"
+    },
+    {
+      "id": "practice-group",
+      "type": "group",
+      "label": "5. Recall, cases and lab",
+      "x": 1400,
+      "y": 110,
+      "width": 940,
+      "height": 620,
+      "color": "6"
+    },
+    {
+      "id": "definition",
+      "type": "text",
+      "text": "# BeanDefinition\n\nRecipe: class/factory, scope, dependencies, qualifiers, init and destroy metadata.",
+      "x": -1100,
+      "y": -300,
+      "width": 320,
+      "height": 210
+    },
+    {
+      "id": "instantiate",
+      "type": "text",
+      "text": "# Instantiation\n\nConstructor or factory method creates the raw object.",
+      "x": -730,
+      "y": -300,
+      "width": 300,
+      "height": 190
+    },
+    {
+      "id": "populate",
+      "type": "text",
+      "text": "# Dependency population\n\nFields, setters, methods and property values are applied.",
+      "x": -390,
+      "y": -300,
+      "width": 300,
+      "height": 190
+    },
+    {
+      "id": "aware",
+      "type": "text",
+      "text": "# Aware callbacks\n\nBeanName, BeanFactory and ApplicationContext information before init.",
+      "x": 80,
+      "y": -300,
+      "width": 300,
+      "height": 200
+    },
+    {
+      "id": "before",
+      "type": "text",
+      "text": "# BPP before-init chain\n\nBean is already populated. @PostConstruct is invoked by infrastructure inside this phase.",
+      "x": 420,
+      "y": -300,
+      "width": 340,
+      "height": 220
+    },
+    {
+      "id": "callbacks",
+      "type": "text",
+      "text": "# Init callbacks\n\n1. @PostConstruct\n2. afterPropertiesSet\n3. custom init-method",
+      "x": 800,
+      "y": -300,
+      "width": 300,
+      "height": 220
+    },
+    {
+      "id": "after",
+      "type": "text",
+      "text": "# BPP after-init chain\n\nMay return original bean, wrapper or AOP proxy.",
+      "x": 1140,
+      "y": -300,
+      "width": 300,
+      "height": 200
+    },
+    {
+      "id": "proxy",
+      "type": "text",
+      "text": "# Final proxy/reference\n\nConsumers normally receive the processed reference, not a leaked raw target.",
+      "x": -950,
+      "y": 210,
+      "width": 330,
+      "height": 200
+    },
+    {
+      "id": "smart",
+      "type": "text",
+      "text": "# After singleton creation\n\nSmartInitializingSingleton or ContextRefreshedEvent for broader startup coordination.",
+      "x": -570,
+      "y": 210,
+      "width": 350,
+      "height": 210
+    },
+    {
+      "id": "runtime",
+      "type": "text",
+      "text": "# Runtime\n\nExternal calls cross proxy boundaries. Lifecycle/SmartLifecycle control start and stop.",
+      "x": -170,
+      "y": 210,
+      "width": 340,
+      "height": 210
+    },
+    {
+      "id": "close",
+      "type": "text",
+      "text": "# Context close\n\nManaged singleton retirement begins.",
+      "x": 210,
+      "y": 210,
+      "width": 270,
+      "height": 180
+    },
+    {
+      "id": "destroy",
+      "type": "text",
+      "text": "# Destroy callbacks\n\n1. @PreDestroy\n2. DisposableBean.destroy\n3. custom destroy-method",
+      "x": 520,
+      "y": 210,
+      "width": 310,
+      "height": 220
+    },
+    {
+      "id": "prototype",
+      "type": "text",
+      "text": "# Prototype boundary\n\nSpring initializes it but does not automatically manage complete destruction.",
+      "x": 880,
+      "y": 210,
+      "width": 360,
+      "height": 210
+    },
+    {
+      "id": "cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards.md",
+      "x": 1480,
+      "y": 210,
+      "width": 350,
+      "height": 200
+    },
+    {
+      "id": "cases",
+      "type": "file",
+      "file": "40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases.md",
+      "x": 1880,
+      "y": 210,
+      "width": 370,
+      "height": 200
+    },
+    {
+      "id": "lab",
+      "type": "file",
+      "file": "50_LABS/Spring/Core-B03/README.md",
+      "x": 1480,
+      "y": 470,
+      "width": 350,
+      "height": 200
+    },
+    {
+      "id": "sources",
+      "type": "file",
+      "file": "98_SOURCES/Spring Bean Lifecycle Sources.md",
+      "x": 1880,
+      "y": 470,
+      "width": 370,
+      "height": 200
+    }
+  ],
+  "edges": [
+    {"id":"e01","fromNode":"root","toNode":"definition","label":"metadata","fromSide":"bottom","toSide":"top"},
+    {"id":"e02","fromNode":"definition","toNode":"instantiate","label":"create","fromSide":"right","toSide":"left"},
+    {"id":"e03","fromNode":"instantiate","toNode":"populate","label":"assemble","fromSide":"right","toSide":"left"},
+    {"id":"e04","fromNode":"populate","toNode":"aware","label":"introduce container","fromSide":"right","toSide":"left"},
+    {"id":"e05","fromNode":"aware","toNode":"before","label":"process","fromSide":"right","toSide":"left"},
+    {"id":"e06","fromNode":"before","toNode":"callbacks","label":"initialize","fromSide":"right","toSide":"left"},
+    {"id":"e07","fromNode":"callbacks","toNode":"after","label":"final processing","fromSide":"right","toSide":"left"},
+    {"id":"e08","fromNode":"after","toNode":"proxy","label":"publish wrapper/proxy"},
+    {"id":"e09","fromNode":"proxy","toNode":"smart","label":"all singletons","fromSide":"right","toSide":"left"},
+    {"id":"e10","fromNode":"smart","toNode":"runtime","label":"serve","fromSide":"right","toSide":"left"},
+    {"id":"e11","fromNode":"runtime","toNode":"close","label":"shutdown","fromSide":"right","toSide":"left"},
+    {"id":"e12","fromNode":"close","toNode":"destroy","label":"callbacks","fromSide":"right","toSide":"left"},
+    {"id":"e13","fromNode":"destroy","toNode":"prototype","label":"scope exception","fromSide":"right","toSide":"left"},
+    {"id":"e14","fromNode":"callbacks","toNode":"cards","label":"active recall"},
+    {"id":"e15","fromNode":"proxy","toNode":"cases","label":"production transfer"},
+    {"id":"e16","fromNode":"cards","toNode":"lab","label":"experiment","fromSide":"bottom","toSide":"top"},
+    {"id":"e17","fromNode":"cases","toNode":"sources","label":"verify","fromSide":"bottom","toSide":"top"}
+  ]
+}
