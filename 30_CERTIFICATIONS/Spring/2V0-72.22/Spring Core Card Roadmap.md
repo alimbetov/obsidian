@@ -5,7 +5,7 @@ domain: spring
 subdomain: spring-core
 status: active
 base_cards_available: 174
-published_in_vault: 44
+published_in_vault: 68
 batches:
   - CORE-B01
   - CORE-B02
@@ -22,23 +22,23 @@ tags:
 # Spring Core Card Roadmap
 
 > [!summary] Текущее состояние
-> Две фактические партии опубликованы: [[CORE-B01/CORE-B01 Cards|CORE-B01]] содержит 20 foundation cards, а [[CORE-B02/CORE-B02 Cards|CORE-B02]] — 24 карточки candidate resolution и optional injection. Обе партии связаны с concept notes, Canvas-картами и практическими материалами.
+> Опубликованы три связанные партии: [[CORE-B01/CORE-B01 Cards|CORE-B01]] — container и registration, [[CORE-B02/CORE-B02 Cards|CORE-B02]] — dependency resolution, [[CORE-B03/CORE-B03 Cards|CORE-B03]] — полный bean lifecycle. Каждая партия имеет concept note, Canvas, active recall и практический transfer-layer.
 
 ## Progress
 
 ```text
 CORE-B01  20 cards  PUBLISHED
 CORE-B02  24 cards  PUBLISHED
-CORE-B03  planned   bean lifecycle
+CORE-B03  24 cards  PUBLISHED
 CORE-B04  planned   extension points
 CORE-B05  planned   configuration
 CORE-B06  planned   advanced core
 ```
 
-Всего опубликовано в vault:
+Всего опубликовано:
 
 ```text
-44 Spring Core cards
+68 Spring Core cards
 ```
 
 ## Sequence
@@ -46,7 +46,7 @@ CORE-B06  planned   advanced core
 ```mermaid
 flowchart LR
     B1[CORE-B01 IoC and registration] --> B2[CORE-B02 Candidate resolution]
-    B2 --> B3[CORE-B03 Lifecycle]
+    B2 --> B3[CORE-B03 Bean lifecycle]
     B3 --> B4[CORE-B04 Extension points]
     B4 --> B5[CORE-B05 Configuration]
     B5 --> B6[CORE-B06 Advanced Core]
@@ -63,26 +63,11 @@ flowchart LR
 Покрытие:
 
 - IoC vs DI;
-- Spring bean;
-- BeanDefinition;
+- Spring bean и BeanDefinition;
 - BeanFactory vs ApplicationContext;
-- component scanning and stereotypes;
-- `@Bean` vs `@Component`;
-- `@Configuration`;
-- constructor, setter and field injection.
-
-### Quality gate
-
-- [x] 20 cards in one reviewable batch.
-- [x] English question.
-- [x] Russian translation.
-- [x] Direct answer.
-- [x] Mechanism explanation.
-- [x] Specific exam trap.
-- [x] Memory hook.
-- [x] Selected mini examples.
-- [x] Canonical concept link.
-- [ ] Real attempt outcomes collected.
+- component scanning и stereotypes;
+- `@Bean`, `@Component`, `@Configuration`;
+- constructor, setter и field injection.
 
 ## CORE-B02 — published
 
@@ -96,60 +81,73 @@ flowchart LR
 
 Покрытие:
 
-- multiple candidates;
-- `@Primary`;
-- `@Qualifier`;
-- custom qualifier annotations;
+- candidate cardinality;
+- `@Primary`, `@Qualifier`, custom qualifiers;
 - bean-name fallback;
-- `@Autowired` vs `@Resource` semantics;
-- collection, array and map injection;
-- ordering of injected strategies;
+- collection, array и map injection;
+- ordering injected strategies;
 - optional dependencies;
-- `Optional<T>`;
-- `@Nullable`;
-- `ObjectProvider<T>`;
+- `Optional<T>`, `@Nullable`, `ObjectProvider<T>`;
 - constructor resolution;
-- generics as qualifiers;
-- autowire candidate exclusion.
+- generics as qualifiers.
+
+## CORE-B03 — published
+
+Материалы:
+
+- [[10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction]];
+- [[01_MAPS/Spring Bean Lifecycle Map.canvas]];
+- [[CORE-B03/CORE-B03 Cards]];
+- [[40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases]];
+- [[50_LABS/Spring/Core-B03/README]];
+- [[98_SOURCES/Spring Bean Lifecycle Sources]].
+
+Покрытие:
+
+- BeanDefinition as metadata recipe;
+- instantiation vs initialization;
+- dependency population;
+- `BeanNameAware`, `BeanFactoryAware`, `ApplicationContextAware`;
+- BeanPostProcessor before/after initialization;
+- `@PostConstruct` processing;
+- `InitializingBean.afterPropertiesSet()`;
+- custom init method;
+- proxy creation and raw-target boundary;
+- `SmartInitializingSingleton`;
+- destruction callback order;
+- context close;
+- prototype destruction limitation;
+- `Lifecycle` vs initialization callbacks.
 
 ### Quality gate
 
 - [x] 24 cards in one reviewable batch.
 - [x] English question and Russian translation.
 - [x] Direct answers and mechanism explanations.
-- [x] Specific exam traps.
-- [x] Memory hooks.
-- [x] Mini examples for mechanism-heavy cards.
-- [x] Concept module.
-- [x] Visual Canvas.
-- [x] Three production cases.
-- [x] Maven lab structure.
-- [ ] Lab executed in a Maven-enabled environment.
+- [x] Specific exam traps and memory hooks.
+- [x] Stable phase model separated from processor-order details.
+- [x] Visual Canvas lifecycle sequence.
+- [x] Four production cases.
+- [x] Maven lab with full init/proxy/destroy timeline.
+- [x] Primary Spring 5.3 source index.
+- [ ] Lab executed in Maven-enabled environment.
 - [ ] Real attempt outcomes collected.
 
-## CORE-B03 — next
+## CORE-B04 — next
 
-Bean lifecycle route:
+Container extension points:
 
-- BeanDefinition to instantiated object;
-- constructor invocation;
-- dependency population;
-- `BeanNameAware`, `BeanFactoryAware`, `ApplicationContextAware`;
-- `BeanPostProcessor` before initialization;
-- `@PostConstruct`;
-- `InitializingBean.afterPropertiesSet()`;
-- custom init method;
-- `BeanPostProcessor` after initialization;
-- destruction callbacks;
-- prototype destruction limitation;
-- lifecycle ordering traps.
-
-## CORE-B04
-
-- `BeanPostProcessor`;
+- `BeanPostProcessor` deep dive;
+- `InstantiationAwareBeanPostProcessor`;
+- `SmartInstantiationAwareBeanPostProcessor`;
+- `DestructionAwareBeanPostProcessor`;
 - `BeanFactoryPostProcessor`;
 - `BeanDefinitionRegistryPostProcessor`;
-- ordering and lifecycle boundaries.
+- metadata phase vs instance phase;
+- `PriorityOrdered`, `Ordered` and registration order;
+- static `@Bean` method for processors;
+- processor eligibility and early bean creation;
+- custom proxy and annotation-processing patterns.
 
 ## CORE-B05
 
@@ -168,13 +166,15 @@ Bean lifecycle route:
 
 ## Review rule
 
-После batch пользователь должен не только выбрать ответ, но и:
+После batch пользователь должен:
 
-1. объяснить mechanism;
+1. воспроизвести mechanism;
 2. назвать confusing alternative;
 3. привести minimal example;
 4. применить правило к production case;
-5. зафиксировать outcome: confident, guessed, concept error, attention error или confusion.
+5. определить lifecycle phase;
+6. различить raw target и published reference;
+7. зафиксировать outcome.
 
 ## Review entry point
 
