@@ -70,11 +70,12 @@ flowchart LR
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards|CORE-B01]] | 20 | [[10_CONCEPTS/Spring/Core/Spring Core Foundations]] | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards|CORE-B02]] | 24 | [[10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection]] | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards|CORE-B03]] | 24 | [[10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction]] | published |
+| [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards|CORE-B04]] | 24 | [[10_CONCEPTS/Spring/Core/Container Extension Points]] | published |
 
 Total published Spring Core cards:
 
 ```text
-68
+92
 ```
 
 ### Supporting practice
@@ -82,10 +83,13 @@ Total published Spring Core cards:
 - [[01_MAPS/Spring Core Foundation Map.canvas]]
 - [[01_MAPS/Spring Dependency Resolution Map.canvas]]
 - [[01_MAPS/Spring Bean Lifecycle Map.canvas]]
+- [[01_MAPS/Spring Container Extension Points Map.canvas]]
 - [[40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases]]
 - [[40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases]]
+- [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]]
 - [[50_LABS/Spring/Core-B02/README]]
 - [[50_LABS/Spring/Core-B03/README]]
+- [[50_LABS/Spring/Core-B04/README]]
 
 Зафиксированный формат карточки:
 
@@ -150,13 +154,13 @@ Total published Spring Core cards:
 
 ## Next certification batch
 
-`CORE-B04 — Container Extension Points`:
+`CORE-B05 — Configuration and Profiles`:
 
-- BeanPostProcessor deep dive;
-- InstantiationAwareBeanPostProcessor;
-- SmartInstantiationAwareBeanPostProcessor;
-- DestructionAwareBeanPostProcessor;
-- BeanFactoryPostProcessor;
-- BeanDefinitionRegistryPostProcessor;
-- metadata phase vs instance phase;
-- processor ordering and early initialization.
+- full vs lite `@Configuration`;
+- `proxyBeanMethods`;
+- inter-bean method calls;
+- `@Import`;
+- profiles and Environment;
+- property sources and precedence;
+- placeholder resolution;
+- type-safe configuration.
