@@ -2,7 +2,7 @@
 type: dashboard
 domain: learning-system
 status: active
-last_reviewed: 2026-07-20
+last_reviewed: 2026-07-21
 tags:
   - dashboard
   - review
@@ -12,7 +12,7 @@ tags:
 # Review Dashboard
 
 > [!summary]
-> Главная рабочая страница для повторения. Она отделяет **прочитано** от **воспроизведено**, правильный уверенный ответ от угадывания и знание определения от способности применить механизм к production-case.
+> Главная рабочая страница для повторения. Она отделяет прочитано от воспроизведено, правильный уверенный ответ от угадывания и знание определения от способности применить механизм к production-case.
 
 ## Сегодняшний цикл
 
@@ -47,14 +47,17 @@ flowchart LR
 6. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards]]
 7. [[10_CONCEPTS/Spring/Core/Container Extension Points]]
 8. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards]]
-9. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+9. [[10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties]]
+10. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards]]
+11. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 
 ```text
 CORE-B01  20 cards
 CORE-B02  24 cards
 CORE-B03  24 cards
 CORE-B04  24 cards
-TOTAL     92 cards
+CORE-B05  24 cards
+TOTAL     116 cards
 ```
 
 ## Confidence Scale
@@ -81,30 +84,27 @@ TOTAL     92 cards
 | `wrong-attention` | пропущено NOT/select N/phase | attention drill |
 | `wrong-confusion` | перепутаны похожие механизмы | comparison card |
 
-## Dynamic Search — Unverified Concepts
+## Dynamic Search
 
 ```query
 [confidence:0]
 ```
 
-## Dynamic Search — Learning Status
-
 ```query
 [status:learning]
 ```
-
-## Dynamic Search — Certification Questions
 
 ```query
 [type:certification-question]
 ```
 
-Batch routes:
+## Batch routes
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards]]
 
 ## Spring contrast drills
 
@@ -134,25 +134,38 @@ Batch routes:
 - before-instantiation vs before-initialization;
 - auto-detected ordering vs programmatic registration order;
 - metadata mutation vs instance wrapping;
-- normal reference vs early reference;
-- BPP dependency vs auto-proxy eligibility.
+- normal reference vs early reference.
 
-CORE-B04 memory model:
+### CORE-B05
+
+- full configuration vs lite mode;
+- direct bean-method call vs method-parameter injection;
+- `proxyBeanMethods` vs bean scope;
+- profile vs property;
+- profile vs feature flag;
+- `@Import` vs component scanning;
+- Framework `@PropertySource` vs Boot Config Data;
+- `${...}` vs `#{...}`;
+- `@Value` vs typed configuration properties;
+- configured file value vs winning PropertySource.
+
+CORE-B05 memory model:
 
 ```text
-Registry adds recipes.
-Factory processor edits recipes.
-Bean processor edits or replaces objects.
-Instantiation-aware hooks surround creation and population.
-Smart hooks predict type, constructors and early references.
-Destruction-aware hooks clean before destruction.
+Configuration and imports shape the graph.
+Profiles conditionally include definitions.
+Environment resolves profiles and properties.
+PropertySources compete by precedence.
+@Value resolves a scalar.
+Typed binding creates a configuration contract.
+Feature flags decide runtime behavior.
 ```
 
 Practice:
 
-- [[01_MAPS/Spring Container Extension Points Map.canvas]]
-- [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]]
-- [[50_LABS/Spring/Core-B04/README]]
+- [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
+- [[40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases]]
+- [[50_LABS/Spring/Core-B05/README]]
 
 ## Active Weakness Register
 
@@ -160,15 +173,16 @@ Practice:
 |---|---|
 | `@Primary` vs `@Qualifier` | default preference против semantic filter |
 | `Optional<T>` vs `ObjectProvider<T>` | construction-time absence против lazy lookup |
-| List ordering vs bean startup order | `@Order` против dependency lifecycle |
 | instantiation vs initialization | constructor против init pipeline |
 | BFPP vs BPP | metadata против instance |
-| before-instantiation vs before-initialization | target ещё не существует против target уже создан |
-| programmatic vs auto-detected BPP | registration order против Ordered semantics |
-| early bean creation vs full proxying | infrastructure timing против annotations |
+| full vs lite configuration | managed lookup против ordinary call |
+| `proxyBeanMethods` vs scope | call semantics против BeanDefinition metadata |
+| profile vs property | graph selection против value selection |
+| profile vs feature flag | startup-wide против runtime decision |
+| `@PropertySource` vs Config Data | Framework source addition против Boot pipeline |
+| `@Value` vs typed binding | scalar injection против cohesive contract |
 | visibility vs atomicity | `volatile` против compound operation |
 | deadlock vs contention | permanent cycle против long wait |
-| `thenApply` vs `thenCompose` | transform против async flattening |
 
 ## Ten-Minute Review Session
 
@@ -195,22 +209,21 @@ Practice:
 3. Выбрать одну тему confidence 2 и довести до 3.
 4. Выбрать одну тему confidence 3 и решить новый production case.
 5. Проверить, какие labs ещё не запускались в реальном environment.
-6. Не добавлять новый batch, если предыдущий не получил хотя бы первый review cycle.
+6. Не добавлять новый batch, если предыдущий не получил первый review cycle.
 
 ## Rule of Completion
 
-Тема считается готовой не когда заметка заполнена, а когда выполнены проверки:
-
 - [ ] Definition recall.
 - [ ] Mechanism explanation.
-- [ ] Lifecycle phase identification.
+- [ ] Lifecycle/configuration phase identification.
 - [ ] Trap discrimination.
 - [ ] Production transfer.
 - [ ] Lab trace prediction.
+- [ ] PropertySource winner identification where applicable.
 
 ## Next Planned Modules
 
-- Spring `CORE-B05`: configuration and profiles.
+- Spring `CORE-B06`: scopes, FactoryBean, lazy initialization, circular dependencies and context hierarchy.
 - Java: ForkJoinPool and parallel streams.
 - Databases: transactions, isolation and locks.
 - Messaging: delivery semantics and idempotency.
