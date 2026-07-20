@@ -16,6 +16,7 @@ tags:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards|CORE-B01 — 20 cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards|CORE-B02 — 24 cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards|CORE-B03 — 24 cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards|CORE-B04 — 24 cards]]
 - [[00_HOME/Review Dashboard]]
 
 ```mermaid
@@ -42,13 +43,11 @@ flowchart LR
 Покрытие:
 
 - IoC vs DI;
-- Spring bean;
-- BeanDefinition;
+- Spring bean и BeanDefinition;
 - BeanFactory vs ApplicationContext;
 - component scanning and stereotypes;
-- `@Bean` vs `@Component`;
-- `@Configuration`;
-- constructor, setter and field injection.
+- `@Bean`, `@Component`, `@Configuration`;
+- constructor, setter и field injection.
 
 ### CORE-B02: dependency resolution
 
@@ -85,28 +84,46 @@ flowchart LR
 - instantiation vs initialization;
 - dependency population;
 - aware callbacks;
-- BeanPostProcessor before/after initialization;
-- `@PostConstruct`;
-- `afterPropertiesSet()`;
-- custom init method;
+- BPP before/after initialization;
+- `@PostConstruct`, `afterPropertiesSet()`, custom init;
 - proxy publication;
-- `SmartInitializingSingleton`;
-- destruction callback order;
-- context close;
-- prototype destruction boundary;
-- initialization callbacks vs `Lifecycle`.
+- destruction callbacks and prototype boundary.
+
+### CORE-B04: container extension points
+
+- [[10_CONCEPTS/Spring/Core/Container Extension Points]]
+- [[01_MAPS/Spring Container Extension Points Map.canvas]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards]]
+- [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]]
+- [[50_LABS/Spring/Core-B04/README]]
+
+Покрытие:
+
+- metadata plane vs instance plane;
+- `BeanDefinitionRegistryPostProcessor`;
+- `BeanFactoryPostProcessor`;
+- `BeanPostProcessor` and proxy publication;
+- processor ordering and programmatic registration;
+- early bean creation and auto-proxy eligibility;
+- `InstantiationAwareBeanPostProcessor`;
+- `SmartInstantiationAwareBeanPostProcessor`;
+- `DestructionAwareBeanPostProcessor`;
+- custom annotations, dynamic definitions and proxy patterns.
 
 ## Next Spring Core batch
 
-`CORE-B04 — Container Extension Points`:
+`CORE-B05 — Configuration and Profiles`:
 
-- BeanPostProcessor deep dive;
-- InstantiationAware and SmartInstantiationAware processors;
-- BeanFactoryPostProcessor;
-- BeanDefinitionRegistryPostProcessor;
-- metadata phase vs instance phase;
-- processor ordering and early initialization;
-- custom annotation and proxy patterns.
+- full vs lite `@Configuration`;
+- `proxyBeanMethods`;
+- inter-bean method calls;
+- `@Import`;
+- component scanning boundaries;
+- profiles;
+- Environment;
+- property sources and precedence;
+- placeholder resolution;
+- type-safe configuration.
 
 ## AOP and proxies
 
