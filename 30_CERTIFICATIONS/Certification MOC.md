@@ -32,19 +32,6 @@ flowchart LR
 
 Материал организуется по official exam objectives, но каждая objective ссылается на канонические заметки из `10_CONCEPTS`.
 
-Основные типы вопросов:
-
-- результат компиляции;
-- вывод программы;
-- scope и accessibility;
-- overload и override resolution;
-- generics;
-- exceptions;
-- streams;
-- concurrency;
-- modules;
-- version-specific language features.
-
 ### Java concurrency foundation
 
 - [[10_CONCEPTS/Java/Concurrency/Java Memory Model]]
@@ -71,11 +58,12 @@ flowchart LR
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards|CORE-B02]] | 24 | [[10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection]] | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards|CORE-B03]] | 24 | [[10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction]] | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards|CORE-B04]] | 24 | [[10_CONCEPTS/Spring/Core/Container Extension Points]] | published |
+| [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards|CORE-B05]] | 24 | [[10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties]] | published |
 
 Total published Spring Core cards:
 
 ```text
-92
+116
 ```
 
 ### Supporting practice
@@ -84,14 +72,17 @@ Total published Spring Core cards:
 - [[01_MAPS/Spring Dependency Resolution Map.canvas]]
 - [[01_MAPS/Spring Bean Lifecycle Map.canvas]]
 - [[01_MAPS/Spring Container Extension Points Map.canvas]]
+- [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
 - [[40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases]]
 - [[40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases]]
 - [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]]
+- [[40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases]]
 - [[50_LABS/Spring/Core-B02/README]]
 - [[50_LABS/Spring/Core-B03/README]]
 - [[50_LABS/Spring/Core-B04/README]]
+- [[50_LABS/Spring/Core-B05/README]]
 
-Зафиксированный формат карточки:
+## Card format
 
 1. `Question` на английском;
 2. `Russian Translation`;
@@ -110,25 +101,12 @@ Total published Spring Core cards:
 
 Карточки производятся партиями по 20–30.
 
-Основные области:
-
-- Spring container и dependency injection;
-- bean lifecycle;
-- extension points;
-- configuration и profiles;
-- AOP и proxies;
-- data access;
-- transaction management;
-- Spring Boot;
-- testing;
-- security и actuator, если они входят в выбранный учебный маршрут.
-
 ## Процесс тестирования
 
 1. Ответить, не открывая explanation.
 2. Зафиксировать, был ли ответ уверенным или угаданным.
 3. Связать вопрос с канонической концепцией.
-4. Разобрать все неправильные варианты.
+4. Разобрать неправильные варианты.
 5. Применить правило к новому code или production scenario.
 6. Запустить lab для mechanism-heavy batch.
 7. Повышать confidence только после последующего успешного повторения.
@@ -141,26 +119,13 @@ Total published Spring Core cards:
 - `wrong-attention`;
 - `wrong-confusion`.
 
-## Dashboard queries
-
-Рабочие представления находятся в [[00_HOME/Review Dashboard]]:
-
-- unverified concepts;
-- learning-status notes;
-- certification questions;
-- correct-but-guessed review policy;
-- recurring confusion pairs;
-- current Java and Spring routes.
-
 ## Next certification batch
 
-`CORE-B05 — Configuration and Profiles`:
+`CORE-B06 — Advanced Core`:
 
-- full vs lite `@Configuration`;
-- `proxyBeanMethods`;
-- inter-bean method calls;
-- `@Import`;
-- profiles and Environment;
-- property sources and precedence;
-- placeholder resolution;
-- type-safe configuration.
+- scopes and scoped proxies;
+- `FactoryBean`;
+- lazy initialization;
+- circular dependencies and early references;
+- parent/child contexts;
+- resource loading and message sources.
