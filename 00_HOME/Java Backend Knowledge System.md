@@ -11,12 +11,20 @@ tags:
 > [!summary] Назначение
 > Единая система для глубокого изучения, быстрого вспоминания, собеседований, сертификационных тестов и решения production-проблем.
 
+## Главные входы
+
+- [[00_HOME/Review Dashboard|Review Dashboard — что повторять сегодня]]
+- [[01_MAPS/Java Backend Map.canvas|Java Backend Canvas]]
+- [[20_QUESTIONS/Interview/Interview Questions MOC|Interview Questions]]
+- [[30_CERTIFICATIONS/Certification MOC|Certification Routes]]
+
 ## Общая карта
 
 ```mermaid
 flowchart TD
     HOME[Java Backend Knowledge System]
 
+    HOME --> REVIEW[Review Dashboard]
     HOME --> JAVA[Java]
     HOME --> SPRING[Spring]
     HOME --> DB[Databases]
@@ -39,9 +47,20 @@ flowchart TD
     DS --> CASES
 
     CASES --> LABS[Labs]
+    IQ --> REVIEW
+    CERT --> REVIEW
+    LABS --> REVIEW
 ```
 
 ## Выберите режим
+
+### Повторить слабые темы
+
+- [[00_HOME/Review Dashboard]]
+- confidence scale;
+- outcome taxonomy;
+- active weakness register;
+- 10-minute and 30-minute review protocols.
 
 ### Изучить предметную область
 
@@ -54,18 +73,46 @@ flowchart TD
 ### Подготовиться к собеседованию
 
 - [[20_QUESTIONS/Interview/Interview Questions MOC]]
-- [[10_CONCEPTS/Java/Concurrency/ThreadLocal]]
-- [[20_QUESTIONS/Interview/Java/Why can ThreadLocal leak in a thread pool]]
+- [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
+- [[40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases]]
 - [[40_PRODUCTION_CASES/Java/ThreadLocal context leaked between requests]]
 
-### Подготовиться к сертификации
+### Подготовиться к Spring certification
 
-- [[30_CERTIFICATIONS/Certification MOC]]
+1. [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
+2. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
+3. [[10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection]]
+4. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards]]
+5. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 
 ### Открыть визуальную карту
 
 - [[01_MAPS/Java Backend Map.canvas]]
 - [[01_MAPS/Java Concurrency Map.canvas]]
+- [[01_MAPS/Java Advanced Concurrency Map.canvas]]
+- [[01_MAPS/Spring Core Foundation Map.canvas]]
+- [[01_MAPS/Spring Dependency Resolution Map.canvas]]
+
+## Current Published Vertical Slices
+
+### Java Concurrency
+
+```text
+Foundations
+  -> JMM and happens-before
+  -> volatile / synchronized / locks
+  -> executors / CompletableFuture / virtual threads
+  -> CAS / deadlock / concurrent collections
+  -> recall + executable labs
+```
+
+### Spring Core
+
+```text
+CORE-B01: IoC, beans, registration, injection styles       20 cards
+CORE-B02: candidate resolution, qualifiers, optionality    24 cards
+TOTAL                                                       44 cards
+```
 
 ## Слои знаний
 
@@ -77,33 +124,39 @@ flowchart LR
     CONCEPT --> CERTIFICATION[Certification Question]
     CONCEPT --> CASE[Production Case]
     CONCEPT --> LAB[Executable Lab]
+    INTERVIEW --> REVIEW[Review Outcome]
+    CERTIFICATION --> REVIEW
+    CASE --> REVIEW
+    LAB --> REVIEW
 ```
 
 ## Процесс повторения
 
 ```mermaid
 flowchart TD
-    A[Выбрать тему с низким confidence] --> B[Прочитать блок За 30 секунд]
-    B --> C[Ответить на вопросы без подсказки]
-    C --> D{Ответ уверенный?}
-    D -- Да --> E[Открыть полное объяснение]
-    D -- Нет --> F[Изучить внутренний механизм]
-    F --> E
-    E --> G[Разобрать production case]
-    G --> H[Обновить confidence и next_review]
+    A[Выбрать тему с низким confidence] --> B[Воспроизвести summary без заметки]
+    B --> C[Ответить на карточки]
+    C --> D{Ответ уверенный и объяснён?}
+    D -- Да --> E[Разобрать production transfer]
+    D -- Нет --> F[Изучить mechanism и example]
+    F --> C
+    E --> G[Запустить или проследить lab]
+    G --> H[Записать outcome]
+    H --> I[Обновить confidence и next_review]
 ```
 
-1. Откройте карту предметной области.
+1. Откройте [[00_HOME/Review Dashboard]].
 2. Выберите concept с низким `confidence`.
-3. Прочитайте только блок «За 30 секунд».
-4. Ответьте на связанные вопросы, не открывая ответы.
-5. Сверьтесь с полным объяснением.
-6. Обновите `confidence`, `last_reviewed` и `next_review`.
+3. Воспроизведите определение без чтения.
+4. Ответьте на связанные questions/cards.
+5. Объясните mechanism и boundary.
+6. Разберите production case или lab.
+7. Обновите outcome и review metadata.
 
 ## Очерёдность наполнения
 
 1. Java Concurrency и JVM.
-2. Spring Core, AOP, Transactions и Spring Data.
+2. Spring Core `CORE-B03` lifecycle, затем AOP и Transactions.
 3. Database transactions, locks, indexes и execution plans.
 4. Kafka и RabbitMQ delivery semantics.
 5. Reliability patterns распределённых систем.
