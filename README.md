@@ -36,6 +36,7 @@ Concept
 - [[01_MAPS/Databases Map]]
 - [[01_MAPS/Messaging Map]]
 - [[01_MAPS/Distributed Systems Map]]
+- [[01_MAPS/Spring AOP and Caching Map.canvas]]
 - [[20_QUESTIONS/Interview/Interview Questions MOC]]
 - [[30_CERTIFICATIONS/Certification MOC]]
 
@@ -58,8 +59,20 @@ Concept
 - `CORE-B04`: 24 карточки — extension points, processor ordering и early references;
 - `CORE-B05`: 24 карточки — configuration, imports, profiles и externalized properties;
 - `CORE-B06`: 24 карточки — scopes, providers, FactoryBean, lazy, cycles и context hierarchy;
-- всего опубликовано **140 Spring Core cards**;
-- каждый mechanism-heavy batch имеет concept note, Canvas, production cases, sources и lab.
+- всего опубликовано **140 Spring Core cards**.
+
+### Spring AOP, Caffeine and Redis
+
+- `AOP-B01`: 24 карточки — AOP terminology, JDK/CGLIB, self-invocation, advisor order, transaction/async/security proxy boundaries;
+- `CACHE-B01`: 20 карточек — Spring Cache, keys, stampede, Caffeine, Redis, TTL, serialization и L1/L2 invalidation;
+- всего опубликовано **44 AOP/Cache cards**;
+- `AOP-B01` lab показывает настоящий transaction interceptor, async executor, final/private boundaries и advisor inspection;
+- `CACHE-B01` lab запускается с Caffeine локально и Redis через Docker Compose;
+- 12 production cases связывают proxy и cache mechanics с реальными отказами.
+
+```text
+Published Spring cards total: 184
+```
 
 ## Структура репозитория
 
@@ -86,6 +99,30 @@ Concept
 5. Включить автоматическое обновление внутренних ссылок.
 
 Community plugins не обязательны: база остаётся переносимым набором Markdown/Canvas-файлов.
+
+## Запуск новых Spring labs
+
+### AOP
+
+```bash
+cd 50_LABS/Spring/AOP-B01
+mvn clean compile exec:java
+```
+
+### Caffeine
+
+```bash
+cd 50_LABS/Spring/CACHE-B01
+mvn clean compile exec:java
+```
+
+### Redis
+
+```bash
+cd 50_LABS/Spring/CACHE-B01
+docker compose up -d redis
+RUN_REDIS=true mvn clean compile exec:java
+```
 
 ## Языковая стратегия
 
@@ -123,9 +160,11 @@ Confidence повышается только после active recall и transfe
 - Java и Spring Canvas maps;
 - глубокий Java Concurrency route;
 - завершённый Spring Core route `CORE-B01`–`CORE-B06`;
+- Spring AOP and Proxy route;
+- Spring Cache route с Caffeine и Redis;
 - certification-card standard;
 - production cases;
 - Java и Spring labs;
 - source indexes и templates.
 
-Следующий Spring-маршрут: **AOP and Proxies**.
+Следующий Spring-маршрут: **Transaction Management Deep Dive**.
