@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    {"id":"root","type":"file","file":"10_CONCEPTS/Spring/Core/Spring Core Foundations.md","x":0,"y":-520,"width":430,"height":200,"color":"4"},
+    {"id":"ioc","type":"text","text":"# IoC and DI\n\nControl moves to container\nDependencies come from outside","x":-760,"y":-160,"width":330,"height":210,"color":"2"},
+    {"id":"container","type":"text","text":"# Container APIs\n\nBeanFactory\nApplicationContext","x":-370,"y":-160,"width":310,"height":210,"color":"3"},
+    {"id":"metadata","type":"text","text":"# Metadata\n\nBeanDefinition\nScanning\n@Bean methods","x":0,"y":-160,"width":310,"height":210,"color":"1"},
+    {"id":"registration","type":"text","text":"# Registration\n\n@Component\nStereotypes\n@Bean\n@Configuration","x":370,"y":-160,"width":330,"height":230,"color":"5"},
+    {"id":"injection","type":"text","text":"# Injection styles\n\nConstructor\nSetter\nField","x":760,"y":-160,"width":310,"height":210,"color":"6"},
+    {"id":"cards","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards.md","x":-210,"y":240,"width":430,"height":210,"color":"4"},
+    {"id":"system","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring Certification Card System.md","x":300,"y":240,"width":430,"height":210}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","toNode":"ioc"},
+    {"id":"e2","fromNode":"root","toNode":"container"},
+    {"id":"e3","fromNode":"root","toNode":"metadata"},
+    {"id":"e4","fromNode":"root","toNode":"registration"},
+    {"id":"e5","fromNode":"root","toNode":"injection"},
+    {"id":"e6","fromNode":"ioc","toNode":"cards","label":"cards C001-C002"},
+    {"id":"e7","fromNode":"container","toNode":"cards","label":"cards C005-C007"},
+    {"id":"e8","fromNode":"metadata","toNode":"cards","label":"cards C003-C004 C008"},
+    {"id":"e9","fromNode":"registration","toNode":"cards","label":"cards C009-C016"},
+    {"id":"e10","fromNode":"injection","toNode":"cards","label":"cards C017-C020"},
+    {"id":"e11","fromNode":"cards","toNode":"system","label":"review protocol"}
+  ]
+}
