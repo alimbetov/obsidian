@@ -11,81 +11,80 @@ tags:
 
 ## Сертификационный маршрут
 
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Certification Card System|Spring Certification Card System]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap|Spring Core Card Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Certification Card System]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards|CORE-B01 — 20 cards]]
+- [[01_MAPS/Spring Core Foundation Map.canvas]]
 
 ```mermaid
 flowchart LR
-    A[Concept note] --> B[English certification card]
-    B --> C[Russian translation]
-    C --> D[Answer and explanation]
-    D --> E[Exam trap]
-    E --> F[Mini example]
-    F --> G[Review outcome]
+    A[Concept module] --> B[Question EN]
+    B --> C[Translation RU]
+    C --> D[Direct answer]
+    D --> E[Mechanism]
+    E --> F[Exam trap]
+    F --> G[Memory hook]
+    G --> H[Review outcome]
 ```
 
-## Spring Core
+## Spring Core — published foundation
 
-- IoC container
-- BeanFactory and ApplicationContext
-- Dependency injection
-- Component scanning
-- Java configuration
-- Bean scopes
-- Bean lifecycle
-- Profiles and properties
+- [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
+  - IoC vs DI;
+  - Spring bean;
+  - BeanDefinition;
+  - BeanFactory vs ApplicationContext;
+  - component scanning and stereotypes;
+  - `@Bean` vs `@Component`;
+  - `@Configuration`;
+  - constructor, setter and field injection.
 
-### Приоритетные contrast topics
+## Next Spring Core batch
 
-- Bean vs Component
-- Qualifier vs Primary
-- BeanPostProcessor vs BeanFactoryPostProcessor
-- Full vs lite configuration
-- FactoryBean vs BeanFactory
+`CORE-B02`:
 
-## AOP и proxies
+- candidate resolution;
+- `@Primary`;
+- `@Qualifier`;
+- bean name fallback;
+- collection injection;
+- optional dependencies.
 
-- Join point, pointcut and advice
-- JDK dynamic proxy
-- CGLIB proxy
-- Self-invocation
-- Proxy limitations
-- Aspect ordering
+## AOP and proxies
+
+- join point, pointcut and advice;
+- JDK dynamic proxy;
+- CGLIB;
+- self-invocation;
+- proxy limitations;
+- aspect ordering.
 
 ## Transactions
 
-- @Transactional
-- Propagation
-- Isolation
-- Rollback rules
-- Read-only transactions
-- Transaction managers
-- Programmatic transactions
+- `@Transactional`;
+- propagation;
+- isolation;
+- rollback rules;
+- read-only;
+- transaction managers;
+- programmatic transactions.
 
 ## Data access
 
-- Spring JDBC
-- Spring Data repositories
-- JPA lifecycle
-- Query derivation
-- Specifications
-- Pagination and projections
+- Spring JDBC;
+- Spring Data repositories;
+- JPA lifecycle;
+- query derivation;
+- specifications;
+- pagination and projections.
 
-## Web
+## Web and Boot
 
-- Spring MVC
-- Request lifecycle
-- Validation
-- Exception handling
-- REST
-- WebFlux and reactive streams
-
-## Spring Boot и эксплуатация
-
-- Auto-configuration
-- Configuration properties
-- Actuator
-- Logging
-- Caching
-- Testing
-- Security
+- Spring MVC and WebFlux;
+- validation and exception handling;
+- auto-configuration;
+- configuration properties;
+- actuator;
+- caching;
+- testing;
+- security.
