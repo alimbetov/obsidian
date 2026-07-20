@@ -12,9 +12,9 @@
 
 ## С чего начать
 
-Откройте [[00_HOME/Java Backend Knowledge System]].
-
-Визуальная точка входа: [[01_MAPS/Java Backend Map.canvas]].
+1. Открыть [[00_HOME/Java Backend Knowledge System]].
+2. Для ежедневного повторения использовать [[00_HOME/Review Dashboard]].
+3. Для пространственной навигации открыть [[01_MAPS/Java Backend Map.canvas]].
 
 ## Модель знаний
 
@@ -39,6 +39,24 @@ Concept
 - [[20_QUESTIONS/Interview/Interview Questions MOC]]
 - [[30_CERTIFICATIONS/Certification MOC]]
 
+## Текущие опубликованные маршруты
+
+### Java Concurrency
+
+- Java Memory Model и happens-before;
+- visibility, atomicity и ordering;
+- `volatile`, `synchronized`, locks и ThreadLocal;
+- executors, CompletableFuture и virtual threads;
+- atomic/CAS, deadlock и concurrent collections;
+- interview recall и Java 8/21 labs.
+
+### Spring Core Certification
+
+- `CORE-B01`: 20 карточек по IoC, beans, registration и injection styles;
+- `CORE-B02`: 24 карточки по candidate resolution, qualifiers, collections и optional dependencies;
+- concept notes, Canvas maps, production cases и Spring 5.3 lab;
+- всего опубликовано 44 Spring Core cards.
+
 ## Структура репозитория
 
 ```text
@@ -49,8 +67,9 @@ Concept
 30_CERTIFICATIONS/    exam objectives и маршруты подготовки
 40_PRODUCTION_CASES/  реальные инженерные ситуации
 50_LABS/              запускаемые примеры
-60_BASES/             динамические представления Obsidian Bases
+60_BASES/             будущие динамические представления Obsidian Bases
 90_TEMPLATES/         шаблоны заметок
+98_SOURCES/           первичные официальные источники
 99_ATTACHMENTS/       изображения и вложения
 ```
 
@@ -68,29 +87,33 @@ Concept
 
 - названия Java/Spring API и основные технические термины сохраняются на английском;
 - объяснения пишутся на русском;
-- экзаменационные формулировки могут дублироваться на английском;
+- сертификационные questions создаются на английском с русским переводом;
 - aliases используются для альтернативных русских и английских названий.
 
 ## Шкала уверенности
 
 | Значение | Состояние |
 |---:|---|
-| 0 | тема не изучена |
+| 0 | тема не изучена или не проверена |
 | 1 | узнаю термин |
 | 2 | понимаю с подсказкой |
 | 3 | могу объяснить самостоятельно |
-| 4 | могу решить практический кейс |
+| 4 | могу решить новый практический кейс |
 | 5 | могу защитить решение на Senior-интервью |
+
+Confidence повышается только после active recall и transfer practice, а не после чтения заметки.
 
 ## Типы заметок
 
-- `concept`
-- `interview-question`
-- `certification-question`
-- `production-case`
-- `comparison`
-- `lab`
-- `moc`
+- `concept`;
+- `interview-question`;
+- `certification-question`;
+- `certification-batch`;
+- `production-case`;
+- `comparison`;
+- `lab`;
+- `moc`;
+- `dashboard`.
 
 ## Правила именования
 
@@ -103,4 +126,13 @@ Concept
 
 ## Текущий фундамент
 
-Первая версия содержит карты Java, Spring, databases, messaging и distributed systems, маршруты интервью и сертификации, шаблоны и полный вертикальный пример по `ThreadLocal`.
+Репозиторий содержит:
+
+- главный dashboard и Review Dashboard;
+- Java и Spring Canvas maps;
+- глубокий Java Concurrency route;
+- Spring Core routes `CORE-B01` и `CORE-B02`;
+- certification-card standard;
+- production cases;
+- Java и Spring labs;
+- source indexes и templates.
