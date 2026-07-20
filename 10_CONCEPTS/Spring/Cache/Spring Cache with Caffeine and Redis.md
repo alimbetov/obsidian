@@ -34,44 +34,46 @@ tags:
 # Spring Cache with Caffeine and Redis
 
 > [!summary] За 30 секунд
-> Spring Cache — abstraction и AOP advice, а не storage. `@Cacheable` вычисляет key, спрашивает выбранный `CacheManager`, при hit возвращает значение без вызова method, при miss вызывает target и сохраняет result. Caffeine хранит данные локально в памяти одного JVM; Redis хранит их вне процесса и позволяет нескольким application instances использовать общий cache. Выбор влияет на latency, consistency, failure modes и invalidation.
+> Spring Cache — proxy-based abstraction, а не storage. `@Cacheable` вычисляет key и может вернуть cached value без вызова target method. `@CachePut` всегда выполняет method и записывает result. `@CacheEvict` удаляет entry. Caffeine хранит cache внутри одного JVM; Redis хранит serialized entries во внешнем shared store. Основные production-риски: неправильный key, self-invocation, stale data, stampede, Redis outage, serialization incompatibility и несогласованная L1/L2 invalidation.
 
 ## Главная модель
 
 ```mermaid
 flowchart LR
-    C[Caller] --> P[Cache proxy]
-    P --> K[Key calculation]
+    C[Caller] --> P[Spring cache proxy]
+    P --> O[Resolve cache operation]
+    O --> K[Calculate key]
     K --> M[CacheManager]
-    M --> H{Cache hit?}
-    H -->|yes| R[Return cached value]
-    H -->|no| T[Invoke target method]
+    M --> H{Hit?}
+    H -->|Yes| R[Return cached value]
+    H -->|No| T[Invoke target]
     T --> S[Store result]
     S --> R
 ```
 
 Spring отвечает за:
 
-- annotations;
-- key calculation;
-- conditional caching;
-- method interception;
-- selection of cache/cache manager;
-- put/evict orchestration.
+- annotations и AOP interception;
+- cache name selection;
+- key generation;
+- `condition`/`unless` evaluation;
+- put/evict orchestration;
+- выбор `CacheManager` или `CacheResolver`.
 
-Cache provider отвечает за:
+Provider отвечает за:
 
 - physical storage;
-- eviction policy;
-- TTL/TTI semantics;
-- serialization;
 - concurrency behavior;
+- expiration/eviction;
+- serialization;
 - distributed availability;
-- statistics.
+- provider-specific statistics.
+
+> **Spring decides when. Provider decides where and how.**
 
 ---
 
-# 1. `@EnableCaching`
+# 1. Включение caching infrastructure
 
 ```java
 @Configuration
@@ -80,14 +82,22 @@ class CacheConfiguration {
 }
 ```
 
-Spring регистрирует infrastructure, которая ищет cache annotations и создаёт proxy/advisor.
+`@EnableCaching` регистрирует advisor/interceptor infrastructure. Annotation на method сама по себе не создаёт cache storage.
 
-> [!warning]
-> Annotation сама по себе не кеширует. Нужны caching infrastructure и `CacheManager`.
+Нужен `CacheManager`:
+
+```java
+@Bean
+CacheManager cacheManager() {
+    return new ConcurrentMapCacheManager("productById");
+}
+```
+
+Для production provider выбирается осознанно: Caffeine, Redis, JCache и другие.
 
 ---
 
-# 2. `@Cacheable`
+# 2. `@Cacheable`: skip target on hit
 
 ```java
 @Service
@@ -102,8 +112,7 @@ class ProductQueryService {
     @Cacheable(
             cacheNames = "productById",
             key = "#productId",
-            unless = "#result == null",
-            sync = true
+            unless = "#result == null"
     )
     public ProductDto findById(Long productId) {
         return repository.findById(productId)
@@ -113,191 +122,298 @@ class ProductQueryService {
 }
 ```
 
-## Hit
+## First call
 
 ```text
 findById(42)
     ↓
-key = 42
-    ↓
-cache contains 42
-    ↓
-return cached ProductDto
-    ↓
-repository is not called
-```
-
-## Miss
-
-```text
-findById(42)
-    ↓
-cache miss
+key 42 is absent
     ↓
 repository call
     ↓
-store result under key 42
+result stored
+```
+
+## Second call
+
+```text
+findById(42)
     ↓
-return result
+key 42 exists
+    ↓
+return cached ProductDto
+    ↓
+repository method is skipped
 ```
 
-## `condition` vs `unless`
+## Important consequence
+
+Любые side effects внутри cached query также пропускаются на hit.
+
+Плохо:
 
 ```java
-@Cacheable(
-    cacheNames = "search",
-    key = "#request.normalizedKey()",
-    condition = "#request.cacheable",
-    unless = "#result == null || #result.items.isEmpty()"
-)
-```
-
-- `condition` проверяется до method invocation;
-- `unless` может проверять `#result` после invocation и veto-ить запись.
-
----
-
-# 3. Cache key — часть data contract
-
-Плохой key:
-
-```java
-@Cacheable(cacheNames = "customer")
-public Customer find(CustomerSearchRequest request)
-```
-
-Если `CustomerSearchRequest` не имеет стабильных `equals/hashCode`, cache hit может зависеть от object identity.
-
-Хороший key:
-
-```java
-@Cacheable(
-    cacheNames = "customerByTenantAndId",
-    key = "#tenantId + ':' + #customerId"
-)
-public Customer find(String tenantId, Long customerId)
-```
-
-## Tenant isolation
-
-Ключ только по `customerId` опасен:
-
-```text
-Tenant A, customer 42
-Tenant B, customer 42
-```
-
-Без tenant в key один tenant может получить data другого tenant.
-
-## Versioning key namespace
-
-При несовместимом изменении serialized value:
-
-```text
-v1:productById::42
-v2:productById::42
-```
-
-Versioned prefix позволяет мигрировать без массового чтения старого schema.
-
----
-
-# 4. `@CachePut`
-
-```java
-@CachePut(cacheNames = "productById", key = "#result.id")
-public ProductDto update(UpdateProductCommand command) {
-    Product product = repository.save(command.apply());
-    return ProductDto.from(product);
+@Cacheable("customer")
+public CustomerDto find(Long id) {
+    auditRepository.save(new ReadAudit(id));
+    return repository.load(id);
 }
 ```
 
-Method всегда выполняется, затем result записывается в cache.
-
-Использование:
-
-- write-through update;
-- обновление cache после успешной business operation;
-- сохранение canonical value, возвращённого persistence layer.
-
-Не смешивай без крайней необходимости `@Cacheable` и `@CachePut` на одном method: один advice хочет пропустить invocation при hit, другой обязан invocation выполнить.
+Audit будет создаваться только на misses. Cached query должен быть близок к side-effect-free read operation.
 
 ---
 
-# 5. `@CacheEvict`
+# 3. `condition` и `unless`
 
 ```java
-@CacheEvict(cacheNames = "productById", key = "#productId")
-public void delete(Long productId) {
-    repository.deleteById(productId);
+@Cacheable(
+        cacheNames = "search",
+        key = "#request.cacheKey()",
+        condition = "#request.cacheable",
+        unless = "#result == null || #result.items.isEmpty()"
+)
+public SearchResult search(SearchRequest request) {
+    return gateway.search(request);
 }
 ```
 
-## Eviction после success
+- `condition` вычисляется до target invocation;
+- `unless` вычисляется после target invocation и может использовать `#result`;
+- `condition=false` означает: method выполняется, но cache operation не применяется;
+- `unless=true` означает: result возвращается caller, но не сохраняется.
 
-По умолчанию eviction выполняется после успешного method invocation.
+## Safe navigation
+
+```java
+unless = "#result?.items?.isEmpty()"
+```
+
+нужно применять осторожно и тестировать на фактической модели SpEL.
+
+---
+
+# 4. Критическая совместимость `sync=true`
+
+```java
+@Cacheable(
+        cacheNames = "exchangeRate",
+        key = "#pair",
+        sync = true
+)
+public ExchangeRate load(String pair) {
+    return remoteClient.load(pair);
+}
+```
+
+`sync=true` просит provider выполнить combined get-or-load operation для одного key.
+
+## Ограничения Spring Cache
+
+При `sync=true`:
+
+1. `unless` не поддерживается;
+2. должен быть указан один cache;
+3. operation нельзя комбинировать с другими cache operations на том же method.
+
+Неверно:
+
+```java
+@Cacheable(
+        cacheNames = "productById",
+        sync = true,
+        unless = "#result == null"
+)
+```
+
+Это не просто сомнительный стиль, а несовместимая cache operation configuration.
+
+## Provider boundary
+
+`sync=true` является hint на provider semantics. Локальная coordination одного Caffeine cache не превращается в distributed lock между несколькими JVM.
+
+```text
+node A synchronizes load for key 42
+node B synchronizes load for key 42
+node C synchronizes load for key 42
+```
+
+Три nodes всё ещё могут одновременно выполнить три backend loads.
+
+---
+
+# 5. `@CachePut`: method always runs
+
+```java
+@Transactional
+@CachePut(
+        cacheNames = "productById",
+        key = "#tenantId + ':' + #result.id"
+)
+public ProductDto update(
+        String tenantId,
+        UpdateProductCommand command
+) {
+    Product saved = repository.save(
+            command.applyTo(repository.getRequired(tenantId, command.id()))
+    );
+    return ProductDto.from(saved);
+}
+```
+
+Sequence:
+
+```text
+invoke target
+    ↓
+update source of truth
+    ↓
+produce canonical DTO
+    ↓
+put DTO into cache
+```
+
+`@CachePut` не является read optimization: target method выполняется всегда.
+
+## Почему `@Cacheable` + `@CachePut` на одном method подозрительно
+
+- `@Cacheable` хочет пропустить method на hit;
+- `@CachePut` требует всегда выполнить method.
+
+Такая комбинация допустима только при взаимоисключающих conditions и требует очень сильного обоснования.
+
+---
+
+# 6. `@CacheEvict`: remove stale copy
+
+```java
+@Transactional
+@CacheEvict(
+        cacheNames = "productById",
+        key = "#tenantId + ':' + #productId"
+)
+public void delete(String tenantId, Long productId) {
+    repository.delete(tenantId, productId);
+}
+```
+
+По умолчанию eviction происходит после успешного method invocation.
 
 ## `beforeInvocation=true`
 
 ```java
 @CacheEvict(
-    cacheNames = "productSearch",
-    allEntries = true,
-    beforeInvocation = true
+        cacheNames = "catalogSearch",
+        allEntries = true,
+        beforeInvocation = true
 )
-public void rebuildIndex() {
-    // ...
+public void rebuildSearchIndex() {
+    indexer.rebuild();
 }
 ```
 
-Cache очищается даже если method завершится exception. Это меняет failure semantics и должно быть осознанным решением.
+Cache очищается до выполнения method и останется очищенным даже при exception.
 
-## Точечная eviction против `allEntries`
+Это правильно только если failure semantics действительно требуют немедленной invalidation.
 
-Предпочтительно:
+## Точечная eviction предпочтительнее clear
 
 ```text
 evict product 42
 ```
 
-а не:
+лучше, чем:
 
 ```text
-clear every product cache entry
+clear 2 million product entries
 ```
 
-Cache-wide clear создаёт miss storm и нагрузку на database.
+Mass eviction может создать miss storm.
 
 ---
 
-# 6. Self-invocation
+# 7. Cache key — часть security и data contract
+
+## Tenant collision
+
+Опасно:
+
+```java
+key = "#customerId"
+```
+
+Если tenant A и tenant B имеют customer `42`, key collision может вернуть чужие данные.
+
+Безопаснее:
+
+```java
+key = "#tenantId + ':' + #customerId"
+```
+
+## Environment и service isolation
+
+Redis keyspace:
+
+```text
+bank:prod:catalog:v2:productById::tenant-A:42
+```
+
+Prefix может включать:
+
+- service;
+- environment;
+- bounded context;
+- schema version;
+- cache name.
+
+Не помещай sensitive personal data или secrets в plaintext key без необходимости.
+
+## Object key stability
+
+```java
+@Cacheable("search")
+public Result search(SearchRequest request)
+```
+
+Если `SearchRequest.equals/hashCode` не выражает logical identity, default key может быть нестабильным.
+
+Предпочтительно:
+
+```java
+key = "#request.normalizedQuery + ':' + #request.page + ':' + #request.size"
+```
+
+---
+
+# 8. Self-invocation: тот же AOP law
 
 ```java
 @Service
 class ProductService {
 
-    public ProductDto loadForPage(Long id) {
-        return findById(id); // this-call
+    public ProductPage loadPage(Long id) {
+        ProductDto dto = find(id);
+        return ProductPage.from(dto);
     }
 
-    @Cacheable(cacheNames = "productById", key = "#id")
-    public ProductDto findById(Long id) {
+    @Cacheable("productById")
+    public ProductDto find(Long id) {
         return repository.load(id);
     }
 }
 ```
 
-`loadForPage()` вошёл в target, затем вызвал `this.findById()`. Cache proxy не получил второй вызов.
+`loadPage()` вошёл в target и вызвал `this.find()`. Cache interceptor не получил второй invocation.
 
 Исправление:
 
 ```java
 @Service
 class ProductPageService {
-    private final ProductQueryService productQueryService;
+    private final ProductQueryService queryService;
 
-    ProductDto loadForPage(Long id) {
-        return productQueryService.findById(id);
+    ProductPage loadPage(Long id) {
+        return ProductPage.from(queryService.find(id));
     }
 }
 ```
@@ -306,81 +422,75 @@ class ProductPageService {
 
 ---
 
-# 7. `sync=true` и cache stampede
-
-Cache stampede:
+# 9. Cache stampede
 
 ```text
-popular key expires
+popular entry expires
     ↓
-100 request threads observe miss
+500 requests observe miss
     ↓
-100 database queries
+500 DB/HTTP loads
     ↓
-database overload
+backing service overload
 ```
 
-```java
-@Cacheable(
-    cacheNames = "exchangeRate",
-    key = "#pair",
-    sync = true
-)
-public ExchangeRate load(String pair) {
-    return remoteClient.load(pair);
-}
-```
+Strategies:
 
-`sync=true` просит cache provider синхронизировать загрузку одного key, чтобы несколько concurrent callers не выполняли underlying method одновременно.
-
-> [!warning]
-> Это не универсальная distributed lock guarantee. Для нескольких JVM нужно проверить semantics конкретного cache provider. Локальная single-flight coordination не равна cluster-wide coordination.
-
-Другие strategies:
-
-- probabilistic early refresh;
+- `sync=true` for provider-supported same-cache coordination;
 - refresh-ahead;
 - stale-while-revalidate;
-- distributed lock;
-- request coalescing;
 - TTL jitter;
-- background warming.
+- request coalescing;
+- distributed lock for selected expensive keys;
+- bounded loader executor;
+- database bulkhead;
+- warm-up of known hot keys.
+
+## TTL jitter
+
+```text
+base TTL 10 minutes
++ random 0..60 seconds
+```
+
+снижает вероятность одновременного expiration большого набора entries.
 
 ---
 
-# 8. Negative caching
+# 10. Negative caching
 
-Если missing product постоянно запрашивается, каждый miss может идти в database.
+Частые requests к отсутствующему ID могут каждый раз нагружать source of truth.
 
 Варианты:
 
 ```text
-cache Optional.empty()
-cache explicit NotFound marker
-short TTL for negative result
+Optional.empty
+explicit NotFound marker
+short-lived negative entry
 ```
 
-Риски:
+## Trade-off
 
-- новый product появится, но negative entry ещё жив;
-- null handling различается между providers;
-- marker serialization должна быть стабильной.
+Если object появился через 10 секунд, а negative TTL — 10 минут, callers ещё долго будут видеть отсутствие.
 
-Рекомендация: отдельный короткий TTL и явная модель, а не случайное кеширование `null`.
+Рекомендации:
+
+- negative TTL короче positive TTL;
+- explicit marker вместо неявной null policy;
+- create/update operation должна evict negative entry;
+- измерять долю negative hits.
 
 ---
 
-# 9. Caffeine — локальный L1 cache
-
-Caffeine хранит entries в heap конкретного JVM.
+# 11. Caffeine — local in-memory cache
 
 ```text
-Application node A → Caffeine A
-Application node B → Caffeine B
-Application node C → Caffeine C
+node A → Caffeine A
+node B → Caffeine B
+node C → Caffeine C
 ```
 
-## Configuration для Java 8 / Caffeine 2.9
+## Java 8 configuration
 
 ```java
 @Configuration
@@ -389,10 +499,8 @@ class CaffeineConfiguration {
 
     @Bean
     CacheManager cacheManager() {
-        CaffeineCacheManager manager = new CaffeineCacheManager(
-                "productById",
-                "exchangeRate"
-        );
+        CaffeineCacheManager manager =
+                new CaffeineCacheManager("productById", "exchangeRate");
 
         manager.setCaffeine(
                 Caffeine.newBuilder()
@@ -400,32 +508,36 @@ class CaffeineConfiguration {
                         .expireAfterWrite(5, TimeUnit.MINUTES)
                         .recordStats()
         );
-
         manager.setAllowNullValues(false);
         return manager;
     }
 }
 ```
 
+Для Java 8 lab используется Caffeine `2.9.3`.
+
 ## Сильные стороны
 
-- very low latency;
 - нет network hop;
-- хорошая concurrency;
-- rich eviction/expiration policies;
+- очень низкая latency;
+- эффективная concurrency;
+- size/weight-based eviction;
+- expiration;
 - statistics;
-- removal listeners;
-- loading/async variants в native API;
-- application продолжает работать без external cache service.
+- application не зависит от отдельного cache server для local reads.
 
 ## Ограничения
 
-- данные не разделяются между nodes;
+- entry виден только одному JVM;
 - restart очищает cache;
-- heap consumption;
-- invalidation должна доходить до каждого instance;
-- hit rate зависит от traffic distribution по nodes;
-- rolling deployment создаёт разные cache ages.
+- memory pressure остаётся в application heap;
+- cross-node invalidation отсутствует автоматически;
+- rolling deployment создаёт разные cache ages;
+- load balancer распределяет hit rate между nodes.
+
+---
+
+# 12. Caffeine size и weight
 
 ## `maximumSize`
 
@@ -434,7 +546,7 @@ Caffeine.newBuilder()
         .maximumSize(50_000)
 ```
 
-Ограничивает количество entries. Это лучше unbounded map, но не гарантирует ограничение по реальному memory size объекта.
+Ограничивает число entries.
 
 ## `maximumWeight`
 
@@ -444,32 +556,38 @@ Caffeine.newBuilder()
         .weigher((String key, ProductDto value) -> value.estimatedBytes())
 ```
 
-Используется, если entries сильно различаются по размеру.
+Используется, когда один entry может занимать 2 KB, а другой — 5 MB.
 
-## Expiration
+> Weight является application estimate, а не точным измерением JVM retained heap.
+
+---
+
+# 13. Caffeine expiration
 
 ```java
 expireAfterWrite(5, TimeUnit.MINUTES)
 ```
 
-Entry истекает через интервал после write/update.
+Срок отсчитывается после write/update.
 
 ```java
 expireAfterAccess(10, TimeUnit.MINUTES)
 ```
 
-Entry истекает после периода отсутствия access.
+Срок отсчитывается после последнего access.
 
-## Refresh
+## Expiration vs refresh
 
-Native Caffeine LoadingCache может поддерживать refresh-after-write. Refresh и expiration — разные механизмы:
+```text
+expiration → value becomes unavailable/removed
+refresh    → provider initiates reload, potentially serving old value meanwhile
+```
 
-- expiration удаляет/делает entry unavailable;
-- refresh инициирует обновление, часто сохраняя старое значение до completion.
+Spring Cache annotations не выражают все native Caffeine capabilities. Для refresh-ahead может понадобиться native LoadingCache или custom adapter.
 
-Spring Cache abstraction не выражает все native Caffeine capabilities одной annotation. Для advanced behavior может понадобиться native cache API или custom integration.
+---
 
-## Statistics
+# 14. Caffeine statistics
 
 ```java
 CaffeineCache springCache =
@@ -478,132 +596,116 @@ CaffeineCache springCache =
 com.github.benmanes.caffeine.cache.Cache<Object, Object> nativeCache =
         springCache.getNativeCache();
 
-System.out.println(nativeCache.stats());
+CacheStats stats = nativeCache.stats();
 ```
 
-Наблюдать:
+Поля:
 
-- hit rate;
+- hit count/rate;
 - miss count;
-- eviction count;
-- load time;
+- load success/failure;
+- total load time;
+- eviction count/weight;
 - estimated size.
+
+> Высокий hit rate не доказывает корректность: cache может стабильно возвращать stale или неправильно изолированные данные.
 
 ---
 
-# 10. Redis — shared distributed cache
+# 15. Redis — shared external cache
 
 ```text
-Application node A ─┐
-Application node B ─┼── Redis
-Application node C ─┘
+node A ─┐
+node B ─┼── Redis
+node C ─┘
 ```
 
-## Configuration, aligned with Spring Data Redis 2.7
+## Configuration for Spring Data Redis 2.7 generation
 
 ```java
-@Configuration
-@EnableCaching
-class RedisCacheConfigurationModule {
+@Bean
+RedisCacheManager cacheManager(
+        RedisConnectionFactory connectionFactory
+) {
+    GenericJackson2JsonRedisSerializer json =
+            new GenericJackson2JsonRedisSerializer();
 
-    @Bean
-    RedisCacheManager redisCacheManager(
-            RedisConnectionFactory connectionFactory
-    ) {
-        GenericJackson2JsonRedisSerializer json =
-                new GenericJackson2JsonRedisSerializer();
+    RedisCacheConfiguration defaults =
+            RedisCacheConfiguration.defaultCacheConfig()
+                    .entryTtl(Duration.ofMinutes(10))
+                    .disableCachingNullValues()
+                    .computePrefixWith(
+                            name -> "bank:prod:catalog:v2:" + name + "::"
+                    )
+                    .serializeKeysWith(
+                            RedisSerializationContext.SerializationPair
+                                    .fromSerializer(new StringRedisSerializer())
+                    )
+                    .serializeValuesWith(
+                            RedisSerializationContext.SerializationPair
+                                    .fromSerializer(json)
+                    );
 
-        RedisCacheConfiguration defaults =
-                RedisCacheConfiguration.defaultCacheConfig()
-                        .entryTtl(Duration.ofMinutes(10))
-                        .disableCachingNullValues()
-                        .computePrefixWith(
-                                cacheName -> "bank:v1:" + cacheName + "::"
-                        )
-                        .serializeKeysWith(
-                                RedisSerializationContext.SerializationPair
-                                        .fromSerializer(new StringRedisSerializer())
-                        )
-                        .serializeValuesWith(
-                                RedisSerializationContext.SerializationPair
-                                        .fromSerializer(json)
-                        );
+    Map<String, RedisCacheConfiguration> specific = new HashMap<>();
+    specific.put(
+            "exchangeRate",
+            defaults.entryTtl(Duration.ofSeconds(30))
+    );
+    specific.put(
+            "productById",
+            defaults.entryTtl(Duration.ofMinutes(15))
+    );
 
-        Map<String, RedisCacheConfiguration> caches = new HashMap<>();
-        caches.put(
-                "exchangeRate",
-                defaults.entryTtl(Duration.ofSeconds(30))
-        );
-        caches.put(
-                "productById",
-                defaults.entryTtl(Duration.ofMinutes(15))
-        );
-
-        return RedisCacheManager.builder(connectionFactory)
-                .cacheDefaults(defaults)
-                .withInitialCacheConfigurations(caches)
-                .transactionAware()
-                .build();
-    }
+    return RedisCacheManager.builder(connectionFactory)
+            .cacheDefaults(defaults)
+            .withInitialCacheConfigurations(specific)
+            .transactionAware()
+            .build();
 }
 ```
 
 ## Сильные стороны
 
-- shared cache для нескольких application nodes;
-- data survives individual application restart;
+- shared entries между application nodes;
+- application restart не очищает shared cache;
+- memory отделена от JVM heap;
 - centralized TTL;
-- можно разделить memory pressure от JVM heap;
-- cross-node updates/evictions видны через общий store;
-- Redis data structures доступны вне Spring Cache abstraction при отдельной необходимости.
+- shared eviction;
+- operational inspection через Redis tools.
 
 ## Ограничения
 
 - network latency;
-- serialization cost;
-- Redis outage становится dependency failure;
-- connection pool/resource limits;
+- serialization/deserialization;
+- Redis availability dependency;
+- connection limits;
 - hot keys;
-- memory eviction policy Redis;
-- cluster topology;
-- cache value compatibility между application versions;
-- distributed stampede не исчезает автоматически.
+- Redis memory policy;
+- cluster/Sentinel topology;
+- rolling-version compatibility;
+- distributed stampede.
 
 ---
 
-# 11. Redis serialization
+# 16. Redis serialization contract
 
-По умолчанию конкретная версия Spring Data Redis может использовать JDK serialization для values. Для production часто выбирают JSON, но это архитектурный контракт.
+Redis хранит bytes, а не Java object reference.
 
-## JDK serialization risks
+## Не кешировать persistence entity
 
-- Java-specific binary representation;
-- class evolution issues;
-- unreadable operationally;
-- coupling to Java types;
-- security concerns при небезопасной десериализации arbitrary data.
+Проблемы:
 
-## JSON benefits
+- lazy proxies;
+- persistence context assumptions;
+- bidirectional graphs;
+- unstable internal fields;
+- huge payloads;
+- version coupling.
 
-- operational visibility;
-- language interoperability;
-- easier debugging.
-
-## JSON risks
-
-- type metadata/security configuration;
-- larger payload;
-- field evolution;
-- polymorphism;
-- date/time representation;
-- backward compatibility.
-
-### DTO для cache value
-
-Предпочтительно кешировать стабильный DTO:
+Предпочтительно:
 
 ```java
-final class CachedProduct {
+public final class CachedProduct {
     private String schemaVersion;
     private Long id;
     private String name;
@@ -611,89 +713,83 @@ final class CachedProduct {
 }
 ```
 
-а не Hibernate entity с lazy proxies и persistence context semantics.
+## JDK serialization
+
+Риски:
+
+- Java-specific binary format;
+- class evolution;
+- operational unreadability;
+- security implications;
+- coupling to exact class names.
+
+## JSON serialization
+
+Плюсы:
+
+- читаемость;
+- interoperability;
+- easier diagnostics.
+
+Риски:
+
+- polymorphic type metadata;
+- larger payload;
+- date/time format;
+- backward compatibility;
+- field rename/type change.
+
+## Versioned namespace
+
+```text
+bank:prod:catalog:v1:productById::42
+bank:prod:catalog:v2:productById::42
+```
+
+позволяет безопаснее провести rolling migration.
 
 ---
 
-# 12. Redis TTL
+# 17. Redis TTL — freshness contract
 
-```java
-RedisCacheConfiguration.defaultCacheConfig()
-        .entryTtl(Duration.ofMinutes(5))
-```
-
-TTL — business freshness decision.
-
-Примеры:
-
-| Cache | Suggested reasoning |
+| Data | Reasoning |
 |---|---|
 | exchange rate | seconds/minutes; source changes often |
-| product catalog | minutes; updates trigger eviction |
+| product details | minutes plus explicit eviction on update |
 | country directory | hours; rarely changes |
-| authorization decision | very short and carefully invalidated |
+| authorization decision | short and carefully invalidated |
 | negative result | shorter than positive result |
 
-> [!danger]
-> TTL не является исправлением отсутствующей invalidation strategy. Большой TTL может отдавать stale data; маленький TTL может превратить cache в periodic load generator.
+## Ошибка мышления
 
-## TTL jitter
+> «Поставим TTL 5 минут, значит consistency решена».
 
-Если миллион entries записаны одновременно с одинаковым TTL, они могут истечь одновременно.
-
-```text
-base TTL 10 min
-+ random jitter 0..60 sec
-```
-
-Jitter распределяет reload load во времени.
+Нет. В течение пяти минут stale value всё ещё допустимо. TTL лишь ограничивает максимальную жизнь entry при отсутствии других invalidation events.
 
 ---
 
-# 13. Redis key prefix
+# 18. Redis prefix и clear strategy
 
-Плохой keyspace:
-
-```text
-productById::42
-```
-
-Лучше:
+Prefix:
 
 ```text
-bank:production:catalog:v2:productById::42
+service:environment:context:schema:cacheName::businessKey
 ```
 
-Prefix может включать:
-
-- system/service;
-- environment;
-- bounded context;
-- schema version;
-- cache name.
-
-Не включай secrets или personal data в plaintext keys без необходимости: keys видны в monitoring и diagnostics.
-
----
-
-# 14. Redis clear strategy
-
-Cache-wide clear в большом keyspace может быть дорогим.
-
-Spring Data Redis writer/batch strategy зависит от версии и driver. Текущая documentation отдельно предупреждает о `KEYS` для large keyspaces и предлагает `SCAN`-based strategy там, где driver/topology поддерживают её.
+Cache-wide clear в большом keyspace может быть дорогим. `KEYS`-based clearing плохо масштабируется. Версия Spring Data Redis, driver и deployment topology определяют доступность `SCAN`-based batch strategy.
 
 Production questions:
 
-- сколько keys в cache region;
-- какая clear command strategy;
-- Redis standalone или cluster;
-- Lettuce или Jedis;
-- можно ли заменить clear на versioned namespace;
-- можно ли evict точечно.
+1. Сколько entries в region?
+2. Нужен ли вообще `allEntries=true`?
+3. Можно ли сменить namespace generation вместо clear?
+4. Redis standalone, Sentinel или Cluster?
+5. Lettuce или Jedis?
+6. Как ведёт себя clear во время peak load?
 
 ---
 
-# 15. Transaction-aware cache manager
+# 19. Transaction-aware cache timing
 
 ```java
 RedisCacheManager.builder(connectionFactory)
@@ -701,246 +797,161 @@ RedisCacheManager.builder(connectionFactory)
         .build();
 ```
 
-Transaction-aware mode откладывает cache put/evict до transaction completion там, где это поддерживается integration layer.
+Идея: cache put/evict синхронизируется с Spring transaction completion там, где integration это поддерживает.
 
-Без согласования возможна проблема:
+Без ordering:
 
 ```text
-DB update begins
+DB update starts
     ↓
-cache updated
+cache receives new value
     ↓
 DB transaction rolls back
     ↓
-cache contains value that DB never committed
+cache contains data never committed in DB
 ```
 
-Но даже transaction-aware cache не создаёт distributed atomic transaction между Redis и database. Это ordering aid, а не XA guarantee.
+> `transactionAware()` не создаёт atomic distributed transaction между database и Redis. Это coordination of timing, не XA guarantee.
+
+Для критичной consistency часто проще:
+
+```text
+DB transaction commits
+    ↓
+after-commit event/outbox
+    ↓
+cache invalidation
+```
+
+с пониманием временного окна и retry semantics.
 
 ---
 
-# 16. Caffeine vs Redis
+# 20. Caffeine vs Redis
 
 | Criterion | Caffeine | Redis |
 |---|---|---|
-| Location | local JVM heap | external process/cluster |
-| Latency | extremely low | network + serialization |
+| Location | JVM heap | external process/cluster |
+| Network | none | required |
 | Shared between nodes | no | yes |
 | Survives app restart | no | yes |
-| Failure dependency | process memory | Redis availability |
-| Invalidation scope | current node | shared store |
-| Memory pressure | JVM heap | Redis memory |
-| Best use | hot local data | shared distributed data |
-| Operational complexity | low | higher |
-| Serialization | usually object reference | required bytes/value format |
+| Serialization | usually no | required |
+| Latency | minimal | network + codec |
+| Failure dependency | local memory | Redis availability |
+| Invalidation scope | current node | shared L2 |
+| Operational complexity | lower | higher |
+| Typical role | L1/hot local data | shared L2/distributed data |
 
 ## Decision tree
 
 ```mermaid
 flowchart TD
-    A{Must all application nodes see the same cache entry?} -->|Yes| R[Redis]
-    A -->|No| B{Is sub-millisecond local latency critical?}
+    A{Must multiple nodes share entries?} -->|Yes| R[Redis]
+    A -->|No| B{Is minimal local latency primary?}
     B -->|Yes| C[Caffeine]
-    B -->|No| D{Can cache disappear on restart?}
+    B -->|No| D{Can cache disappear at restart?}
     D -->|Yes| C
     D -->|No| R
 ```
 
 ---
 
-# 17. Two-level cache: Caffeine L1 + Redis L2
+# 21. L1 Caffeine + L2 Redis
 
-```text
-request
-    ↓
-L1 Caffeine hit? ─ yes → return
-    ↓ no
-L2 Redis hit? ─ yes → put L1 → return
-    ↓ no
-load database
-    ↓
-put Redis
-    ↓
-put Caffeine
-    ↓
-return
+```mermaid
+flowchart TD
+    Q[Request] --> L1{Caffeine hit?}
+    L1 -->|Yes| R[Return]
+    L1 -->|No| L2{Redis hit?}
+    L2 -->|Yes| P1[Put Caffeine]
+    P1 --> R
+    L2 -->|No| DB[Load source of truth]
+    DB --> P2[Put Redis]
+    P2 --> P3[Put Caffeine]
+    P3 --> R
 ```
 
-## Почему это не бесплатное ускорение
+## Главный риск
 
-Теперь существуют две copies и две invalidation problems.
-
-Update на node A:
+После update:
 
 ```text
 DB updated
-Redis updated/evicted
-Caffeine A evicted
-Caffeine B/C still contain old value
+Redis evicted
+Caffeine node A evicted
+Caffeine nodes B/C still contain old value
 ```
 
 Нужен protocol:
 
-- Redis Pub/Sub invalidation;
-- message broker invalidation event;
-- short L1 TTL;
-- versioned values;
-- local cache generation;
-- write-through service that evicts all layers;
-- tolerance for bounded staleness.
+- invalidation event;
+- local TTL;
+- version/generation token;
+- Pub/Sub или message broker;
+- explicit bounded-staleness contract.
 
-## Упрощённый custom implementation
+## Race после invalidation
 
-```java
-class TwoLevelProductCache {
-    private final Cache local;
-    private final Cache remote;
-
-    ProductDto get(Long id, Supplier<ProductDto> loader) {
-        ProductDto value = local.get(id, ProductDto.class);
-        if (value != null) {
-            return value;
-        }
-
-        value = remote.get(id, ProductDto.class);
-        if (value != null) {
-            local.put(id, value);
-            return value;
-        }
-
-        value = loader.get();
-        remote.put(id, value);
-        local.put(id, value);
-        return value;
-    }
-
-    void evict(Long id) {
-        local.evict(id);
-        remote.evict(id);
-    }
-}
+```text
+node B starts loading old value
+invalidation event arrives
+node B completes and writes old value after event
 ```
 
-Это teaching shape, а не завершённый distributed protocol. Нужно добавить concurrency, null policy, error handling, metrics и cross-node invalidation.
+Одного broadcast недостаточно без version/order semantics.
 
 ---
 
-# 18. Cache-aside failure policies
+# 22. Redis outage policy
 
-## Redis unavailable
+## Policy A: fail request
 
-Варианты:
+Используется, если cache — serving source и backend нельзя безопасно вызвать напрямую.
 
-1. Fail request — cache является critical dependency.
-2. Bypass cache and query database — cache является optimization.
-3. Serve stale local value — availability важнее freshness.
-4. Circuit breaker around cache access.
+## Policy B: bypass to source of truth
 
-Выбор должен быть явным.
+Подходит, если source имеет достаточную capacity.
 
-### Опасный fallback
-
-Если Redis упал и все nodes сразу пошли в DB:
+Риск:
 
 ```text
-cache outage
+Redis outage
     ↓
-100% misses/bypass
+all nodes bypass
     ↓
 database overload
     ↓
 full system outage
 ```
 
-Нужны:
+## Policy C: stale local fallback
 
+Повышает availability, но требует явного freshness contract.
+
+Controls:
+
+- circuit breaker;
 - bulkhead;
-- rate limit;
-- local fallback;
-- stale data policy;
-- database capacity model;
-- cache outage runbook.
+- rate limiter;
+- bounded DB concurrency;
+- retry suppression;
+- stale cache;
+- cache-loss load test.
 
 ---
 
-# 19. Write patterns
-
-## Cache-aside
-
-Read:
-
-```text
-cache → miss → DB → cache put
-```
-
-Write:
-
-```text
-DB commit → cache evict
-```
-
-Простая и распространённая модель.
-
-## Write-through
-
-Application writes through cache abstraction, cache/store integration updates backing storage. Требует конкретного provider design.
-
-## Write-behind
-
-Cache подтверждает write раньше, backing store обновляется позже. Высокий риск consistency/data-loss и редко должен появляться случайно.
-
----
-
-# 20. Evict or update?
-
-## Update cache
-
-```java
-@CachePut(cacheNames = "productById", key = "#result.id")
-```
-
-Плюсы:
-
-- следующий read hit;
-- нет reload.
-
-Риски:
-
-- нужно построить canonical representation;
-- несколько related caches могут остаться stale;
-- transaction rollback ordering.
-
-## Evict cache
-
-```java
-@CacheEvict(cacheNames = "productById", key = "#id")
-```
-
-Плюсы:
-
-- следующий read строит value из source of truth;
-- проще consistency reasoning.
-
-Риски:
-
-- miss latency;
-- stampede после массовой eviction.
-
----
-
-# 21. Real product example
+# 23. Real multi-tenant product service
 
 ```java
 @Service
 @CacheConfig(cacheNames = "productById")
-class ProductApplicationService {
+class ProductQueryService {
 
     private final ProductRepository repository;
 
     @Cacheable(
             key = "#tenantId + ':' + #productId",
-            unless = "#result == null",
-            sync = true
+            unless = "#result == null"
     )
     public ProductDto find(
             String tenantId,
@@ -950,6 +961,15 @@ class ProductApplicationService {
                 .map(ProductDto::from)
                 .orElse(null);
     }
+}
+```
+
+Write service:
+
+```java
+@Service
+@CacheConfig(cacheNames = "productById")
+class ProductCommandService {
 
     @Transactional
     @CachePut(key = "#tenantId + ':' + #result.id")
@@ -958,7 +978,9 @@ class ProductApplicationService {
             UpdateProductCommand command
     ) {
         Product product = repository.save(
-                command.applyTo(repository.getRequired(tenantId, command.id()))
+                command.applyTo(
+                        repository.getRequired(tenantId, command.id())
+                )
         );
         return ProductDto.from(product);
     }
@@ -971,66 +993,71 @@ class ProductApplicationService {
 }
 ```
 
-Questions to review:
+Review questions:
 
-- одинаков ли key expression во всех methods;
-- когда выполняется cache update относительно transaction commit;
-- нужно ли evict search/list caches;
-- кешируется ли not-found;
-- что произойдёт при Redis outage;
-- совместим ли DTO между versions;
-- есть ли tenant isolation.
+1. Одинаков ли key format во всех operations?
+2. Что происходит с list/search caches?
+3. Когда cache put/evict становится visible относительно DB commit?
+4. Как обрабатывается not-found?
+5. Что будет при Redis outage?
+6. Совместим ли DTO с предыдущей application version?
+7. Как инвалидируется Caffeine на других nodes?
 
 ---
 
-# 22. Metrics
+# 24. Metrics, которые доказывают пользу
 
-Минимальный dashboard:
-
-- hit ratio by cache;
-- miss rate;
+- hit/miss rate per cache;
 - load latency;
 - load failures;
 - eviction count;
-- cache size;
+- estimated local size;
 - Redis command latency;
-- Redis connection failures;
-- serialized payload size;
+- Redis connection errors;
+- value payload size;
+- DB requests avoided;
 - stale-data incidents;
-- DB queries avoided;
-- stampede/concurrent load count.
+- concurrent loads per key;
+- cache outage fallback traffic;
+- serialization failures;
+- invalidation lag.
 
-> [!important]
-> Высокий hit ratio не доказывает пользу. Cache может возвращать stale data, хранить слишком большие values или кешировать дешёвую операцию, усложняя систему без измеримого выигрыша.
+Плохая метрика:
+
+```text
+cache contains 100,000 entries
+```
+
+Она не отвечает, полезны ли entries, актуальны ли они и сколько memory занимают.
 
 ---
 
-# 23. Production diagnostic checklist
-
-Когда кеш «не работает»:
+# 25. Диагностика «кеш не работает»
 
 1. `@EnableCaching` активен?
-2. Bean является Spring proxy?
-3. Нет self-invocation?
-4. Какой `CacheManager` выбран?
-5. Cache name существует?
-6. Какой key реально вычислен?
-7. `condition` не запретил cache?
-8. `unless` не отклонил result?
-9. Null caching разрешён provider?
-10. Entry уже истёк?
-11. Eviction выполняется другим method/node?
-12. Redis prefix/environment правильный?
-13. Serialization успешно читает старый value?
-14. Caffeine cache локален именно этому node?
-15. Есть metrics hits/misses?
-16. Не создаётся ли новый ApplicationContext/CacheManager?
+2. Bean создан Spring?
+3. Runtime object является proxy?
+4. Caller вошёл через proxy или self-invocation?
+5. Какой `CacheManager` выбран?
+6. Какой cache name?
+7. Какой key вычислен?
+8. `condition` пропускает operation?
+9. `unless` veto-ит result?
+10. Не используется ли запрещённая комбинация `sync=true` + `unless`?
+11. Provider разрешает null?
+12. Entry уже истёк?
+13. Другой operation выполняет eviction?
+14. Caffeine entry ищется на том же node?
+15. Redis prefix/environment совпадает?
+16. Serializer читает старую версию value?
+17. Есть реальные hit/miss metrics?
+18. Не создаётся ли отдельный context и новый CacheManager?
 
 ---
 
-# 24. Senior interview answer
+# Senior interview answer
 
-> Spring Cache — proxy-based abstraction над CacheManager и Cache providers. `@Cacheable` проверяет key и может пропустить target invocation при hit; `@CachePut` всегда вызывает method и обновляет entry; `@CacheEvict` удаляет entry. Caffeine — быстрый local in-memory cache одного JVM, Redis — shared distributed cache с network и serialization costs. Основные production risks: неправильные keys, self-invocation, stale data, stampede, cache-wide eviction, Redis outage, serialization compatibility и несогласованная L1/L2 invalidation.
+> Spring Cache — proxy-based abstraction над CacheManager и provider caches. `@Cacheable` проверяет key и пропускает target invocation при hit; `@CachePut` всегда вызывает method; `@CacheEvict` удаляет entry. Caffeine — быстрый local in-memory cache одного JVM. Redis — shared external cache с network и serialization costs. `sync=true` помогает координировать same-key load в рамках provider, но не поддерживает `unless` и не является автоматически cluster-wide lock. Production design должен определить key identity, TTL, invalidation, outage policy, serializer compatibility, stampede controls и L1/L2 consistency.
 
 ## Memory hooks
 
@@ -1038,7 +1065,9 @@ Questions to review:
 
 > **Caffeine is local speed. Redis is shared state.**
 
-> **A cached value is a replicated copy; every copy needs a freshness contract.**
+> **Every cache entry is a replicated copy with a freshness contract.**
+
+> **TTL limits age; invalidation follows business change.**
 
 ## Practice
 
