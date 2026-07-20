@@ -1,7 +1,7 @@
 package lab;
 
-import com.github.benmanes.caffeine.cache.CacheStats;
 import com.github.benmanes.caffeine.cache.Caffeine;
+import com.github.benmanes.caffeine.cache.stats.CacheStats;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
