@@ -21,137 +21,114 @@ tags:
 # Java Concurrency Learning Path
 
 > [!summary] Цель маршрута
-> Научиться не перечислять классы из `java.util.concurrent`, а **объяснять, какую проблему конкурентности решает каждый инструмент, какие гарантии он даёт и чего он не гарантирует**.
+> Научиться не перечислять классы, а объяснять проблему, гарантию, границу применимости и production failure mode каждого concurrency mechanism.
 
-## Главная идея
-
-Конкурентность становится понятной, когда мы идём не от API, а от проблем:
+## Общая карта
 
 ```mermaid
 flowchart LR
-    A[Shared mutable state] --> B[Race condition]
-    B --> C[Visibility problem]
-    B --> D[Atomicity problem]
-    B --> E[Ordering problem]
-    C --> F[Java Memory Model]
-    D --> F
-    E --> F
-    F --> G[happens-before]
-    G --> H[volatile]
-    G --> I[synchronized]
-    G --> J[Locks and atomics]
-    H --> K[Executors]
-    I --> K
-    J --> K
-    K --> L[CompletableFuture]
-    K --> M[Virtual Threads]
+    A[Shared mutable state] --> B[Visibility Atomicity Ordering]
+    B --> C[Java Memory Model]
+    C --> D[happens-before]
+    D --> E[volatile and locks]
+    E --> F[Atomic CAS]
+    E --> G[Liveness discipline]
+    F --> H[Concurrent collections]
+    G --> H
+    H --> I[Executors and pipelines]
+    I --> J[Virtual threads]
 ```
 
 ## Педагогический цикл каждой темы
 
-1. **Интуиция** — бытовая модель без терминов.
-2. **Точная модель** — формальные гарантии Java.
-3. **Плохой пример** — код, который выглядит правдоподобно, но ошибочен.
-4. **Исправление** — минимально подходящий инструмент.
-5. **Граница применимости** — когда инструмент уже не подходит.
-6. **Вопрос интервьюера** — проверка объяснения вслух.
-7. **Лаборатория** — наблюдение поведения своими глазами.
+1. Интуиция.
+2. Формальная гарантия.
+3. Ошибочный code shape.
+4. Минимальное исправление.
+5. Граница применимости.
+6. Interview recall.
+7. Runnable experiment.
 
-## Уровень 1. Почему многопоточность сложна
-
-Изучить по порядку:
+## Уровень 1. Memory model
 
 1. [[Visibility Atomicity Ordering]]
 2. [[Race Condition]]
 3. [[Java Memory Model]]
 4. [[Happens-Before]]
 
-### Контрольная точка
-
-После уровня ты должен уметь ответить:
-
-- Почему два потока могут видеть разные состояния одной переменной?
-- Почему `counter++` не является одной операцией?
-- Почему фактический порядок выполнения нельзя выводить только из порядка строк исходного кода?
-- Что именно доказывает отношение happens-before?
-
-## Уровень 2. Базовые средства координации
+## Уровень 2. Blocking coordination
 
 1. [[volatile]]
 2. [[synchronized]]
 3. [[ReentrantLock]]
-4. Atomic classes и CAS
-5. Immutable objects и safe publication
+4. [[10_CONCEPTS/Java/Concurrency/Deadlock Livelock and Lock Ordering|Deadlock, Livelock and Lock Ordering]]
 
-### Ментальная карта выбора
+## Уровень 3. Non-blocking updates
+
+1. [[10_CONCEPTS/Java/Concurrency/Atomic CAS and Counters|Atomic CAS and Counters]]
+2. AtomicInteger and AtomicReference
+3. AtomicLong vs LongAdder
+4. ABA problem
 
 ```mermaid
 flowchart TD
-    A{Есть изменяемое состояние между потоками?} -->|Нет| Z[Синхронизация не нужна]
-    A -->|Да| B{Нужна составная операция?}
-    B -->|Нет, один флаг или snapshot| C[volatile]
-    B -->|Да| D{Нужны tryLock, timeout или Condition?}
-    D -->|Нет| E[synchronized]
-    D -->|Да| F[ReentrantLock]
-    B -->|Простой числовой CAS| G[Atomic classes]
+    A{Какой invariant?} -->|Один numeric value| B[AtomicInteger or AtomicLong]
+    A -->|Immutable aggregate| C[AtomicReference]
+    A -->|High contention metric| D[LongAdder]
+    A -->|Multiple mutable resources| E[Lock or redesign]
 ```
 
-## Уровень 3. Выполнение задач
+## Уровень 4. Concurrent collections
+
+1. [[10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure|Concurrent Collections and Backpressure]]
+2. ConcurrentHashMap compound methods
+3. CopyOnWrite snapshot semantics
+4. BlockingQueue and overload control
+
+> [!important]
+> Thread-safe methods не делают произвольную комбинацию calls атомарной. Ищи compound operation в API: `compute`, `merge`, `putIfAbsent`, `put/take`.
+
+## Уровень 5. Task execution
 
 1. [[ExecutorService]]
-2. Thread pools
-3. `Future`
-4. `ScheduledExecutorService`
-5. Lifecycle и graceful shutdown
+2. Future and lifecycle
+3. [[CompletableFuture]]
+4. [[Virtual Threads]]
+5. [[ThreadLocal]] cleanup
 
-> [!important] Ключевой переход
-> Начиная с executors, мы перестаём управлять отдельными потоками и начинаем управлять **задачами, очередями, пропускной способностью и жизненным циклом ресурсов**.
+## Visual maps
 
-## Уровень 4. Асинхронные вычислительные цепочки
+- [[01_MAPS/Java Concurrency Map.canvas]]
+- [[01_MAPS/Java Advanced Concurrency Map.canvas]]
 
-1. [[CompletableFuture]]
-2. `thenApply` против `thenCompose`
-3. Combining independent stages
-4. Error handling
-5. Custom executors
-6. Blocking внутри async pipeline
+## Active recall
 
-## Уровень 5. Современная модель Java 21
-
-1. [[Virtual Threads]]
-2. Thread-per-request
-3. Ограничение внешнего ресурса вместо ограничения количества virtual threads
-4. ThreadLocal cost
-5. Pinning в Java 21
-6. Structured concurrency как отдельная эволюционная тема
-
-## Как повторять маршрут
-
-### Повторение за 10 минут
-
-- открыть summary каждого concept note;
-- проговорить главное ограничение каждого инструмента;
-- ответить на вопросы без раскрытия callout `Answer`;
-- запустить один плохой и один исправленный пример.
-
-### Повторение перед Senior-интервью
-
-Для каждой темы объяснить:
-
-1. Какую production-проблему решает?
-2. Какие гарантии даёт?
-3. Чего не гарантирует?
-4. Как диагностировать неправильное использование?
-5. Какой trade-off появляется после исправления?
-
-## Практика
-
-- [[50_LABS/Java/Concurrency/README|Java Concurrency Labs]]
+- [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
 - [[20_QUESTIONS/Interview/Java/Concurrency/Why volatile does not make increment atomic]]
 - [[20_QUESTIONS/Interview/Java/Concurrency/What does happens-before actually guarantee]]
 - [[20_QUESTIONS/Interview/Java/Concurrency/execute vs submit]]
 - [[20_QUESTIONS/Interview/Java/Concurrency/thenApply vs thenCompose]]
 - [[20_QUESTIONS/Interview/Java/Concurrency/Are virtual threads faster]]
+
+## Labs
+
+```bash
+javac --release 8 AdvancedConcurrencyLab.java
+java AdvancedConcurrencyLab all
+```
+
+- [[50_LABS/Java/Concurrency/java8/AdvancedConcurrencyLab.java]]
+- [[50_LABS/Java/Concurrency/README|Java Concurrency Labs]]
+
+## Senior checkpoint
+
+Для каждого mechanism объясни:
+
+1. Какой invariant он защищает?
+2. Какую JMM guarantee использует?
+3. Что произойдёт под contention?
+4. Как выглядит failure в thread dump или metrics?
+5. Какой simpler alternative существует?
 
 ## Sources
 
