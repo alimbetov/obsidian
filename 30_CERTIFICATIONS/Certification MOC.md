@@ -18,7 +18,8 @@ flowchart LR
     Q --> T[Exam trap]
     T --> D[Drill question]
     D --> P[Production transfer]
-    P --> R[Review outcome]
+    P --> L[Executable lab]
+    L --> R[Review outcome]
     R -->|weak| C
     R -->|confident| N[Next objective]
 ```
@@ -68,19 +69,23 @@ flowchart LR
 |---|---:|---|---|
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards|CORE-B01]] | 20 | [[10_CONCEPTS/Spring/Core/Spring Core Foundations]] | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards|CORE-B02]] | 24 | [[10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection]] | published |
+| [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards|CORE-B03]] | 24 | [[10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction]] | published |
 
 Total published Spring Core cards:
 
 ```text
-44
+68
 ```
 
 ### Supporting practice
 
 - [[01_MAPS/Spring Core Foundation Map.canvas]]
 - [[01_MAPS/Spring Dependency Resolution Map.canvas]]
+- [[01_MAPS/Spring Bean Lifecycle Map.canvas]]
 - [[40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases]]
+- [[40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases]]
 - [[50_LABS/Spring/Core-B02/README]]
+- [[50_LABS/Spring/Core-B03/README]]
 
 Зафиксированный формат карточки:
 
@@ -121,7 +126,8 @@ Total published Spring Core cards:
 3. Связать вопрос с канонической концепцией.
 4. Разобрать все неправильные варианты.
 5. Применить правило к новому code или production scenario.
-6. Повышать confidence только после последующего успешного повторения.
+6. Запустить lab для mechanism-heavy batch.
+7. Повышать confidence только после последующего успешного повторения.
 
 ## Outcome taxonomy
 
@@ -144,12 +150,13 @@ Total published Spring Core cards:
 
 ## Next certification batch
 
-`CORE-B03 — Bean Lifecycle`:
+`CORE-B04 — Container Extension Points`:
 
-- instantiation;
-- dependency population;
-- aware callbacks;
-- before/after initialization post-processors;
-- init methods;
-- destruction callbacks;
-- prototype lifecycle limitation.
+- BeanPostProcessor deep dive;
+- InstantiationAwareBeanPostProcessor;
+- SmartInstantiationAwareBeanPostProcessor;
+- DestructionAwareBeanPostProcessor;
+- BeanFactoryPostProcessor;
+- BeanDefinitionRegistryPostProcessor;
+- metadata phase vs instance phase;
+- processor ordering and early initialization.
