@@ -5,7 +5,7 @@ domain: spring
 subdomain: spring-core
 status: active
 base_cards_available: 174
-published_in_vault: 68
+published_in_vault: 92
 batches:
   - CORE-B01
   - CORE-B02
@@ -22,7 +22,7 @@ tags:
 # Spring Core Card Roadmap
 
 > [!summary] Текущее состояние
-> Опубликованы три связанные партии: [[CORE-B01/CORE-B01 Cards|CORE-B01]] — container и registration, [[CORE-B02/CORE-B02 Cards|CORE-B02]] — dependency resolution, [[CORE-B03/CORE-B03 Cards|CORE-B03]] — полный bean lifecycle. Каждая партия имеет concept note, Canvas, active recall и практический transfer-layer.
+> Опубликованы четыре вертикальных модуля: container foundation, dependency resolution, bean lifecycle и container extension points. Каждый модуль связывает concept note, Canvas, certification cards, production cases, sources и executable lab.
 
 ## Progress
 
@@ -30,15 +30,15 @@ tags:
 CORE-B01  20 cards  PUBLISHED
 CORE-B02  24 cards  PUBLISHED
 CORE-B03  24 cards  PUBLISHED
-CORE-B04  planned   extension points
-CORE-B05  planned   configuration
+CORE-B04  24 cards  PUBLISHED
+CORE-B05  planned   configuration and profiles
 CORE-B06  planned   advanced core
 ```
 
 Всего опубликовано:
 
 ```text
-68 Spring Core cards
+92 Spring Core cards
 ```
 
 ## Sequence
@@ -48,7 +48,7 @@ flowchart LR
     B1[CORE-B01 IoC and registration] --> B2[CORE-B02 Candidate resolution]
     B2 --> B3[CORE-B03 Bean lifecycle]
     B3 --> B4[CORE-B04 Extension points]
-    B4 --> B5[CORE-B05 Configuration]
+    B4 --> B5[CORE-B05 Configuration and profiles]
     B5 --> B6[CORE-B06 Advanced Core]
 ```
 
@@ -104,57 +104,77 @@ flowchart LR
 
 Покрытие:
 
-- BeanDefinition as metadata recipe;
+- BeanDefinition to raw instance;
 - instantiation vs initialization;
 - dependency population;
-- `BeanNameAware`, `BeanFactoryAware`, `ApplicationContextAware`;
-- BeanPostProcessor before/after initialization;
-- `@PostConstruct` processing;
-- `InitializingBean.afterPropertiesSet()`;
-- custom init method;
-- proxy creation and raw-target boundary;
+- aware callbacks;
+- BPP before/after initialization;
+- `@PostConstruct`, `afterPropertiesSet()`, custom init;
+- proxy publication;
 - `SmartInitializingSingleton`;
-- destruction callback order;
+- destruction callbacks;
 - context close;
-- prototype destruction limitation;
-- `Lifecycle` vs initialization callbacks.
+- prototype destruction boundary.
+
+## CORE-B04 — published
+
+Материалы:
+
+- [[10_CONCEPTS/Spring/Core/Container Extension Points]];
+- [[01_MAPS/Spring Container Extension Points Map.canvas]];
+- [[CORE-B04/CORE-B04 Cards]];
+- [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]];
+- [[50_LABS/Spring/Core-B04/README]];
+- [[98_SOURCES/Spring Container Extension Point Sources]].
+
+Покрытие:
+
+- metadata plane vs instance plane;
+- `BeanDefinitionRegistryPostProcessor`;
+- `BeanFactoryPostProcessor`;
+- `BeanPostProcessor` deep dive;
+- processor auto-detection and declared return type;
+- `PriorityOrdered`, `Ordered`, registration order;
+- programmatic BPP registration;
+- premature bean creation and auto-proxy eligibility;
+- `InstantiationAwareBeanPostProcessor`;
+- `SmartInstantiationAwareBeanPostProcessor`;
+- `DestructionAwareBeanPostProcessor`;
+- type prediction, constructor candidates and early references;
+- custom annotation and proxy pattern;
+- dynamic definition registration.
 
 ### Quality gate
 
 - [x] 24 cards in one reviewable batch.
 - [x] English question and Russian translation.
-- [x] Direct answers and mechanism explanations.
-- [x] Specific exam traps and memory hooks.
-- [x] Stable phase model separated from processor-order details.
-- [x] Visual Canvas lifecycle sequence.
+- [x] Direct answers, mechanism explanations and exam traps.
+- [x] Memory hooks and focused code examples.
+- [x] Metadata/instance mental model.
+- [x] Visual Canvas.
 - [x] Four production cases.
-- [x] Maven lab with full init/proxy/destroy timeline.
+- [x] Java 8 Maven lab structure.
+- [x] Java source-shape compile with `javac --release 8` against API stubs.
 - [x] Primary Spring 5.3 source index.
-- [ ] Lab executed in Maven-enabled environment.
+- [ ] Full Maven runtime execution.
 - [ ] Real attempt outcomes collected.
 
-## CORE-B04 — next
+## CORE-B05 — next
 
-Container extension points:
+Configuration and environment route:
 
-- `BeanPostProcessor` deep dive;
-- `InstantiationAwareBeanPostProcessor`;
-- `SmartInstantiationAwareBeanPostProcessor`;
-- `DestructionAwareBeanPostProcessor`;
-- `BeanFactoryPostProcessor`;
-- `BeanDefinitionRegistryPostProcessor`;
-- metadata phase vs instance phase;
-- `PriorityOrdered`, `Ordered` and registration order;
-- static `@Bean` method for processors;
-- processor eligibility and early bean creation;
-- custom proxy and annotation-processing patterns.
-
-## CORE-B05
-
-- full vs lite configuration;
-- `@Import`;
-- profiles;
-- properties and Environment.
+- `@Configuration` full mode vs lite mode;
+- inter-bean method calls;
+- `proxyBeanMethods`;
+- `@Import` variants;
+- component scanning boundaries;
+- `@Profile`;
+- Environment and active/default profiles;
+- property sources;
+- `@Value` vs type-safe configuration properties;
+- placeholder resolution;
+- ordering and precedence of configuration sources;
+- testing profile/configuration behavior.
 
 ## CORE-B06
 
@@ -173,8 +193,9 @@ Container extension points:
 3. привести minimal example;
 4. применить правило к production case;
 5. определить lifecycle phase;
-6. различить raw target и published reference;
-7. зафиксировать outcome.
+6. отличить metadata от instance;
+7. объяснить ordering contract;
+8. зафиксировать outcome.
 
 ## Review entry point
 
