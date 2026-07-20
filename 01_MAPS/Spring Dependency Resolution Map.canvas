@@ -1,0 +1,187 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection.md",
+      "x": 0,
+      "y": -620,
+      "width": 460,
+      "height": 220,
+      "color": "4"
+    },
+    {
+      "id": "candidate-group",
+      "type": "group",
+      "label": "1. Many candidates — choose or filter",
+      "x": -980,
+      "y": -280,
+      "width": 1220,
+      "height": 390,
+      "color": "2"
+    },
+    {
+      "id": "multi-group",
+      "type": "group",
+      "label": "2. Multi-element injection — gather and order",
+      "x": 300,
+      "y": -280,
+      "width": 1080,
+      "height": 390,
+      "color": "3"
+    },
+    {
+      "id": "optional-group",
+      "type": "group",
+      "label": "3. Zero candidates — model absence",
+      "x": -780,
+      "y": 190,
+      "width": 1160,
+      "height": 430,
+      "color": "1"
+    },
+    {
+      "id": "practice-group",
+      "type": "group",
+      "label": "4. Recall, production and lab",
+      "x": 450,
+      "y": 190,
+      "width": 1160,
+      "height": 430,
+      "color": "5"
+    },
+    {
+      "id": "type",
+      "type": "text",
+      "text": "# Type matching\n\nFind every bean compatible with the injection-point type.",
+      "x": -900,
+      "y": -190,
+      "width": 300,
+      "height": 190
+    },
+    {
+      "id": "qualifier",
+      "type": "text",
+      "text": "# @Qualifier\n\nSemantic filtering:\nonline, offline, persistent, EMEA",
+      "x": -550,
+      "y": -190,
+      "width": 300,
+      "height": 190
+    },
+    {
+      "id": "primary",
+      "type": "text",
+      "text": "# @Primary\n\nPreferred default for a single-valued dependency.",
+      "x": -200,
+      "y": -190,
+      "width": 300,
+      "height": 190
+    },
+    {
+      "id": "name",
+      "type": "text",
+      "text": "# Name fallback\n\nConvention after type matching; weaker than explicit semantic intent.",
+      "x": -550,
+      "y": 20,
+      "width": 300,
+      "height": 170
+    },
+    {
+      "id": "list",
+      "type": "text",
+      "text": "# List / Set / Array\n\nInject the matching candidate set, not only the primary bean.",
+      "x": 380,
+      "y": -190,
+      "width": 300,
+      "height": 190
+    },
+    {
+      "id": "map",
+      "type": "text",
+      "text": "# Map<String,T>\n\nKeys are bean names; values are matching beans.",
+      "x": 730,
+      "y": -190,
+      "width": 300,
+      "height": 190
+    },
+    {
+      "id": "order",
+      "type": "text",
+      "text": "# @Order / Ordered\n\nControls injected-list order, not bean startup order.",
+      "x": 1080,
+      "y": -190,
+      "width": 260,
+      "height": 190
+    },
+    {
+      "id": "optional",
+      "type": "text",
+      "text": "# Optional<T>\n\nExplicit constructor contract for possible absence.",
+      "x": -700,
+      "y": 290,
+      "width": 280,
+      "height": 180
+    },
+    {
+      "id": "nullable",
+      "type": "text",
+      "text": "# @Nullable / required=false\n\nPermit null or skip injection; consumer still owns safety.",
+      "x": -370,
+      "y": 290,
+      "width": 300,
+      "height": 180
+    },
+    {
+      "id": "provider",
+      "type": "text",
+      "text": "# ObjectProvider<T>\n\nLazy, optional or repeated lookup with explicit provider methods.",
+      "x": -20,
+      "y": 290,
+      "width": 320,
+      "height": 180
+    },
+    {
+      "id": "cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards.md",
+      "x": 530,
+      "y": 290,
+      "width": 340,
+      "height": 200
+    },
+    {
+      "id": "cases",
+      "type": "file",
+      "file": "40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases.md",
+      "x": 920,
+      "y": 290,
+      "width": 340,
+      "height": 200
+    },
+    {
+      "id": "lab",
+      "type": "file",
+      "file": "50_LABS/Spring/Core-B02/README.md",
+      "x": 1310,
+      "y": 290,
+      "width": 240,
+      "height": 200
+    }
+  ],
+  "edges": [
+    {"id":"e01","fromNode":"root","toNode":"type","label":"start","fromSide":"bottom","toSide":"top"},
+    {"id":"e02","fromNode":"type","toNode":"qualifier","label":"narrow","fromSide":"right","toSide":"left"},
+    {"id":"e03","fromNode":"qualifier","toNode":"primary","label":"prefer one","fromSide":"right","toSide":"left"},
+    {"id":"e04","fromNode":"qualifier","toNode":"name","label":"fallback convention","fromSide":"bottom","toSide":"top"},
+    {"id":"e05","fromNode":"type","toNode":"list","label":"need all"},
+    {"id":"e06","fromNode":"list","toNode":"map","label":"lookup by bean name","fromSide":"right","toSide":"left"},
+    {"id":"e07","fromNode":"list","toNode":"order","label":"sequence policy"},
+    {"id":"e08","fromNode":"type","toNode":"optional","label":"zero candidates"},
+    {"id":"e09","fromNode":"optional","toNode":"nullable","label":"alternative absence model","fromSide":"right","toSide":"left"},
+    {"id":"e10","fromNode":"nullable","toNode":"provider","label":"lazy decision","fromSide":"right","toSide":"left"},
+    {"id":"e11","fromNode":"primary","toNode":"cards","label":"active recall"},
+    {"id":"e12","fromNode":"provider","toNode":"cards","label":"active recall"},
+    {"id":"e13","fromNode":"cards","toNode":"cases","label":"transfer","fromSide":"right","toSide":"left"},
+    {"id":"e14","fromNode":"cases","toNode":"lab","label":"experiment","fromSide":"right","toSide":"left"}
+  ]
+}
