@@ -12,7 +12,7 @@ tags:
 # Review Dashboard
 
 > [!summary]
-> Главная рабочая страница для повторения. Она отделяет прочитано от воспроизведено, правильный уверенный ответ от угадывания и знание определения от способности применить механизм к production-case.
+> Главная рабочая страница для повторения. Она отделяет прочитано от воспроизведено, уверенный ответ от угадывания и знание definition от способности применить mechanism к production case.
 
 ## Сегодняшний цикл
 
@@ -20,7 +20,7 @@ tags:
 flowchart LR
     A[Choose weak concept] --> B[Recall without notes]
     B --> C[Answer cards]
-    C --> D[Run or inspect example]
+    C --> D[Predict or run example]
     D --> E[Explain production case]
     E --> F[Record outcome]
     F -->|weak| G[Schedule soon]
@@ -37,7 +37,7 @@ flowchart LR
 4. [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
 5. [[50_LABS/Java/Concurrency/README]]
 
-### Spring Certification
+### Spring Core — complete route
 
 1. [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
 2. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
@@ -49,7 +49,9 @@ flowchart LR
 8. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards]]
 9. [[10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties]]
 10. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards]]
-11. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+11. [[10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy]]
+12. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards]]
+13. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 
 ```text
 CORE-B01  20 cards
@@ -57,7 +59,8 @@ CORE-B02  24 cards
 CORE-B03  24 cards
 CORE-B04  24 cards
 CORE-B05  24 cards
-TOTAL     116 cards
+CORE-B06  24 cards
+TOTAL    140 cards
 ```
 
 ## Confidence Scale
@@ -72,7 +75,7 @@ TOTAL     116 cards
 | 5 | защищаю trade-offs на Senior-интервью |
 
 > [!danger]
-> Confidence повышается не после чтения, а после самостоятельного воспроизведения и успешного transfer task.
+> Confidence повышается не после чтения, а после самостоятельного recall и transfer task.
 
 ## Outcome Taxonomy
 
@@ -80,9 +83,9 @@ TOTAL     116 cards
 |---|---|---|
 | `correct-confident` | ответ точный и объяснён | увеличить interval |
 | `correct-guessed` | вариант выбран без механизма | повторить как ошибку |
-| `wrong-concept` | неверна модель | перечитать concept + lab |
+| `wrong-concept` | неверна модель | concept + lab |
 | `wrong-attention` | пропущено NOT/select N/phase | attention drill |
-| `wrong-confusion` | перепутаны похожие механизмы | comparison card |
+| `wrong-confusion` | перепутаны механизмы | comparison drill |
 
 ## Dynamic Search
 
@@ -105,6 +108,7 @@ TOTAL     116 cards
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards]]
 
 ## Spring contrast drills
 
@@ -124,7 +128,7 @@ TOTAL     116 cards
 
 - instantiation vs initialization;
 - raw target vs published proxy;
-- `@PostConstruct` vs `afterPropertiesSet()` vs custom init;
+- init callbacks vs destruction callbacks;
 - singleton destruction vs prototype ownership.
 
 ### CORE-B04
@@ -132,64 +136,85 @@ TOTAL     116 cards
 - BFPP vs BPP;
 - BDRPP vs BFPP;
 - before-instantiation vs before-initialization;
-- auto-detected ordering vs programmatic registration order;
-- metadata mutation vs instance wrapping;
+- auto-detected ordering vs programmatic order;
 - normal reference vs early reference.
 
 ### CORE-B05
 
-- full configuration vs lite mode;
+- full vs lite configuration;
 - direct bean-method call vs method-parameter injection;
-- `proxyBeanMethods` vs bean scope;
 - profile vs property;
 - profile vs feature flag;
-- `@Import` vs component scanning;
-- Framework `@PropertySource` vs Boot Config Data;
-- `${...}` vs `#{...}`;
-- `@Value` vs typed configuration properties;
-- configured file value vs winning PropertySource.
+- `@PropertySource` vs Boot Config Data;
+- `@Value` vs typed configuration.
 
-CORE-B05 memory model:
+### CORE-B06
+
+- singleton identity vs thread safety;
+- prototype lookup vs business method call;
+- prototype initialization vs destruction ownership;
+- direct injection vs provider lookup;
+- scoped proxy vs target scope;
+- `ObjectProvider` optionality vs ambiguity;
+- `FactoryBean` product vs factory;
+- FactoryBean scope vs product identity;
+- lazy timing vs bean scope;
+- constructor cycle vs setter/field cycle;
+- early reference vs fully initialized proxy;
+- parent visibility vs child visibility;
+- Resource vs File;
+- message code vs localized text.
+
+CORE-B06 memory model:
 
 ```text
-Configuration and imports shape the graph.
-Profiles conditionally include definitions.
-Environment resolves profiles and properties.
-PropertySources compete by precedence.
-@Value resolves a scalar.
-Typed binding creates a configuration contract.
-Feature flags decide runtime behavior.
+Identity: how many instances?
+Resolution: when is target selected?
+Lifetime: how long does it live?
+Ownership: who destroys it?
+
+Singleton: one per definition per container.
+Prototype: new per lookup; caller owns cleanup.
+Scoped proxy: stable handle, contextual target.
+Provider: ask container now.
+FactoryBean: name → product, &name → factory.
+Lazy: later creation, same scope.
+Hierarchy: child sees parent, parent does not see child.
 ```
 
 Practice:
 
-- [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
-- [[40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases]]
-- [[50_LABS/Spring/Core-B05/README]]
+- [[01_MAPS/Spring Advanced Core Map.canvas]]
+- [[40_PRODUCTION_CASES/Spring/Advanced Core Production Cases]]
+- [[50_LABS/Spring/Core-B06/README]]
 
 ## Active Weakness Register
 
 | Confusion pair | Проверка |
 |---|---|
-| `@Primary` vs `@Qualifier` | default preference против semantic filter |
-| `Optional<T>` vs `ObjectProvider<T>` | construction-time absence против lazy lookup |
+| `@Primary` vs `@Qualifier` | preference против semantic filter |
+| `Optional<T>` vs `ObjectProvider<T>` | absence против runtime lookup |
 | instantiation vs initialization | constructor против init pipeline |
 | BFPP vs BPP | metadata против instance |
 | full vs lite configuration | managed lookup против ordinary call |
-| `proxyBeanMethods` vs scope | call semantics против BeanDefinition metadata |
 | profile vs property | graph selection против value selection |
-| profile vs feature flag | startup-wide против runtime decision |
-| `@PropertySource` vs Config Data | Framework source addition против Boot pipeline |
-| `@Value` vs typed binding | scalar injection против cohesive contract |
-| visibility vs atomicity | `volatile` против compound operation |
-| deadlock vs contention | permanent cycle против long wait |
+| singleton vs thread-safe | identity против synchronization |
+| prototype vs provider | scope policy против lookup timing |
+| scoped proxy vs target | stable reference против contextual instance |
+| FactoryBean vs `@Bean` | managed factory bean против factory method |
+| lazy vs prototype | creation timing против identity |
+| early reference vs final proxy | partial lifecycle против published bean |
+| parent vs child visibility | downward lookup против bidirectional discovery |
+| Resource vs File | abstraction против storage assumption |
+| visibility vs atomicity | volatile против compound operation |
+| deadlock vs contention | cycle против long wait |
 
 ## Ten-Minute Review Session
 
-1. Выбрать одну строку Active Weakness Register.
-2. Не открывая notes, проговорить различие.
-3. Ответить на 3 связанные карточки.
-4. Нарисовать mechanism diagram от руки.
+1. Выбрать одну confusion pair.
+2. Проговорить различие без notes.
+3. Ответить на 3 связанные cards.
+4. Нарисовать mechanism diagram.
 5. Открыть concept и исправить пропуски.
 6. Зафиксировать outcome.
 
@@ -204,26 +229,26 @@ Practice:
 
 ## Weekly Review Protocol
 
-1. Найти все `correct-guessed` outcomes.
+1. Найти `correct-guessed` outcomes.
 2. Найти recurring confusion pairs.
-3. Выбрать одну тему confidence 2 и довести до 3.
-4. Выбрать одну тему confidence 3 и решить новый production case.
-5. Проверить, какие labs ещё не запускались в реальном environment.
-6. Не добавлять новый batch, если предыдущий не получил первый review cycle.
+3. Одну тему confidence 2 довести до 3.
+4. Для одной темы confidence 3 решить новый production case.
+5. Проверить labs, ещё не запущенные в real environment.
+6. Не считать route mastered до первого полного review cycle.
 
 ## Rule of Completion
 
 - [ ] Definition recall.
 - [ ] Mechanism explanation.
 - [ ] Lifecycle/configuration phase identification.
+- [ ] Identity/resolution/lifetime/ownership explanation.
 - [ ] Trap discrimination.
 - [ ] Production transfer.
 - [ ] Lab trace prediction.
-- [ ] PropertySource winner identification where applicable.
 
 ## Next Planned Modules
 
-- Spring `CORE-B06`: scopes, FactoryBean, lazy initialization, circular dependencies and context hierarchy.
-- Java: ForkJoinPool and parallel streams.
+- Spring AOP and Proxies.
+- Java ForkJoinPool and parallel streams.
 - Databases: transactions, isolation and locks.
 - Messaging: delivery semantics and idempotency.
