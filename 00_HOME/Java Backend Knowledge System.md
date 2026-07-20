@@ -36,11 +36,8 @@ flowchart TD
     DS --> IQ
     JAVA --> CERT[Certification]
     SPRING --> CERT
-    JAVA --> CASES[Production Cases]
-    SPRING --> CASES
-    DB --> CASES
-    MSG --> CASES
-    DS --> CASES
+    SPRING --> CASES[Production Cases]
+    JAVA --> CASES
     CASES --> LABS[Labs]
     IQ --> REVIEW
     CERT --> REVIEW
@@ -65,16 +62,6 @@ flowchart TD
 - [[01_MAPS/Messaging Map]]
 - [[01_MAPS/Distributed Systems Map]]
 
-### Подготовиться к собеседованию
-
-- [[20_QUESTIONS/Interview/Interview Questions MOC]]
-- [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
-- [[40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases]]
-- [[40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases]]
-- [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]]
-- [[40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases]]
-- [[40_PRODUCTION_CASES/Java/ThreadLocal context leaked between requests]]
-
 ### Подготовиться к Spring certification
 
 1. [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
@@ -87,7 +74,9 @@ flowchart TD
 8. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards]]
 9. [[10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties]]
 10. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards]]
-11. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+11. [[10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy]]
+12. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards]]
+13. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 
 ### Открыть визуальную карту
 
@@ -99,6 +88,7 @@ flowchart TD
 - [[01_MAPS/Spring Bean Lifecycle Map.canvas]]
 - [[01_MAPS/Spring Container Extension Points Map.canvas]]
 - [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
+- [[01_MAPS/Spring Advanced Core Map.canvas]]
 
 ## Current Published Vertical Slices
 
@@ -113,7 +103,7 @@ Foundations
   -> recall + executable labs
 ```
 
-### Spring Core
+### Spring Core — completed foundation
 
 ```text
 CORE-B01: IoC, beans, registration, injection styles          20 cards
@@ -121,7 +111,8 @@ CORE-B02: candidate resolution, qualifiers, optionality       24 cards
 CORE-B03: bean lifecycle, init, proxy and destruction         24 cards
 CORE-B04: container extension points and processor phases     24 cards
 CORE-B05: configuration, profiles and property resolution     24 cards
-TOTAL                                                         116 cards
+CORE-B06: scopes, FactoryBean, lazy and context hierarchy     24 cards
+TOTAL                                                         140 cards
 ```
 
 ## Spring learning sequence
@@ -133,6 +124,7 @@ flowchart LR
     B3 --> B4[Container extension points]
     B4 --> B5[Configuration and profiles]
     B5 --> B6[Advanced Core]
+    B6 --> AOP[AOP and Proxies]
 ```
 
 ## Процесс повторения
@@ -153,7 +145,7 @@ flowchart TD
 1. Откройте [[00_HOME/Review Dashboard]].
 2. Выберите concept с низким `confidence`.
 3. Воспроизведите определение без чтения.
-4. Ответьте на связанные questions/cards.
+4. Ответьте на связанные cards.
 5. Объясните mechanism и boundary.
 6. Разберите production case или lab.
 7. Обновите outcome и review metadata.
@@ -161,7 +153,7 @@ flowchart TD
 ## Очерёдность наполнения
 
 1. Java Concurrency и JVM.
-2. Spring Core `CORE-B06`, затем AOP и Transactions.
+2. Spring AOP and Proxies, затем Transactions.
 3. Database transactions, locks, indexes и execution plans.
 4. Kafka и RabbitMQ delivery semantics.
 5. Reliability patterns распределённых систем.
