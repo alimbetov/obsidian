@@ -5,7 +5,7 @@ domain: spring
 subdomain: spring-core
 status: active
 base_cards_available: 174
-published_in_vault: 92
+published_in_vault: 116
 batches:
   - CORE-B01
   - CORE-B02
@@ -22,7 +22,7 @@ tags:
 # Spring Core Card Roadmap
 
 > [!summary] Текущее состояние
-> Опубликованы четыре вертикальных модуля: container foundation, dependency resolution, bean lifecycle и container extension points. Каждый модуль связывает concept note, Canvas, certification cards, production cases, sources и executable lab.
+> Опубликованы пять вертикальных модулей: container foundation, dependency resolution, bean lifecycle, container extension points, configuration and profiles. Каждый модуль связывает concept note, Canvas, certification cards, production cases, sources и executable lab.
 
 ## Progress
 
@@ -31,14 +31,14 @@ CORE-B01  20 cards  PUBLISHED
 CORE-B02  24 cards  PUBLISHED
 CORE-B03  24 cards  PUBLISHED
 CORE-B04  24 cards  PUBLISHED
-CORE-B05  planned   configuration and profiles
+CORE-B05  24 cards  PUBLISHED
 CORE-B06  planned   advanced core
 ```
 
 Всего опубликовано:
 
 ```text
-92 Spring Core cards
+116 Spring Core cards
 ```
 
 ## Sequence
@@ -85,7 +85,6 @@ flowchart LR
 - `@Primary`, `@Qualifier`, custom qualifiers;
 - bean-name fallback;
 - collection, array и map injection;
-- ordering injected strategies;
 - optional dependencies;
 - `Optional<T>`, `@Nullable`, `ObjectProvider<T>`;
 - constructor resolution;
@@ -105,15 +104,11 @@ flowchart LR
 Покрытие:
 
 - BeanDefinition to raw instance;
-- instantiation vs initialization;
-- dependency population;
-- aware callbacks;
-- BPP before/after initialization;
-- `@PostConstruct`, `afterPropertiesSet()`, custom init;
+- dependency population and aware callbacks;
+- init callbacks and BPP phases;
 - proxy publication;
 - `SmartInitializingSingleton`;
 - destruction callbacks;
-- context close;
 - prototype destruction boundary.
 
 ## CORE-B04 — published
@@ -130,19 +125,40 @@ flowchart LR
 Покрытие:
 
 - metadata plane vs instance plane;
-- `BeanDefinitionRegistryPostProcessor`;
-- `BeanFactoryPostProcessor`;
-- `BeanPostProcessor` deep dive;
-- processor auto-detection and declared return type;
-- `PriorityOrdered`, `Ordered`, registration order;
-- programmatic BPP registration;
-- premature bean creation and auto-proxy eligibility;
-- `InstantiationAwareBeanPostProcessor`;
-- `SmartInstantiationAwareBeanPostProcessor`;
-- `DestructionAwareBeanPostProcessor`;
-- type prediction, constructor candidates and early references;
-- custom annotation and proxy pattern;
-- dynamic definition registration.
+- BDRPP, BFPP and BPP;
+- processor ordering and programmatic registration;
+- premature creation and proxy eligibility;
+- instantiation-aware and smart hooks;
+- early references and destruction-aware processing;
+- custom annotation/proxy patterns.
+
+## CORE-B05 — published
+
+Материалы:
+
+- [[10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties]];
+- [[01_MAPS/Spring Configuration and Profiles Map.canvas]];
+- [[CORE-B05/CORE-B05 Cards]];
+- [[40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases]];
+- [[50_LABS/Spring/Core-B05/README]];
+- [[98_SOURCES/Spring Configuration and Profiles Sources]].
+
+Покрытие:
+
+- full `@Configuration` vs lite mode;
+- `proxyBeanMethods`;
+- inter-bean calls vs method-parameter injection;
+- `@Import`, selectors and registrars;
+- component scanning boundaries;
+- profiles and default profiles;
+- profile vs feature flag;
+- Environment and PropertySource chain;
+- `@PropertySource`;
+- placeholder resolution and `@Value`;
+- Framework configuration vs Boot Config Data;
+- type-safe configuration properties;
+- property precedence diagnostics;
+- test profiles and context-cache impact.
 
 ### Quality gate
 
@@ -150,39 +166,31 @@ flowchart LR
 - [x] English question and Russian translation.
 - [x] Direct answers, mechanism explanations and exam traps.
 - [x] Memory hooks and focused code examples.
-- [x] Metadata/instance mental model.
+- [x] Bean-graph vs runtime-value mental model.
 - [x] Visual Canvas.
-- [x] Four production cases.
-- [x] Java 8 Maven lab structure.
+- [x] Six production cases.
+- [x] Java 8 / Spring 5.3 Maven lab structure.
 - [x] Java source-shape compile with `javac --release 8` against API stubs.
-- [x] Primary Spring 5.3 source index.
+- [x] PropertySource import collision detected and repaired during validation.
+- [x] Primary Framework and Boot source index.
 - [ ] Full Maven runtime execution.
 - [ ] Real attempt outcomes collected.
 
-## CORE-B05 — next
+## CORE-B06 — next
 
-Configuration and environment route:
+Advanced Spring Core route:
 
-- `@Configuration` full mode vs lite mode;
-- inter-bean method calls;
-- `proxyBeanMethods`;
-- `@Import` variants;
-- component scanning boundaries;
-- `@Profile`;
-- Environment and active/default profiles;
-- property sources;
-- `@Value` vs type-safe configuration properties;
-- placeholder resolution;
-- ordering and precedence of configuration sources;
-- testing profile/configuration behavior.
-
-## CORE-B06
-
-- scopes and scoped proxies;
-- `FactoryBean`;
-- circular dependencies;
+- singleton, prototype, request and session scopes;
+- scoped proxies and lookup boundaries;
+- `ObjectProvider` for scope/lazy access;
+- `FactoryBean` product vs factory identity;
+- `&beanName` dereference;
 - lazy initialization;
-- parent/child contexts.
+- circular dependencies and early references;
+- constructor cycle vs setter/field cycle;
+- parent/child ApplicationContext visibility;
+- resource loading and message sources;
+- lifecycle and scope ownership trade-offs.
 
 ## Review rule
 
@@ -192,9 +200,9 @@ Configuration and environment route:
 2. назвать confusing alternative;
 3. привести minimal example;
 4. применить правило к production case;
-5. определить lifecycle phase;
-6. отличить metadata от instance;
-7. объяснить ordering contract;
+5. определить lifecycle/configuration phase;
+6. отличить bean graph от runtime values;
+7. назвать фактический PropertySource winner;
 8. зафиксировать outcome.
 
 ## Review entry point
