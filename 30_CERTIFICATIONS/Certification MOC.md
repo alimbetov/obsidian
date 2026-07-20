@@ -43,12 +43,13 @@ flowchart LR
 - [[10_CONCEPTS/Java/Concurrency/Deadlock Livelock and Lock Ordering]]
 - [[10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure]]
 
-## Spring certification route
+# Spring certification route
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Certification Card System|Card System]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap|Spring Core Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap|AOP and Cache Roadmap]]
 
-### Published Spring Core batches
+## Published Spring Core batches
 
 | Batch | Cards | Concept | Status |
 |---|---:|---|---|
@@ -59,13 +60,25 @@ flowchart LR
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards|CORE-B05]] | 24 | [[10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties]] | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards|CORE-B06]] | 24 | [[10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy]] | published |
 
-Total published Spring Core cards:
-
 ```text
-140
+Spring Core total: 140 cards
 ```
 
-### Supporting practice
+## Published AOP and Cache batches
+
+| Batch | Cards | Concept | Status |
+|---|---:|---|---|
+| [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards|AOP-B01]] | 24 | [[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics]] | published |
+| [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards|CACHE-B01]] | 20 | [[10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis]] | published |
+
+```text
+AOP and Cache total: 44 cards
+Published Spring total: 184 cards
+```
+
+## Supporting maps and labs
+
+### Spring Core
 
 - [[01_MAPS/Spring Core Foundation Map.canvas]]
 - [[01_MAPS/Spring Dependency Resolution Map.canvas]]
@@ -73,16 +86,14 @@ Total published Spring Core cards:
 - [[01_MAPS/Spring Container Extension Points Map.canvas]]
 - [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
 - [[01_MAPS/Spring Advanced Core Map.canvas]]
-- [[40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases]]
-- [[40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases]]
-- [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]]
-- [[40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases]]
-- [[40_PRODUCTION_CASES/Spring/Advanced Core Production Cases]]
-- [[50_LABS/Spring/Core-B02/README]]
-- [[50_LABS/Spring/Core-B03/README]]
-- [[50_LABS/Spring/Core-B04/README]]
-- [[50_LABS/Spring/Core-B05/README]]
-- [[50_LABS/Spring/Core-B06/README]]
+
+### AOP and Cache
+
+- [[01_MAPS/Spring AOP and Caching Map.canvas]]
+- [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]]
+- [[50_LABS/Spring/AOP-B01/README]]
+- [[50_LABS/Spring/CACHE-B01/README]]
+- [[98_SOURCES/Spring AOP and Cache Sources]]
 
 ## Card format
 
@@ -99,12 +110,6 @@ Total published Spring Core cards:
 
 ```text
 750 base cards + 150 exam drill questions = 900 items
-```
-
-Spring Core foundation now contributes:
-
-```text
-140 reviewed-base candidates
 ```
 
 ## Testing process
@@ -127,14 +132,17 @@ Spring Core foundation now contributes:
 
 ## Next Spring certification route
 
-`AOP — Proxies and Advice`:
+`Transaction Management Deep Dive`:
 
-- AOP terminology;
-- JDK proxy vs CGLIB;
-- proxy selection;
-- pointcut matching;
-- interceptor chain;
-- self-invocation;
-- method visibility/finality;
-- aspect ordering;
-- relationship to transactions, async, caching and security.
+- transaction interceptor lifecycle;
+- propagation;
+- isolation;
+- rollback rules;
+- checked and unchecked exceptions;
+- read-only semantics;
+- transaction manager selection;
+- programmatic transactions;
+- synchronization callbacks;
+- cache/DB ordering;
+- async boundaries;
+- Transactional Outbox.
