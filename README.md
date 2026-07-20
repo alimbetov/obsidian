@@ -54,8 +54,10 @@ Concept
 
 - `CORE-B01`: 20 карточек по IoC, beans, registration и injection styles;
 - `CORE-B02`: 24 карточки по candidate resolution, qualifiers, collections и optional dependencies;
-- concept notes, Canvas maps, production cases и Spring 5.3 lab;
-- всего опубликовано 44 Spring Core cards.
+- `CORE-B03`: 24 карточки по bean lifecycle, init/proxy/destruction boundaries;
+- `CORE-B04`: 24 карточки по container extension points, processor ordering и early creation;
+- concept notes, Canvas maps, production cases, source indexes и Spring 5.3 labs;
+- всего опубликовано **92 Spring Core cards**.
 
 ## Структура репозитория
 
@@ -131,8 +133,10 @@ Confidence повышается только после active recall и transfe
 - главный dashboard и Review Dashboard;
 - Java и Spring Canvas maps;
 - глубокий Java Concurrency route;
-- Spring Core routes `CORE-B01` и `CORE-B02`;
+- Spring Core routes `CORE-B01`–`CORE-B04`;
 - certification-card standard;
 - production cases;
 - Java и Spring labs;
 - source indexes и templates.
+
+Следующий Spring-модуль: `CORE-B05 — Configuration and Profiles`.
