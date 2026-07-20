@@ -5,10 +5,10 @@
 ## Цели
 
 - вспомнить тему за 30 секунд перед собеседованием;
-- изучить концепцию достаточно глубоко, чтобы объяснить внутреннее устройство и trade-offs;
+- изучить концепцию достаточно глубоко, чтобы объяснить механизм и trade-offs;
 - готовиться к сертификационным экзаменам Java и Spring;
 - тренировать interview questions, code-output questions и production scenarios;
-- связать Java, Spring, базы данных, очереди, распределённые системы, тестирование и DevOps в едином графе знаний.
+- связать Java, Spring, базы данных, messaging и distributed systems в едином графе.
 
 ## С чего начать
 
@@ -27,7 +27,7 @@ Concept
    └── Labs
 ```
 
-Концепция описывается один раз. Вопросы, тесты и кейсы ссылаются на неё, а не копируют теорию.
+Каноническая теория описывается один раз. Карточки, кейсы и лаборатории ссылаются на неё.
 
 ## Основные карты
 
@@ -50,15 +50,16 @@ Concept
 - atomic/CAS, deadlock и concurrent collections;
 - interview recall и Java 8/21 labs.
 
-### Spring Core Certification
+### Spring Core Certification — completed foundation
 
-- `CORE-B01`: 20 карточек по IoC, beans, registration и injection styles;
-- `CORE-B02`: 24 карточки по candidate resolution, qualifiers, collections и optional dependencies;
-- `CORE-B03`: 24 карточки по bean lifecycle, init/proxy/destruction boundaries;
-- `CORE-B04`: 24 карточки по container extension points, processor ordering и early creation;
-- `CORE-B05`: 24 карточки по full/lite configuration, imports, profiles, Environment и externalized properties;
-- concept notes, Canvas maps, production cases, source indexes и Spring 5.3 labs;
-- всего опубликовано **116 Spring Core cards**.
+- `CORE-B01`: 20 карточек — IoC, beans, registration и injection styles;
+- `CORE-B02`: 24 карточки — candidate resolution, qualifiers, collections и optionality;
+- `CORE-B03`: 24 карточки — bean lifecycle, initialization, proxy и destruction;
+- `CORE-B04`: 24 карточки — extension points, processor ordering и early references;
+- `CORE-B05`: 24 карточки — configuration, imports, profiles и externalized properties;
+- `CORE-B06`: 24 карточки — scopes, providers, FactoryBean, lazy, cycles и context hierarchy;
+- всего опубликовано **140 Spring Core cards**;
+- каждый mechanism-heavy batch имеет concept note, Canvas, production cases, sources и lab.
 
 ## Структура репозитория
 
@@ -66,11 +67,11 @@ Concept
 00_HOME/              точки входа и dashboards
 01_MAPS/              Canvas и текстовые карты знаний
 10_CONCEPTS/          канонические заметки по концепциям
-20_QUESTIONS/         интервью, сертификация, code-output и troubleshooting
+20_QUESTIONS/         интервью, сертификация и troubleshooting
 30_CERTIFICATIONS/    exam objectives и маршруты подготовки
 40_PRODUCTION_CASES/  реальные инженерные ситуации
 50_LABS/              запускаемые примеры
-60_BASES/             будущие динамические представления Obsidian Bases
+60_BASES/             будущие динамические представления
 90_TEMPLATES/         шаблоны заметок
 98_SOURCES/           первичные официальные источники
 99_ATTACHMENTS/       изображения и вложения
@@ -80,18 +81,18 @@ Concept
 
 1. Клонировать репозиторий.
 2. В Obsidian выбрать **Open folder as vault**.
-3. Включить core plugins: Canvas, Backlinks, Graph view, Properties view, Templates и Bases.
+3. Включить Canvas, Backlinks, Graph view, Properties, Templates и Bases.
 4. Указать каталог шаблонов `90_TEMPLATES`.
-5. Включить автоматическое обновление внутренних ссылок при переименовании файлов.
+5. Включить автоматическое обновление внутренних ссылок.
 
-На первом этапе обязательные community plugins не используются. База должна оставаться переносимым набором Markdown-файлов.
+Community plugins не обязательны: база остаётся переносимым набором Markdown/Canvas-файлов.
 
 ## Языковая стратегия
 
-- названия Java/Spring API и основные технические термины сохраняются на английском;
+- Java/Spring API и технические термины сохраняются на английском;
 - объяснения пишутся на русском;
-- сертификационные questions создаются на английском с русским переводом;
-- aliases используются для альтернативных русских и английских названий.
+- certification questions создаются на английском с русским переводом;
+- aliases используются для альтернативных названий.
 
 ## Шкала уверенности
 
@@ -100,11 +101,11 @@ Concept
 | 0 | тема не изучена или не проверена |
 | 1 | узнаю термин |
 | 2 | понимаю с подсказкой |
-| 3 | могу объяснить самостоятельно |
-| 4 | могу решить новый практический кейс |
-| 5 | могу защитить решение на Senior-интервью |
+| 3 | объясняю самостоятельно |
+| 4 | решаю новый практический кейс |
+| 5 | защищаю решение на Senior-интервью |
 
-Confidence повышается только после active recall и transfer practice, а не после чтения заметки.
+Confidence повышается только после active recall и transfer practice.
 
 ## Правила именования
 
@@ -121,10 +122,10 @@ Confidence повышается только после active recall и transfe
 - главный dashboard и Review Dashboard;
 - Java и Spring Canvas maps;
 - глубокий Java Concurrency route;
-- Spring Core routes `CORE-B01`–`CORE-B05`;
+- завершённый Spring Core route `CORE-B01`–`CORE-B06`;
 - certification-card standard;
 - production cases;
 - Java и Spring labs;
 - source indexes и templates.
 
-Следующий Spring-модуль: `CORE-B06 — Advanced Core`.
+Следующий Spring-маршрут: **AOP and Proxies**.
