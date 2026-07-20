@@ -5,7 +5,7 @@ domain: spring
 subdomain: spring-core
 status: active
 base_cards_available: 174
-published_in_vault: 116
+published_in_vault: 140
 batches:
   - CORE-B01
   - CORE-B02
@@ -22,7 +22,7 @@ tags:
 # Spring Core Card Roadmap
 
 > [!summary] Текущее состояние
-> Опубликованы пять вертикальных модулей: container foundation, dependency resolution, bean lifecycle, container extension points, configuration and profiles. Каждый модуль связывает concept note, Canvas, certification cards, production cases, sources и executable lab.
+> Завершены шесть вертикальных Spring Core modules: container foundation, dependency resolution, bean lifecycle, extension points, configuration/profiles и advanced core. Каждый batch связан с concept note, Canvas, cards, production cases, sources и executable lab.
 
 ## Progress
 
@@ -32,13 +32,13 @@ CORE-B02  24 cards  PUBLISHED
 CORE-B03  24 cards  PUBLISHED
 CORE-B04  24 cards  PUBLISHED
 CORE-B05  24 cards  PUBLISHED
-CORE-B06  planned   advanced core
+CORE-B06  24 cards  PUBLISHED
 ```
 
 Всего опубликовано:
 
 ```text
-116 Spring Core cards
+140 Spring Core cards
 ```
 
 ## Sequence
@@ -50,160 +50,124 @@ flowchart LR
     B3 --> B4[CORE-B04 Extension points]
     B4 --> B5[CORE-B05 Configuration and profiles]
     B5 --> B6[CORE-B06 Advanced Core]
+    B6 --> AOP[Next: AOP and proxies]
 ```
 
 ## CORE-B01 — published
 
-Материалы:
+- [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
+- [[01_MAPS/Spring Core Foundation Map.canvas]]
+- [[CORE-B01/CORE-B01 Cards]]
 
-- [[10_CONCEPTS/Spring/Core/Spring Core Foundations]];
-- [[01_MAPS/Spring Core Foundation Map.canvas]];
-- [[CORE-B01/CORE-B01 Cards]].
-
-Покрытие:
-
-- IoC vs DI;
-- Spring bean и BeanDefinition;
-- BeanFactory vs ApplicationContext;
-- component scanning и stereotypes;
-- `@Bean`, `@Component`, `@Configuration`;
-- constructor, setter и field injection.
+Покрытие: IoC, bean definitions, registration, stereotypes, Java configuration и injection styles.
 
 ## CORE-B02 — published
 
-Материалы:
+- [[10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection]]
+- [[01_MAPS/Spring Dependency Resolution Map.canvas]]
+- [[CORE-B02/CORE-B02 Cards]]
+- [[40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases]]
+- [[50_LABS/Spring/Core-B02/README]]
 
-- [[10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection]];
-- [[01_MAPS/Spring Dependency Resolution Map.canvas]];
-- [[CORE-B02/CORE-B02 Cards]];
-- [[40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases]];
-- [[50_LABS/Spring/Core-B02/README]].
-
-Покрытие:
-
-- candidate cardinality;
-- `@Primary`, `@Qualifier`, custom qualifiers;
-- bean-name fallback;
-- collection, array и map injection;
-- optional dependencies;
-- `Optional<T>`, `@Nullable`, `ObjectProvider<T>`;
-- constructor resolution;
-- generics as qualifiers.
+Покрытие: candidate resolution, qualifiers, primary, collections, ordering, optionality, providers и generics.
 
 ## CORE-B03 — published
 
-Материалы:
+- [[10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction]]
+- [[01_MAPS/Spring Bean Lifecycle Map.canvas]]
+- [[CORE-B03/CORE-B03 Cards]]
+- [[40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases]]
+- [[50_LABS/Spring/Core-B03/README]]
+- [[98_SOURCES/Spring Bean Lifecycle Sources]]
 
-- [[10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction]];
-- [[01_MAPS/Spring Bean Lifecycle Map.canvas]];
-- [[CORE-B03/CORE-B03 Cards]];
-- [[40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases]];
-- [[50_LABS/Spring/Core-B03/README]];
-- [[98_SOURCES/Spring Bean Lifecycle Sources]].
-
-Покрытие:
-
-- BeanDefinition to raw instance;
-- dependency population and aware callbacks;
-- init callbacks and BPP phases;
-- proxy publication;
-- `SmartInitializingSingleton`;
-- destruction callbacks;
-- prototype destruction boundary.
+Покрытие: instantiation, population, aware callbacks, initialization, proxy publication и destruction.
 
 ## CORE-B04 — published
 
-Материалы:
+- [[10_CONCEPTS/Spring/Core/Container Extension Points]]
+- [[01_MAPS/Spring Container Extension Points Map.canvas]]
+- [[CORE-B04/CORE-B04 Cards]]
+- [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]]
+- [[50_LABS/Spring/Core-B04/README]]
+- [[98_SOURCES/Spring Container Extension Point Sources]]
 
-- [[10_CONCEPTS/Spring/Core/Container Extension Points]];
-- [[01_MAPS/Spring Container Extension Points Map.canvas]];
-- [[CORE-B04/CORE-B04 Cards]];
-- [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]];
-- [[50_LABS/Spring/Core-B04/README]];
-- [[98_SOURCES/Spring Container Extension Point Sources]].
-
-Покрытие:
-
-- metadata plane vs instance plane;
-- BDRPP, BFPP and BPP;
-- processor ordering and programmatic registration;
-- premature creation and proxy eligibility;
-- instantiation-aware and smart hooks;
-- early references and destruction-aware processing;
-- custom annotation/proxy patterns.
+Покрытие: BDRPP, BFPP, BPP, ordering, instantiation-aware hooks, early references и proxy infrastructure.
 
 ## CORE-B05 — published
 
-Материалы:
+- [[10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties]]
+- [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
+- [[CORE-B05/CORE-B05 Cards]]
+- [[40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases]]
+- [[50_LABS/Spring/Core-B05/README]]
+- [[98_SOURCES/Spring Configuration and Profiles Sources]]
 
-- [[10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties]];
-- [[01_MAPS/Spring Configuration and Profiles Map.canvas]];
-- [[CORE-B05/CORE-B05 Cards]];
-- [[40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases]];
-- [[50_LABS/Spring/Core-B05/README]];
-- [[98_SOURCES/Spring Configuration and Profiles Sources]].
+Покрытие: full/lite configuration, imports, profiles, Environment, property precedence, placeholders и type-safe configuration.
+
+## CORE-B06 — published
+
+- [[10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy]]
+- [[01_MAPS/Spring Advanced Core Map.canvas]]
+- [[CORE-B06/CORE-B06 Cards]]
+- [[40_PRODUCTION_CASES/Spring/Advanced Core Production Cases]]
+- [[50_LABS/Spring/Core-B06/README]]
+- [[98_SOURCES/Spring Advanced Core Sources]]
 
 Покрытие:
 
-- full `@Configuration` vs lite mode;
-- `proxyBeanMethods`;
-- inter-bean calls vs method-parameter injection;
-- `@Import`, selectors and registrars;
-- component scanning boundaries;
-- profiles and default profiles;
-- profile vs feature flag;
-- Environment and PropertySource chain;
-- `@PropertySource`;
-- placeholder resolution and `@Value`;
-- Framework configuration vs Boot Config Data;
-- type-safe configuration properties;
-- property precedence diagnostics;
-- test profiles and context-cache impact.
-
-### Quality gate
-
-- [x] 24 cards in one reviewable batch.
-- [x] English question and Russian translation.
-- [x] Direct answers, mechanism explanations and exam traps.
-- [x] Memory hooks and focused code examples.
-- [x] Bean-graph vs runtime-value mental model.
-- [x] Visual Canvas.
-- [x] Six production cases.
-- [x] Java 8 / Spring 5.3 Maven lab structure.
-- [x] Java source-shape compile with `javac --release 8` against API stubs.
-- [x] PropertySource import collision detected and repaired during validation.
-- [x] Primary Framework and Boot source index.
-- [ ] Full Maven runtime execution.
-- [ ] Real attempt outcomes collected.
-
-## CORE-B06 — next
-
-Advanced Spring Core route:
-
-- singleton, prototype, request and session scopes;
-- scoped proxies and lookup boundaries;
-- `ObjectProvider` for scope/lazy access;
+- singleton и prototype identity;
+- prototype destruction ownership;
+- request/session/custom scopes;
+- scoped proxies;
+- `ObjectProvider` lookup boundaries;
 - `FactoryBean` product vs factory identity;
 - `&beanName` dereference;
 - lazy initialization;
-- circular dependencies and early references;
-- constructor cycle vs setter/field cycle;
-- parent/child ApplicationContext visibility;
-- resource loading and message sources;
-- lifecycle and scope ownership trade-offs.
+- constructor and setter circular dependencies;
+- early references;
+- parent/child context visibility and shadowing;
+- `Resource` abstraction;
+- `MessageSource`;
+- lifecycle ownership.
 
-## Review rule
+### CORE-B06 quality gate
 
-После batch пользователь должен:
+- [x] 24 cards in one reviewable batch.
+- [x] English questions and Russian translations.
+- [x] Direct answers, mechanism explanations and exam traps.
+- [x] Identity/resolution/lifetime/ownership mental model.
+- [x] Visual Canvas.
+- [x] Eight production cases.
+- [x] Java 8 / Spring 5.3 Maven lab structure.
+- [x] Java source-shape compile with `javac --release 8` against API stubs.
+- [x] Primary Spring source index.
+- [ ] Full Maven runtime execution.
+- [ ] Real attempt outcomes collected.
 
-1. воспроизвести mechanism;
-2. назвать confusing alternative;
-3. привести minimal example;
-4. применить правило к production case;
-5. определить lifecycle/configuration phase;
-6. отличить bean graph от runtime values;
-7. назвать фактический PropertySource winner;
-8. зафиксировать outcome.
+## Spring Core completion definition
+
+Spring Core route is content-complete when the learner can:
+
+1. explain container creation and dependency resolution;
+2. trace a bean from definition through destruction;
+3. select the correct extension phase;
+4. distinguish graph configuration from runtime values;
+5. reason about identity, lookup timing and ownership;
+6. solve a new production failure without guessing annotations;
+7. reproduce at least one lab trace per batch.
+
+## Next route — AOP and Proxies
+
+- join point, pointcut, advice and advisor;
+- JDK dynamic proxy vs CGLIB;
+- proxy selection rules;
+- self-invocation;
+- final/private methods and proxy boundaries;
+- introduction/interceptor chain;
+- aspect precedence and ordering;
+- custom pointcuts;
+- proxy diagnostics;
+- relationship to `@Transactional`, `@Async`, caching and security.
 
 ## Review entry point
 
