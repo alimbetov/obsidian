@@ -75,6 +75,8 @@ flowchart TD
 - [[20_QUESTIONS/Interview/Interview Questions MOC]]
 - [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
 - [[40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases]]
+- [[40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases]]
+- [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]]
 - [[40_PRODUCTION_CASES/Java/ThreadLocal context leaked between requests]]
 
 ### Подготовиться к Spring certification
@@ -83,7 +85,11 @@ flowchart TD
 2. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
 3. [[10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection]]
 4. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards]]
-5. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+5. [[10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction]]
+6. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards]]
+7. [[10_CONCEPTS/Spring/Core/Container Extension Points]]
+8. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards]]
+9. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 
 ### Открыть визуальную карту
 
@@ -92,6 +98,8 @@ flowchart TD
 - [[01_MAPS/Java Advanced Concurrency Map.canvas]]
 - [[01_MAPS/Spring Core Foundation Map.canvas]]
 - [[01_MAPS/Spring Dependency Resolution Map.canvas]]
+- [[01_MAPS/Spring Bean Lifecycle Map.canvas]]
+- [[01_MAPS/Spring Container Extension Points Map.canvas]]
 
 ## Current Published Vertical Slices
 
@@ -111,7 +119,19 @@ Foundations
 ```text
 CORE-B01: IoC, beans, registration, injection styles       20 cards
 CORE-B02: candidate resolution, qualifiers, optionality    24 cards
-TOTAL                                                       44 cards
+CORE-B03: bean lifecycle, init, proxy and destruction      24 cards
+CORE-B04: container extension points and processor phases  24 cards
+TOTAL                                                       92 cards
+```
+
+## Spring learning sequence
+
+```mermaid
+flowchart LR
+    B1[Container foundation] --> B2[Dependency resolution]
+    B2 --> B3[Bean lifecycle]
+    B3 --> B4[Container extension points]
+    B4 --> B5[Configuration and profiles]
 ```
 
 ## Слои знаний
@@ -156,7 +176,7 @@ flowchart TD
 ## Очерёдность наполнения
 
 1. Java Concurrency и JVM.
-2. Spring Core `CORE-B03` lifecycle, затем AOP и Transactions.
+2. Spring Core `CORE-B05` configuration/profiles, затем AOP и Transactions.
 3. Database transactions, locks, indexes и execution plans.
 4. Kafka и RabbitMQ delivery semantics.
 5. Reliability patterns распределённых систем.
