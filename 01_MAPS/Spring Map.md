@@ -18,6 +18,7 @@ tags:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards|CORE-B03 — 24 cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards|CORE-B04 — 24 cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards|CORE-B05 — 24 cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards|CORE-B06 — 24 cards]]
 - [[00_HOME/Review Dashboard]]
 
 ```mermaid
@@ -33,17 +34,17 @@ flowchart LR
     I --> J[Review outcome]
 ```
 
-## Spring Core — published modules
+# Spring Core — completed route
 
-### CORE-B01: container and registration
+## CORE-B01: container and registration
 
 - [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
 - [[01_MAPS/Spring Core Foundation Map.canvas]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
 
-Покрытие: IoC, beans, BeanDefinition, registration, stereotypes, Java configuration и injection styles.
+IoC, BeanDefinition, registration, stereotypes, Java configuration and injection styles.
 
-### CORE-B02: dependency resolution
+## CORE-B02: dependency resolution
 
 - [[10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection]]
 - [[01_MAPS/Spring Dependency Resolution Map.canvas]]
@@ -51,9 +52,9 @@ flowchart LR
 - [[40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases]]
 - [[50_LABS/Spring/Core-B02/README]]
 
-Покрытие: candidate resolution, qualifiers, primary, collections, ordering, optional dependencies, ObjectProvider и generics.
+Candidates, primary, qualifiers, collections, optionality, providers and generics.
 
-### CORE-B03: bean lifecycle
+## CORE-B03: bean lifecycle
 
 - [[10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction]]
 - [[01_MAPS/Spring Bean Lifecycle Map.canvas]]
@@ -61,9 +62,9 @@ flowchart LR
 - [[40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases]]
 - [[50_LABS/Spring/Core-B03/README]]
 
-Покрытие: instantiation, population, aware callbacks, initialization, proxy publication и destruction.
+Instantiation, population, aware callbacks, initialization, proxy publication and destruction.
 
-### CORE-B04: container extension points
+## CORE-B04: container extension points
 
 - [[10_CONCEPTS/Spring/Core/Container Extension Points]]
 - [[01_MAPS/Spring Container Extension Points Map.canvas]]
@@ -71,53 +72,65 @@ flowchart LR
 - [[40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases]]
 - [[50_LABS/Spring/Core-B04/README]]
 
-Покрытие: registry/metadata/instance phases, BFPP, BPP, instantiation-aware hooks, ordering, early references и proxy infrastructure.
+Registry/metadata/instance phases, post-processors, ordering, early references and proxy infrastructure.
 
-### CORE-B05: configuration and profiles
+## CORE-B05: configuration and profiles
 
 - [[10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties]]
 - [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards]]
 - [[40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases]]
 - [[50_LABS/Spring/Core-B05/README]]
-- [[98_SOURCES/Spring Configuration and Profiles Sources]]
+
+Full/lite configuration, imports, profiles, Environment, PropertySources, placeholders and typed configuration.
+
+## CORE-B06: advanced core
+
+- [[10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy]]
+- [[01_MAPS/Spring Advanced Core Map.canvas]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards]]
+- [[40_PRODUCTION_CASES/Spring/Advanced Core Production Cases]]
+- [[50_LABS/Spring/Core-B06/README]]
+- [[98_SOURCES/Spring Advanced Core Sources]]
 
 Покрытие:
 
-- full configuration vs lite mode;
-- `proxyBeanMethods`;
-- inter-bean calls and method parameters;
-- `@Import`, selectors and registrars;
-- scanning boundaries;
-- profiles vs feature flags;
-- Environment and PropertySource chain;
-- `@PropertySource`, placeholders and `@Value`;
-- Framework configuration vs Boot Config Data;
-- type-safe configuration;
-- property precedence diagnostics;
-- test configuration and context caching.
-
-## Next Spring Core batch
-
-`CORE-B06 — Advanced Core`:
-
-- scopes and scoped proxies;
-- `FactoryBean` product vs factory;
-- lazy initialization;
+- singleton/prototype identity and ownership;
+- request/session/custom scopes;
+- scoped proxy and `ObjectProvider`;
+- `FactoryBean` and `&beanName`;
+- lazy creation;
 - circular dependencies and early references;
-- parent/child contexts;
-- resource loading and message sources.
+- parent/child context visibility;
+- `Resource` and `MessageSource`.
 
-## AOP and proxies
+## Spring Core completion
 
-- join point, pointcut and advice;
+```text
+CORE-B01  20
+CORE-B02  24
+CORE-B03  24
+CORE-B04  24
+CORE-B05  24
+CORE-B06  24
+TOTAL    140 cards
+```
+
+# Next route — AOP and proxies
+
+- join point, pointcut, advice and advisor;
 - JDK dynamic proxy;
 - CGLIB;
+- proxy selection rules;
 - self-invocation;
-- proxy limitations;
-- aspect ordering.
+- final/private method limitations;
+- interceptor chain;
+- aspect ordering;
+- custom pointcuts;
+- proxy diagnostics;
+- relationship to transactions, async, caching and security.
 
-## Transactions
+# Transactions
 
 - `@Transactional`;
 - propagation;
@@ -127,7 +140,7 @@ flowchart LR
 - transaction managers;
 - programmatic transactions.
 
-## Data access
+# Data access
 
 - Spring JDBC;
 - Spring Data repositories;
@@ -136,7 +149,7 @@ flowchart LR
 - specifications;
 - pagination and projections.
 
-## Web and Boot
+# Web and Boot
 
 - Spring MVC and WebFlux;
 - validation and exception handling;
