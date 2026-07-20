@@ -56,8 +56,9 @@ Concept
 - `CORE-B02`: 24 карточки по candidate resolution, qualifiers, collections и optional dependencies;
 - `CORE-B03`: 24 карточки по bean lifecycle, init/proxy/destruction boundaries;
 - `CORE-B04`: 24 карточки по container extension points, processor ordering и early creation;
+- `CORE-B05`: 24 карточки по full/lite configuration, imports, profiles, Environment и externalized properties;
 - concept notes, Canvas maps, production cases, source indexes и Spring 5.3 labs;
-- всего опубликовано **92 Spring Core cards**.
+- всего опубликовано **116 Spring Core cards**.
 
 ## Структура репозитория
 
@@ -105,26 +106,13 @@ Concept
 
 Confidence повышается только после active recall и transfer practice, а не после чтения заметки.
 
-## Типы заметок
-
-- `concept`;
-- `interview-question`;
-- `certification-question`;
-- `certification-batch`;
-- `production-case`;
-- `comparison`;
-- `lab`;
-- `moc`;
-- `dashboard`.
-
 ## Правила именования
 
 - Одна концепция — одна каноническая заметка.
-- Не создавать копии `ThreadLocal Java 8.md` и `ThreadLocal Java 21.md`.
-- Версии Java и Spring хранить в properties.
-- Использовать точные названия: `Transaction Propagation`, а не `Transactions 2`.
-- Название вопроса должно быть сформулировано как вопрос.
-- Production case называется по наблюдаемой проблеме.
+- Версии Java, Spring и Spring Boot хранить в properties.
+- Использовать точные названия механизмов.
+- Название вопроса формулировать как вопрос.
+- Production case называть по наблюдаемой проблеме.
 
 ## Текущий фундамент
 
@@ -133,10 +121,10 @@ Confidence повышается только после active recall и transfe
 - главный dashboard и Review Dashboard;
 - Java и Spring Canvas maps;
 - глубокий Java Concurrency route;
-- Spring Core routes `CORE-B01`–`CORE-B04`;
+- Spring Core routes `CORE-B01`–`CORE-B05`;
 - certification-card standard;
 - production cases;
 - Java и Spring labs;
 - source indexes и templates.
 
-Следующий Spring-модуль: `CORE-B05 — Configuration and Profiles`.
+Следующий Spring-модуль: `CORE-B06 — Advanced Core`.
