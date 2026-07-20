@@ -1,0 +1,22 @@
+{
+  "nodes": [
+    {"id":"root","type":"file","file":"10_CONCEPTS/Java/Concurrency/Concurrency Learning Path.md","x":0,"y":-600,"width":420,"height":190,"color":"4"},
+    {"id":"atomic-group","type":"group","label":"Atomic and CAS","x":-950,"y":-300,"width":760,"height":430,"color":"2"},
+    {"id":"live-group","type":"group","label":"Liveness and lock discipline","x":-100,"y":-300,"width":760,"height":430,"color":"1"},
+    {"id":"collection-group","type":"group","label":"Concurrent collections and backpressure","x":750,"y":-300,"width":780,"height":430,"color":"3"},
+    {"id":"atomic","type":"file","file":"10_CONCEPTS/Java/Concurrency/Atomic CAS and Counters.md","x":-850,"y":-190,"width":360,"height":210},
+    {"id":"deadlock","type":"file","file":"10_CONCEPTS/Java/Concurrency/Deadlock Livelock and Lock Ordering.md","x":20,"y":-190,"width":390,"height":210},
+    {"id":"collections","type":"file","file":"10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure.md","x":850,"y":-190,"width":420,"height":210},
+    {"id":"questions","type":"file","file":"20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall.md","x":-270,"y":220,"width":390,"height":210,"color":"5"},
+    {"id":"lab","type":"file","file":"50_LABS/Java/Concurrency/java8/AdvancedConcurrencyLab.java","x":200,"y":220,"width":400,"height":210,"color":"6"}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","fromSide":"bottom","toNode":"atomic","toSide":"top","label":"non-blocking updates"},
+    {"id":"e2","fromNode":"root","fromSide":"bottom","toNode":"deadlock","toSide":"top","label":"liveness"},
+    {"id":"e3","fromNode":"root","fromSide":"bottom","toNode":"collections","toSide":"top","label":"shared data structures"},
+    {"id":"e4","fromNode":"atomic","fromSide":"bottom","toNode":"questions","toSide":"top","label":"active recall"},
+    {"id":"e5","fromNode":"deadlock","fromSide":"bottom","toNode":"questions","toSide":"top","label":"active recall"},
+    {"id":"e6","fromNode":"collections","fromSide":"bottom","toNode":"questions","toSide":"top","label":"active recall"},
+    {"id":"e7","fromNode":"questions","fromSide":"right","toNode":"lab","toSide":"left","label":"verify by experiment"}
+  ]
+}
