@@ -17,7 +17,6 @@ mindmap
       Generics
       Exceptions
       Reflection
-      Modules
     Collections
       List Set Map Queue
       HashMap internals
@@ -30,15 +29,16 @@ mindmap
     Concurrency
       Memory model
       Synchronization
+      Atomic CAS
+      Liveness
+      Concurrent collections
       Executors
-      CompletableFuture
       Virtual threads
     JVM
       Class loading
       Runtime memory
       JIT
       GC
-      Diagnostics
     Evolution
       Java 8
       Java 11
@@ -46,89 +46,91 @@ mindmap
       Java 21
 ```
 
-## Основы языка
+## Concurrency
 
-- Types and variables
-- Object-oriented programming
+> [!tip] Рекомендуемый маршрут
+> Начни с [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path|Concurrency Learning Path]], затем используй две Canvas-карты: фундаментальную и advanced.
+
+### Visual maps
+
+- [[01_MAPS/Java Concurrency Map.canvas|Java Concurrency Canvas]]
+- [[01_MAPS/Java Advanced Concurrency Map.canvas|Java Advanced Concurrency Canvas]]
+
+### Foundations
+
+- [[10_CONCEPTS/Java/Concurrency/Visibility Atomicity Ordering]]
+- [[10_CONCEPTS/Java/Concurrency/Race Condition]]
+- [[10_CONCEPTS/Java/Concurrency/Java Memory Model]]
+- [[10_CONCEPTS/Java/Concurrency/Happens-Before]]
+- [[10_CONCEPTS/Java/Concurrency/volatile]]
+- [[10_CONCEPTS/Java/Concurrency/synchronized]]
+- [[10_CONCEPTS/Java/Concurrency/ReentrantLock]]
+
+### Advanced coordination
+
+- [[10_CONCEPTS/Java/Concurrency/Atomic CAS and Counters]]
+- [[10_CONCEPTS/Java/Concurrency/Deadlock Livelock and Lock Ordering]]
+- [[10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure]]
+
+### Task execution
+
+- [[10_CONCEPTS/Java/Concurrency/ExecutorService]]
+- [[10_CONCEPTS/Java/Concurrency/CompletableFuture]]
+- [[10_CONCEPTS/Java/Concurrency/ThreadLocal]]
+- [[10_CONCEPTS/Java/Concurrency/Virtual Threads]]
+
+### Active recall and labs
+
+- [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
+- [[50_LABS/Java/Concurrency/java8/AdvancedConcurrencyLab.java]]
+- [[50_LABS/Java/Concurrency/README]]
+
+## Other Java domains
+
+### Language
+
+- OOP
 - Exceptions
 - Generics
 - Annotations
 - Reflection
 - Modules
 
-## Collections
+### Collections fundamentals
 
 - List, Set, Map and Queue
 - HashMap internals
-- Concurrent collections
-- Iterators and fail-fast behavior
-- Equality and hashing
+- equality and hashing
+- iterator semantics
 
-## Functional Java
+### Functional Java
 
-- Lambda expressions
-- Functional interfaces
-- Method references
+- lambda expressions
+- functional interfaces
 - Stream API
-- Collectors
+- collectors
 - Optional
-- Parallel streams
+- parallel streams
 
-## Concurrency
+### JVM
 
-> [!tip] Рекомендуемый вход
-> Начни с [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path|Concurrency Learning Path]], а Canvas используй для пространственной навигации.
+- runtime data areas
+- class loading
+- bytecode and JIT
+- garbage collectors
+- diagnostics and profiling
 
-- [[01_MAPS/Java Concurrency Map.canvas|Java Concurrency Canvas]]
-- [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path|Concurrency Learning Path]]
-- [[10_CONCEPTS/Java/Concurrency/Visibility Atomicity Ordering|Visibility, Atomicity and Ordering]]
-- [[10_CONCEPTS/Java/Concurrency/Race Condition|Race Condition]]
-- [[10_CONCEPTS/Java/Concurrency/Java Memory Model|Java Memory Model]]
-- [[10_CONCEPTS/Java/Concurrency/Happens-Before|Happens-Before]]
-- [[10_CONCEPTS/Java/Concurrency/volatile|volatile]]
-- [[10_CONCEPTS/Java/Concurrency/synchronized|synchronized]]
-- [[10_CONCEPTS/Java/Concurrency/ReentrantLock|ReentrantLock]]
-- Atomic classes and CAS
-- [[10_CONCEPTS/Java/Concurrency/ExecutorService|ExecutorService]]
-- [[10_CONCEPTS/Java/Concurrency/CompletableFuture|CompletableFuture]]
-- ForkJoinPool
-- [[10_CONCEPTS/Java/Concurrency/ThreadLocal|ThreadLocal]]
-- [[10_CONCEPTS/Java/Concurrency/Virtual Threads|Virtual Threads]]
-- Structured concurrency
-- [[50_LABS/Java/Concurrency/README|Runnable Concurrency Labs]]
-
-### Проверка понимания
-
-- [[20_QUESTIONS/Interview/Java/Concurrency/Why volatile does not make increment atomic]]
-- [[20_QUESTIONS/Interview/Java/Concurrency/What does happens-before actually guarantee]]
-- [[20_QUESTIONS/Interview/Java/Concurrency/How synchronized provides visibility]]
-- [[20_QUESTIONS/Interview/Java/Concurrency/execute vs submit]]
-- [[20_QUESTIONS/Interview/Java/Concurrency/thenApply vs thenCompose]]
-- [[20_QUESTIONS/Interview/Java/Concurrency/Are virtual threads faster]]
-
-## JVM
-
-- Class loading
-- Runtime data areas
-- Bytecode
-- JIT compilation
-- Garbage collectors
-- References
-- Diagnostics and profiling
-
-## Эволюция Java
+### Version evolution
 
 - Java 8
 - Java 11
 - Java 17
 - Java 21
-- Migration routes
-- Removed and deprecated APIs
+- migration routes
 
-## Практические маршруты
+## Practice routes
 
-- [[20_QUESTIONS/Interview/Interview Questions MOC|Interview Questions]]
-- [[30_CERTIFICATIONS/Certification MOC|Certification Questions]]
-- Code-output questions
+- [[20_QUESTIONS/Interview/Interview Questions MOC]]
+- [[30_CERTIFICATIONS/Certification MOC]]
 - Production cases
 - Executable labs
