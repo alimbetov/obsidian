@@ -11,167 +11,153 @@ tags:
 
 # Spring Map
 
-# Certification entry points
+# Entry points
 
 - [[00_HOME/Certification 99 Percent Readiness Dashboard]]
+- [[00_HOME/Card Review Dashboard]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Certification Card System]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]]
-- [[00_HOME/Review Dashboard]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
 
-# Visual learning entry points
-
-- [[01_MAPS/Spring Visual Learning Atlas.canvas]]
-- [[01_MAPS/Spring Core Visual Atlas.canvas]]
-- [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]]
-- [[01_MAPS/Spring Boot Auto-configuration Map.canvas]]
-- [[90_TEMPLATES/Pedagogical Visual Standard]]
-
-```text
-Spring Core Visual Deep Dive       26 diagrams
-AOP Visual Deep Dive               20 diagrams
-Cache Visual Deep Dive             27 diagrams
-Transactions Visual Deep Dive      20 diagrams
-Data JPA Visual Deep Dive          31 diagrams
-Testing Visual Deep Dive           24 diagrams
-Boot Auto-configuration Visual     31 diagrams
-Standard example                    1 diagram
-Canvas atlases                      4 maps
----------------------------------------------
-Spring visual elements            184
-```
+# Learning route
 
 ```mermaid
 flowchart LR
-    CORE["Spring Core"] --> AOP["AOP and proxies"]
-    AOP --> CACHE["Caffeine and Redis"]
-    CACHE --> TX["Transaction management"]
-    TX --> DATA["Spring Data and JPA"]
-    DATA --> TEST["Spring Testing"]
-    TEST --> BOOT["Boot bootstrap and auto-configuration"]
-    BOOT --> MVC["MVC / REST — next"]
+    CORE["Spring Core"] --> AOP["AOP / Cache"]
+    AOP --> TX["Transactions"]
+    TX --> DATA["Data JPA"]
+    DATA --> TEST["Testing"]
+    TEST --> B1["Boot B01 bootstrap"]
+    B1 --> B2["Boot B02 configuration"]
+    B2 --> MVC["MVC B01 — next"]
 ```
 
-# Spring Core — published and visually enriched
-
-- [[10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive]]
-- [[01_MAPS/Spring Core Visual Atlas.canvas]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+# Visual metrics
 
 ```text
-CORE-B01  20
-CORE-B02  24
-CORE-B03  24
-CORE-B04  24
-CORE-B05  24
-CORE-B06  24
-----------------
-TOTAL    140 cards
+Spring Core                       26 diagrams
+AOP                               20 diagrams
+Cache                             27 diagrams
+Transactions                      20 diagrams
+Data JPA                          31 diagrams
+Testing                           24 diagrams
+Boot Auto-configuration           31 diagrams
+Boot Externalized Configuration   30 diagrams
+Canvas entry maps                  5
+---------------------------------------------
+Spring visual elements           214
 ```
 
-# AOP and Cache — published and normalized
+Visual maps:
 
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
+- [[01_MAPS/Spring Core Visual Atlas.canvas]]
+- [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]]
+- [[01_MAPS/Spring Boot Auto-configuration Map.canvas]]
+- [[01_MAPS/Spring Boot Configuration Map.canvas]]
+- [[01_MAPS/Spring Visual Learning Atlas.canvas]]
+
+# Published card routes
+
+| Route | Cards | Status |
+|---|---:|---|
+| Spring Core | 140 | published; CORE-B01/B04 normalized |
+| AOP and Cache | 44 | normalized |
+| Transaction Management | 32 | normalized |
+| Spring Data JPA | 36 | normalized |
+| Spring Testing | 36 | normalized |
+| SPRING-BOOT-B01 | 30 | published |
+| SPRING-BOOT-B02 | 35 | published |
+| **Total** | **353** | |
+
+# Spring Core
+
+- [[10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards]]
+
+# AOP and Cache
+
 - [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]]
 - [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards|AOP-B01 — 24 cards]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards|CACHE-B01 — 20 cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards]]
 - [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]]
-- [[50_LABS/Spring/AOP-B01/README]]
-- [[50_LABS/Spring/CACHE-B01/README]]
 
-# Transaction Management — published
+# Transaction Management
 
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
 - [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]]
 - [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive]]
-- [[10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards|TX-B01 — 32 cards]]
-- [[40_PRODUCTION_CASES/Spring/Transaction Management Production Cases]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]]
 - [[50_LABS/Spring/TX-B01/README]]
 
-# Spring Data and JPA — published
+# Spring Data JPA
 
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
 - [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]]
 - [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]]
 - [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards|DATA-B01 — 36 cards]]
-- [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards]]
 - [[50_LABS/Spring/DATA-B01/README]]
 
-# Spring Testing — published
+# Spring Testing
 
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
 - [[10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices]]
 - [[10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers]]
 - [[10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards|TEST-B01 — 36 cards]]
-- [[40_PRODUCTION_CASES/Spring/Spring Testing Production Cases]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards]]
 - [[50_LABS/Spring/TEST-B01/README]]
 
-# Spring Boot — first P0 route published
-
-## SPRING-BOOT-B01 — Bootstrap and Auto-configuration
+# SPRING-BOOT-B01 — Bootstrap and Auto-configuration
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]]
 - [[10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration]]
 - [[10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards|30 cards]]
-- [[40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases|15 production cases]]
-- [[50_LABS/Spring/SPRING-BOOT-B01/README|Boot 2.5 ApplicationContextRunner lab]]
-- [[01_MAPS/Spring Boot Auto-configuration Map.canvas]]
-- [[98_SOURCES/Spring Boot Auto-configuration Sources]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards]]
+- [[50_LABS/Spring/SPRING-BOOT-B01/README]]
 
-Coverage:
+# SPRING-BOOT-B02 — Externalized Configuration
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
+- [[10_CONCEPTS/Spring/Boot/Spring Boot Externalized Configuration and Type-safe Binding]]
+- [[10_CONCEPTS/Spring/Boot/Spring Boot Configuration Visual Deep Dive]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Assessment]]
+- [[40_PRODUCTION_CASES/Spring/Spring Boot Configuration Production Cases]]
+- [[50_LABS/Spring/SPRING-BOOT-B02/README]]
+- [[01_MAPS/Spring Boot Configuration Map.canvas]]
+- [[98_SOURCES/Spring Boot Externalized Configuration Sources]]
+
+Objective coverage:
 
 ```text
-@SpringBootApplication composition
-SpringApplication bootstrap phases
-Environment and WebApplicationType
-@EnableAutoConfiguration
-AutoConfigurationImportSelector
-conditions and back-off
-exclusions and Condition Evaluation Report
-starters and dependency management
-Boot 2.x spring.factories
-current AutoConfiguration.imports delta
-ApplicationContextRunner
-failure analyzers, events and runners
+SPRING-1.3.1 external properties
+SPRING-1.3.2 profiles
+SPRING-6.2.1 property definition/loading options
 ```
 
-# Published Spring totals
+# Next Spring route
 
 ```text
-Spring Core                    140
-AOP and Cache                   44
-Transaction Management          32
-Spring Data and JPA              36
-Spring Testing                   36
-Spring Boot B01                  30
------------------------------------
-TOTAL                           318 cards
+SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline
 ```
 
-# Next Spring routes for 99% readiness
+Remaining P0 routes:
 
 ```text
-SPRING-BOOT-B02     Configuration Properties
-SPRING-MVC-B01      DispatcherServlet pipeline
-SPRING-MVC-B02      REST and RestTemplate baseline
-SPRING-SEC-B01      Authentication and Authorization
-SPRING-ACT-B01      Actuator, Health and Metrics
-SPRING-JDBC-B01     JdbcTemplate
-SPRING-WEBTEST-B01  MockMvc
-SPRING-SPEL-B01     SpEL
+SPRING-MVC-B01
+SPRING-MVC-B02
+SPRING-SEC-B01
+SPRING-ACT-B01
+SPRING-JDBC-B01
+SPRING-WEBTEST-B01
+SPRING-SPEL-B01
 ```
 
 # Backend continuation
 
-- [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap|DB-B01 — Indexes and Query Plans]]
+- [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap]]
 - [[01_MAPS/Database Indexes and Query Plans Map.canvas]]
