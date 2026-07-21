@@ -1,0 +1,33 @@
+{
+  "nodes": [
+    {"id":"root","type":"file","file":"00_HOME/Certification 99 Percent Readiness Dashboard.md","x":0,"y":0,"width":460,"height":190,"color":"4"},
+    {"id":"spring","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap.md","x":-520,"y":310,"width":440,"height":180,"color":"2"},
+    {"id":"java","type":"file","file":"30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap.md","x":20,"y":310,"width":450,"height":180,"color":"3"},
+    {"id":"conc","type":"file","file":"30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap.md","x":560,"y":310,"width":440,"height":180,"color":"5"},
+    {"id":"boot","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md","x":-680,"y":620,"width":440,"height":170,"color":"2"},
+    {"id":"springnext","type":"text","text":"SPRING NEXT\nBOOT-B02 → MVC → Security → Actuator → JDBC → MockMvc → SpEL → drills → mocks","x":-170,"y":620,"width":480,"height":200,"color":"6"},
+    {"id":"javadomains","type":"text","text":"JAVA DOMAINS\nData/Date-Time → Control → OOP → Exceptions → Collections/Generics → Streams → Modules → Concurrency → I/O → JDBC → Localization","x":380,"y":620,"width":520,"height":230,"color":"6"},
+    {"id":"quality","type":"text","text":"99% MATERIAL GATE\nobjective mapping\ncanonical + visual\nbase + drill cards\ncases + labs + sources\ntimed mock bank\nCI integrity","x":1020,"y":0,"width":390,"height":300,"color":"1"},
+    {"id":"candidate","type":"text","text":"99% CANDIDATE GATE\nstable timed mock scores\nweakest domain threshold\nexplain every error\ntime discipline\nconfidence calibration","x":1020,"y":370,"width":390,"height":290,"color":"1"},
+    {"id":"registry","type":"file","file":"00_HOME/Knowledge Route Registry.md","x":-520,"y":930,"width":420,"height":160},
+    {"id":"moc","type":"file","file":"30_CERTIFICATIONS/Certification MOC.md","x":0,"y":930,"width":400,"height":160},
+    {"id":"review","type":"file","file":"00_HOME/Review Dashboard.md","x":500,"y":930,"width":390,"height":160},
+    {"id":"javasources","type":"file","file":"98_SOURCES/Java SE 17 1Z0-829 Sources.md","x":980,"y":780,"width":430,"height":160},
+    {"id":"bootsources","type":"file","file":"98_SOURCES/Spring Boot Auto-configuration Sources.md","x":-1080,"y":850,"width":430,"height":160}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","fromSide":"bottom","toNode":"spring","toSide":"top"},
+    {"id":"e2","fromNode":"root","fromSide":"bottom","toNode":"java","toSide":"top"},
+    {"id":"e3","fromNode":"root","fromSide":"bottom","toNode":"conc","toSide":"top"},
+    {"id":"e4","fromNode":"spring","fromSide":"bottom","toNode":"boot","toSide":"top"},
+    {"id":"e5","fromNode":"spring","fromSide":"bottom","toNode":"springnext","toSide":"top"},
+    {"id":"e6","fromNode":"java","fromSide":"bottom","toNode":"javadomains","toSide":"top"},
+    {"id":"e7","fromNode":"conc","fromSide":"right","toNode":"quality","toSide":"left"},
+    {"id":"e8","fromNode":"quality","fromSide":"bottom","toNode":"candidate","toSide":"top"},
+    {"id":"e9","fromNode":"boot","fromSide":"bottom","toNode":"bootsources","toSide":"top"},
+    {"id":"e10","fromNode":"javadomains","fromSide":"right","toNode":"javasources","toSide":"left"},
+    {"id":"e11","fromNode":"springnext","fromSide":"bottom","toNode":"registry","toSide":"top"},
+    {"id":"e12","fromNode":"javadomains","fromSide":"bottom","toNode":"moc","toSide":"top"},
+    {"id":"e13","fromNode":"candidate","fromSide":"bottom","toNode":"review","toSide":"top"}
+  ]
+}
