@@ -103,6 +103,15 @@ flowchart TD
 29. [[50_LABS/Spring/DATA-B01/README]]
 30. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
 
+## Spring Testing
+
+31. [[10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices]]
+32. [[10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers]]
+33. [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards]]
+34. [[40_PRODUCTION_CASES/Spring/Spring Testing Production Cases]]
+35. [[50_LABS/Spring/TEST-B01/README]]
+36. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
+
 # Открыть визуальную карту
 
 - [[01_MAPS/Java Backend Map.canvas]]
@@ -117,6 +126,7 @@ flowchart TD
 - [[01_MAPS/Spring AOP and Caching Map.canvas]]
 - [[01_MAPS/Spring Transaction Management Map.canvas]]
 - [[01_MAPS/Spring Data JPA Map.canvas]]
+- [[01_MAPS/Spring Testing Map.canvas]]
 
 # Current Published Vertical Slices
 
@@ -185,13 +195,27 @@ DATA-B01: persistence context, lifecycle, flush,
 - [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]];
 - [[50_LABS/Spring/DATA-B01/README]].
 
+## Spring Testing
+
+```text
+TEST-B01: TestContext, slices, transactional tests,
+          flush/clear, Testcontainers, SQL regressions 36 cards
+```
+
+Практика:
+
+- [[01_MAPS/Spring Testing Map.canvas]];
+- [[40_PRODUCTION_CASES/Spring/Spring Testing Production Cases]];
+- [[50_LABS/Spring/TEST-B01/README]].
+
 ```text
 Spring Core               140
 AOP and Cache               44
 Transaction Management      32
 Spring Data and JPA          36
+Spring Testing               36
 -------------------------------
-Published Spring total     252
+Published Spring total     288
 ```
 
 # Spring learning sequence
@@ -208,7 +232,8 @@ flowchart LR
     CACHE --> TX[Transaction Management]
     TX --> OUTBOX[Commit boundaries and Outbox]
     OUTBOX --> JPA[Spring Data and JPA]
-    JPA --> TEST[Testing]
+    JPA --> TEST[Spring Testing]
+    TEST --> BOOT[Boot internals]
 ```
 
 # Процесс повторения
@@ -237,8 +262,8 @@ flowchart TD
 # Очерёдность наполнения
 
 1. Java Concurrency и JVM.
-2. Spring Core, AOP, Cache, Transactions и Data/JPA — опубликованы.
-3. Spring Testing.
+2. Spring Core, AOP, Cache, Transactions, Data/JPA и Testing — опубликованы.
+3. Spring Boot internals и auto-configuration.
 4. Database transactions, locks, indexes и execution plans.
 5. Kafka и RabbitMQ delivery semantics.
 6. Reliability patterns распределённых систем.
