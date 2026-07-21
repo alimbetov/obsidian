@@ -57,7 +57,7 @@ flowchart LR
 Spring Core: 140 cards
 ```
 
-## Spring AOP and Cache — active route
+## Spring AOP and Cache — published route
 
 1. [[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics]]
 2. [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards]]
@@ -73,6 +73,20 @@ Spring Core: 140 cards
 AOP-B01    24 cards
 CACHE-B01  20 cards
 TOTAL      44 cards
+```
+
+## Spring Transaction Management — active route
+
+1. [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]]
+2. [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]]
+3. [[10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries]]
+4. [[40_PRODUCTION_CASES/Spring/Transaction Management Production Cases]]
+5. [[50_LABS/Spring/TX-B01/README]]
+6. [[01_MAPS/Spring Transaction Management Map.canvas]]
+7. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
+
+```text
+TX-B01  32 cards
 ```
 
 # Confidence Scale
@@ -128,6 +142,10 @@ TOTAL      44 cards
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards]]
+
+## Transactions
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]]
 
 # Spring contrast drills
 
@@ -199,6 +217,57 @@ TTL bounds time, not business correctness.
 Every extra cache layer adds another stale copy.
 ```
 
+## TX-B01
+
+- logical transaction vs physical transaction;
+- `REQUIRED` vs `REQUIRES_NEW`;
+- `REQUIRES_NEW` vs `NESTED`;
+- `MANDATORY` vs `NEVER`;
+- caught exception vs committable transaction;
+- rollback-only vs normal method return;
+- runtime exception vs checked exception;
+- `rollbackFor` vs `noRollbackFor`;
+- read-only hint vs hard write prohibition;
+- method isolation vs existing transaction isolation;
+- transaction timeout vs HTTP/lock/socket timeout;
+- declarative proxy boundary vs `TransactionTemplate`;
+- one manager vs multiple local managers;
+- after-commit callback vs durable message delivery;
+- async worker vs caller transaction;
+- cache transaction-aware timing vs XA;
+- outbox durable intent vs exactly-once delivery;
+- relay retry vs consumer idempotency.
+
+### Transaction memory model
+
+```text
+Caller crosses proxy.
+Interceptor reads transaction metadata.
+Manager maps logical scope to physical resource transaction.
+Propagation decides join, create, suspend, savepoint or reject.
+Rollback rules interpret the method outcome.
+Commit callbacks happen after the transaction decision.
+Async does not inherit imperative thread-bound transaction.
+Outbox persists publication intent; delivery can duplicate.
+```
+
+### TX-B01 five-minute trace drill
+
+For any transactional code, answer:
+
+```text
+1. Which object reference receives the call?
+2. Is it a Spring proxy?
+3. Is there an existing physical transaction?
+4. Which propagation branch applies?
+5. How many logical scopes exist?
+6. How many physical transactions exist?
+7. Which exception/rollback rule applies?
+8. Is rollback-only set?
+9. Which rows actually commit?
+10. What happens after process crash?
+```
+
 # Active Weakness Register
 
 | Confusion pair | Проверка |
@@ -206,26 +275,32 @@ Every extra cache layer adds another stale copy.
 | JDK proxy vs CGLIB | interface implementation против subclass |
 | proxy type vs self-invocation | implementation choice против caller path |
 | pointcut vs advice | selection против action |
-| aspect vs advisor | module против pointcut/advice pair |
-| final/private method vs proxy | Java dispatch limitation |
-| `@Transactional` external vs internal | transaction interceptor crossing |
-| `@Async` external vs internal | executor submission boundary |
-| cache abstraction vs provider | orchestration против storage policy |
-| Caffeine vs Redis | local latency против shared state |
 | `@Cacheable` vs `@CachePut` | skip-on-hit против always-invoke |
 | condition vs unless | before invocation против result veto |
+| Caffeine vs Redis | local latency против shared state |
 | TTL vs eviction | time bound против explicit invalidation |
-| local stampede vs distributed stampede | one provider/JVM против multiple nodes |
-| L1 vs L2 invalidation | one copy против replicated copies |
-| serializer vs Java object | distributed bytes contract |
-| Redis outage vs DB fallback | optimization failure против capacity cascade |
+| logical vs physical transaction | method scope против resource commit |
+| `REQUIRED` vs `REQUIRES_NEW` | join/create против independent transaction |
+| `REQUIRES_NEW` vs `NESTED` | second transaction против savepoint |
+| caught exception vs rollback-only | catch не очищает transaction state |
+| checked vs runtime exception | commit default против rollback default |
+| read-only vs no writes | hint/contract против enforcement |
+| inner isolation vs outer transaction | local metadata против existing physical tx |
+| after-commit vs outbox | callback против durable intent |
+| async vs caller transaction | worker thread против thread-bound context |
+| multiple managers vs atomicity | independent local resources |
+| outbox vs exactly once | at-least-once + idempotency |
 
 # Ten-Minute Review Session
 
 1. Выбрать одну confusion pair.
 2. Проговорить различие без notes.
 3. Ответить на 3 связанные cards.
-4. Нарисовать caller → proxy → advisor → target либо L1 → L2 → DB.
+4. Нарисовать одну из схем:
+   - caller → proxy → manager → resource;
+   - logical scopes → physical transaction;
+   - L1 → L2 → DB;
+   - business row + outbox row → relay.
 5. Открыть concept и исправить пропуски.
 6. Зафиксировать outcome.
 
@@ -244,7 +319,11 @@ Suggested lab rotation:
 - Day 2: self-invoked transaction and async.
 - Day 3: Caffeine hits, put and evict.
 - Day 4: Redis TTL, prefix and serializer.
-- Day 5: Redis outage or stampede design exercise.
+- Day 5: REQUIRED and UnexpectedRollbackException.
+- Day 6: REQUIRES_NEW and NESTED.
+- Day 7: checked rollback rules and TransactionTemplate.
+- Day 8: synchronization callbacks and transactional events.
+- Day 9: outbox atomicity and duplicate-delivery exercise.
 
 # Weekly Review Protocol
 
@@ -260,16 +339,18 @@ Suggested lab rotation:
 - [ ] Definition recall.
 - [ ] Mechanism explanation.
 - [ ] Proxy path diagram.
-- [ ] Advisor order prediction.
-- [ ] Self-invocation diagnosis.
+- [ ] Logical/physical transaction count.
+- [ ] Propagation branch prediction.
+- [ ] Rollback outcome prediction.
+- [ ] Isolation/database boundary explanation.
 - [ ] Cache key and topology explanation.
-- [ ] Cache outage policy.
+- [ ] Commit callback vs durable delivery distinction.
 - [ ] Production transfer.
 - [ ] Lab trace prediction.
 
 # Next Planned Modules
 
-- Spring Transaction Management deep dive.
+- Spring Data and JPA.
 - Java ForkJoinPool and parallel streams.
 - Databases: transactions, isolation and locks.
 - Messaging: delivery semantics and idempotency.
