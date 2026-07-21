@@ -7,32 +7,96 @@
       "title": "Spring Professional Develop 2V0-72.22",
       "roadmap": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap.md",
       "target_material_readiness": 99,
-      "targets": {
-        "base_cards": 600,
-        "drill_cards": 150,
-        "full_mocks": 6
-      },
+      "targets": {"base_cards":600,"drill_cards":150,"full_mocks":6},
       "domains": [
-        {"id":"SPRING-CORE","status":"published","weight":18,"roadmap":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap.md","base_card_target":130,"base_cards_mapped":130,"required_roles":["canonical","visual","cards","canvas"],"artifacts":{"canonical":["10_CONCEPTS/Spring/Core/Spring Core Foundations.md","10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection.md","10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md","10_CONCEPTS/Spring/Core/Container Extension Points.md","10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties.md","10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy.md"],"visual":["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],"cards":["30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards.md","30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards.md","30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards.md","30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards.md","30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards.md","30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards.md"],"canvas":["01_MAPS/Spring Core Visual Atlas.canvas"]}},
-        {"id":"SPRING-AOP-CACHE","status":"published","weight":8,"roadmap":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap.md","base_card_target":50,"base_cards_mapped":44,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md","10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis.md"],"visual":["10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive.md","10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive.md"],"cards":["30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards.md","30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards.md"],"cases":["40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases.md"],"lab":["50_LABS/Spring/AOP-B01/README.md","50_LABS/Spring/CACHE-B01/README.md"],"sources":["98_SOURCES/Spring AOP and Cache Sources.md"]}},
-        {"id":"SPRING-DATA-TX-JPA-JDBC","status":"partial","weight":17,"roadmap":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap.md","base_card_target":90,"base_cards_mapped":68,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive.md","10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle.md","10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching.md"],"visual":["10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive.md","10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive.md"],"cards":["30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards.md","30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards.md"],"cases":["40_PRODUCTION_CASES/Spring/Transaction Management Production Cases.md","40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases.md"],"lab":["50_LABS/Spring/TX-B01/README.md","50_LABS/Spring/DATA-B01/README.md"],"sources":["98_SOURCES/Spring Transaction Management Sources.md","98_SOURCES/Spring Data JPA Sources.md"]}},
-        {"id":"SPRING-MVC-REST","status":"planned","weight":12,"base_card_target":60,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{}},
-        {"id":"SPRING-TESTING","status":"partial","weight":14,"roadmap":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap.md","base_card_target":85,"base_cards_mapped":36,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices.md","10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers.md"],"visual":["10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive.md"],"cards":["30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards.md"],"cases":["40_PRODUCTION_CASES/Spring/Spring Testing Production Cases.md"],"lab":["50_LABS/Spring/TEST-B01/README.md"],"sources":["98_SOURCES/Spring Testing Sources.md"]}},
-        {"id":"SPRING-SECURITY","status":"planned","weight":8,"base_card_target":35,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{}},
-        {"id":"SPRING-BOOT-ACTUATOR","status":"planned","weight":23,"base_card_target":150,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{}}
+        {
+          "id":"SPRING-CORE","status":"published","weight":18,
+          "roadmap":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap.md",
+          "base_card_target":130,"base_cards_mapped":130,
+          "required_roles":["canonical","visual","cards","canvas"],
+          "artifacts":{
+            "canonical":["10_CONCEPTS/Spring/Core/Spring Core Foundations.md"],
+            "visual":["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],
+            "cards":["30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards.md"],
+            "canvas":["01_MAPS/Spring Core Visual Atlas.canvas"]
+          }
+        },
+        {
+          "id":"SPRING-AOP-CACHE","status":"published","weight":8,
+          "roadmap":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap.md",
+          "base_card_target":50,"base_cards_mapped":44,
+          "required_roles":["canonical","visual","cards","cases","lab","sources"],
+          "artifacts":{
+            "canonical":["10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md","10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis.md"],
+            "visual":["10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive.md","10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive.md"],
+            "cards":["30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards.md","30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards.md"],
+            "cases":["40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases.md"],
+            "lab":["50_LABS/Spring/AOP-B01/README.md","50_LABS/Spring/CACHE-B01/README.md"],
+            "sources":["98_SOURCES/Spring AOP and Cache Sources.md"]
+          }
+        },
+        {
+          "id":"SPRING-DATA-TX-JPA-JDBC","status":"partial","weight":17,
+          "roadmap":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap.md",
+          "base_card_target":90,"base_cards_mapped":68,
+          "required_roles":["canonical","visual","cards","cases","lab","sources"],
+          "artifacts":{
+            "canonical":["10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive.md","10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle.md"],
+            "visual":["10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive.md","10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive.md"],
+            "cards":["30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards.md","30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards.md"],
+            "cases":["40_PRODUCTION_CASES/Spring/Transaction Management Production Cases.md","40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases.md"],
+            "lab":["50_LABS/Spring/TX-B01/README.md","50_LABS/Spring/DATA-B01/README.md"],
+            "sources":["98_SOURCES/Spring Transaction Management Sources.md","98_SOURCES/Spring Data JPA Sources.md"]
+          }
+        },
+        {
+          "id":"SPRING-MVC-REST","status":"planned","weight":12,
+          "base_card_target":60,"base_cards_mapped":0,
+          "required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{}
+        },
+        {
+          "id":"SPRING-TESTING","status":"partial","weight":14,
+          "roadmap":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap.md",
+          "base_card_target":85,"base_cards_mapped":36,
+          "required_roles":["canonical","visual","cards","cases","lab","sources"],
+          "artifacts":{
+            "canonical":["10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices.md"],
+            "visual":["10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive.md"],
+            "cards":["30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards.md"],
+            "cases":["40_PRODUCTION_CASES/Spring/Spring Testing Production Cases.md"],
+            "lab":["50_LABS/Spring/TEST-B01/README.md"],
+            "sources":["98_SOURCES/Spring Testing Sources.md"]
+          }
+        },
+        {
+          "id":"SPRING-SECURITY","status":"planned","weight":8,
+          "base_card_target":35,"base_cards_mapped":0,
+          "required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{}
+        },
+        {
+          "id":"SPRING-BOOT-ACTUATOR","status":"partial","weight":23,
+          "roadmap":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md",
+          "base_card_target":150,"base_cards_mapped":30,
+          "required_roles":["canonical","visual","cards","cases","lab","canvas","sources"],
+          "artifacts":{
+            "canonical":["10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration.md"],
+            "visual":["10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive.md"],
+            "cards":["30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards.md"],
+            "cases":["40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases.md"],
+            "lab":["50_LABS/Spring/SPRING-BOOT-B01/README.md"],
+            "canvas":["01_MAPS/Spring Boot Auto-configuration Map.canvas"],
+            "sources":["98_SOURCES/Spring Boot Auto-configuration Sources.md"]
+          }
+        }
       ]
     },
     {
-      "id": "JAVA-1Z0-829",
-      "title": "Java SE 17 Developer 1Z0-829",
-      "roadmap": "30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap.md",
-      "target_material_readiness": 99,
-      "targets": {
-        "base_cards": 720,
-        "drill_cards": 180,
-        "full_mocks": 6
-      },
-      "domains": [
+      "id":"JAVA-1Z0-829",
+      "title":"Java SE 17 Developer 1Z0-829",
+      "roadmap":"30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap.md",
+      "target_material_readiness":99,
+      "targets":{"base_cards":720,"drill_cards":180,"full_mocks":6},
+      "domains":[
         {"id":"JAVA-B01-DATA-DATETIME","status":"planned","weight":10,"base_card_target":70,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","lab","sources"],"artifacts":{}},
         {"id":"JAVA-B02-CONTROL","status":"planned","weight":6,"base_card_target":45,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","lab","sources"],"artifacts":{}},
         {"id":"JAVA-B03-OOP","status":"planned","weight":13,"base_card_target":90,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","lab","sources"],"artifacts":{}},
@@ -40,30 +104,35 @@
         {"id":"JAVA-B05-COLLECTIONS-GENERICS","status":"planned","weight":13,"base_card_target":90,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","lab","sources"],"artifacts":{}},
         {"id":"JAVA-B06-LAMBDAS-STREAMS","status":"planned","weight":14,"base_card_target":100,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","lab","sources"],"artifacts":{}},
         {"id":"JAVA-B07-MODULES","status":"planned","weight":8,"base_card_target":60,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","lab","sources"],"artifacts":{}},
-        {"id":"JAVA-B08-CONCURRENCY","status":"partial","weight":10,"roadmap":"30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap.md","base_card_target":75,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Java/Concurrency/Concurrency Learning Path.md","10_CONCEPTS/Java/Concurrency/Java Memory Model.md","10_CONCEPTS/Java/Concurrency/Happens-Before.md"],"visual":["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],"lab":["50_LABS/Java/Concurrency/README.md"],"sources":["98_SOURCES/Java Concurrency Sources.md","98_SOURCES/Advanced Concurrency Sources.md"]}},
+        {
+          "id":"JAVA-B08-CONCURRENCY","status":"partial","weight":10,
+          "roadmap":"30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap.md",
+          "base_card_target":75,"base_cards_mapped":0,
+          "required_roles":["canonical","visual","cards","cases","lab","sources"],
+          "artifacts":{
+            "canonical":["10_CONCEPTS/Java/Concurrency/Java Memory Model.md","10_CONCEPTS/Java/Concurrency/Happens-Before.md"],
+            "visual":["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],
+            "lab":["50_LABS/Java/Concurrency/README.md"],
+            "sources":["98_SOURCES/Java Concurrency Sources.md"]
+          }
+        },
         {"id":"JAVA-B09-IO-NIO","status":"planned","weight":9,"base_card_target":65,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","lab","sources"],"artifacts":{}},
         {"id":"JAVA-B10-JDBC","status":"planned","weight":5,"base_card_target":40,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","lab","sources"],"artifacts":{}},
         {"id":"JAVA-B11-LOCALIZATION","status":"planned","weight":5,"base_card_target":35,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","lab","sources"],"artifacts":{}}
       ]
     },
     {
-      "id": "JAVA-CONCURRENCY",
-      "title": "Java Concurrency Independent Route",
-      "roadmap": "30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap.md",
-      "target_material_readiness": 99,
-      "targets": {
-        "base_cards": 140,
-        "drill_cards": 40,
-        "production_cases": 20,
-        "labs": 25,
-        "mini_mocks": 6
-      },
-      "domains": [
+      "id":"JAVA-CONCURRENCY",
+      "title":"Java Concurrency Independent Route",
+      "roadmap":"30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap.md",
+      "target_material_readiness":99,
+      "targets":{"base_cards":140,"drill_cards":40,"production_cases":20,"labs":25,"mini_mocks":6},
+      "domains":[
         {"id":"CONC-LIFECYCLE","status":"partial","weight":10,"base_card_target":12,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Java/Concurrency/Threads.md"],"visual":["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],"lab":["50_LABS/Java/Concurrency/README.md"],"sources":["98_SOURCES/Java Concurrency Sources.md"]}},
-        {"id":"CONC-JMM","status":"partial","weight":20,"base_card_target":34,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Java/Concurrency/Java Memory Model.md","10_CONCEPTS/Java/Concurrency/Happens-Before.md","10_CONCEPTS/Java/Concurrency/Visibility Atomicity Ordering.md"],"visual":["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],"lab":["50_LABS/Java/Concurrency/README.md"],"sources":["98_SOURCES/Java Concurrency Sources.md"]}},
+        {"id":"CONC-JMM","status":"partial","weight":20,"base_card_target":34,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Java/Concurrency/Java Memory Model.md","10_CONCEPTS/Java/Concurrency/Happens-Before.md"],"visual":["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],"lab":["50_LABS/Java/Concurrency/README.md"],"sources":["98_SOURCES/Java Concurrency Sources.md"]}},
         {"id":"CONC-LOCKS","status":"partial","weight":16,"base_card_target":18,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Java/Concurrency/synchronized.md","10_CONCEPTS/Java/Concurrency/ReentrantLock.md","10_CONCEPTS/Java/Concurrency/Deadlock Livelock and Lock Ordering.md"],"visual":["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],"lab":["50_LABS/Java/Concurrency/README.md"],"sources":["98_SOURCES/Advanced Concurrency Sources.md"]}},
         {"id":"CONC-ATOMICS","status":"partial","weight":12,"base_card_target":14,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Java/Concurrency/Atomic CAS and Counters.md"],"visual":["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],"lab":["50_LABS/Java/Concurrency/README.md"],"sources":["98_SOURCES/Advanced Concurrency Sources.md"]}},
-        {"id":"CONC-EXECUTORS-FUTURES","status":"partial","weight":20,"base_card_target":34,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Java/Concurrency/ExecutorService.md","10_CONCEPTS/Java/Concurrency/Future.md","10_CONCEPTS/Java/Concurrency/ForkJoinPool.md","10_CONCEPTS/Java/Concurrency/CompletableFuture.md"],"visual":["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],"lab":["50_LABS/Java/Concurrency/README.md"],"sources":["98_SOURCES/Advanced Concurrency Sources.md"]}},
+        {"id":"CONC-EXECUTORS-FUTURES","status":"partial","weight":20,"base_card_target":34,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Java/Concurrency/ExecutorService.md","10_CONCEPTS/Java/Concurrency/Future.md","10_CONCEPTS/Java/Concurrency/CompletableFuture.md"],"visual":["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],"lab":["50_LABS/Java/Concurrency/README.md"],"sources":["98_SOURCES/Advanced Concurrency Sources.md"]}},
         {"id":"CONC-COLLECTIONS-BACKPRESSURE","status":"partial","weight":10,"base_card_target":12,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure.md"],"visual":["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],"lab":["50_LABS/Java/Concurrency/README.md"],"sources":["98_SOURCES/Advanced Concurrency Sources.md"]}},
         {"id":"CONC-THREADLOCAL-VIRTUAL","status":"partial","weight":12,"base_card_target":16,"base_cards_mapped":0,"required_roles":["canonical","visual","cards","cases","lab","sources"],"artifacts":{"canonical":["10_CONCEPTS/Java/Concurrency/ThreadLocal.md","10_CONCEPTS/Java/Concurrency/Virtual Threads.md"],"visual":["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],"lab":["50_LABS/Java/Concurrency/README.md"],"sources":["98_SOURCES/Advanced Concurrency Sources.md"]}}
       ]
