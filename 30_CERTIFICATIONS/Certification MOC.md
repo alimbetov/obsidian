@@ -4,9 +4,16 @@ domain: certification
 status: active
 tags:
   - certification
+  - navigation
 ---
 
 # Certification MOC
+
+## Entry points
+
+- [[00_HOME/Knowledge Route Registry|All published learning routes]]
+- [[00_HOME/Review Dashboard|Review Dashboard]]
+- [[90_TEMPLATES/Cross-Linking Standard|Cross-linking contract]]
 
 ## Learning model
 
@@ -14,22 +21,22 @@ Canonical theory lives in `10_CONCEPTS`. Cards train recall and discrimination; 
 
 ```mermaid
 flowchart LR
-    C["Concept"] --> V["Visual deep dive"]
+    R["Route registry"] --> C["Concept"]
+    C --> V["Visual deep dive"]
     V --> Q["Base card"]
     Q --> T["Exam trap"]
     T --> P["Production case"]
     P --> L["Executable lab"]
-    L --> R["Review outcome"]
-    R -->|"weak"| C
-    R -->|"confident"| N["Next objective"]
+    L --> O["Review outcome"]
+    O -->|"weak"| C
+    O -->|"confident"| N["Next objective"]
 ```
-
-Review entry: [[00_HOME/Review Dashboard]].
 
 # Java route
 
 ## Java Concurrency
 
+- [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path]];
 - [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]];
 - [[01_MAPS/Java Concurrency Visual Atlas.canvas]];
 - [[10_CONCEPTS/Java/Concurrency/Java Memory Model]];
@@ -41,7 +48,9 @@ Review entry: [[00_HOME/Review Dashboard]].
 - [[10_CONCEPTS/Java/Concurrency/Virtual Threads]];
 - [[10_CONCEPTS/Java/Concurrency/Atomic CAS and Counters]];
 - [[10_CONCEPTS/Java/Concurrency/Deadlock Livelock and Lock Ordering]];
-- [[10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure]].
+- [[10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure]];
+- [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]];
+- [[50_LABS/Java/Concurrency/README]].
 
 # Spring certification route
 
