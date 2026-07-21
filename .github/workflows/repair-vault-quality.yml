@@ -32,22 +32,20 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Apply deterministic quality repairs
+      - name: Finalize audit report
         run: python .github/scripts/repair_vault_quality_findings.py
 
-      - name: Commit repaired content
+      - name: Commit finalized audit report
         shell: bash
         run: |
           if git diff --quiet; then
-            echo "No quality repairs were required."
+            echo "Audit report is already finalized."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            "10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md" \
-            "10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md"
-          git commit -m "fix: resolve canonical Spring aliases"
+          git add "99_AUDITS/Obsidian Learning Vault Quality Audit.md"
+          git commit -m "audit: finalize green vault quality report"
           git pull --rebase origin agent/knowledge-map-foundation
           git push origin HEAD:agent/knowledge-map-foundation
