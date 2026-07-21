@@ -30,7 +30,7 @@ jobs:
         run: python .github/scripts/audit_vault_v2.py
 
       - name: Run cross-link graph audit
-        run: python .github/scripts/audit_cross_links.py
+        run: python .github/scripts/audit_cross_links_with_overrides.py
 
       - name: Test per-card progress scheduler
         run: python -m unittest .github/scripts/test_card_progress.py
@@ -97,7 +97,7 @@ jobs:
               --input "${diagram}" \
               --output "${output}" \
               --backgroundColor transparent \
-              --pueteerConfigFile .github/mermaid-puppeteer.json \
+              --puppeteerConfigFile .github/mermaid-puppeteer.json \
               >> .audit/mermaid-render.log 2>&1
             status=$?
             if [ ${status} -ne 0 ]; then
