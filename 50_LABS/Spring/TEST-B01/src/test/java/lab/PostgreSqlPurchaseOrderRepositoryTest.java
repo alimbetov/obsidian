@@ -30,7 +30,7 @@ class PostgreSqlPurchaseOrderRepositoryTest {
 
     @Container
     static final PostgreSQLContainer<?> POSTGRES =
-            new PostgreSQLContainer<Object>(
+            new PostgreSQLContainer<>(
                     DockerImageName.parse("postgres:15-alpine")
             )
                     .withDatabaseName("testing_lab")
