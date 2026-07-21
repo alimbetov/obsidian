@@ -1,0 +1,53 @@
+name: Repair Vault Quality Findings
+
+on:
+  push:
+    branches:
+      - agent/knowledge-map-foundation
+    paths:
+      - .github/scripts/repair_vault_quality_findings.py
+      - .github/workflows/repair-vault-quality.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout learning branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/knowledge-map-foundation
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Apply deterministic quality repairs
+        run: python .github/scripts/repair_vault_quality_findings.py
+
+      - name: Commit repaired content
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No quality repairs were required."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            "10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md" \
+            "10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md" \
+            "01_MAPS/Spring Testing Map.canvas" \
+            "10_CONCEPTS/Java/Concurrency/Atomic CAS and Counters.md" \
+            "01_MAPS/Java Map.md" \
+            "98_SOURCES/Spring AOP Cache Redis and Caffeine Sources.md"
+          git commit -m "fix: repair vault links and diagram semantics"
+          git push origin HEAD:agent/knowledge-map-foundation
