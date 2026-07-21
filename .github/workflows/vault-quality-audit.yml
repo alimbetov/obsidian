@@ -33,7 +33,7 @@ jobs:
         run: python .github/scripts/audit_cross_links_with_overrides.py
 
       - name: Test per-card progress scheduler
-        run: python -m unittest .github/scripts/test_card_progress.py
+        run: python .github/scripts/test_card_progress.py -v
 
       - name: Audit card catalog and progress registry
         run: |
