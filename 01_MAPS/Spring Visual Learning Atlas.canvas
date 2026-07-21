@@ -1,0 +1,185 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "text",
+      "text": "# Spring Visual Learning Atlas\n\nProxy → Cache → Transactions → Persistence → Testing\n\nEach route contains topology, sequence, state/failure and diagnostic models.",
+      "x": 0,
+      "y": 0,
+      "width": 520,
+      "height": 210,
+      "color": "4"
+    },
+    {
+      "id": "aop",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive.md",
+      "x": -1040,
+      "y": 330,
+      "width": 380,
+      "height": 130,
+      "color": "1"
+    },
+    {
+      "id": "cache",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive.md",
+      "x": -520,
+      "y": 330,
+      "width": 380,
+      "height": 130,
+      "color": "5"
+    },
+    {
+      "id": "tx",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive.md",
+      "x": 0,
+      "y": 330,
+      "width": 380,
+      "height": 130,
+      "color": "2"
+    },
+    {
+      "id": "data",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive.md",
+      "x": 520,
+      "y": 330,
+      "width": 380,
+      "height": 130,
+      "color": "3"
+    },
+    {
+      "id": "testing",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive.md",
+      "x": 1040,
+      "y": 330,
+      "width": 380,
+      "height": 130,
+      "color": "6"
+    },
+    {
+      "id": "aop-model",
+      "type": "text",
+      "text": "## AOP\n20 diagrams\n\nAuto-proxy creation\nJDK/CGLIB\nSelf-invocation\nAdvisor order\nAsync/security diagnostics",
+      "x": -1040,
+      "y": 570,
+      "width": 380,
+      "height": 220,
+      "color": "1"
+    },
+    {
+      "id": "cache-model",
+      "type": "text",
+      "text": "## Cache\n27 diagrams\n\nHit/miss paths\nKey identity\nCaffeine/Redis topology\nStampede\nL1/L2 invalidation",
+      "x": -520,
+      "y": 570,
+      "width": 380,
+      "height": 220,
+      "color": "5"
+    },
+    {
+      "id": "tx-model",
+      "type": "text",
+      "text": "## Transactions\n20 diagrams\n\nLogical vs physical TX\nPropagation\nSavepoints\nRollback-only\nOutbox and callbacks",
+      "x": 0,
+      "y": 570,
+      "width": 380,
+      "height": 220,
+      "color": "2"
+    },
+    {
+      "id": "data-model",
+      "type": "text",
+      "text": "## Data JPA\n31 diagrams\n\nEntity states\nPersistence context\nFlush/merge\nN+1 and fetch plans\nPagination and locking",
+      "x": 520,
+      "y": 570,
+      "width": 380,
+      "height": 220,
+      "color": "3"
+    },
+    {
+      "id": "test-model",
+      "type": "text",
+      "text": "## Testing\n24 diagrams\n\nTestContext\nSlices and full context\nflush/clear/commit\nTestcontainers\nConcurrency regressions",
+      "x": 1040,
+      "y": 570,
+      "width": 380,
+      "height": 220,
+      "color": "6"
+    },
+    {
+      "id": "cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Certification MOC.md",
+      "x": -780,
+      "y": 930,
+      "width": 400,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "cases",
+      "type": "text",
+      "text": "# Production cases\n\nSymptom → runtime evidence → root cause → repair",
+      "x": -260,
+      "y": 930,
+      "width": 400,
+      "height": 150,
+      "color": "2"
+    },
+    {
+      "id": "labs",
+      "type": "text",
+      "text": "# Executable labs\n\nProxy traces\nRedis/Caffeine\nH2 transactions\nHibernate statistics\nJUnit/Testcontainers",
+      "x": 260,
+      "y": 930,
+      "width": 400,
+      "height": 170,
+      "color": "6"
+    },
+    {
+      "id": "standard",
+      "type": "file",
+      "file": "90_TEMPLATES/Pedagogical Visual Standard.md",
+      "x": 780,
+      "y": 930,
+      "width": 400,
+      "height": 120,
+      "color": "4"
+    },
+    {
+      "id": "db-next",
+      "type": "text",
+      "text": "# Next route\nDB-B01 — Indexes and Query Plans\n\nMust include B-tree pages, traversal, scan types, plan trees, selectivity and diagnostic diagrams.",
+      "x": 0,
+      "y": 1240,
+      "width": 520,
+      "height": 190,
+      "color": "4"
+    }
+  ],
+  "edges": [
+    {"id": "e1", "fromNode": "root", "toNode": "aop"},
+    {"id": "e2", "fromNode": "root", "toNode": "cache"},
+    {"id": "e3", "fromNode": "root", "toNode": "tx"},
+    {"id": "e4", "fromNode": "root", "toNode": "data"},
+    {"id": "e5", "fromNode": "root", "toNode": "testing"},
+    {"id": "e6", "fromNode": "aop", "toNode": "aop-model"},
+    {"id": "e7", "fromNode": "cache", "toNode": "cache-model"},
+    {"id": "e8", "fromNode": "tx", "toNode": "tx-model"},
+    {"id": "e9", "fromNode": "data", "toNode": "data-model"},
+    {"id": "e10", "fromNode": "testing", "toNode": "test-model"},
+    {"id": "e11", "fromNode": "aop-model", "toNode": "cards"},
+    {"id": "e12", "fromNode": "cache-model", "toNode": "cards"},
+    {"id": "e13", "fromNode": "tx-model", "toNode": "cases"},
+    {"id": "e14", "fromNode": "data-model", "toNode": "labs"},
+    {"id": "e15", "fromNode": "test-model", "toNode": "standard"},
+    {"id": "e16", "fromNode": "cards", "toNode": "db-next"},
+    {"id": "e17", "fromNode": "cases", "toNode": "db-next"},
+    {"id": "e18", "fromNode": "labs", "toNode": "db-next"},
+    {"id": "e19", "fromNode": "standard", "toNode": "db-next"}
+  ]
+}
