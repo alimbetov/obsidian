@@ -5,6 +5,7 @@ status: active
 tags:
   - map
   - spring
+  - visual-learning
 ---
 
 # Spring Map
@@ -19,6 +20,25 @@ tags:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
 - [[00_HOME/Review Dashboard]]
 
+## Visual learning entry points
+
+- [[01_MAPS/Spring Visual Learning Atlas.canvas]]
+- [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]]
+- [[90_TEMPLATES/Pedagogical Visual Standard]]
+- [[99_AUDITS/Pedagogical Visual Enrichment Pass]]
+
+```text
+AOP Visual Deep Dive          20 diagrams
+Cache Visual Deep Dive        27 diagrams
+Transactions Visual Deep Dive 20 diagrams
+Data JPA Visual Deep Dive     31 diagrams
+Testing Visual Deep Dive      24 diagrams
+Standard example               1 diagram
+Canvas atlases                 2 maps
+-----------------------------------------
+Total new visual elements    125
+```
+
 ```mermaid
 flowchart LR
     CORE[Spring Core] --> AOP[AOP and proxies]
@@ -27,7 +47,7 @@ flowchart LR
     TX --> OUTBOX[Commit boundaries and outbox]
     OUTBOX --> DATA[Spring Data and JPA]
     DATA --> TEST[Spring Testing]
-    TEST --> BOOT[Boot internals]
+    TEST --> DB[DB-B01 Indexes and Query Plans]
 ```
 
 # Spring Core — completed
@@ -54,10 +74,12 @@ Spring Core total: 140 cards
 - [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
 - [[01_MAPS/Spring Advanced Core Map.canvas]]
 
-# AOP and Proxies — published
+# AOP and Proxies — published, normalized and visually enriched
 
 - [[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics]]
+- [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]]
 - [[01_MAPS/Spring AOP and Caching Map.canvas]]
+- [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards|AOP-B01 — 24 cards]]
 - [[50_LABS/Spring/AOP-B01/README]]
 - [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]]
@@ -71,11 +93,13 @@ Coverage:
 - final/private method boundaries;
 - advisor ordering and exception propagation;
 - runtime diagnostics;
-- `@Transactional`, `@Async`, security and cache proxy boundaries.
+- `@Transactional`, `@Async`, security and cache proxy boundaries;
+- 20 visual models including sequence, class, failure and diagnostic diagrams.
 
-# Spring Cache — published
+# Spring Cache — published, normalized and visually enriched
 
 - [[10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis]]
+- [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards|CACHE-B01 — 20 cards]]
 - [[50_LABS/Spring/CACHE-B01/README]]
 - [[50_LABS/Spring/CACHE-B01/compose.yaml|Redis Docker Compose]]
@@ -90,7 +114,8 @@ Coverage:
 - Caffeine local cache;
 - Redis TTL, prefix and serialization;
 - Redis outage policy;
-- Caffeine L1 + Redis L2 invalidation.
+- Caffeine L1 + Redis L2 invalidation;
+- 27 visual models including topology, timeline, stampede and diagnostic diagrams.
 
 ```text
 AOP-B01    24 cards
@@ -98,9 +123,10 @@ CACHE-B01  20 cards
 TOTAL      44 cards
 ```
 
-# Transaction Management — published
+# Transaction Management — published and visually enriched
 
 - [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]]
+- [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive]]
 - [[10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries]]
 - [[01_MAPS/Spring Transaction Management Map.canvas]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards|TX-B01 — 32 cards]]
@@ -120,12 +146,14 @@ Coverage:
 - callbacks and transactional events;
 - cache/database ordering;
 - async/thread boundaries;
-- Transactional Outbox and idempotency.
+- Transactional Outbox and idempotency;
+- 20 visual models including propagation timelines, savepoints, pool pressure and outbox.
 
-# Spring Data and JPA — published
+# Spring Data and JPA — published and visually enriched
 
 - [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]]
 - [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]]
+- [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]]
 - [[01_MAPS/Spring Data JPA Map.canvas]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards|DATA-B01 — 36 cards]]
 - [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
@@ -148,12 +176,14 @@ Coverage:
 - N+1;
 - fetch joins and `@EntityGraph`;
 - optimistic and pessimistic locking;
-- service transaction boundaries around repositories.
+- service transaction boundaries around repositories;
+- 31 visual models including entity state machine, SQL timelines, fetch plans and pagination.
 
-# Spring Testing — published
+# Spring Testing — published and visually enriched
 
 - [[10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices]]
 - [[10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers]]
+- [[10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive]]
 - [[01_MAPS/Spring Testing Map.canvas]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards|TEST-B01 — 36 cards]]
 - [[40_PRODUCTION_CASES/Spring/Spring Testing Production Cases]]
@@ -175,7 +205,8 @@ Coverage:
 - dynamic datasource properties;
 - real-dialect native query tests;
 - N+1 and SQL-count regression tests;
-- service transaction tests without test-level transaction.
+- service transaction tests without test-level transaction;
+- 24 visual models including context lifecycle, transaction topology and container boundaries.
 
 ```text
 Spring Core               140
@@ -187,23 +218,21 @@ Spring Testing               36
 TOTAL                       288 cards
 ```
 
-# Next route — Spring Boot Internals
+# Backend next route — DB-B01
 
-- `@SpringBootApplication` composition;
-- auto-configuration import pipeline;
-- conditional annotations;
-- condition evaluation report;
-- starters and dependency management;
-- custom auto-configuration and starter;
-- configuration metadata;
-- `ApplicationContextRunner`;
-- startup diagnostics;
-- Actuator and observability.
+- B-tree structure and page access;
+- selectivity and cardinality;
+- composite-index ordering;
+- index-only and bitmap scans;
+- PostgreSQL `EXPLAIN (ANALYZE, BUFFERS)`;
+- estimation errors and stale statistics;
+- cases where indexes stop helping;
+- visual standard: tree, page, plan, scan, timeline and diagnostic diagrams.
 
-# Web and Security
+# Future Spring routes
 
+- Spring Boot internals and auto-configuration;
 - Spring MVC and WebFlux;
 - validation and exception handling;
-- servlet filters and reactive filters;
 - Spring Security;
 - API testing.
