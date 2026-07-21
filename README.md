@@ -37,6 +37,7 @@ Concept
 - [[01_MAPS/Messaging Map]]
 - [[01_MAPS/Distributed Systems Map]]
 - [[01_MAPS/Spring AOP and Caching Map.canvas]]
+- [[01_MAPS/Spring Transaction Management Map.canvas]]
 - [[20_QUESTIONS/Interview/Interview Questions MOC]]
 - [[30_CERTIFICATIONS/Certification MOC]]
 
@@ -65,13 +66,34 @@ Concept
 
 - `AOP-B01`: 24 карточки — AOP terminology, JDK/CGLIB, self-invocation, advisor order, transaction/async/security proxy boundaries;
 - `CACHE-B01`: 20 карточек — Spring Cache, keys, stampede, Caffeine, Redis, TTL, serialization и L1/L2 invalidation;
-- всего опубликовано **44 AOP/Cache cards**;
 - `AOP-B01` lab показывает настоящий transaction interceptor, async executor, final/private boundaries и advisor inspection;
 - `CACHE-B01` lab запускается с Caffeine локально и Redis через Docker Compose;
 - 12 production cases связывают proxy и cache mechanics с реальными отказами.
 
+### Spring Transaction Management
+
+- `TX-B01`: 32 карточки;
+- logical scope против physical database transaction;
+- `REQUIRED`, rollback-only и `UnexpectedRollbackException`;
+- `REQUIRES_NEW`, независимый commit и connection-pool pressure;
+- `NESTED` savepoints;
+- `SUPPORTS`, `MANDATORY`, `NOT_SUPPORTED`, `NEVER`;
+- isolation phenomena, locking и database-specific semantics;
+- checked/runtime rollback rules;
+- `TransactionTemplate` и multiple managers;
+- synchronization callbacks и transactional events;
+- database/cache ordering;
+- async/thread boundaries;
+- отдельный deep dive по Transactional Outbox;
+- 15 production incidents;
+- H2 lab с настоящими commit/rollback outcomes.
+
 ```text
-Published Spring cards total: 184
+Spring Core              140
+AOP and Cache              44
+Transaction Management     32
+-----------------------------
+Published Spring total    216
 ```
 
 ## Структура репозитория
@@ -100,7 +122,7 @@ Published Spring cards total: 184
 
 Community plugins не обязательны: база остаётся переносимым набором Markdown/Canvas-файлов.
 
-## Запуск новых Spring labs
+## Запуск Spring labs
 
 ### AOP
 
@@ -122,6 +144,28 @@ mvn clean compile exec:java
 cd 50_LABS/Spring/CACHE-B01
 docker compose up -d redis
 RUN_REDIS=true mvn clean compile exec:java
+```
+
+### Transaction Management
+
+```bash
+cd 50_LABS/Spring/TX-B01
+mvn clean compile exec:java
+```
+
+TX-B01 использует H2 и показывает:
+
+```text
+REQUIRED + UnexpectedRollbackException
+REQUIRES_NEW independent commit
+NESTED savepoint
+checked exception commit vs rollbackFor
+TransactionTemplate
+synchronization callbacks
+transaction-bound events
+thread boundary
+outbox atomicity
+physical transaction counters
 ```
 
 ## Языковая стратегия
@@ -162,9 +206,10 @@ Confidence повышается только после active recall и transfe
 - завершённый Spring Core route `CORE-B01`–`CORE-B06`;
 - Spring AOP and Proxy route;
 - Spring Cache route с Caffeine и Redis;
+- Spring Transaction Management route с Outbox;
 - certification-card standard;
 - production cases;
 - Java и Spring labs;
 - source indexes и templates.
 
-Следующий Spring-маршрут: **Transaction Management Deep Dive**.
+Следующий Spring-маршрут: **Spring Data and JPA**.
