@@ -23,7 +23,8 @@ class PurchaseOrderServiceTransactionTest {
 
     @BeforeEach
     void cleanDatabase() {
-        repository.deleteAllInBatch();
+        repository.deleteAll();
+        repository.flush();
     }
 
     @Test
