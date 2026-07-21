@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "track_id": "JAVA-1Z0-829",
+  "title": "Java SE 17 Developer 1Z0-829",
+  "source": "Oracle Java SE 17 Developer learning path and Java SE 17 specifications",
+  "source_url": "https://learn.oracle.com/ols/learning-path/become-a-java-se-17-developer/88323/99487",
+  "verified_at": "2026-07-22",
+  "baseline": {
+    "java": "17",
+    "normative_sources": ["JLS 17", "Java SE 17 API", "JDK 17 Tool Specifications"]
+  },
+  "objectives": [
+    {
+      "id": "JAVA-B01",
+      "section": "Language and Core APIs",
+      "title": "Use primitive values, operators, text APIs and date/time APIs",
+      "status": "unmapped",
+      "weight": 10,
+      "mapping_granularity": "domain",
+      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+    },
+    {
+      "id": "JAVA-B02",
+      "section": "Language and Core APIs",
+      "title": "Control program flow with conditions, loops, switch and patterns",
+      "status": "unmapped",
+      "weight": 6,
+      "mapping_granularity": "domain",
+      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+    },
+    {
+      "id": "JAVA-B03",
+      "section": "Object-Oriented Programming",
+      "title": "Design classes, interfaces, records, enums and sealed hierarchies",
+      "status": "unmapped",
+      "weight": 13,
+      "mapping_granularity": "domain",
+      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+    },
+    {
+      "id": "JAVA-B04",
+      "section": "Exceptions and Resources",
+      "title": "Handle exceptions and deterministic resource cleanup",
+      "status": "unmapped",
+      "weight": 7,
+      "mapping_granularity": "domain",
+      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+    },
+    {
+      "id": "JAVA-B05",
+      "section": "Collections and Generics",
+      "title": "Use arrays, collections, comparators and generic type relationships",
+      "status": "unmapped",
+      "weight": 13,
+      "mapping_granularity": "domain",
+      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+    },
+    {
+      "id": "JAVA-B06",
+      "section": "Functional Java",
+      "title": "Use lambdas, functional interfaces, streams and collectors",
+      "status": "unmapped",
+      "weight": 14,
+      "mapping_granularity": "domain",
+      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+    },
+    {
+      "id": "JAVA-B07",
+      "section": "Modules and Deployment",
+      "title": "Build, inspect and run modular Java applications",
+      "status": "unmapped",
+      "weight": 8,
+      "mapping_granularity": "domain",
+      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+    },
+    {
+      "id": "JAVA-B08",
+      "section": "Concurrency",
+      "title": "Use Java concurrency APIs and reason about thread safety",
+      "status": "theory-visual",
+      "weight": 10,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": [
+          "10_CONCEPTS/Java/Concurrency/Java Memory Model.md",
+          "10_CONCEPTS/Java/Concurrency/Happens-Before.md",
+          "10_CONCEPTS/Java/Concurrency/ExecutorService.md",
+          "10_CONCEPTS/Java/Concurrency/Future.md",
+          "10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure.md"
+        ],
+        "visual": ["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],
+        "labs": ["50_LABS/Java/Concurrency/README.md"],
+        "sources": ["98_SOURCES/Java Concurrency Sources.md", "98_SOURCES/Advanced Concurrency Sources.md", "98_SOURCES/Java SE 17 1Z0-829 Sources.md"]
+      }
+    },
+    {
+      "id": "JAVA-B09",
+      "section": "I/O and NIO.2",
+      "title": "Use streams, serialization, paths and files",
+      "status": "unmapped",
+      "weight": 9,
+      "mapping_granularity": "domain",
+      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+    },
+    {
+      "id": "JAVA-B10",
+      "section": "JDBC",
+      "title": "Execute SQL and manage JDBC resources and transactions",
+      "status": "unmapped",
+      "weight": 5,
+      "mapping_granularity": "domain",
+      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+    },
+    {
+      "id": "JAVA-B11",
+      "section": "Localization",
+      "title": "Use locales, resource bundles and localized formatting",
+      "status": "unmapped",
+      "weight": 5,
+      "mapping_granularity": "domain",
+      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+    }
+  ]
+}
