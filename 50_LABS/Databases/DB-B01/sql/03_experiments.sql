@@ -137,18 +137,22 @@ FROM operation_event
 ORDER BY created_at DESC, id DESC
 OFFSET 500000 LIMIT 50;
 
-WITH cursor_row AS (
-    SELECT created_at, id
-    FROM operation_event
-    ORDER BY created_at DESC, id DESC
-    OFFSET 500000 LIMIT 1
-)
+SELECT
+    created_at AS cursor_created_at,
+    id AS cursor_id
+FROM operation_event
+ORDER BY created_at DESC, id DESC
+OFFSET 500000 LIMIT 1
+\gset
+
 EXPLAIN (ANALYZE, BUFFERS)
-SELECT e.id, e.created_at
-FROM operation_event e
-CROSS JOIN cursor_row c
-WHERE (e.created_at, e.id) < (c.created_at, c.id)
-ORDER BY e.created_at DESC, e.id DESC
+SELECT id, created_at
+FROM operation_event
+WHERE (created_at, id) < (
+    :'cursor_created_at'::timestamptz,
+    :cursor_id::bigint
+)
+ORDER BY created_at DESC, id DESC
 LIMIT 50;
 
 \echo 'EXPERIMENT 10 — estimate and loops in a join'
