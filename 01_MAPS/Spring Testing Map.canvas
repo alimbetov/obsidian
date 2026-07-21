@@ -1,0 +1,291 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap.md",
+      "x": 0,
+      "y": -820,
+      "width": 520,
+      "height": 220,
+      "color": "4"
+    },
+    {
+      "id": "context-group",
+      "type": "group",
+      "label": "1. TestContext and context selection",
+      "x": -1240,
+      "y": -460,
+      "width": 1450,
+      "height": 540,
+      "color": "2"
+    },
+    {
+      "id": "tx-group",
+      "type": "group",
+      "label": "2. Transaction and persistence proof",
+      "x": 300,
+      "y": -460,
+      "width": 1420,
+      "height": 540,
+      "color": "3"
+    },
+    {
+      "id": "container-group",
+      "type": "group",
+      "label": "3. Real database and Testcontainers",
+      "x": -1120,
+      "y": 180,
+      "width": 1450,
+      "height": 560,
+      "color": "1"
+    },
+    {
+      "id": "practice-group",
+      "type": "group",
+      "label": "4. Recall, diagnosis and executable tests",
+      "x": 480,
+      "y": 180,
+      "width": 1240,
+      "height": 560,
+      "color": "5"
+    },
+    {
+      "id": "context-concept",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices.md",
+      "x": -1160,
+      "y": -350,
+      "width": 420,
+      "height": 220
+    },
+    {
+      "id": "testcontext",
+      "type": "text",
+      "text": "# TestContext pipeline\n\nJUnit → SpringExtension → TestContextManager → listeners → context, injection and transactions.",
+      "x": -680,
+      "y": -350,
+      "width": 360,
+      "height": 220
+    },
+    {
+      "id": "selection",
+      "type": "text",
+      "text": "# Minimal proof boundary\n\nUnit → Java rule\nSlice → one layer\nFull context → wiring\nContainer → real dependency",
+      "x": -260,
+      "y": -350,
+      "width": 390,
+      "height": 220,
+      "color": "4"
+    },
+    {
+      "id": "slice",
+      "type": "text",
+      "text": "# @DataJpaTest\n\nEntities, repositories, JPA infrastructure, embedded DB and rollback. Regular services are excluded.",
+      "x": -940,
+      "y": -70,
+      "width": 370,
+      "height": 210
+    },
+    {
+      "id": "cache",
+      "type": "text",
+      "text": "# Context cache\n\nProfiles, properties, mock beans and context customizers shape the cache key. @DirtiesContext discards reuse.",
+      "x": -510,
+      "y": -70,
+      "width": 390,
+      "height": 210
+    },
+    {
+      "id": "full",
+      "type": "text",
+      "text": "# @SpringBootTest\n\nApplication graph and auto-configuration. Use when service proxy and wiring are part of the claim.",
+      "x": -60,
+      "y": -70,
+      "width": 350,
+      "height": 210
+    },
+    {
+      "id": "tx",
+      "type": "text",
+      "text": "# Test-managed transaction\n\nTransactionalTestExecutionListener begins a transaction and rolls it back by default.",
+      "x": 380,
+      "y": -350,
+      "width": 360,
+      "height": 220
+    },
+    {
+      "id": "flush",
+      "type": "text",
+      "text": "# Flush + clear\n\nFlush proves SQL execution. Clear proves the reload is not served by first-level cache.",
+      "x": 800,
+      "y": -350,
+      "width": 360,
+      "height": 220,
+      "color": "1"
+    },
+    {
+      "id": "commit",
+      "type": "text",
+      "text": "# Commit proof\n\n@Commit, @Rollback and TestTransaction separate isolation tests from commit-time behavior.",
+      "x": 1220,
+      "y": -350,
+      "width": 390,
+      "height": 220
+    },
+    {
+      "id": "thread",
+      "type": "text",
+      "text": "# Thread boundary\n\nPreemptive timeout or async worker does not inherit the thread-bound test transaction.",
+      "x": 520,
+      "y": -70,
+      "width": 370,
+      "height": 210
+    },
+    {
+      "id": "sqlcount",
+      "type": "text",
+      "text": "# SQL regression\n\nHibernate Statistics turns N+1 and Page/count behavior into automated invariants.",
+      "x": 950,
+      "y": -70,
+      "width": 360,
+      "height": 210
+    },
+    {
+      "id": "service-tx",
+      "type": "text",
+      "text": "# Production-like transaction topology\n\nFor propagation proof, call the proxied service without a surrounding test transaction.",
+      "x": 1370,
+      "y": -70,
+      "width": 300,
+      "height": 210
+    },
+    {
+      "id": "container-concept",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers.md",
+      "x": -1040,
+      "y": 290,
+      "width": 430,
+      "height": 220
+    },
+    {
+      "id": "postgres",
+      "type": "text",
+      "text": "# PostgreSQL container\n\nReal dialect, constraints, types, MVCC and locking. Connection details are dynamic.",
+      "x": -550,
+      "y": 290,
+      "width": 360,
+      "height": 220
+    },
+    {
+      "id": "replace",
+      "type": "text",
+      "text": "# Preserve datasource\n\n@AutoConfigureTestDatabase(replace = NONE) prevents embedded replacement.",
+      "x": -130,
+      "y": 290,
+      "width": 360,
+      "height": 220,
+      "color": "1"
+    },
+    {
+      "id": "lifecycle",
+      "type": "text",
+      "text": "# Lifecycle ownership\n\nStatic vs instance container, Spring context cache, cleanup, parallel tests and migration ownership.",
+      "x": -790,
+      "y": 550,
+      "width": 390,
+      "height": 210
+    },
+    {
+      "id": "migration",
+      "type": "text",
+      "text": "# Migration proof\n\nEmpty real database → Flyway/Liquibase → repository assertions. Hibernate create-drop is a different claim.",
+      "x": -340,
+      "y": 550,
+      "width": 430,
+      "height": 210
+    },
+    {
+      "id": "cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards.md",
+      "x": 570,
+      "y": 290,
+      "width": 310,
+      "height": 210
+    },
+    {
+      "id": "cases",
+      "type": "file",
+      "file": "40_PRODUCTION_CASES/Spring/Spring Testing Production Cases.md",
+      "x": 940,
+      "y": 290,
+      "width": 340,
+      "height": 210
+    },
+    {
+      "id": "lab",
+      "type": "file",
+      "file": "50_LABS/Spring/TEST-B01/README.md",
+      "x": 1340,
+      "y": 290,
+      "width": 300,
+      "height": 210
+    },
+    {
+      "id": "sources",
+      "type": "file",
+      "file": "98_SOURCES/Spring Testing Sources.md",
+      "x": 640,
+      "y": 550,
+      "width": 300,
+      "height": 210
+    },
+    {
+      "id": "diagnostics",
+      "type": "text",
+      "text": "# Diagnostic order\n\nTest scope → context shape → transaction/thread → flush/clear → database engine → external effect.",
+      "x": 1000,
+      "y": 550,
+      "width": 350,
+      "height": 210
+    },
+    {
+      "id": "next",
+      "type": "text",
+      "text": "# Next route\n\nSpring Boot internals, auto-configuration conditions, starters, ApplicationContextRunner and Actuator.",
+      "x": 1410,
+      "y": 550,
+      "width": 250,
+      "height": 210,
+      "color": "4"
+    }
+  ],
+  "edges": [
+    {"id":"e01","fromNode":"root","toNode":"context-concept","label":"context model"},
+    {"id":"e02","fromNode":"root","toNode":"container-concept","label":"real dependency model"},
+    {"id":"e03","fromNode":"context-concept","toNode":"testcontext","label":"lifecycle"},
+    {"id":"e04","fromNode":"testcontext","toNode":"selection","label":"choose boundary"},
+    {"id":"e05","fromNode":"selection","toNode":"slice","label":"one layer"},
+    {"id":"e06","fromNode":"selection","toNode":"full","label":"application graph"},
+    {"id":"e07","fromNode":"slice","toNode":"cache","label":"reuse context"},
+    {"id":"e08","fromNode":"slice","toNode":"tx","label":"transactional by default"},
+    {"id":"e09","fromNode":"tx","toNode":"flush","label":"force database work"},
+    {"id":"e10","fromNode":"flush","toNode":"commit","label":"finish transaction"},
+    {"id":"e11","fromNode":"tx","toNode":"thread","label":"thread-bound"},
+    {"id":"e12","fromNode":"flush","toNode":"sqlcount","label":"measure statements"},
+    {"id":"e13","fromNode":"full","toNode":"service-tx","label":"proxy topology"},
+    {"id":"e14","fromNode":"container-concept","toNode":"postgres","label":"real engine"},
+    {"id":"e15","fromNode":"postgres","toNode":"replace","label":"keep datasource"},
+    {"id":"e16","fromNode":"postgres","toNode":"lifecycle","label":"own lifecycle"},
+    {"id":"e17","fromNode":"lifecycle","toNode":"migration","label":"production schema"},
+    {"id":"e18","fromNode":"context-concept","toNode":"cards","label":"recall"},
+    {"id":"e19","fromNode":"container-concept","toNode":"cards","label":"recall"},
+    {"id":"e20","fromNode":"cards","toNode":"cases","label":"production transfer"},
+    {"id":"e21","fromNode":"cases","toNode":"lab","label":"executable proof"},
+    {"id":"e22","fromNode":"sources","toNode":"root","label":"formal basis"},
+    {"id":"e23","fromNode":"lab","toNode":"diagnostics","label":"interpret failures"},
+    {"id":"e24","fromNode":"diagnostics","toNode":"next","label":"continue route"}
+  ]
+}
