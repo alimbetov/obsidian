@@ -172,6 +172,9 @@ flowchart LR
     C3 --> S
 ```
 
+> [!note] Diagram precision
+> Схема иллюстрирует striped contention reduction, а не постоянное владение cell конкретным thread. Implementation выбирает probe/cell и может повторять update или использовать другую cell при contention.
+
 > [!tip] Memory Hook
 > **AtomicLong coordinates; LongAdder measures.**
 
