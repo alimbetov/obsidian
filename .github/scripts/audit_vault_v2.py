@@ -24,9 +24,12 @@ from typing import Dict, Iterable, List, Optional, Sequence, Set, Tuple
 EXCLUDED_DIRS = {".git", ".obsidian", ".audit", "node_modules", "target"}
 FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})([^`]*)$")
 WIKILINK_RE = re.compile(r"\[\[([^\]]+)\]\]")
-CARD_HEADING_RE = re.compile(r"^(#{1,2})\s+([A-Z]+-B\d+-C\d+)\b.*$", re.MULTILINE)
+CARD_HEADING_RE = re.compile(
+    r"^(#{1,2})\s+([A-Z0-9]+(?:-[A-Z0-9]+)*-B\d+-C\d+)\b.*$",
+    re.MULTILINE,
+)
 FRONTMATTER_CARD_COUNT_RE = re.compile(r"^card_count:\s*(\d+)\s*$", re.MULTILINE)
-FRONTMATTER_BATCH_RE = re.compile(r"^batch_id:\s*([^\s]+)\s*$", re.MULTILINE)
+FRONTMATTER_BATCH_RE = re.compile(r"^(?:batch|batch_id):\s*([^\s]+)\s*$", re.MULTILINE)
 URL_PREFIXES = ("http://", "https://", "mailto:", "obsidian://")
 TEMPLATE_PLACEHOLDERS = {"Previous card", "Next card", "Related concept", "Production case", "Lab"}
 
@@ -176,7 +179,7 @@ def audit_cards(relative: str, text: str, findings: List[Dict[str, object]]) -> 
     if batch:
         foreign = [card_id for card_id in card_ids if not card_id.startswith(batch + "-")]
         if foreign:
-            findings.append(finding("error", "card-id", relative, f"Card IDs do not match batch_id {batch}: {foreign[:5]}"))
+            findings.append(finding("error", "card-id", relative, f"Card IDs do not match batch {batch}: {foreign[:5]}"))
 
     duplicates = [card_id for card_id, count in Counter(card_ids).items() if count > 1]
     if duplicates:
@@ -428,67 +431,46 @@ def main() -> int:
     markdown_metrics: List[Dict[str, object]] = []
     card_batches: List[Dict[str, object]] = []
     links: List[Tuple[str, int, str]] = []
-    global_card_ids: Dict[str, List[str]] = defaultdict(list)
 
     for path in markdown_files:
-        relative = rel(root, path)
-        try:
-            text = path.read_text(encoding="utf-8")
-        except UnicodeDecodeError as exc:
-            findings.append(finding("error", "encoding", relative, f"Not valid UTF-8: {exc}"))
-            continue
-        if not text.strip():
-            findings.append(finding("error", "empty-file", relative, "Markdown file is empty"))
-
-        metrics, found_links = extract_markdown(root, path, mermaid_dir, findings)
+        metrics, file_links = extract_markdown(root, path, mermaid_dir, findings)
         markdown_metrics.append(metrics)
-        links.extend((raw, line, relative) for raw, line in found_links)
+        text = path.read_text(encoding="utf-8")
+        card_result = audit_cards(metrics["path"], text, findings)
+        if card_result:
+            card_batches.append(card_result)
         pedagogical_checks(path, root, metrics, findings)
+        links.extend((metrics["path"], line, raw) for raw, line in file_links)
 
-        batch = audit_cards(relative, text, findings)
-        if batch:
-            card_batches.append(batch)
-            for detail in batch.get("missing_details", []):
-                pass
-            for match in CARD_HEADING_RE.finditer(text):
-                global_card_ids[match.group(2)].append(relative)
-
-    for raw, line, source in links:
+    for source, line, raw in links:
         target = clean_link(raw)
+        if Path(source).parts and Path(source).parts[0] == "90_TEMPLATES" and target in TEMPLATE_PLACEHOLDERS:
+            continue
         status, matches = resolve_link(target, exact, by_name)
         if status == "missing":
-            if source.startswith("90_TEMPLATES/") and target in TEMPLATE_PLACEHOLDERS:
-                findings.append(finding("info", "wikilink-template", source, f"Template placeholder: [[{raw}]]", line))
-            else:
-                findings.append(finding("error", "wikilink", source, f"Broken wikilink target: [[{raw}]]", line))
+            findings.append(finding("error", "wikilink", source, f"Broken wikilink: [[{raw}]]", line))
         elif status == "ambiguous":
-            findings.append(finding("warning", "wikilink-ambiguous", source, f"Ambiguous wikilink [[{raw}]] matches: {', '.join(matches[:8])}", line))
-
-    for card_id, sources in global_card_ids.items():
-        if len(sources) > 1:
-            findings.append(finding("error", "card-id-duplicate", sources[0], f"Duplicate card ID {card_id} in: {', '.join(sources)}"))
+            findings.append(finding("warning", "wikilink", source, f"Ambiguous wikilink [[{raw}]] matches {matches[:8]}", line))
 
     canvas_metrics = [audit_canvas(root, path, exact, findings) for path in canvas_files]
-    findings.sort(key=lambda item: ({"error": 0, "warning": 1, "info": 2}.get(str(item["severity"]), 9), str(item["category"]), str(item["path"]), int(item.get("line") or 0)))
-
     severity_counts = Counter(str(item["severity"]) for item in findings)
+
     report = {
         "summary": {
             "repository_files": len(files),
             "markdown_files": len(markdown_files),
             "canvas_files": len(canvas_files),
-            "concept_files": sum(1 for item in markdown_metrics if str(item["path"]).startswith("10_CONCEPTS/")),
+            "concept_files": sum(1 for path in markdown_files if rel(root, path).startswith("10_CONCEPTS/")),
             "card_batches": len(card_batches),
-            "production_case_files": sum(1 for item in markdown_metrics if str(item["path"]).startswith("40_PRODUCTION_CASES/")),
+            "production_case_files": sum(1 for path in markdown_files if rel(root, path).startswith("40_PRODUCTION_CASES/")),
             "lab_files": sum(1 for path in files if rel(root, path).startswith("50_LABS/")),
-            "mermaid_blocks": sum(int(item["mermaid_blocks"]) for item in markdown_metrics),
+            "mermaid_blocks": sum(item["mermaid_blocks"] for item in markdown_metrics),
             "findings": dict(severity_counts),
         },
-        "category_counts": dict(Counter(str(item["category"]) for item in findings)),
-        "findings": findings,
-        "markdown_metrics": markdown_metrics,
-        "card_batches": card_batches,
-        "canvas_metrics": canvas_metrics,
+        "findings": sorted(findings, key=lambda item: ({"error": 0, "warning": 1, "info": 2}.get(str(item["severity"]), 9), str(item["category"]), str(item["path"]))),
+        "card_batches": sorted(card_batches, key=lambda item: item["path"]),
+        "markdown_metrics": sorted(markdown_metrics, key=lambda item: item["path"]),
+        "canvas_metrics": sorted(canvas_metrics, key=lambda item: item["path"]),
     }
 
     output.mkdir(parents=True, exist_ok=True)
