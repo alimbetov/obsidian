@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          show-progress: false
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -28,11 +30,9 @@ jobs:
         run: python .github/scripts/audit_vault_v2.py
 
       - name: Run cross-link graph audit
-        continue-on-error: true
         run: python .github/scripts/audit_cross_links.py
 
       - name: Calculate certification readiness
-        continue-on-error: true
         run: python .github/scripts/audit_certification_readiness.py
 
       - name: Set up Java
@@ -121,7 +121,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
-      - name: Enforce structure, graph, readiness integrity, diagrams and published cards
+      - name: Enforce structure, diagrams and published cards
         if: always()
         run: |
           python - <<'PY'
@@ -129,12 +129,7 @@ jobs:
           from pathlib import Path
 
           structural = json.loads(Path('.audit/vault-audit.json').read_text(encoding='utf-8'))
-          cross_links = json.loads(Path('.audit/cross-link-report.json').read_text(encoding='utf-8'))
-          readiness = json.loads(Path('.audit/certification-readiness.json').read_text(encoding='utf-8'))
-
           structural_errors = structural['summary']['findings'].get('error', 0)
-          cross_link_errors = cross_links['summary']['findings'].get('error', 0)
-          readiness_errors = readiness['summary'].get('errors', 0)
 
           failure_file = Path('.audit/mermaid-failures.txt')
           mermaid_errors = 0
@@ -159,25 +154,12 @@ jobs:
           ]
 
           print(f'Structural errors: {structural_errors}')
-          print(f'Cross-link graph errors: {cross_link_errors}')
-          print(f'Readiness-model errors: {readiness_errors}')
           print(f'Mermaid render errors: {mermaid_errors}')
           print(f'Published-card contract errors: {len(published_card_errors)}')
 
-          for track in readiness.get('tracks', []):
-              print(
-                  f"- readiness {track.get('id')}: "
-                  f"{track.get('material_readiness')}% / {track.get('target_material_readiness')}%"
-              )
-          for item in cross_links.get('findings', []):
-              if item.get('severity') == 'error':
-                  print(f"- cross-link: {item.get('path')}: {item.get('message')}")
-          for item in readiness.get('findings', []):
-              if item.get('severity') == 'error':
-                  print(f"- readiness: {item.get('path')}: {item.get('message')}")
           for item in published_card_errors:
               print(f"- card: {item.get('path')}: {item.get('message')}")
 
-          if structural_errors or cross_link_errors or readiness_errors or mermaid_errors or published_card_errors:
+          if structural_errors or mermaid_errors or published_card_errors:
               raise SystemExit(1)
           PY
