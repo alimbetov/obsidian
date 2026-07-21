@@ -1,38 +1,42 @@
 # Java Backend Knowledge System
 
-Структурированная база знаний для Obsidian по Java backend-разработке.
+Структурированная Obsidian-база для Java backend: mechanism-oriented explanations, active recall, production incidents, visual models и executable labs.
 
 ## Цели
 
 - вспомнить тему за 30 секунд перед собеседованием;
-- изучить концепцию достаточно глубоко, чтобы объяснить mechanism и trade-offs;
-- готовиться к сертификационным экзаменам Java и Spring;
-- тренировать interview questions, code-output questions и production scenarios;
-- связать Java, Spring, базы данных, messaging и distributed systems в едином графе;
-- изучать runtime paths и failure boundaries через diagrams, Canvas и executable labs.
+- объяснить runtime mechanism и trade-offs;
+- готовиться к Java/Spring certification;
+- разбирать production failures через evidence;
+- связывать Java, Spring, databases, messaging и distributed systems;
+- изучать topology, sequence, state и decision models, а не только линейный текст.
 
-## С чего начать
+# С чего начать
 
-1. Открыть [[00_HOME/Java Backend Knowledge System]].
-2. Для ежедневного повторения использовать [[00_HOME/Review Dashboard]].
-3. Для пространственной навигации открыть [[01_MAPS/Java Backend Map.canvas]].
-4. Для углублённого визуального изучения Spring открыть [[01_MAPS/Spring Visual Learning Atlas.canvas]].
+1. [[00_HOME/Java Backend Knowledge System]] — главный маршрут.
+2. [[00_HOME/Review Dashboard]] — ежедневное повторение.
+3. [[01_MAPS/Java Backend Map.canvas]] — общая spatial map.
+4. [[01_MAPS/Spring Visual Learning Atlas.canvas]] — зрелые Spring routes.
+5. [[01_MAPS/Spring Core Visual Atlas.canvas]] — container и lifecycle.
+6. [[01_MAPS/Java Concurrency Visual Atlas.canvas]] — JMM, execution и diagnostics.
+7. [[01_MAPS/Database Indexes and Query Plans Map.canvas]] — DB-B01.
 
-## Модель знаний
+# Модель знаний
 
 ```text
-Concept
+Canonical concept
    ├── Visual deep dive
-   ├── Interview questions
-   ├── Certification questions
+   ├── Active-recall cards
    ├── Production cases
    ├── Comparisons
-   └── Labs
+   ├── Executable lab
+   ├── Canvas map
+   └── Official sources
 ```
 
-Каноническая теория описывается один раз. Карточки, визуальные deep dives, кейсы и лаборатории ссылаются на неё.
+Visual deep dive дополняет canonical note, но не создаёт второй conflicting source of truth.
 
-## Основные карты
+# Основные карты
 
 - [[01_MAPS/Java Map]]
 - [[01_MAPS/Spring Map]]
@@ -40,130 +44,130 @@ Concept
 - [[01_MAPS/Messaging Map]]
 - [[01_MAPS/Distributed Systems Map]]
 - [[01_MAPS/Spring Visual Learning Atlas.canvas]]
+- [[01_MAPS/Spring Core Visual Atlas.canvas]]
 - [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]]
-- [[01_MAPS/Spring AOP and Caching Map.canvas]]
-- [[01_MAPS/Spring Transaction Management Map.canvas]]
-- [[01_MAPS/Spring Data JPA Map.canvas]]
-- [[01_MAPS/Spring Testing Map.canvas]]
+- [[01_MAPS/Java Concurrency Visual Atlas.canvas]]
+- [[01_MAPS/Database Indexes and Query Plans Map.canvas]]
 - [[20_QUESTIONS/Interview/Interview Questions MOC]]
 - [[30_CERTIFICATIONS/Certification MOC]]
 
 # Visual learning layer
 
-Повторный педагогический audit показал, что line count и наличие одной mental-model diagram недостаточны. Для зрелых Spring routes добавлены отдельные visual deep dives.
-
-```text
-AOP Visual Deep Dive          20 diagrams
-Cache Visual Deep Dive        27 diagrams
-Transactions Visual Deep Dive 20 diagrams
-Data JPA Visual Deep Dive     31 diagrams
-Testing Visual Deep Dive      24 diagrams
-Standard example               1 diagram
-Canvas atlases                 2 maps
------------------------------------------
-Total new visual elements    125
-```
-
-## Visual deep dives
-
-- [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]]
-- [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]]
-- [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive]]
-- [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]]
-- [[10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive]]
-- [[90_TEMPLATES/Pedagogical Visual Standard]]
-- [[99_AUDITS/Pedagogical Visual Enrichment Pass]]
-
-Visual notes используют разные типы моделей:
+Повторный педагогический audit показал: line count и одна общая схема не гарантируют понимание. Advanced route должен показывать разные функции visual model.
 
 ```text
 Topology          → какие компоненты существуют
 Sequence          → как идёт runtime interaction
 State/data flow   → как меняется состояние
 Decision tree     → как выбирать и диагностировать
-Class model       → contracts и proxy/inheritance boundaries
+Class model       → contracts/inheritance/proxy boundaries
 ```
 
-# Текущие опубликованные маршруты
+## Current visual enrichment
 
-## Java Concurrency
+```text
+Spring Core Visual Deep Dive    26 diagrams
+AOP Visual Deep Dive            20 diagrams
+Cache Visual Deep Dive          27 diagrams
+Transactions Visual Deep Dive   20 diagrams
+Data JPA Visual Deep Dive       31 diagrams
+Testing Visual Deep Dive        24 diagrams
+Java Concurrency Visual         35 diagrams
+DB-B01 visual models            62 diagrams
+Standard example                 1 diagram
+Canvas atlases                   5 maps
+-------------------------------------------
+Visual elements                251
+```
 
-- Java Memory Model и happens-before;
-- visibility, atomicity и ordering;
-- `volatile`, `synchronized`, locks и ThreadLocal;
-- executors, CompletableFuture и virtual threads;
-- atomic/CAS, deadlock и concurrent collections;
-- interview recall и Java 8/21 labs.
+## Visual deep dives
 
-## Spring Core Certification
+- [[10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive]]
+- [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]]
+- [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]]
+- [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive]]
+- [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]]
+- [[10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive]]
+- [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]]
+- [[10_CONCEPTS/Databases/PostgreSQL Index Mechanics]]
+- [[10_CONCEPTS/Databases/PostgreSQL EXPLAIN and Query Plan Analysis]]
+- [[90_TEMPLATES/Pedagogical Visual Standard]]
 
-- `CORE-B01`: 20 карточек — IoC, beans, registration и injection styles;
-- `CORE-B02`: 24 карточки — candidate resolution, qualifiers и optionality;
-- `CORE-B03`: 24 карточки — bean lifecycle, initialization и destruction;
-- `CORE-B04`: 24 карточки — extension points и early references;
-- `CORE-B05`: 24 карточки — configuration, profiles и properties;
-- `CORE-B06`: 24 карточки — scopes, FactoryBean, lazy и hierarchy;
-- всего **140 Spring Core cards**.
+# Published routes
+
+## Java Concurrency — visually enriched
+
+- thread lifecycle;
+- Java Memory Model and happens-before;
+- visibility, atomicity and ordering;
+- `volatile`, monitors, locks and atomics;
+- ExecutorService, saturation and backpressure;
+- Future, CompletableFuture and ForkJoinPool;
+- ThreadLocal lifecycle and leaks;
+- virtual threads and downstream capacity;
+- concurrent collections;
+- deadlock/livelock/starvation;
+- 35 visual models;
+- Java 8/21 labs.
+
+Entry points:
+
+- [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]]
+- [[01_MAPS/Java Concurrency Visual Atlas.canvas]]
+- [[50_LABS/Java/Concurrency/README]]
+
+## Spring Core — 140 cards, visually enriched
+
+```text
+CORE-B01  20 — IoC, beans, registration, injection
+CORE-B02  24 — candidate resolution and optionality
+CORE-B03  24 — lifecycle
+CORE-B04  24 — extension points and early references
+CORE-B05  24 — configuration, profiles and properties
+CORE-B06  24 — scopes, FactoryBean, cycles and hierarchy
+```
+
+Visual route covers metadata → BeanDefinition → candidate resolution → lifecycle → post-processing/proxy → scopes → configuration → startup diagnostics.
+
+- [[10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive]]
+- [[01_MAPS/Spring Core Visual Atlas.canvas]]
 
 ## Spring AOP, Caffeine and Redis
 
-- `AOP-B01`: 24 нормализованные карточки;
-- `CACHE-B01`: 20 нормализованных карточек;
-- AOP lab показывает transaction/async proxy boundaries;
-- Cache lab запускается с Caffeine локально и Redis через Docker Compose;
-- 12 production cases связывают proxy/cache mechanics с отказами;
-- AOP visual deep dive содержит 20 diagrams;
-- Cache visual deep dive содержит 27 diagrams.
+- `AOP-B01`: 24 normalized cards;
+- `CACHE-B01`: 20 normalized cards;
+- 47 dedicated visual diagrams;
+- AOP and Cache labs;
+- 12 production cases.
 
 ## Spring Transaction Management
 
-- `TX-B01`: 32 карточки;
-- logical scope против physical database transaction;
-- все propagation modes;
-- rollback-only и `UnexpectedRollbackException`;
-- isolation and locking boundaries;
-- checked/runtime rollback rules;
-- `TransactionTemplate` и multiple managers;
-- synchronization callbacks и transactional events;
-- database/cache ordering;
-- async/thread boundaries;
-- отдельный deep dive по Transactional Outbox;
-- 15 production incidents;
-- H2 lab с наблюдаемыми commit/rollback outcomes;
-- visual deep dive содержит 20 diagrams.
+- `TX-B01`: 32 cards;
+- logical versus physical transactions;
+- propagation, rollback-only and savepoints;
+- isolation, callbacks, async boundaries;
+- Transactional Outbox;
+- 20 visual diagrams;
+- 15 incidents and H2 lab.
 
 ## Spring Data and JPA
 
-- `DATA-B01`: 36 карточек;
-- persistence context и repository/query canonical notes;
-- identity map, entity states и dirty checking;
-- flush vs commit;
-- `persist()` vs `merge()`;
-- derived queries, `@Query`, `@Modifying`;
-- Specifications и dynamic query;
-- projections, Page/Slice;
-- N+1, fetch join и `@EntityGraph`;
-- locking;
-- 16 production incidents;
-- H2/Hibernate lab со statement counters;
-- visual deep dive содержит 31 diagram.
+- `DATA-B01`: 36 cards;
+- persistence context, entity states, dirty checking and flush;
+- repositories, Specifications, projections and pagination;
+- N+1, fetch plans and locking;
+- 31 visual diagrams;
+- 16 incidents and H2/Hibernate lab.
 
 ## Spring Testing
 
-- `TEST-B01`: 36 карточек;
-- Spring TestContext lifecycle и listeners;
-- unit/slice/full-context decision model;
-- `@DataJpaTest` и `TestEntityManager`;
-- test-managed transaction и rollback by default;
-- `@Commit`, `@Rollback`, `TestTransaction`;
-- flush/clear database proof;
-- context cache и `@DirtiesContext`;
-- H2 slice tests;
-- full-context service transaction tests;
-- PostgreSQL Testcontainers;
-- N+1 statement-count regression;
-- 16 testing production incidents;
-- visual deep dive содержит 24 diagrams.
+- `TEST-B01`: 36 cards;
+- TestContext, slices and context cache;
+- test-managed transactions, commit boundaries and `TestTransaction`;
+- H2 versus PostgreSQL/Testcontainers;
+- N+1 regression;
+- 24 visual diagrams;
+- 16 incidents and JUnit suite.
 
 ```text
 Spring Core               140
@@ -172,154 +176,105 @@ Transaction Management      32
 Spring Data and JPA          36
 Spring Testing               36
 -------------------------------
-Published Spring total     288
+Published Spring total     288 cards
 ```
 
-# Структура репозитория
+## DB-B01 — Indexes and Query Plans
+
+Published as a complete visual vertical slice:
 
 ```text
-00_HOME/              точки входа и dashboards
-01_MAPS/              Canvas и текстовые карты знаний
-10_CONCEPTS/          канонические и visual deep-dive заметки
-20_QUESTIONS/         интервью, сертификация и troubleshooting
-30_CERTIFICATIONS/    exam objectives и маршруты подготовки
-40_PRODUCTION_CASES/  реальные инженерные ситуации
-50_LABS/              запускаемые примеры
-60_BASES/             будущие динамические представления
-90_TEMPLATES/         шаблоны и pedagogical standards
-98_SOURCES/           первичные официальные источники
-99_AUDITS/            quality и enrichment reports
-99_ATTACHMENTS/       изображения и вложения
+Canonical notes        2
+Visual diagrams       62
+Cards                 30
+Production cases      14
+PostgreSQL experiments 10
+Canvas maps            1
+Official source index  1
 ```
 
-# Открытие в Obsidian
+Coverage:
 
-1. Клонировать репозиторий.
-2. В Obsidian выбрать **Open folder as vault**.
-3. Включить Canvas, Backlinks, Graph view, Properties, Templates и Bases.
-4. Указать каталог шаблонов `90_TEMPLATES`.
-5. Включить автоматическое обновление внутренних ссылок.
+- B-tree hierarchy, leaf traversal and heap TIDs;
+- selectivity, cardinality and skew;
+- composite indexes and leading-prefix reasoning;
+- PostgreSQL 18 skip-scan boundary;
+- `ORDER BY LIMIT` and early stop;
+- covering/`INCLUDE`, visibility map and `Heap Fetches`;
+- partial and expression indexes;
+- bitmap scans;
+- write amplification and HOT;
+- `EXPLAIN (ANALYZE, BUFFERS)`;
+- estimates, actual rows and loops;
+- planner statistics and extended statistics;
+- nested-loop/hash/merge joins;
+- sort/hash spill;
+- OFFSET versus keyset;
+- cases where indexes cannot remove required large-data work.
 
-Community plugins не обязательны: база остаётся переносимым набором Markdown/Canvas-файлов.
+Entry points:
 
-# Запуск Spring labs
+- [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap]]
+- [[10_CONCEPTS/Databases/PostgreSQL Index Mechanics]]
+- [[10_CONCEPTS/Databases/PostgreSQL EXPLAIN and Query Plan Analysis]]
+- [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards]]
+- [[50_LABS/Databases/DB-B01/README]]
+- [[01_MAPS/Database Indexes and Query Plans Map.canvas]]
 
-## AOP
-
-```bash
-cd 50_LABS/Spring/AOP-B01
-mvn clean compile exec:java
-```
-
-## Caffeine / Redis
-
-```bash
-cd 50_LABS/Spring/CACHE-B01
-mvn clean compile exec:java
-
-docker compose up -d redis
-RUN_REDIS=true mvn clean compile exec:java
-```
-
-## Transaction Management
-
-```bash
-cd 50_LABS/Spring/TX-B01
-mvn clean compile exec:java
-```
-
-## Spring Data and JPA
-
-```bash
-cd 50_LABS/Spring/DATA-B01
-mvn clean compile exec:java
-```
-
-## Spring Testing
-
-```bash
-cd 50_LABS/Spring/TEST-B01
-mvn clean test
-```
-
-Без Docker можно запустить H2/full-context tests:
-
-```bash
-mvn -Dtest=PurchaseOrderRepositorySliceTest test
-mvn -Dtest=PurchaseOrderServiceTransactionTest test
-mvn -Dtest=PurchaseOrderCommitBoundaryTest test
-```
-
-PostgreSQL Testcontainers:
-
-```bash
-mvn -Dtest=PostgreSqlPurchaseOrderRepositoryTest test
-```
-
-TEST-B01 демонстрирует:
+# Repository structure
 
 ```text
-@DataJpaTest slice boundary
-flush + clear round trip
-constraint failure at flush
-dirty checking without save
-N+1 SQL-count regression
-Page content + count queries
-service transaction rollback without test transaction
-explicit TestTransaction commit/rollback
-PostgreSQL native ILIKE
-PostgreSQL unique constraint
+00_HOME/              entry points and dashboards
+01_MAPS/              Canvas and text maps
+10_CONCEPTS/          canonical and visual deep-dive notes
+20_QUESTIONS/         interview recall and troubleshooting
+30_CERTIFICATIONS/    card batches and roadmaps
+40_PRODUCTION_CASES/  incidents with evidence and repair
+50_LABS/              executable experiments
+90_TEMPLATES/         note templates and visual standard
+98_SOURCES/           official primary sources
+99_AUDITS/            quality and enrichment reports
 ```
 
-# Языковая стратегия
+# Running DB-B01
 
-- Java/Spring API и технические термины сохраняются на английском;
-- объяснения пишутся на русском;
-- certification questions создаются на английском с русским переводом;
-- aliases используются для альтернативных названий.
+```bash
+cd 50_LABS/Databases/DB-B01
+docker compose up -d
 
-# Шкала уверенности
+docker compose exec -T postgres psql -U lab -d index_lab < sql/01_schema.sql
+docker compose exec -T postgres psql -U lab -d index_lab < sql/02_seed.sql
+docker compose exec -T postgres psql -U lab -d index_lab < sql/03_experiments.sql | tee db-b01-output.txt
+```
 
-| Значение | Состояние |
-|---:|---|
-| 0 | тема не изучена или не проверена |
-| 1 | узнаю термин |
-| 2 | понимаю с подсказкой |
-| 3 | объясняю самостоятельно |
-| 4 | решаю новый практический кейс |
-| 5 | защищаю решение на Senior-интервью |
+PowerShell commands are documented in [[50_LABS/Databases/DB-B01/README]].
 
-Confidence повышается только после active recall и transfer practice.
+# Running Spring labs
 
-# Правила именования и качества
+```bash
+cd 50_LABS/Spring/AOP-B01 && mvn clean compile exec:java
+cd 50_LABS/Spring/CACHE-B01 && mvn clean compile exec:java
+cd 50_LABS/Spring/TX-B01 && mvn clean compile exec:java
+cd 50_LABS/Spring/DATA-B01 && mvn clean compile exec:java
+cd 50_LABS/Spring/TEST-B01 && mvn clean test
+```
 
-- Одна концепция — одна каноническая заметка.
-- Visual deep dive дополняет canonical note, но не создаёт второй conflicting source of truth.
-- Версии Java, Spring и Spring Boot хранить в properties.
-- Использовать точные названия механизмов.
-- Название вопроса формулировать как вопрос.
-- Production case называть по наблюдаемой проблеме.
-- Advanced route должен содержать topology, sequence, failure path и diagnostic tree.
-- Mermaid должен проходить реальный renderer.
+# Quality policy
 
-# Текущий фундамент
+- One concept — one canonical note.
+- Advanced route includes topology, sequence, state/data flow and decision tree.
+- Diagram is followed by interpretation and evidence path.
+- Cards contain Question, Russian Translation, Answer, Explanation and Exam Trap.
+- Production case starts with observable symptom and ends with measured proof.
+- Version-sensitive details are explicitly marked.
+- Mermaid passes real `mermaid-cli` rendering.
+- Canvas passes JSON, reference, geometry and connectivity checks.
 
-Репозиторий содержит:
+# Current next routes
 
-- главный dashboard и Review Dashboard;
-- Java и Spring Canvas maps;
-- глубокий Java Concurrency route;
-- Spring Core `CORE-B01`–`CORE-B06`;
-- Spring AOP and Cache;
-- Spring Transaction Management с Outbox;
-- Spring Data JPA;
-- Spring Testing с H2 и PostgreSQL Testcontainers;
-- 125 новых visual elements по зрелым Spring routes;
-- certification-card standard;
-- production cases;
-- Java и Spring labs;
-- official source indexes и templates.
-
-Следующий backend-маршрут: **DB-B01 — Indexes and Query Plans**.
-
-Следующий Spring-маршрут: **Spring Boot Internals and Auto-configuration**.
+```text
+DB-B02 — Transactions, MVCC and Locks
+Spring Boot Internals and Auto-configuration
+Java language / collections / JVM vertical slices
+Messaging and Distributed Systems
+```
