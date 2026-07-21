@@ -5,15 +5,38 @@ status: active
 tags:
   - certification
   - navigation
+  - readiness
 ---
 
 # Certification MOC
 
 ## Entry points
 
+- [[00_HOME/Certification 99 Percent Readiness Dashboard|99 Percent Readiness Dashboard]]
 - [[00_HOME/Knowledge Route Registry|All published learning routes]]
 - [[00_HOME/Review Dashboard|Review Dashboard]]
 - [[90_TEMPLATES/Cross-Linking Standard|Cross-linking contract]]
+
+# 99 percent master tracks
+
+| Track | Master roadmap | Material target |
+|---|---|---:|
+| Spring Professional 2V0-72.22 | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]] | 99% |
+| Java SE 17 Developer 1Z0-829 | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | 99% |
+| Java Concurrency | [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]] | 99% |
+
+```text
+Spring target          600 base + 150 drill cards + 6 full mocks
+Java target            720 base + 180 drill cards + 6 full mocks
+Concurrency target     140 base + 40 drill cards + 6 mini-mocks
+```
+
+Readiness integrity is calculated by:
+
+```text
+.github/certification-readiness.json
+.github/scripts/audit_certification_readiness.py
+```
 
 ## Learning model
 
@@ -34,8 +57,29 @@ flowchart LR
 
 # Java route
 
+## Java 1Z0-829
+
+- [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]]
+
+Planned domain sequence:
+
+```text
+JAVA-B01 Data/Text/Date-Time
+JAVA-B02 Control Flow
+JAVA-B03 Object Model
+JAVA-B04 Exceptions
+JAVA-B05 Collections and Generics
+JAVA-B06 Lambdas and Streams
+JAVA-B07 Modules and Deployment
+JAVA-B08 Concurrency Exam Objectives
+JAVA-B09 I/O and NIO.2
+JAVA-B10 JDBC
+JAVA-B11 Localization
+```
+
 ## Java Concurrency
 
+- [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]];
 - [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path]];
 - [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]];
 - [[01_MAPS/Java Concurrency Visual Atlas.canvas]];
@@ -54,6 +98,7 @@ flowchart LR
 
 # Spring certification route
 
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap|99 Percent Master Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Certification Card System|Card System]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap|Spring Core Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap|AOP and Cache Roadmap]]
@@ -87,6 +132,20 @@ Spring Testing               36
 Published Spring total     288
 ```
 
+## Missing Spring P0 routes
+
+```text
+SPRING-BOOT-B01   Bootstrap and Auto-configuration
+SPRING-BOOT-B02   Configuration Properties
+SPRING-MVC-B01    DispatcherServlet and Controller Pipeline
+SPRING-MVC-B02    REST and RestTemplate baseline
+SPRING-SEC-B01    Authentication and Authorization
+SPRING-ACT-B01    Actuator, Health and Metrics
+SPRING-JDBC-B01   JdbcTemplate and Exception Translation
+SPRING-WEBTEST-B01 MockMvc and Web Slices
+SPRING-SPEL-B01   Spring Expression Language
+```
+
 ## Spring visual routes
 
 - [[10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive]];
@@ -110,13 +169,6 @@ Complete route:
 - [[50_LABS/Databases/DB-B01/README]];
 - [[98_SOURCES/PostgreSQL Indexes and Query Plans Sources]].
 
-```text
-DB-B01 cards             30
-DB-B01 diagrams          62
-Production cases         14
-PostgreSQL experiments   10
-```
-
 # Card format
 
 1. `Question` in English.
@@ -138,20 +190,19 @@ PostgreSQL experiments   10
 6. Predict lab evidence before execution.
 7. Increase confidence only after repeated successful recall.
 
-Outcome taxonomy:
-
-- `correct-confident`;
-- `correct-guessed`;
-- `wrong-concept`;
-- `wrong-attention`;
-- `wrong-confusion`.
-
-# Next routes
+# Next implementation sequence
 
 ```text
-DB-B02 — Transactions, MVCC and Locks
-Spring Boot Internals and Auto-configuration
-Java language / collections / JVM
-Messaging delivery semantics
-Distributed systems resilience
+SPRING-BOOT-B01
+SPRING-BOOT-B02
+SPRING-MVC-B01
+SPRING-MVC-B02
+SPRING-SEC-B01
+SPRING-ACT-B01
+SPRING-JDBC-B01
+SPRING-WEBTEST-B01
+SPRING-SPEL-B01
+JAVA-B01 ... JAVA-B11
+Concurrency consolidation
+Drill banks and timed mocks
 ```
