@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    {"id":"root","type":"text","text":"JAVA CONCURRENCY VISUAL ATLAS\nExecution policy → shared state → happens-before → saturation → diagnostics","x":0,"y":0,"width":430,"height":180,"color":"4"},
+    {"id":"visual","type":"file","file":"10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md","x":520,"y":0,"width":430,"height":180,"color":"4"},
+    {"id":"jmm","type":"file","file":"10_CONCEPTS/Java/Concurrency/Java Memory Model.md","x":0,"y":280,"width":360,"height":150},
+    {"id":"hb","type":"file","file":"10_CONCEPTS/Java/Concurrency/Happens-Before.md","x":420,"y":280,"width":360,"height":150},
+    {"id":"sync","type":"file","file":"10_CONCEPTS/Java/Concurrency/synchronized.md","x":840,"y":280,"width":360,"height":150},
+    {"id":"atomic","type":"file","file":"10_CONCEPTS/Java/Concurrency/Atomic CAS and Counters.md","x":1260,"y":280,"width":390,"height":150},
+    {"id":"executor","type":"file","file":"10_CONCEPTS/Java/Concurrency/ExecutorService.md","x":0,"y":510,"width":360,"height":150},
+    {"id":"future","type":"file","file":"10_CONCEPTS/Java/Concurrency/CompletableFuture.md","x":420,"y":510,"width":360,"height":150},
+    {"id":"threadlocal","type":"file","file":"10_CONCEPTS/Java/Concurrency/ThreadLocal.md","x":840,"y":510,"width":360,"height":150},
+    {"id":"virtual","type":"file","file":"10_CONCEPTS/Java/Concurrency/Virtual Threads.md","x":1260,"y":510,"width":360,"height":150},
+    {"id":"collections","type":"file","file":"10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure.md","x":0,"y":740,"width":420,"height":160},
+    {"id":"deadlock","type":"file","file":"10_CONCEPTS/Java/Concurrency/Deadlock Livelock and Lock Ordering.md","x":490,"y":740,"width":430,"height":160},
+    {"id":"recall","type":"file","file":"20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall.md","x":990,"y":740,"width":420,"height":160,"color":"2"},
+    {"id":"lab","type":"file","file":"50_LABS/Java/Concurrency/README.md","x":1470,"y":740,"width":340,"height":160,"color":"3"},
+    {"id":"diagnostic","type":"text","text":"DIAGNOSTIC ORDER\n1 task owner\n2 mutable-state owner\n3 happens-before edge\n4 compound invariant\n5 queue/saturation\n6 cancellation/failure evidence","x":1730,"y":250,"width":330,"height":330,"color":"1"}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","fromSide":"right","toNode":"visual","toSide":"left"},
+    {"id":"e2","fromNode":"root","fromSide":"bottom","toNode":"jmm","toSide":"top"},
+    {"id":"e3","fromNode":"visual","fromSide":"bottom","toNode":"hb","toSide":"top"},
+    {"id":"e4","fromNode":"visual","fromSide":"bottom","toNode":"sync","toSide":"top"},
+    {"id":"e5","fromNode":"visual","fromSide":"bottom","toNode":"atomic","toSide":"top"},
+    {"id":"e6","fromNode":"jmm","fromSide":"bottom","toNode":"executor","toSide":"top"},
+    {"id":"e7","fromNode":"hb","fromSide":"bottom","toNode":"future","toSide":"top"},
+    {"id":"e8","fromNode":"sync","fromSide":"bottom","toNode":"threadlocal","toSide":"top"},
+    {"id":"e9","fromNode":"atomic","fromSide":"bottom","toNode":"virtual","toSide":"top"},
+    {"id":"e10","fromNode":"executor","fromSide":"bottom","toNode":"collections","toSide":"top"},
+    {"id":"e11","fromNode":"future","fromSide":"bottom","toNode":"deadlock","toSide":"top"},
+    {"id":"e12","fromNode":"threadlocal","fromSide":"bottom","toNode":"recall","toSide":"top"},
+    {"id":"e13","fromNode":"virtual","fromSide":"bottom","toNode":"lab","toSide":"top"},
+    {"id":"e14","fromNode":"atomic","fromSide":"right","toNode":"diagnostic","toSide":"left"},
+    {"id":"e15","fromNode":"diagnostic","fromSide":"bottom","toNode":"lab","toSide":"right"}
+  ]
+}
