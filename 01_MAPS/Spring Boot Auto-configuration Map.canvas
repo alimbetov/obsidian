@@ -1,0 +1,34 @@
+{
+  "nodes": [
+    {"id":"root","type":"text","text":"SPRING-BOOT-B01\nBootstrap → candidates → conditions → definitions → refresh → diagnostics","x":0,"y":0,"width":450,"height":190,"color":"4"},
+    {"id":"roadmap","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md","x":540,"y":0,"width":440,"height":180,"color":"4"},
+    {"id":"canonical","type":"file","file":"10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration.md","x":0,"y":290,"width":450,"height":170},
+    {"id":"visual","type":"file","file":"10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive.md","x":520,"y":290,"width":460,"height":170},
+    {"id":"bootstrap","type":"text","text":"BOOTSTRAP\nSpringApplication\nEnvironment\nWebApplicationType\nApplicationContext\nrefresh + runners","x":1060,"y":250,"width":320,"height":260,"color":"5"},
+    {"id":"conditions","type":"text","text":"AUTO-CONFIGURATION\ncandidate discovery\nexclusions\nclass/property/bean/web conditions\nback-off\nordering","x":1450,"y":250,"width":340,"height":280,"color":"5"},
+    {"id":"version","type":"text","text":"VERSION BOUNDARY\nBoot 2.x: spring.factories\nCurrent: AutoConfiguration.imports\nExam baseline vs production delta","x":1860,"y":250,"width":360,"height":250,"color":"6"},
+    {"id":"cards","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards.md","x":0,"y":620,"width":410,"height":160,"color":"2"},
+    {"id":"cases","type":"file","file":"40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases.md","x":480,"y":620,"width":470,"height":160,"color":"1"},
+    {"id":"lab","type":"file","file":"50_LABS/Spring/SPRING-BOOT-B01/README.md","x":1020,"y":620,"width":390,"height":160,"color":"3"},
+    {"id":"sources","type":"file","file":"98_SOURCES/Spring Boot Auto-configuration Sources.md","x":1480,"y":620,"width":430,"height":160},
+    {"id":"diagnostic","type":"text","text":"DIAGNOSTIC ORDER\n1 version/classpath\n2 candidate metadata\n3 exclusions\n4 conditions/properties\n5 user back-off\n6 bean creation\n7 runner/readiness","x":1980,"y":610,"width":360,"height":300,"color":"1"},
+    {"id":"next","type":"text","text":"NEXT\nSPRING-BOOT-B02\nConfiguration Properties and Externalized Configuration","x":800,"y":900,"width":450,"height":150,"color":"6"}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","fromSide":"right","toNode":"roadmap","toSide":"left"},
+    {"id":"e2","fromNode":"root","fromSide":"bottom","toNode":"canonical","toSide":"top"},
+    {"id":"e3","fromNode":"roadmap","fromSide":"bottom","toNode":"visual","toSide":"top"},
+    {"id":"e4","fromNode":"canonical","fromSide":"right","toNode":"bootstrap","toSide":"left"},
+    {"id":"e5","fromNode":"bootstrap","fromSide":"right","toNode":"conditions","toSide":"left"},
+    {"id":"e6","fromNode":"conditions","fromSide":"right","toNode":"version","toSide":"left"},
+    {"id":"e7","fromNode":"canonical","fromSide":"bottom","toNode":"cards","toSide":"top"},
+    {"id":"e8","fromNode":"visual","fromSide":"bottom","toNode":"cases","toSide":"top"},
+    {"id":"e9","fromNode":"bootstrap","fromSide":"bottom","toNode":"lab","toSide":"top"},
+    {"id":"e10","fromNode":"conditions","fromSide":"bottom","toNode":"sources","toSide":"top"},
+    {"id":"e11","fromNode":"version","fromSide":"bottom","toNode":"diagnostic","toSide":"top"},
+    {"id":"e12","fromNode":"cards","fromSide":"right","toNode":"cases","toSide":"left"},
+    {"id":"e13","fromNode":"cases","fromSide":"right","toNode":"lab","toSide":"left"},
+    {"id":"e14","fromNode":"lab","fromSide":"right","toNode":"sources","toSide":"left"},
+    {"id":"e15","fromNode":"lab","fromSide":"bottom","toNode":"next","toSide":"top"}
+  ]
+}
