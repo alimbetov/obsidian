@@ -27,16 +27,20 @@ mindmap
       Optional
       Parallel streams
     Concurrency
+      Threads
       Memory model
       Synchronization
       Atomic CAS
       Liveness
       Concurrent collections
       Executors
+      Future
+      ForkJoinPool
       Virtual threads
     JVM
       Class loading
       Runtime memory
+      Memory leaks
       JIT
       GC
     Evolution
@@ -58,6 +62,7 @@ mindmap
 
 ### Foundations
 
+- [[10_CONCEPTS/Java/Concurrency/Threads]]
 - [[10_CONCEPTS/Java/Concurrency/Visibility Atomicity Ordering]]
 - [[10_CONCEPTS/Java/Concurrency/Race Condition]]
 - [[10_CONCEPTS/Java/Concurrency/Java Memory Model]]
@@ -75,9 +80,15 @@ mindmap
 ### Task execution
 
 - [[10_CONCEPTS/Java/Concurrency/ExecutorService]]
+- [[10_CONCEPTS/Java/Concurrency/Future]]
+- [[10_CONCEPTS/Java/Concurrency/ForkJoinPool]]
 - [[10_CONCEPTS/Java/Concurrency/CompletableFuture]]
 - [[10_CONCEPTS/Java/Concurrency/ThreadLocal]]
 - [[10_CONCEPTS/Java/Concurrency/Virtual Threads]]
+
+### JVM lifecycle risks
+
+- [[10_CONCEPTS/Java/JVM/Memory Leaks]]
 
 ### Active recall and labs
 
