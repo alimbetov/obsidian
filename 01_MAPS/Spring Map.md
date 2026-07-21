@@ -15,19 +15,20 @@ tags:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
 - [[00_HOME/Review Dashboard]]
 
 ```mermaid
 flowchart LR
-    CORE[Spring Core complete] --> AOP[AOP and proxies]
-    AOP --> CACHE[Cache abstraction]
-    CACHE --> PROVIDERS[Caffeine and Redis]
-    PROVIDERS --> TX[Transaction management]
+    CORE[Spring Core] --> AOP[AOP and proxies]
+    AOP --> CACHE[Caffeine and Redis]
+    CACHE --> TX[Transaction management]
     TX --> OUTBOX[Commit boundaries and outbox]
     OUTBOX --> DATA[Spring Data and JPA]
+    DATA --> TEST[Testing]
 ```
 
-# Spring Core — completed route
+# Spring Core — completed
 
 | Batch | Cards | Focus |
 |---|---:|---|
@@ -66,11 +67,9 @@ Coverage:
 - proxy selection;
 - self-invocation;
 - final/private method boundaries;
-- around advice and exception propagation;
-- advisor ordering;
-- runtime proxy diagnostics;
-- real `@Transactional` and `@Async` proxy behavior;
-- relationship to method security and caching.
+- advisor ordering and exception propagation;
+- runtime diagnostics;
+- `@Transactional`, `@Async`, security and cache proxy boundaries.
 
 # Spring Cache — published
 
@@ -78,20 +77,17 @@ Coverage:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards|CACHE-B01 — 20 cards]]
 - [[50_LABS/Spring/CACHE-B01/README]]
 - [[50_LABS/Spring/CACHE-B01/compose.yaml|Redis Docker Compose]]
-- [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]]
 - [[98_SOURCES/Spring AOP and Cache Sources]]
 
 Coverage:
 
-- cache abstraction and `CacheManager`;
+- Spring Cache abstraction;
 - `@Cacheable`, `@CachePut`, `@CacheEvict`;
-- keys, tenant isolation, condition and unless;
-- self-invocation and cache proxy;
-- `sync=true` and stampede limits;
-- negative caching;
-- Caffeine local cache, expiration and statistics;
-- Redis shared cache, TTL, prefix and JSON serialization;
-- Redis outage and DB fallback risk;
+- cache keys and tenant isolation;
+- stampede and `sync=true` boundaries;
+- Caffeine local cache;
+- Redis TTL, prefix and serialization;
+- Redis outage policy;
 - Caffeine L1 + Redis L2 invalidation.
 
 ```text
@@ -112,52 +108,73 @@ TOTAL      44 cards
 
 Coverage:
 
-- transaction interceptor and manager selection;
 - logical vs physical transactions;
-- `REQUIRED` and `UnexpectedRollbackException`;
-- `REQUIRES_NEW` and connection-pool pressure;
-- `NESTED` savepoints;
-- `SUPPORTS`, `MANDATORY`, `NOT_SUPPORTED`, `NEVER`;
-- isolation phenomena and database-specific semantics;
-- rollback rules for runtime and checked exceptions;
-- read-only and timeout boundaries;
+- all propagation modes;
+- rollback-only and `UnexpectedRollbackException`;
+- isolation and locking boundaries;
+- checked/runtime rollback rules;
 - `TransactionTemplate`;
-- multiple transaction managers;
-- synchronization callbacks and transactional events;
-- database/cache ordering;
+- multiple managers;
+- callbacks and transactional events;
+- cache/database ordering;
 - async/thread boundaries;
-- Transactional Outbox, idempotency and relay design.
+- Transactional Outbox and idempotency.
+
+# Spring Data and JPA — published
+
+- [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]]
+- [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]]
+- [[01_MAPS/Spring Data JPA Map.canvas]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards|DATA-B01 — 36 cards]]
+- [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
+- [[50_LABS/Spring/DATA-B01/README]]
+- [[98_SOURCES/Spring Data JPA Sources]]
+
+Coverage:
+
+- persistence context and identity map;
+- transient, managed, detached and removed entities;
+- dirty checking and write-behind;
+- flush vs commit;
+- `persist()` vs `merge()`;
+- repository proxy and `SimpleJpaRepository`;
+- derived queries and `@Query`;
+- `@Modifying` and stale persistence context;
+- Specifications and dynamic query;
+- projections;
+- `Page` vs `Slice`;
+- N+1;
+- fetch joins and `@EntityGraph`;
+- optimistic and pessimistic locking;
+- service transaction boundaries around repositories.
 
 ```text
-Spring Core  140 cards
-AOP/Cache     44 cards
-TX-B01        32 cards
-----------------------
-TOTAL        216 cards
+Spring Core               140
+AOP and Cache               44
+Transaction Management      32
+Spring Data and JPA          36
+-------------------------------
+TOTAL                       252 cards
 ```
 
-# Next route — Spring Data and JPA
+# Next route — Testing
 
-- persistence context;
-- entity lifecycle states;
-- dirty checking;
-- flush vs commit;
-- optimistic and pessimistic locking;
-- repository proxies;
-- query derivation;
-- specifications and dynamic queries;
-- projections;
-- pagination;
-- N+1;
-- fetch joins and entity graphs;
-- transaction boundaries around repositories.
+- unit test vs Spring context test;
+- `@DataJpaTest`;
+- repository query tests;
+- Testcontainers PostgreSQL;
+- rollback test vs real commit behavior;
+- flush/clear in tests;
+- optimistic-lock conflict tests;
+- statement-count/N+1 regression tests;
+- transaction propagation integration tests;
+- outbox relay and idempotency tests.
 
-# Web and Boot
+# Web, Boot and Security
 
 - Spring MVC and WebFlux;
 - validation and exception handling;
-- auto-configuration;
+- Boot auto-configuration;
 - configuration properties;
 - actuator;
-- testing;
-- security.
+- Spring Security.
