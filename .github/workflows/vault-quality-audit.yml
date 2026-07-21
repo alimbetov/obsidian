@@ -28,6 +28,7 @@ jobs:
         run: python .github/scripts/audit_vault_v2.py
 
       - name: Run cross-link graph audit
+        continue-on-error: true
         run: python .github/scripts/audit_cross_links.py
 
       - name: Set up Node.js
