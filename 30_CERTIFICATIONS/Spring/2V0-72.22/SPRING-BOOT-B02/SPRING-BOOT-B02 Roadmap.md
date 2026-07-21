@@ -172,7 +172,7 @@ python .github/scripts/card_progress.py record \
 - [x] Java 8 / Boot 2.5 source lab.
 - [x] Version baseline/current delta.
 - [x] Canvas and primary sources.
-- [ ] Maven tests passed in GitHub Actions.
+- [x] Seven Maven tests passed in GitHub Actions.
 - [ ] Delayed learner review data collected.
 - [ ] Mixed Spring timed mock coverage added.
 
