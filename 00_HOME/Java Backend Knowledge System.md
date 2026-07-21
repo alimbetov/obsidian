@@ -31,9 +31,6 @@ flowchart TD
     HOME --> DS[Distributed Systems]
     JAVA --> IQ[Interview Questions]
     SPRING --> IQ
-    DB --> IQ
-    MSG --> IQ
-    DS --> IQ
     JAVA --> CERT[Certification]
     SPRING --> CERT
     SPRING --> CASES[Production Cases]
@@ -44,17 +41,17 @@ flowchart TD
     LABS --> REVIEW
 ```
 
-## Выберите режим
+# Выберите режим
 
-### Повторить слабые темы
+## Повторить слабые темы
 
-- [[00_HOME/Review Dashboard]]
+- [[00_HOME/Review Dashboard]];
 - confidence scale;
 - outcome taxonomy;
 - active weakness register;
 - 10-minute and 30-minute review protocols.
 
-### Изучить предметную область
+## Изучить предметную область
 
 - [[01_MAPS/Java Map]]
 - [[01_MAPS/Spring Map]]
@@ -62,9 +59,9 @@ flowchart TD
 - [[01_MAPS/Messaging Map]]
 - [[01_MAPS/Distributed Systems Map]]
 
-### Подготовиться к Spring certification
+# Подготовиться к Spring certification
 
-#### Spring Core
+## Spring Core
 
 1. [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
 2. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
@@ -80,7 +77,7 @@ flowchart TD
 12. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards]]
 13. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 
-#### AOP and Cache
+## AOP and Cache
 
 14. [[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics]]
 15. [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards]]
@@ -88,7 +85,7 @@ flowchart TD
 17. [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards]]
 18. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
 
-#### Transaction Management
+## Transaction Management
 
 19. [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]]
 20. [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]]
@@ -97,7 +94,16 @@ flowchart TD
 23. [[50_LABS/Spring/TX-B01/README]]
 24. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
 
-### Открыть визуальную карту
+## Spring Data and JPA
+
+25. [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]]
+26. [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]]
+27. [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards]]
+28. [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
+29. [[50_LABS/Spring/DATA-B01/README]]
+30. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
+
+# Открыть визуальную карту
 
 - [[01_MAPS/Java Backend Map.canvas]]
 - [[01_MAPS/Java Concurrency Map.canvas]]
@@ -110,10 +116,11 @@ flowchart TD
 - [[01_MAPS/Spring Advanced Core Map.canvas]]
 - [[01_MAPS/Spring AOP and Caching Map.canvas]]
 - [[01_MAPS/Spring Transaction Management Map.canvas]]
+- [[01_MAPS/Spring Data JPA Map.canvas]]
 
-## Current Published Vertical Slices
+# Current Published Vertical Slices
 
-### Java Concurrency
+## Java Concurrency
 
 ```text
 Foundations
@@ -124,24 +131,26 @@ Foundations
   -> recall + executable labs
 ```
 
-### Spring Core — completed foundation
+## Spring Core
 
 ```text
-CORE-B01: IoC, beans, registration, injection styles          20 cards
-CORE-B02: candidate resolution, qualifiers, optionality       24 cards
-CORE-B03: bean lifecycle, init, proxy and destruction         24 cards
-CORE-B04: container extension points and processor phases     24 cards
-CORE-B05: configuration, profiles and property resolution     24 cards
-CORE-B06: scopes, FactoryBean, lazy and context hierarchy     24 cards
-TOTAL                                                         140 cards
+CORE-B01  20
+CORE-B02  24
+CORE-B03  24
+CORE-B04  24
+CORE-B05  24
+CORE-B06  24
+------------
+TOTAL    140 cards
 ```
 
-### Spring AOP and Cache
+## Spring AOP and Cache
 
 ```text
-AOP-B01:   proxy mechanics, self-invocation and advisors      24 cards
-CACHE-B01: Spring Cache, Caffeine and Redis                   20 cards
-TOTAL                                                          44 cards
+AOP-B01    24 cards
+CACHE-B01  20 cards
+-------------------
+TOTAL      44 cards
 ```
 
 Практика:
@@ -150,11 +159,11 @@ TOTAL                                                          44 cards
 - [[50_LABS/Spring/CACHE-B01/README]];
 - [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]].
 
-### Spring Transaction Management
+## Spring Transaction Management
 
 ```text
 TX-B01: logical/physical tx, propagation, isolation,
-        rollback, callbacks, async and outbox                 32 cards
+        rollback, callbacks, async and outbox        32 cards
 ```
 
 Практика:
@@ -163,43 +172,58 @@ TX-B01: logical/physical tx, propagation, isolation,
 - [[40_PRODUCTION_CASES/Spring/Transaction Management Production Cases]];
 - [[50_LABS/Spring/TX-B01/README]].
 
+## Spring Data and JPA
+
 ```text
-Spring Core              140
-AOP and Cache              44
-Transaction Management     32
------------------------------
-Published Spring total    216
+DATA-B01: persistence context, lifecycle, flush,
+          repositories, dynamic queries, fetching   36 cards
 ```
 
-## Spring learning sequence
+Практика:
+
+- [[01_MAPS/Spring Data JPA Map.canvas]];
+- [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]];
+- [[50_LABS/Spring/DATA-B01/README]].
+
+```text
+Spring Core               140
+AOP and Cache               44
+Transaction Management      32
+Spring Data and JPA          36
+-------------------------------
+Published Spring total     252
+```
+
+# Spring learning sequence
 
 ```mermaid
 flowchart LR
     B1[Container foundation] --> B2[Dependency resolution]
     B2 --> B3[Bean lifecycle]
-    B3 --> B4[Container extension points]
-    B4 --> B5[Configuration and profiles]
+    B3 --> B4[Extension points]
+    B4 --> B5[Configuration]
     B5 --> B6[Advanced Core]
     B6 --> AOP[AOP and Proxies]
-    AOP --> CACHE[Caffeine and Redis caching]
+    AOP --> CACHE[Caffeine and Redis]
     CACHE --> TX[Transaction Management]
     TX --> OUTBOX[Commit boundaries and Outbox]
     OUTBOX --> JPA[Spring Data and JPA]
+    JPA --> TEST[Testing]
 ```
 
-## Процесс повторения
+# Процесс повторения
 
 ```mermaid
 flowchart TD
-    A[Выбрать тему с низким confidence] --> B[Воспроизвести summary без заметки]
-    B --> C[Ответить на карточки]
+    A[Выбрать тему с низким confidence] --> B[Recall without notes]
+    B --> C[Answer cards]
     C --> D{Ответ уверенный и объяснён?}
-    D -- Да --> E[Разобрать production transfer]
-    D -- Нет --> F[Изучить mechanism и example]
+    D -- Да --> E[Production case]
+    D -- Нет --> F[Mechanism and example]
     F --> C
-    E --> G[Запустить или проследить lab]
-    G --> H[Записать outcome]
-    H --> I[Обновить confidence и next_review]
+    E --> G[Predict or run lab]
+    G --> H[Record outcome]
+    H --> I[Update confidence and next review]
 ```
 
 1. Откройте [[00_HOME/Review Dashboard]].
@@ -210,11 +234,11 @@ flowchart TD
 6. Разберите production case или lab.
 7. Обновите outcome и review metadata.
 
-## Очерёдность наполнения
+# Очерёдность наполнения
 
 1. Java Concurrency и JVM.
-2. Spring Core, AOP, Cache и Transaction Management — опубликованы.
-3. Spring Data and JPA.
+2. Spring Core, AOP, Cache, Transactions и Data/JPA — опубликованы.
+3. Spring Testing.
 4. Database transactions, locks, indexes и execution plans.
 5. Kafka и RabbitMQ delivery semantics.
 6. Reliability patterns распределённых систем.
