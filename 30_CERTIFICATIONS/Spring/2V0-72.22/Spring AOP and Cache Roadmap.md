@@ -9,6 +9,7 @@ status: active
 published_cards: 44
 normalized_cards: 44
 normalized_at: 2026-07-21
+visual_enrichment: complete
 batches:
   - AOP-B01
   - CACHE-B01
@@ -17,19 +18,20 @@ tags:
   - certification
   - aop
   - caching
+  - visual-learning
 ---
 
 # Spring AOP and Cache Roadmap
 
 > [!summary]
-> Маршрут продолжает Spring Core. `@Transactional`, `@Async`, method security и Spring Cache используют proxy/interceptor boundaries, поэтому их типовые failures имеют общий diagnostic model. Все 44 карточки приведены к единому pedagogical contract и дополнены mechanism explanations, exam traps и production examples.
+> Маршрут продолжает Spring Core. `@Transactional`, `@Async`, method security и Spring Cache используют proxy/interceptor boundaries, поэтому их типовые failures имеют общий diagnostic model. Все 44 карточки приведены к единому pedagogical contract. Дополнительно создан визуальный слой с 37 Mermaid-моделями, production traces и отдельным Canvas-atlas.
 
 ## Progress
 
 ```text
-AOP-B01    24 cards  PUBLISHED + NORMALIZED
-CACHE-B01  20 cards  PUBLISHED + NORMALIZED
--------------------------------------------
+AOP-B01    24 cards  PUBLISHED + NORMALIZED + VISUAL
+CACHE-B01  20 cards  PUBLISHED + NORMALIZED + VISUAL
+----------------------------------------------------
 TOTAL      44 cards
 ```
 
@@ -39,10 +41,12 @@ TOTAL      44 cards
 flowchart LR
     C[Spring Core] --> A[AOP terminology]
     A --> P[Proxy mechanics]
-    P --> S[Self-invocation]
+    P --> AV[AOP Visual Deep Dive]
+    AV --> S[Self-invocation and advisor chains]
     S --> K[Spring Cache]
-    K --> CF[Caffeine]
-    K --> R[Redis]
+    K --> KV[Cache Visual Deep Dive]
+    KV --> CF[Caffeine topology]
+    KV --> R[Redis topology]
     CF --> L2[L1 and L2 consistency]
     R --> L2
     L2 --> TX[Transaction Management]
@@ -51,11 +55,55 @@ flowchart LR
     TEST --> DB[DB-B01 Indexes and Query Plans]
 ```
 
-# AOP-B01 — published and normalized
+# Visual learning layer
+
+## Visual artifacts
+
+- [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]];
+- [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]];
+- [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]];
+- [[90_TEMPLATES/Pedagogical Visual Standard]].
+
+## Visual coverage
+
+```text
+AOP visual models      16 Mermaid diagrams
+Cache visual models    21 Mermaid diagrams
+Canvas atlas            1 connected learning map
+------------------------------------------------
+New visual elements    38
+```
+
+Diagrams include:
+
+- bean auto-proxy creation;
+- caller → proxy → interceptor → target sequences;
+- JDK and CGLIB class models;
+- external invocation versus self-invocation;
+- advisor ordering and nested exits;
+- around advice with missing or duplicate `proceed()`;
+- exception and rollback paths;
+- async executor/thread boundary;
+- method-security bypass;
+- AOP diagnostic decision tree;
+- cache hit/miss sequence;
+- `condition`/`unless` decision path;
+- tenant-key collision;
+- transaction/cache timing;
+- Caffeine multi-node topology;
+- Redis shared topology;
+- cache stampede;
+- local `sync=true` boundary;
+- L1/L2 promotion and invalidation;
+- Redis outage cascade;
+- cache diagnostic decision tree.
+
+# AOP-B01 — published, normalized and visually enriched
 
 Materials:
 
 - [[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics]];
+- [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]];
 - [[10_CONCEPTS/Spring/AOP/Spring AOP Proxies and Cache Interception]];
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards]];
 - [[50_LABS/Spring/AOP-B01/README]];
@@ -88,6 +136,20 @@ Explanation
 Exam Trap
 ```
 
+Visual walkthroughs include:
+
+- annotation metadata → infrastructure → advisor → proxy;
+- bean creation and auto-proxy sequence;
+- proxy/target object graph;
+- JDK versus CGLIB class diagrams;
+- external versus internal call traces;
+- nested advisor-chain sequence;
+- missing/double `proceed()` paths;
+- swallowed-exception path;
+- async executor and transaction boundary;
+- security bypass path;
+- end-to-end payment execution with security, tracing, retry and transaction.
+
 Real examples include:
 
 - security → transaction advisor order;
@@ -99,11 +161,12 @@ Real examples include:
 - synchronous execution of self-invoked `@Async`;
 - method-security bypass through `this`.
 
-# CACHE-B01 — published and normalized
+# CACHE-B01 — published, normalized and visually enriched
 
 Materials:
 
 - [[10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis]];
+- [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]];
 - [[10_CONCEPTS/Spring/AOP/Spring AOP Proxies and Cache Interception]];
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards]];
 - [[50_LABS/Spring/CACHE-B01/README]];
@@ -138,6 +201,24 @@ Explanation
 Exam Trap
 ```
 
+Visual walkthroughs include:
+
+- full cache interceptor sequence;
+- hit and miss as different execution paths;
+- `condition` before and `unless` after target invocation;
+- tenant-key collision sequence;
+- `@CachePut` and `@CacheEvict` timing;
+- database transaction versus cache update timeline;
+- Caffeine per-node topology;
+- Redis shared-store topology;
+- serialization compatibility across deployments;
+- TTL versus business invalidation;
+- hot-key stampede;
+- local single-flight versus multi-node loads;
+- L1/L2 promotion and invalidation protocol;
+- Redis outage cascade;
+- end-to-end product-catalogue topology.
+
 Real examples include:
 
 - multi-tenant cache-key collision;
@@ -160,13 +241,16 @@ Real examples include:
 - [x] 44/44 direct answers.
 - [x] 44/44 mechanism explanations.
 - [x] 44/44 concrete exam traps.
+- [x] AOP visual deep dive with multiple diagram types.
+- [x] Cache visual deep dive with topology and failure diagrams.
+- [x] Connected visual Canvas atlas.
+- [x] Pedagogical visual standard documented.
 - [x] Real transaction, async and security proxy examples.
 - [x] Real Caffeine, Redis and L1/L2 failure examples.
 - [x] Caffeine local cache lab.
 - [x] Redis Docker Compose lab.
 - [x] 12 production cases.
 - [x] Primary source index.
-- [x] Visual Canvas.
 - [x] Repository structural and Mermaid quality gate.
 - [ ] Full Maven runtime executed in connected environment.
 - [ ] Redis lab executed against Docker Redis.
@@ -186,6 +270,8 @@ Real examples include:
 10. Что произойдёт при Redis outage?
 11. Как инвалидируется L1 на других nodes?
 12. Как доказать behavior через metrics и advisor inspection?
+13. Какая diagram объясняет runtime path, а какая — topology?
+14. Показан ли failure path, а не только happy path?
 
 # Published continuations
 
@@ -207,6 +293,17 @@ Real examples include:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards]];
 - [[50_LABS/Spring/TEST-B01/README]].
 
+# Next enrichment targets
+
+Before expanding breadth, the same visual standard should be applied to:
+
+```text
+1. Spring Transaction Management
+2. Spring Data JPA
+3. Spring Testing
+4. Java Concurrency
+```
+
 # Next implementation route
 
 ```text
@@ -224,3 +321,4 @@ Planned vertical slice:
 7. Statistics, cardinality estimation and stale statistics.
 8. Cases where indexes no longer solve large-data workloads.
 9. Production cases and reproducible PostgreSQL lab.
+10. Visual standard: tree structure, page access, plan tree, selectivity curves and diagnostic decision paths.
