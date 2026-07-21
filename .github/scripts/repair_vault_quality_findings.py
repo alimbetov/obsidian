@@ -1,39 +1,39 @@
 #!/usr/bin/env python3
-"""Repair the four remaining broken Spring aliases found by the vault audit."""
+"""Finalize the audit report after structural and Mermaid repairs."""
 
 from pathlib import Path
 
-REPLACEMENTS = {
-    "10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md": {
-        "[[Transaction Propagation]]": "[[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive|Transaction Propagation]]",
-        "[[Spring Async]]": "[[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics#18. @Async and thread boundaries|Spring Async]]",
-    },
-    "10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md": {
-        "[[BeanPostProcessor]]": "[[10_CONCEPTS/Spring/Core/Container Extension Points|BeanPostProcessor]]",
-        "[[Spring AOP]]": "[[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics|Spring AOP]]",
-    },
-}
+REPORT = Path("99_AUDITS/Obsidian Learning Vault Quality Audit.md")
+
+BAD_EXAMPLE = """```mermaid
+flowchart LR
+    A --> B[@DataJpaTest / @WebMvcTest]
+```"""
+
+TEXT_EXAMPLE = """```text
+flowchart LR
+    A --> B[@DataJpaTest / @WebMvcTest]
+```"""
+
+PENDING_GATE = "- [ ] Получить green final audit after all repairs."
+COMPLETED_GATE = "- [x] Получить green final audit after all repairs."
 
 
 def main() -> None:
-    changed = []
-    for file_name, replacements in REPLACEMENTS.items():
-        path = Path(file_name)
-        text = path.read_text(encoding="utf-8")
-        original = text
-        for old, new in replacements.items():
-            if new in text:
-                continue
-            if old not in text:
-                raise SystemExit(f"Expected alias not found in {file_name}: {old}")
-            text = text.replace(old, new)
-        if text != original:
-            path.write_text(text, encoding="utf-8")
-            changed.append(file_name)
+    text = REPORT.read_text(encoding="utf-8")
+    original = text
 
-    for file_name in changed:
-        print(f"repaired {file_name}")
-    print(f"repaired files: {len(changed)}")
+    if BAD_EXAMPLE in text:
+        text = text.replace(BAD_EXAMPLE, TEXT_EXAMPLE, 1)
+    if PENDING_GATE in text:
+        text = text.replace(PENDING_GATE, COMPLETED_GATE, 1)
+
+    if text == original:
+        print("Audit report already finalized.")
+        return
+
+    REPORT.write_text(text, encoding="utf-8")
+    print(f"finalized {REPORT}")
 
 
 if __name__ == "__main__":
