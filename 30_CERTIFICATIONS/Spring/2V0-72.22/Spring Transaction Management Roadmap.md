@@ -17,7 +17,7 @@ tags:
 # Spring Transaction Management Roadmap
 
 > [!summary]
-> Маршрут продолжает AOP и Cache. Центральная модель: external call crosses proxy, interceptor chooses transaction manager, propagation maps logical scopes to physical resource transactions, rollback rules interpret method outcome, and commit-phase actions require an explicit durability policy.
+> Маршрут продолжает AOP и Cache. External call crosses proxy, interceptor selects transaction manager, propagation maps logical scopes to physical resource transactions, rollback rules interpret method outcome, and commit-phase actions require an explicit durability policy.
 
 ## Progress
 
@@ -38,10 +38,10 @@ flowchart LR
     G --> H[Commit callbacks]
     H --> I[Cache and async boundaries]
     I --> J[Transactional Outbox]
-    J --> K[Production diagnostics]
+    J --> K[Spring Data and JPA]
 ```
 
-## TX-B01 — published
+# TX-B01 — published
 
 Materials:
 
@@ -53,18 +53,18 @@ Materials:
 - [[50_LABS/Spring/TX-B01/README]];
 - [[98_SOURCES/Spring Transaction Management Sources]].
 
-## Coverage
+# Coverage
 
-### Transaction infrastructure
+## Transaction infrastructure
 
 - `@Transactional` as metadata;
-- proxy/interceptor execution path;
+- proxy/interceptor path;
 - `PlatformTransactionManager`;
-- transaction definition and status;
+- transaction definition/status;
 - thread-bound imperative transaction;
 - self-invocation.
 
-### Logical and physical transactions
+## Logical and physical transactions
 
 - logical method scopes;
 - physical JDBC/JPA transaction;
@@ -72,7 +72,7 @@ Materials:
 - `UnexpectedRollbackException`;
 - physical begin/commit/rollback counters.
 
-### Propagation
+## Propagation
 
 - `REQUIRED`;
 - `REQUIRES_NEW`;
@@ -84,19 +84,18 @@ Materials:
 - connection-pool pressure;
 - savepoint support.
 
-### Isolation and concurrency
+## Isolation and concurrency
 
 - dirty read;
 - non-repeatable read;
 - phantom read;
 - lost update;
-- database-specific MVCC semantics;
+- database-specific MVCC;
 - stable lock ordering;
-- optimistic locking;
-- pessimistic locking;
-- atomic conditional updates.
+- optimistic/pessimistic locking;
+- atomic conditional update.
 
-### Rollback semantics
+## Rollback semantics
 
 - runtime vs checked exceptions;
 - `rollbackFor` and `noRollbackFor`;
@@ -105,16 +104,16 @@ Materials:
 - commit-time failures;
 - read-only and timeout boundaries.
 
-### Advanced transaction control
+## Advanced transaction control
 
 - `TransactionTemplate`;
 - multiple transaction managers;
 - local vs distributed atomicity;
-- transaction synchronization;
+- synchronization callbacks;
 - `@TransactionalEventListener` phases;
 - test-managed transactions.
 
-### Cross-resource consistency
+## Cross-resource consistency
 
 - database/cache ordering;
 - after-commit invalidation;
@@ -127,14 +126,13 @@ Materials:
 - consumer idempotency;
 - ordering, retry and cleanup.
 
-## Vertical-slice quality gate
+# Vertical-slice quality gate
 
 - [x] 32 certification cards.
-- [x] English questions and Russian translations.
-- [x] Logical vs physical transaction mental model.
+- [x] Logical vs physical transaction model.
 - [x] All seven propagation modes.
 - [x] Detailed `UnexpectedRollbackException` explanation.
-- [x] Isolation phenomena and database boundary.
+- [x] Isolation and database boundary.
 - [x] Checked/runtime rollback examples.
 - [x] TransactionTemplate examples.
 - [x] Synchronization and transaction-bound event examples.
@@ -144,29 +142,29 @@ Materials:
 - [x] H2 executable lab structure.
 - [x] Visual Canvas.
 - [x] Primary source index.
-- [ ] Full Maven runtime executed in a connected environment.
+- [ ] Full Maven runtime executed in connected environment.
 - [ ] PostgreSQL concurrency experiments executed.
 - [ ] Real review outcomes collected.
 
-## Review questions
+# Review questions
 
-1. Did the caller cross a proxy?
-2. Which `PlatformTransactionManager` was selected?
-3. How many logical transaction scopes exist?
+1. Did caller cross a proxy?
+2. Which transaction manager was selected?
+3. How many logical scopes exist?
 4. How many physical transactions exist?
 5. Was an existing transaction joined, suspended or rejected?
 6. Which rollback rule matched?
 7. Was rollback-only set?
-8. Did the isolation declaration start a new physical transaction?
-9. Is a remote call holding DB locks/connections?
-10. Does an async worker have its own transaction?
+8. Did isolation metadata start a new physical transaction?
+9. Is remote I/O holding DB resources?
+10. Does async worker have its own transaction?
 11. Is cache invalidation before or after commit?
-12. Is external message publication durable after process crash?
+12. Is message publication durable after process crash?
 13. Can outbox delivery duplicate?
-14. Is the consumer idempotent?
-15. What evidence proves actual commit/rollback behavior?
+14. Is consumer idempotent?
+15. What evidence proves commit/rollback behavior?
 
-## Confusion matrix
+# Confusion matrix
 
 | Pair | Distinction |
 |---|---|
@@ -178,22 +176,37 @@ Materials:
 | read-only vs write prohibition | hint/contract vs hard enforcement |
 | after-commit vs durable publish | callback phase vs persisted intent |
 | cache transaction-aware vs XA | deferred timing vs atomic resources |
-| async invocation vs transaction continuation | new thread does not inherit imperative transaction |
+| async invocation vs transaction continuation | new thread does not inherit transaction |
 | outbox vs exactly once | durable intent + at-least-once delivery |
 
-## Next Spring routes
+# Published continuation — Spring Data and JPA
 
-1. Spring Data and JPA:
-   - persistence context;
-   - entity states;
-   - dirty checking;
-   - flush and commit;
-   - locking;
-   - query derivation;
-   - specifications;
-   - projections;
-   - pagination;
-   - N+1 and fetch plans.
-2. Spring testing.
-3. Spring Boot internals and auto-configuration.
-4. Messaging transactions and idempotent consumers.
+Transaction route continues directly into persistence semantics:
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]];
+- [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]];
+- [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]];
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards]];
+- [[50_LABS/Spring/DATA-B01/README]].
+
+The key bridge is:
+
+```text
+Spring transaction
+    ↓
+binds EntityManager/persistence context
+    ↓
+managed state and repository calls form one unit of work
+    ↓
+flush emits SQL
+    ↓
+transaction commit or rollback decides durability
+```
+
+# Next Spring routes
+
+1. Testing.
+2. Spring Boot internals and auto-configuration.
+3. Spring MVC/WebFlux.
+4. Spring Security.
+5. Messaging transactions and idempotent consumers.
