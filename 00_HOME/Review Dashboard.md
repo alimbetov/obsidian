@@ -37,7 +37,7 @@ flowchart LR
 4. [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
 5. [[50_LABS/Java/Concurrency/README]]
 
-## Spring Core — complete route
+## Spring Core — complete
 
 1. [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
 2. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
@@ -57,7 +57,7 @@ flowchart LR
 Spring Core: 140 cards
 ```
 
-## Spring AOP and Cache — published route
+## Spring AOP and Cache — published
 
 1. [[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics]]
 2. [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards]]
@@ -75,7 +75,7 @@ CACHE-B01  20 cards
 TOTAL      44 cards
 ```
 
-## Spring Transaction Management — active route
+## Spring Transaction Management — published
 
 1. [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]]
 2. [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]]
@@ -87,6 +87,31 @@ TOTAL      44 cards
 
 ```text
 TX-B01  32 cards
+```
+
+## Spring Data and JPA — active route
+
+1. [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]]
+2. [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]]
+3. [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards]]
+4. [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
+5. [[50_LABS/Spring/DATA-B01/README]]
+6. [[01_MAPS/Spring Data JPA Map.canvas]]
+7. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
+
+```text
+DATA-B01  36 cards
+```
+
+# Published Spring totals
+
+```text
+Spring Core               140
+AOP and Cache               44
+Transaction Management      32
+Spring Data and JPA          36
+-------------------------------
+TOTAL                       252 cards
 ```
 
 # Confidence Scale
@@ -147,6 +172,10 @@ TX-B01  32 cards
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]]
 
+## Data and JPA
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards]]
+
 # Spring contrast drills
 
 ## Core selected contrasts
@@ -166,15 +195,11 @@ TX-B01  32 cards
 - aspect vs advisor;
 - pointcut vs advice;
 - JDK proxy vs CGLIB;
-- interface contract vs target class;
 - proxy call vs self-invocation;
-- external collaborator vs self-injection;
 - public overridable method vs final/private method;
 - advisor order on entry vs exit;
 - audit rethrow vs swallowed exception;
-- runtime proxy vs raw object created with `new`;
-- external `@Async` vs self-invoked method;
-- annotation presence vs actual interceptor boundary.
+- external `@Async` vs self-invoked method.
 
 ### AOP memory model
 
@@ -192,24 +217,18 @@ CGLIB subclasses target.
 
 - Spring Cache abstraction vs storage provider;
 - `@Cacheable` vs `@CachePut`;
-- after-success eviction vs `beforeInvocation`;
 - `condition` vs `unless`;
-- cache key identity vs method argument identity;
 - Caffeine local state vs Redis shared state;
 - `maximumSize` vs `maximumWeight`;
-- `expireAfterWrite` vs `expireAfterAccess`;
 - TTL vs invalidation;
-- JSON serializer vs JDK serialization;
 - `sync=true` local coordination vs distributed lock;
-- cache outage fallback vs database protection;
-- L1 Redis eviction vs L1 Caffeine invalidation;
-- high hit rate vs correct fresh data.
+- L1 eviction vs cross-node invalidation.
 
 ### Cache memory model
 
 ```text
 Spring decides whether and when to cache.
-CacheManager chooses a named provider cache.
+CacheManager selects provider cache.
 Key defines identity and isolation.
 Caffeine lives inside one JVM.
 Redis is shared through network and serialization.
@@ -222,21 +241,13 @@ Every extra cache layer adds another stale copy.
 - logical transaction vs physical transaction;
 - `REQUIRED` vs `REQUIRES_NEW`;
 - `REQUIRES_NEW` vs `NESTED`;
-- `MANDATORY` vs `NEVER`;
-- caught exception vs committable transaction;
-- rollback-only vs normal method return;
+- caught exception vs rollback-only;
 - runtime exception vs checked exception;
-- `rollbackFor` vs `noRollbackFor`;
 - read-only hint vs hard write prohibition;
 - method isolation vs existing transaction isolation;
-- transaction timeout vs HTTP/lock/socket timeout;
-- declarative proxy boundary vs `TransactionTemplate`;
-- one manager vs multiple local managers;
 - after-commit callback vs durable message delivery;
 - async worker vs caller transaction;
-- cache transaction-aware timing vs XA;
-- outbox durable intent vs exactly-once delivery;
-- relay retry vs consumer idempotency.
+- outbox durable intent vs exactly-once delivery.
 
 ### Transaction memory model
 
@@ -245,27 +256,60 @@ Caller crosses proxy.
 Interceptor reads transaction metadata.
 Manager maps logical scope to physical resource transaction.
 Propagation decides join, create, suspend, savepoint or reject.
-Rollback rules interpret the method outcome.
-Commit callbacks happen after the transaction decision.
+Rollback rules interpret method outcome.
 Async does not inherit imperative thread-bound transaction.
 Outbox persists publication intent; delivery can duplicate.
 ```
 
-### TX-B01 five-minute trace drill
+## DATA-B01
 
-For any transactional code, answer:
+- Java object state vs persistence-context state vs committed DB state;
+- first-level cache vs Redis/Caffeine;
+- transient vs managed vs detached vs removed;
+- dirty checking vs repository `save()`;
+- flush vs commit;
+- `persist()` vs `merge()`;
+- merge argument vs merge result;
+- `save()` vs `saveAndFlush()`;
+- lazy loading vs N+1;
+- fetch join vs `@EntityGraph`;
+- entity vs interface/DTO projection;
+- derived query vs `Specification`;
+- `Page` vs `Slice`;
+- offset pagination vs keyset concept;
+- entity update vs bulk JPQL DML;
+- optimistic vs pessimistic lock;
+- H2 behavior vs production PostgreSQL/Oracle behavior.
+
+### JPA memory model
 
 ```text
-1. Which object reference receives the call?
-2. Is it a Spring proxy?
-3. Is there an existing physical transaction?
-4. Which propagation branch applies?
-5. How many logical scopes exist?
-6. How many physical transactions exist?
-7. Which exception/rollback rule applies?
-8. Is rollback-only set?
-9. Which rows actually commit?
-10. What happens after process crash?
+Service transaction defines the unit of work.
+EntityManager owns a persistence context.
+One entity identity maps to one managed Java instance.
+Managed changes are detected during flush.
+Flush executes SQL inside the transaction; commit finalizes it.
+Detached objects are not tracked.
+merge copies state and returns a managed copy.
+Repository proxy chooses persist, merge or query execution.
+Fetch plan determines associations; projection determines result shape.
+```
+
+### DATA-B01 five-minute trace drill
+
+For any repository/service code, answer:
+
+```text
+1. Where does the transaction start and end?
+2. Is the entity managed or detached?
+3. Is this Java object the canonical instance for the ID?
+4. Will dirty checking detect the change?
+5. When can flush happen?
+6. Which SQL statements are expected?
+7. Does the query cause N+1?
+8. Is entity, projection, Page or Slice the right result shape?
+9. Can bulk DML leave the context stale?
+10. What protects against lost updates?
 ```
 
 # Active Weakness Register
@@ -274,32 +318,34 @@ For any transactional code, answer:
 |---|---|
 | JDK proxy vs CGLIB | interface implementation против subclass |
 | proxy type vs self-invocation | implementation choice против caller path |
-| pointcut vs advice | selection против action |
 | `@Cacheable` vs `@CachePut` | skip-on-hit против always-invoke |
-| condition vs unless | before invocation против result veto |
 | Caffeine vs Redis | local latency против shared state |
-| TTL vs eviction | time bound против explicit invalidation |
 | logical vs physical transaction | method scope против resource commit |
 | `REQUIRED` vs `REQUIRES_NEW` | join/create против independent transaction |
-| `REQUIRES_NEW` vs `NESTED` | second transaction против savepoint |
-| caught exception vs rollback-only | catch не очищает transaction state |
 | checked vs runtime exception | commit default против rollback default |
-| read-only vs no writes | hint/contract против enforcement |
-| inner isolation vs outer transaction | local metadata против existing physical tx |
 | after-commit vs outbox | callback против durable intent |
-| async vs caller transaction | worker thread против thread-bound context |
-| multiple managers vs atomicity | independent local resources |
-| outbox vs exactly once | at-least-once + idempotency |
+| persistence context vs database | tracked object graph против committed rows |
+| managed vs detached | dirty checking против ordinary object mutation |
+| flush vs commit | SQL synchronization против durability |
+| persist vs merge | new managed instance против state copy |
+| merge argument vs result | detached original против managed copy |
+| lazy vs N+1 | loading policy против repeated-query symptom |
+| fetch join vs entity graph | query clause против fetch plan metadata |
+| Page vs Slice | total count против hasNext |
+| entity vs projection | mutable managed aggregate против read model |
+| bulk DML vs managed state | direct DB update против context tracking |
+| optimistic vs pessimistic lock | detect conflict против acquire DB lock |
 
 # Ten-Minute Review Session
 
 1. Выбрать одну confusion pair.
 2. Проговорить различие без notes.
 3. Ответить на 3 связанные cards.
-4. Нарисовать одну из схем:
+4. Нарисовать одну схему:
    - caller → proxy → manager → resource;
    - logical scopes → physical transaction;
-   - L1 → L2 → DB;
+   - EntityManager → persistence context → flush → SQL;
+   - root query → lazy association queries;
    - business row + outbox row → relay.
 5. Открыть concept и исправить пропуски.
 6. Зафиксировать outcome.
@@ -322,8 +368,12 @@ Suggested lab rotation:
 - Day 5: REQUIRED and UnexpectedRollbackException.
 - Day 6: REQUIRES_NEW and NESTED.
 - Day 7: checked rollback rules and TransactionTemplate.
-- Day 8: synchronization callbacks and transactional events.
-- Day 9: outbox atomicity and duplicate-delivery exercise.
+- Day 8: outbox atomicity and duplicate delivery.
+- Day 9: JPA identity map and dirty checking.
+- Day 10: detach/merge and `save()` return value.
+- Day 11: N+1, fetch join and `@EntityGraph`.
+- Day 12: projection, Specification, Page and Slice.
+- Day 13: bulk DML stale context and locking.
 
 # Weekly Review Protocol
 
@@ -340,17 +390,18 @@ Suggested lab rotation:
 - [ ] Mechanism explanation.
 - [ ] Proxy path diagram.
 - [ ] Logical/physical transaction count.
-- [ ] Propagation branch prediction.
 - [ ] Rollback outcome prediction.
-- [ ] Isolation/database boundary explanation.
-- [ ] Cache key and topology explanation.
-- [ ] Commit callback vs durable delivery distinction.
+- [ ] Entity-state identification.
+- [ ] Flush/commit distinction.
+- [ ] SQL/N+1 prediction.
+- [ ] Fetch/result-shape decision.
+- [ ] Locking and stale-context explanation.
 - [ ] Production transfer.
 - [ ] Lab trace prediction.
 
 # Next Planned Modules
 
-- Spring Data and JPA.
+- Spring Testing.
 - Java ForkJoinPool and parallel streams.
-- Databases: transactions, isolation and locks.
+- Databases: transactions, isolation, locks, indexes and plans.
 - Messaging: delivery semantics and idempotency.
