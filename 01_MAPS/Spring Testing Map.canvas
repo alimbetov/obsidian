@@ -81,7 +81,7 @@
     {
       "id": "slice",
       "type": "text",
-      "text": "# @DataJpaTest\n\nEntities, repositories, JPA infrastructure, embedded DB and rollback. Regular services are excluded.",
+      "text": "# @DataJpaTest\n\nEntities, repositories and JPA infrastructure. Tests roll back by default; an embedded DB is used only when Boot replacement applies. Regular services are excluded.",
       "x": -940,
       "y": -70,
       "width": 370,
