@@ -89,7 +89,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
-      - name: Enforce structural and diagram validity
+      - name: Enforce structural, diagram and normalized-card validity
         if: always()
         run: |
           python - <<'PY'
@@ -98,13 +98,33 @@ jobs:
 
           report = json.loads(Path('.audit/vault-audit.json').read_text(encoding='utf-8'))
           structural_errors = report['summary']['findings'].get('error', 0)
+
           failure_file = Path('.audit/mermaid-failures.txt')
           mermaid_errors = 0
           if failure_file.exists():
-              mermaid_errors = sum(1 for line in failure_file.read_text(encoding='utf-8').splitlines() if line.strip())
+              mermaid_errors = sum(
+                  1
+                  for line in failure_file.read_text(encoding='utf-8').splitlines()
+                  if line.strip()
+              )
+
+          strict_card_paths = {
+              '30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards.md',
+          }
+          normalized_card_errors = [
+              item
+              for item in report.get('findings', [])
+              if item.get('category') == 'card-completeness'
+              and item.get('path') in strict_card_paths
+          ]
 
           print(f'Structural errors: {structural_errors}')
           print(f'Mermaid render errors: {mermaid_errors}')
-          if structural_errors or mermaid_errors:
+          print(f'Normalized-card contract errors: {len(normalized_card_errors)}')
+          for item in normalized_card_errors:
+              print(f"- {item.get('path')}: {item.get('message')}")
+
+          if structural_errors or mermaid_errors or normalized_card_errors:
               raise SystemExit(1)
           PY
