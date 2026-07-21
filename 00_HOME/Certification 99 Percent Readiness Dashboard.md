@@ -20,6 +20,8 @@ tags:
 > [!summary]
 > Цель проекта — довести **материалы** Spring 2V0-72.22, Java 1Z0-829 и Java Concurrency до измеряемых 99%. Личная готовность к экзамену считается отдельно и требует timed mock evidence.
 
+Visual map: [[01_MAPS/Certification 99 Percent Map.canvas]].
+
 # Two readiness dimensions
 
 ```mermaid
@@ -36,8 +38,6 @@ flowchart LR
 
 ## Material readiness
 
-Material readiness answers:
-
 ```text
 Does the repository cover every official objective?
 Can the learner understand the mechanism visually?
@@ -50,16 +50,14 @@ Can full timed mocks be generated without topic gaps?
 
 ## Candidate readiness
 
-Candidate readiness answers:
-
 ```text
-Can the learner solve mixed exam questions under time pressure?
+Can the learner solve mixed questions under time pressure?
 Are the last results stable rather than accidental?
 Is every domain above the minimum threshold?
-Can every wrong answer be explained without opening notes?
+Can every wrong answer be explained without notes?
 ```
 
-# Material-readiness formula
+# Material-readiness model
 
 ```text
 Official objective mapping      25%
@@ -75,27 +73,27 @@ Timed mock bank                 5%
 TOTAL                          100%
 ```
 
-## 99% material gate
+The machine implementation currently scores domain artifact roles and mapped base cards conservatively. It does not award 99% for a long note or excess cards in one domain.
 
-A route may show `material_readiness: 99` only when:
+# 99% material gate
 
 ```text
-[ ] 100% official objectives mapped to repository artifacts
+[ ] 100% official objectives mapped
 [ ] no P0 or P1 objective gap
-[ ] every objective has canonical explanation or an explicit supporting note
+[ ] every objective has canonical/supporting explanation
 [ ] mechanism-heavy objectives have topology/sequence/state/decision diagrams
-[ ] every card has Question / Russian Translation / Answer / Explanation / Exam Trap
+[ ] all cards contain Question / Russian Translation / Answer / Explanation / Exam Trap
 [ ] base-card target reached
 [ ] exam-drill target reached
 [ ] production cases cover high-risk misconceptions
-[ ] labs cover API/runtime-heavy domains
-[ ] primary sources are version-pinned and recently verified
+[ ] API/runtime-heavy domains have executable labs
+[ ] sources are version-pinned and verified
 [ ] full timed mock bank exists
-[ ] structural, cross-link, Mermaid and card audits pass
-[ ] remaining 1% consists only of real exam uncertainty and unseen wording
+[ ] structural/cross-link/Mermaid/card/readiness CI passes
+[ ] remaining 1% is only unseen wording and real exam uncertainty
 ```
 
-# Candidate-readiness formula
+# Candidate-readiness model
 
 ```text
 Last full timed mocks          50%
@@ -107,63 +105,71 @@ Confidence calibration          5%
 TOTAL                         100%
 ```
 
-## Candidate 99% gate
-
-### Spring
+## Spring candidate gate
 
 ```text
-[ ] 6 full 60-question / 130-minute mocks completed
+[ ] 6 full 60-question / 130-minute mocks
 [ ] last 3 mocks >= 90%
-[ ] no official domain below 85%
+[ ] no domain below 85%
 [ ] all guessed-correct answers reviewed
-[ ] all wrong answers explained from mechanism
+[ ] every wrong answer explained from mechanism
 [ ] multiple-select discipline stable
 ```
 
-### Java 1Z0-829
+## Java 1Z0-829 candidate gate
 
 ```text
-[ ] 6 full timed mocks completed
+[ ] 6 full timed mocks
 [ ] last 4 mocks >= 90%
-[ ] no objective domain below 85%
+[ ] no domain below 85%
 [ ] compile/no-compile classification stable
 [ ] exact-output questions solved without IDE
-[ ] all wrong answers classified by language/API rule
+[ ] wrong answers classified by language/API rule
 ```
 
-### Java Concurrency
+## Java Concurrency candidate gate
 
 ```text
-[ ] 6 mixed 30-question timed mini-mocks completed
+[ ] 6 mixed 30-question mini-mocks
 [ ] last 4 mini-mocks >= 92%
-[ ] JMM/happens-before domain >= 90%
-[ ] executors/futures domain >= 90%
-[ ] liveness/diagnostics domain >= 90%
+[ ] JMM/happens-before >= 90%
+[ ] executors/futures >= 90%
+[ ] liveness/diagnostics >= 90%
 [ ] lab outcome predicted before execution
 ```
 
-# Current material baseline
+# Current baseline
 
 > [!warning]
-> Baseline below is conservative. Existing material is counted only when it can be mapped to the selected exam objective or independent Concurrency route.
+> Final values are produced by `.github/scripts/audit_certification_readiness.py`. Conceptual maturity can be higher than artifact-complete certification readiness.
 
-| Route | Current estimate | 99% target | Main gap |
-|---|---:|---:|---|
-| Spring 2V0-72.22 | 55–65% | 99% | Boot, MVC, Security, Actuator, JDBC, MockMvc, SpEL, drill/mock bank |
-| Java 1Z0-829 | 20–25% | 99% | 10 of 11 exam domains lack complete vertical slices |
-| Java Concurrency | 80–90% conceptually | 99% | dedicated card bank, cases, exam drills, stress/diagnostic labs and mocks |
+| Route | Conceptual baseline | Main artifact gap |
+|---|---:|---|
+| Spring 2V0-72.22 | medium/high in published domains | MVC, Security, Actuator, JDBC, MockMvc, SpEL, drills and mocks |
+| Java 1Z0-829 | low outside Concurrency | ten full exam domains, drills and mocks |
+| Java Concurrency | high conceptually | card bank, consolidated cases, controlled labs and mini-mocks |
+
+Published Spring progress:
+
+```text
+SPRING-BOOT-B01 completed as a full route
+30 Boot cards
+31 Boot diagrams
+15 Boot production cases
+Boot 2.5 ApplicationContextRunner lab
+```
 
 # Master roadmaps
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]]
 - [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]]
 - [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]]
+- [[98_SOURCES/Java SE 17 1Z0-829 Sources]]
+- [[98_SOURCES/Spring Boot Auto-configuration Sources]]
 
-# Official exam baselines
+# Official baseline summary
 
 ## Spring 2V0-72.22
-
-Current official exam page:
 
 ```text
 60 questions
@@ -172,11 +178,11 @@ single and multiple choice
 scaled passing score 300
 ```
 
-The knowledge route must preserve the exam-version boundary separately from modern Spring production deltas.
+The route separates Boot 2.x/Spring 5-era exam behavior from current Spring production deltas.
 
 ## Java 1Z0-829
 
-Oracle's current Java SE 17 learning path identifies these broad capabilities:
+Oracle's Java SE 17 learning path identifies:
 
 ```text
 object-oriented programming
@@ -187,42 +193,39 @@ deployment
 JDK 17 features
 ```
 
-Detailed repository objectives are decomposed into 11 exam domains in the Java master roadmap.
+The Java master roadmap decomposes these into 11 domain routes.
 
 # Delivery order
 
 ```mermaid
 flowchart TD
-    S1["SPRING-BOOT-B01"] --> S2["SPRING-MVC-B01"]
-    S2 --> S3["SPRING-SEC-B01"]
-    S3 --> S4["SPRING-ACT-B01"]
-    S4 --> S5["SPRING-JDBC-B01"]
-    S5 --> S6["SPRING-WEBTEST-B01"]
-    S6 --> SMOCK["Spring drill bank + mocks"]
-    SMOCK --> J1["JAVA-B01 foundations"]
-    J1 --> J2["JAVA-B02 object model"]
-    J2 --> J3["JAVA-B03 exceptions"]
-    J3 --> J4["JAVA-B04 collections/generics"]
-    J4 --> J5["JAVA-B05 lambdas/streams"]
-    J5 --> JREST["Modules, I/O, JDBC, localization"]
-    JREST --> JMOCK["Java drill bank + mocks"]
-    JMOCK --> CFINAL["Concurrency 99% consolidation"]
+    DONE["SPRING-BOOT-B01 published"] --> B2["SPRING-BOOT-B02"]
+    B2 --> MVC1["SPRING-MVC-B01"]
+    MVC1 --> MVC2["SPRING-MVC-B02"]
+    MVC2 --> SEC["SPRING-SEC-B01"]
+    SEC --> ACT["SPRING-ACT-B01"]
+    ACT --> JDBC["SPRING-JDBC-B01"]
+    JDBC --> WEBTEST["SPRING-WEBTEST-B01"]
+    WEBTEST --> SPEL["SPRING-SPEL-B01"]
+    SPEL --> SMOCK["Spring drills + mocks"]
+    SMOCK --> J1["JAVA-B01 … JAVA-B11"]
+    J1 --> JMOCK["Java drills + mocks"]
+    JMOCK --> CFINAL["Concurrency consolidation"]
 ```
 
 # Work policy
 
 1. One vertical slice at a time.
-2. Every slice includes theory, visual models, cards, cases, lab, Canvas and sources.
-3. Exam baseline and current production delta are explicitly separated.
-4. No percentage increases without machine-checkable evidence.
-5. Runtime PASS is never claimed without executing the lab/test suite.
-6. Mocks are diagnostic artifacts, not copied exam dumps.
-7. Exact official wording is not reproduced beyond permitted short quotations.
+2. Every slice includes theory, visuals, cards, cases, lab, Canvas and sources.
+3. Exam baseline and current production delta are separated.
+4. Percentage increases require machine-checkable evidence.
+5. Runtime PASS requires executed tests/labs.
+6. Mocks are original diagnostic artifacts, not copied exam dumps.
+7. Official wording is paraphrased except for permitted short quotations.
 
-# Review dashboard
+# Related navigation
 
-Use together with:
-
+- [[01_MAPS/Certification 99 Percent Map.canvas]]
 - [[00_HOME/Review Dashboard]]
 - [[00_HOME/Knowledge Route Registry]]
 - [[30_CERTIFICATIONS/Certification MOC]]
