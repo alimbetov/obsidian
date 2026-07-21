@@ -75,17 +75,39 @@
         },
         {
           "id":"SPRING-BOOT-ACTUATOR","status":"partial","weight":23,
-          "roadmap":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md",
-          "base_card_target":150,"base_cards_mapped":30,
-          "required_roles":["canonical","visual","cards","cases","lab","canvas","sources"],
+          "roadmap":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap.md",
+          "base_card_target":150,"base_cards_mapped":65,
+          "required_roles":["canonical","visual","cards","assessment","cases","lab","canvas","sources"],
           "artifacts":{
-            "canonical":["10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration.md"],
-            "visual":["10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive.md"],
-            "cards":["30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards.md"],
-            "cases":["40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases.md"],
-            "lab":["50_LABS/Spring/SPRING-BOOT-B01/README.md"],
-            "canvas":["01_MAPS/Spring Boot Auto-configuration Map.canvas"],
-            "sources":["98_SOURCES/Spring Boot Auto-configuration Sources.md"]
+            "canonical":[
+              "10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration.md",
+              "10_CONCEPTS/Spring/Boot/Spring Boot Externalized Configuration and Type-safe Binding.md"
+            ],
+            "visual":[
+              "10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive.md",
+              "10_CONCEPTS/Spring/Boot/Spring Boot Configuration Visual Deep Dive.md"
+            ],
+            "cards":[
+              "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards.md",
+              "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards.md"
+            ],
+            "assessment":["30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Assessment.md"],
+            "cases":[
+              "40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases.md",
+              "40_PRODUCTION_CASES/Spring/Spring Boot Configuration Production Cases.md"
+            ],
+            "lab":[
+              "50_LABS/Spring/SPRING-BOOT-B01/README.md",
+              "50_LABS/Spring/SPRING-BOOT-B02/README.md"
+            ],
+            "canvas":[
+              "01_MAPS/Spring Boot Auto-configuration Map.canvas",
+              "01_MAPS/Spring Boot Configuration Map.canvas"
+            ],
+            "sources":[
+              "98_SOURCES/Spring Boot Auto-configuration Sources.md",
+              "98_SOURCES/Spring Boot Externalized Configuration Sources.md"
+            ]
           }
         }
       ]
