@@ -48,6 +48,7 @@ flowchart LR
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Certification Card System|Card System]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap|Spring Core Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap|AOP and Cache Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap|Transaction Management Roadmap]]
 
 ## Published Spring Core batches
 
@@ -73,7 +74,20 @@ Spring Core total: 140 cards
 
 ```text
 AOP and Cache total: 44 cards
-Published Spring total: 184 cards
+```
+
+## Published Transaction Management batch
+
+| Batch | Cards | Concepts | Status |
+|---|---:|---|---|
+| [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards|TX-B01]] | 32 | [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]] + [[10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries]] | published |
+
+```text
+Spring Core              140
+AOP and Cache              44
+Transaction Management     32
+-----------------------------
+Published Spring total    216
 ```
 
 ## Supporting maps and labs
@@ -94,6 +108,13 @@ Published Spring total: 184 cards
 - [[50_LABS/Spring/AOP-B01/README]]
 - [[50_LABS/Spring/CACHE-B01/README]]
 - [[98_SOURCES/Spring AOP and Cache Sources]]
+
+### Transaction Management
+
+- [[01_MAPS/Spring Transaction Management Map.canvas]]
+- [[40_PRODUCTION_CASES/Spring/Transaction Management Production Cases]]
+- [[50_LABS/Spring/TX-B01/README]]
+- [[98_SOURCES/Spring Transaction Management Sources]]
 
 ## Card format
 
@@ -132,17 +153,16 @@ Published Spring total: 184 cards
 
 ## Next Spring certification route
 
-`Transaction Management Deep Dive`:
+`Spring Data and JPA`:
 
-- transaction interceptor lifecycle;
-- propagation;
-- isolation;
-- rollback rules;
-- checked and unchecked exceptions;
-- read-only semantics;
-- transaction manager selection;
-- programmatic transactions;
-- synchronization callbacks;
-- cache/DB ordering;
-- async boundaries;
-- Transactional Outbox.
+- persistence context and entity states;
+- dirty checking;
+- flush vs commit;
+- optimistic and pessimistic locking;
+- repository proxies;
+- query derivation;
+- specifications and dynamic queries;
+- projections;
+- pagination;
+- N+1 and fetch plans;
+- transaction boundaries around repositories.
