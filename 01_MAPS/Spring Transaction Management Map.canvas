@@ -1,0 +1,278 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap.md",
+      "x": 0,
+      "y": -820,
+      "width": 520,
+      "height": 220,
+      "color": "4"
+    },
+    {
+      "id": "pipeline-group",
+      "type": "group",
+      "label": "1. Transaction pipeline and identity",
+      "x": -1240,
+      "y": -450,
+      "width": 1340,
+      "height": 500,
+      "color": "2"
+    },
+    {
+      "id": "propagation-group",
+      "type": "group",
+      "label": "2. Propagation and physical transactions",
+      "x": 180,
+      "y": -450,
+      "width": 1480,
+      "height": 500,
+      "color": "3"
+    },
+    {
+      "id": "correctness-group",
+      "type": "group",
+      "label": "3. Isolation, rollback and commit phases",
+      "x": -1120,
+      "y": 150,
+      "width": 1440,
+      "height": 520,
+      "color": "1"
+    },
+    {
+      "id": "distributed-group",
+      "type": "group",
+      "label": "4. Cross-resource and production transfer",
+      "x": 400,
+      "y": 150,
+      "width": 1360,
+      "height": 520,
+      "color": "5"
+    },
+    {
+      "id": "concept",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive.md",
+      "x": -1160,
+      "y": -350,
+      "width": 390,
+      "height": 220
+    },
+    {
+      "id": "proxy",
+      "type": "text",
+      "text": "# Proxy boundary\n\nCaller → proxy → TransactionInterceptor → PlatformTransactionManager → target. Annotation alone is metadata.",
+      "x": -710,
+      "y": -350,
+      "width": 370,
+      "height": 220
+    },
+    {
+      "id": "logical",
+      "type": "text",
+      "text": "# Logical vs physical\n\nEach intercepted method has a logical scope. Several REQUIRED scopes can share one physical DB transaction.",
+      "x": -280,
+      "y": -350,
+      "width": 330,
+      "height": 220,
+      "color": "1"
+    },
+    {
+      "id": "self",
+      "type": "text",
+      "text": "# Self-invocation\n\nthis.method() does not re-enter the proxy. Propagation changes and rollback rules on the inner method are not intercepted.",
+      "x": -710,
+      "y": -80,
+      "width": 370,
+      "height": 190
+    },
+    {
+      "id": "manager",
+      "type": "text",
+      "text": "# Transaction manager\n\nSelects the resource transaction, binds it to the execution context and performs begin/commit/rollback/suspend/savepoint behavior.",
+      "x": -280,
+      "y": -80,
+      "width": 330,
+      "height": 190
+    },
+    {
+      "id": "required",
+      "type": "text",
+      "text": "# REQUIRED\n\nJoin existing or create. Inner rollback-only can produce UnexpectedRollbackException at outer commit.",
+      "x": 260,
+      "y": -350,
+      "width": 330,
+      "height": 220
+    },
+    {
+      "id": "requires-new",
+      "type": "text",
+      "text": "# REQUIRES_NEW\n\nSuspend outer and create an independent physical transaction. Requires additional resource capacity.",
+      "x": 650,
+      "y": -350,
+      "width": 340,
+      "height": 220
+    },
+    {
+      "id": "nested",
+      "type": "text",
+      "text": "# NESTED\n\nNormally one physical JDBC transaction plus savepoints. Outer rollback still removes nested work.",
+      "x": 1050,
+      "y": -350,
+      "width": 330,
+      "height": 220
+    },
+    {
+      "id": "other-propagation",
+      "type": "text",
+      "text": "# Other modes\n\nSUPPORTS optional; MANDATORY requires; NOT_SUPPORTED suspends; NEVER forbids.",
+      "x": 1420,
+      "y": -350,
+      "width": 190,
+      "height": 220
+    },
+    {
+      "id": "pool",
+      "type": "text",
+      "text": "# Resource pressure\n\nREQUIRES_NEW can hold outer connection and request another. Long remote calls hold connections and locks.",
+      "x": 650,
+      "y": -80,
+      "width": 340,
+      "height": 190,
+      "color": "1"
+    },
+    {
+      "id": "isolation",
+      "type": "text",
+      "text": "# Isolation\n\nDEFAULT, READ_UNCOMMITTED, READ_COMMITTED, REPEATABLE_READ, SERIALIZABLE. Actual phenomena remain database-specific.",
+      "x": -1040,
+      "y": 260,
+      "width": 360,
+      "height": 220
+    },
+    {
+      "id": "rollback",
+      "type": "text",
+      "text": "# Rollback rules\n\nRuntimeException/Error roll back by default; checked exceptions commit unless configured. Catching changes what interceptor observes.",
+      "x": -620,
+      "y": 260,
+      "width": 380,
+      "height": 220
+    },
+    {
+      "id": "template",
+      "type": "text",
+      "text": "# TransactionTemplate\n\nProgrammatic code-block boundary, explicit setRollbackOnly and multiple sequential transactions.",
+      "x": -180,
+      "y": 260,
+      "width": 330,
+      "height": 220
+    },
+    {
+      "id": "callbacks",
+      "type": "text",
+      "text": "# Commit phases\n\nTransactionSynchronization and TransactionalEventListener bind actions to before/after commit, rollback or completion.",
+      "x": -620,
+      "y": 520,
+      "width": 380,
+      "height": 180
+    },
+    {
+      "id": "thread",
+      "type": "text",
+      "text": "# Thread boundary\n\nImperative transaction is normally thread-bound. Async worker does not inherit caller transaction.",
+      "x": -180,
+      "y": 520,
+      "width": 330,
+      "height": 180
+    },
+    {
+      "id": "outbox",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries.md",
+      "x": 480,
+      "y": 260,
+      "width": 390,
+      "height": 220
+    },
+    {
+      "id": "cache-order",
+      "type": "text",
+      "text": "# DB and cache ordering\n\nCache update before DB commit can expose data that later rolls back. Prefer after-commit invalidation or durable events.",
+      "x": 930,
+      "y": 260,
+      "width": 370,
+      "height": 220
+    },
+    {
+      "id": "multiple-managers",
+      "type": "text",
+      "text": "# Multiple managers\n\nTwo local transaction managers are not automatically one atomic transaction. Use XA only deliberately or redesign consistency.",
+      "x": 1360,
+      "y": 260,
+      "width": 340,
+      "height": 220
+    },
+    {
+      "id": "cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards.md",
+      "x": 500,
+      "y": 520,
+      "width": 290,
+      "height": 180
+    },
+    {
+      "id": "cases",
+      "type": "file",
+      "file": "40_PRODUCTION_CASES/Spring/Transaction Management Production Cases.md",
+      "x": 850,
+      "y": 520,
+      "width": 310,
+      "height": 180
+    },
+    {
+      "id": "lab",
+      "type": "file",
+      "file": "50_LABS/Spring/TX-B01/README.md",
+      "x": 1220,
+      "y": 520,
+      "width": 250,
+      "height": 180
+    },
+    {
+      "id": "sources",
+      "type": "file",
+      "file": "98_SOURCES/Spring Transaction Management Sources.md",
+      "x": 1530,
+      "y": 520,
+      "width": 190,
+      "height": 180
+    }
+  ],
+  "edges": [
+    {"id":"e01","fromNode":"root","toNode":"concept","label":"start","fromSide":"bottom","toSide":"top"},
+    {"id":"e02","fromNode":"concept","toNode":"proxy","label":"runtime entry","fromSide":"right","toSide":"left"},
+    {"id":"e03","fromNode":"proxy","toNode":"logical","label":"scope model","fromSide":"right","toSide":"left"},
+    {"id":"e04","fromNode":"proxy","toNode":"self","label":"caller path"},
+    {"id":"e05","fromNode":"logical","toNode":"manager","label":"physical resource"},
+    {"id":"e06","fromNode":"logical","toNode":"required","label":"default propagation"},
+    {"id":"e07","fromNode":"required","toNode":"requires-new","label":"independent alternative","fromSide":"right","toSide":"left"},
+    {"id":"e08","fromNode":"requires-new","toNode":"nested","label":"savepoint alternative","fromSide":"right","toSide":"left"},
+    {"id":"e09","fromNode":"nested","toNode":"other-propagation","label":"remaining modes","fromSide":"right","toSide":"left"},
+    {"id":"e10","fromNode":"requires-new","toNode":"pool","label":"resource consequence"},
+    {"id":"e11","fromNode":"required","toNode":"rollback","label":"rollback-only"},
+    {"id":"e12","fromNode":"manager","toNode":"isolation","label":"resource characteristic"},
+    {"id":"e13","fromNode":"rollback","toNode":"template","label":"explicit boundary","fromSide":"right","toSide":"left"},
+    {"id":"e14","fromNode":"template","toNode":"callbacks","label":"completion phases"},
+    {"id":"e15","fromNode":"callbacks","toNode":"thread","label":"execution context","fromSide":"right","toSide":"left"},
+    {"id":"e16","fromNode":"callbacks","toNode":"outbox","label":"durability boundary"},
+    {"id":"e17","fromNode":"outbox","toNode":"cache-order","label":"invalidation event","fromSide":"right","toSide":"left"},
+    {"id":"e18","fromNode":"cache-order","toNode":"multiple-managers","label":"cross-resource consistency","fromSide":"right","toSide":"left"},
+    {"id":"e19","fromNode":"concept","toNode":"cards","label":"active recall"},
+    {"id":"e20","fromNode":"cards","toNode":"cases","label":"production transfer","fromSide":"right","toSide":"left"},
+    {"id":"e21","fromNode":"cases","toNode":"lab","label":"observable experiment","fromSide":"right","toSide":"left"},
+    {"id":"e22","fromNode":"sources","toNode":"root","label":"formal basis"}
+  ]
+}
