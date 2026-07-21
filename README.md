@@ -1,187 +1,191 @@
 # Java Backend Knowledge System
 
-Структурированная Obsidian-база для Java backend: mechanism-oriented explanations, active recall, production incidents, visual models и executable labs.
+Структурированная Obsidian-база для Java backend: mechanism-oriented explanations, visual models, active recall, production incidents, executable labs и измеряемая certification readiness.
 
-## Цели
+# Главные входы
 
-- вспомнить тему за 30 секунд перед собеседованием;
-- объяснить runtime mechanism и trade-offs;
-- готовиться к Java/Spring certification;
-- разбирать production failures через evidence;
-- связывать Java, Spring, databases, messaging и distributed systems;
-- изучать topology, sequence, state и decision models, а не только линейный текст.
+1. [[00_HOME/Certification 99 Percent Readiness Dashboard]] — Spring, Java и Concurrency readiness.
+2. [[00_HOME/Java Backend Knowledge System]] — основной учебный вход.
+3. [[00_HOME/Knowledge Route Registry]] — реестр опубликованных routes.
+4. [[00_HOME/Review Dashboard]] — ежедневное повторение.
+5. [[30_CERTIFICATIONS/Certification MOC]] — certification navigation.
+6. [[01_MAPS/Java Backend Map.canvas]] — общая spatial map.
 
-# С чего начать
-
-1. [[00_HOME/Java Backend Knowledge System]] — главный маршрут.
-2. [[00_HOME/Knowledge Route Registry]] — реестр всех опубликованных routes и их artifacts.
-3. [[00_HOME/Review Dashboard]] — ежедневное повторение.
-4. [[01_MAPS/Java Backend Map.canvas]] — общая spatial map.
-5. [[01_MAPS/Spring Visual Learning Atlas.canvas]] — зрелые Spring routes.
-6. [[01_MAPS/Spring Core Visual Atlas.canvas]] — container и lifecycle.
-7. [[01_MAPS/Java Concurrency Visual Atlas.canvas]] — JMM, execution и diagnostics.
-8. [[01_MAPS/Database Indexes and Query Plans Map.canvas]] — DB-B01.
-
-Cross-linking rules: [[90_TEMPLATES/Cross-Linking Standard]].
-
-# Модель знаний
+# 99 percent certification program
 
 ```text
-Canonical concept
-   ├── Visual deep dive
-   ├── Active-recall cards
-   ├── Production cases
-   ├── Comparisons
-   ├── Executable lab
-   ├── Canvas map
-   └── Official sources
+Spring 2V0-72.22
+  600 base cards
+  150 drill cards
+  6 full timed mocks
+
+Java 1Z0-829
+  720 base cards
+  180 drill cards
+  6 full timed mocks
+
+Java Concurrency
+  140 base cards
+  40 drill cards
+  20 production cases
+  25 labs
+  6 timed mini-mocks
 ```
 
-Visual deep dive дополняет canonical note, но не создаёт второй conflicting source of truth.
+Master roadmaps:
 
-# Основные карты
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]]
+- [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]]
+- [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]]
 
-- [[00_HOME/Knowledge Route Registry]]
-- [[01_MAPS/Java Map]]
-- [[01_MAPS/Spring Map]]
-- [[01_MAPS/Databases Map]]
-- [[01_MAPS/Messaging Map]]
-- [[01_MAPS/Distributed Systems Map]]
+Readiness is machine-calculated by:
+
+```text
+.github/certification-readiness.json
+.github/scripts/audit_certification_readiness.py
+```
+
+Low readiness is not a CI failure. Invalid weights, missing declared artifacts or a falsely published incomplete route are CI failures.
+
+# Knowledge model
+
+```text
+Official objective
+    ↓
+Canonical concept
+    ↓
+Visual deep dive / Canvas
+    ↓
+Base cards
+    ↓
+Exam drills
+    ↓
+Production cases
+    ↓
+Executable lab
+    ↓
+Timed mock and review outcome
+```
+
+Cross-linking: [[90_TEMPLATES/Cross-Linking Standard]].
+
+Visual standard: [[90_TEMPLATES/Pedagogical Visual Standard]].
+
+# Current visual layer
+
+```text
+Spring Core                         26 diagrams
+AOP                                 20 diagrams
+Cache                               27 diagrams
+Transactions                        20 diagrams
+Spring Data JPA                     31 diagrams
+Spring Testing                      24 diagrams
+Spring Boot Auto-configuration      31 diagrams
+Java Concurrency                    35 diagrams
+DB-B01                              62 diagrams
+Standard example                     1 diagram
+Canvas atlases                       6 maps
+------------------------------------------------
+Visual elements                    284
+```
+
+Visual entry points:
+
 - [[01_MAPS/Spring Visual Learning Atlas.canvas]]
 - [[01_MAPS/Spring Core Visual Atlas.canvas]]
 - [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]]
+- [[01_MAPS/Spring Boot Auto-configuration Map.canvas]]
 - [[01_MAPS/Java Concurrency Visual Atlas.canvas]]
 - [[01_MAPS/Database Indexes and Query Plans Map.canvas]]
-- [[20_QUESTIONS/Interview/Interview Questions MOC]]
-- [[30_CERTIFICATIONS/Certification MOC]]
 
-# Visual learning layer
+# Published Spring routes
 
-Повторный педагогический audit показал: line count и одна общая схема не гарантируют понимание. Advanced route должен показывать разные функции visual model.
+## Spring Core
 
 ```text
-Topology          → какие компоненты существуют
-Sequence          → как идёт runtime interaction
-State/data flow   → как меняется состояние
-Decision tree     → как выбирать и диагностировать
-Class model       → contracts/inheritance/proxy boundaries
+CORE-B01  20
+CORE-B02  24
+CORE-B03  24
+CORE-B04  24
+CORE-B05  24
+CORE-B06  24
+----------------
+TOTAL    140 cards
 ```
-
-## Current visual enrichment
-
-```text
-Spring Core Visual Deep Dive    26 diagrams
-AOP Visual Deep Dive            20 diagrams
-Cache Visual Deep Dive          27 diagrams
-Transactions Visual Deep Dive   20 diagrams
-Data JPA Visual Deep Dive       31 diagrams
-Testing Visual Deep Dive        24 diagrams
-Java Concurrency Visual         35 diagrams
-DB-B01 visual models            62 diagrams
-Standard example                 1 diagram
-Canvas atlases                   5 maps
--------------------------------------------
-Visual elements                251
-```
-
-## Visual deep dives
-
-- [[10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive]]
-- [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]]
-- [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]]
-- [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive]]
-- [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]]
-- [[10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive]]
-- [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]]
-- [[10_CONCEPTS/Databases/PostgreSQL Index Mechanics]]
-- [[10_CONCEPTS/Databases/PostgreSQL EXPLAIN and Query Plan Analysis]]
-- [[90_TEMPLATES/Pedagogical Visual Standard]]
-
-# Published routes
-
-## Java Concurrency — visually enriched
-
-- thread lifecycle;
-- Java Memory Model and happens-before;
-- visibility, atomicity and ordering;
-- `volatile`, monitors, locks and atomics;
-- ExecutorService, saturation and backpressure;
-- Future, CompletableFuture and ForkJoinPool;
-- ThreadLocal lifecycle and leaks;
-- virtual threads and downstream capacity;
-- concurrent collections;
-- deadlock/livelock/starvation;
-- 35 visual models;
-- Java 8/21 labs.
-
-Entry points:
-
-- [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path]]
-- [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]]
-- [[01_MAPS/Java Concurrency Visual Atlas.canvas]]
-- [[50_LABS/Java/Concurrency/README]]
-
-## Spring Core — 140 cards, visually enriched
-
-```text
-CORE-B01  20 — IoC, beans, registration, injection
-CORE-B02  24 — candidate resolution and optionality
-CORE-B03  24 — lifecycle
-CORE-B04  24 — extension points and early references
-CORE-B05  24 — configuration, profiles and properties
-CORE-B06  24 — scopes, FactoryBean, cycles and hierarchy
-```
-
-Visual route covers metadata → BeanDefinition → candidate resolution → lifecycle → post-processing/proxy → scopes → configuration → startup diagnostics.
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 - [[10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive]]
 - [[01_MAPS/Spring Core Visual Atlas.canvas]]
 
-## Spring AOP, Caffeine and Redis
+## AOP and Cache
 
-- `AOP-B01`: 24 normalized cards;
-- `CACHE-B01`: 20 normalized cards;
-- 47 dedicated visual diagrams;
-- AOP and Cache labs;
-- 12 production cases.
+```text
+AOP-B01    24 normalized cards
+CACHE-B01  20 normalized cards
+```
 
-Route: [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]].
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
+- [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]]
+- [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]]
 
-## Spring Transaction Management
+## Transaction Management
 
-- `TX-B01`: 32 cards;
-- logical versus physical transactions;
-- propagation, rollback-only and savepoints;
-- isolation, callbacks, async boundaries;
-- Transactional Outbox;
-- 20 visual diagrams;
-- 15 incidents and H2 lab.
-
-Route: [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]].
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
+- `TX-B01`: 32 cards.
+- Transaction proxy, propagation, rollback, callbacks and Outbox.
 
 ## Spring Data and JPA
 
-- `DATA-B01`: 36 cards;
-- persistence context, entity states, dirty checking and flush;
-- repositories, Specifications, projections and pagination;
-- N+1, fetch plans and locking;
-- 31 visual diagrams;
-- 16 incidents and H2/Hibernate lab.
-
-Route: [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]].
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
+- `DATA-B01`: 36 cards.
+- Persistence context, repositories, fetching, pagination and locking.
 
 ## Spring Testing
 
-- `TEST-B01`: 36 cards;
-- TestContext, slices and context cache;
-- test-managed transactions, commit boundaries and `TestTransaction`;
-- H2 versus PostgreSQL/Testcontainers;
-- N+1 regression;
-- 24 visual diagrams;
-- 16 incidents and JUnit suite.
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
+- `TEST-B01`: 36 cards.
+- TestContext, slices, transaction proof and Testcontainers.
 
-Route: [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]].
+## SPRING-BOOT-B01 — Bootstrap and Auto-configuration
+
+```text
+Canonical note        1
+Visual deep dive      1
+Mermaid diagrams     31
+Cards                30
+Production cases     15
+Boot 2.5 lab          1
+Canvas                1
+Source index          1
+```
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]]
+- [[10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration]]
+- [[10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards]]
+- [[40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases]]
+- [[50_LABS/Spring/SPRING-BOOT-B01/README]]
+- [[01_MAPS/Spring Boot Auto-configuration Map.canvas]]
+- [[98_SOURCES/Spring Boot Auto-configuration Sources]]
+
+Coverage:
+
+```text
+@SpringBootApplication
+SpringApplication bootstrap
+Environment and WebApplicationType
+@EnableAutoConfiguration
+AutoConfigurationImportSelector
+conditions, exclusions and back-off
+Condition Evaluation Report
+starters and dependency management
+Boot 2.x spring.factories
+current AutoConfiguration.imports delta
+ApplicationContextRunner
+failure analyzers and runners
+```
+
+# Published Spring total
 
 ```text
 Spring Core               140
@@ -189,108 +193,126 @@ AOP and Cache               44
 Transaction Management      32
 Spring Data and JPA          36
 Spring Testing               36
+Spring Boot B01              30
 -------------------------------
-Published Spring total     288 cards
+TOTAL                       318 cards
 ```
+
+# Java Concurrency foundation
+
+- [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]]
+- [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path]]
+- [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]]
+- [[01_MAPS/Java Concurrency Visual Atlas.canvas]]
+- [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
+- [[50_LABS/Java/Concurrency/README]]
+
+Current conceptual coverage:
+
+```text
+thread lifecycle
+JMM and happens-before
+volatile, monitors and locks
+CAS and atomics
+executors and backpressure
+Future and CompletableFuture
+ForkJoinPool
+ThreadLocal
+virtual threads
+concurrent collections
+liveness diagnostics
+```
+
+Still required for 99%:
+
+```text
+140-card dedicated bank
+40 drills
+20 consolidated production cases
+25 controlled labs
+6 timed mini-mocks
+```
+
+# Java 1Z0-829 route
+
+Master roadmap: [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]].
+
+Planned domains:
+
+```text
+JAVA-B01 Data/Text/Date-Time
+JAVA-B02 Control Flow
+JAVA-B03 Object Model
+JAVA-B04 Exceptions
+JAVA-B05 Collections and Generics
+JAVA-B06 Lambdas and Streams
+JAVA-B07 Modules and Deployment
+JAVA-B08 Concurrency Exam Objectives
+JAVA-B09 I/O and NIO.2
+JAVA-B10 JDBC
+JAVA-B11 Localization
+```
+
+# Database route
 
 ## DB-B01 — Indexes and Query Plans
 
-Published as a complete visual vertical slice:
-
 ```text
-Canonical notes         2
-Visual diagrams        62
-Cards                  30
-Production cases       14
-PostgreSQL experiments 10
-Canvas maps             1
-Official source index   1
+2 canonical notes
+62 diagrams
+30 cards
+14 production cases
+10 PostgreSQL experiments
+1 Canvas
 ```
-
-Coverage:
-
-- B-tree hierarchy, leaf traversal and heap TIDs;
-- selectivity, cardinality and skew;
-- composite indexes and leading-prefix reasoning;
-- PostgreSQL 18 skip-scan boundary;
-- `ORDER BY LIMIT` and early stop;
-- covering/`INCLUDE`, visibility map and `Heap Fetches`;
-- partial and expression indexes;
-- bitmap scans;
-- write amplification and HOT;
-- `EXPLAIN (ANALYZE, BUFFERS)`;
-- estimates, actual rows and loops;
-- planner statistics and extended statistics;
-- nested-loop/hash/merge joins;
-- sort/hash spill;
-- OFFSET versus keyset;
-- cases where indexes cannot remove required large-data work.
-
-Entry points:
 
 - [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap]]
 - [[10_CONCEPTS/Databases/PostgreSQL Index Mechanics]]
 - [[10_CONCEPTS/Databases/PostgreSQL EXPLAIN and Query Plan Analysis]]
-- [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards]]
 - [[50_LABS/Databases/DB-B01/README]]
-- [[01_MAPS/Database Indexes and Query Plans Map.canvas]]
 
-# Repository structure
-
-```text
-00_HOME/              entry points and dashboards
-01_MAPS/              Canvas and text maps
-10_CONCEPTS/          canonical and visual deep-dive notes
-20_QUESTIONS/         interview recall and troubleshooting
-30_CERTIFICATIONS/    card batches and roadmaps
-40_PRODUCTION_CASES/  incidents with evidence and repair
-50_LABS/              executable experiments
-90_TEMPLATES/         note templates and visual/cross-link standards
-98_SOURCES/           official primary sources
-99_AUDITS/            quality and enrichment reports
-```
-
-# Running DB-B01
+# Running the new Boot lab
 
 ```bash
-cd 50_LABS/Databases/DB-B01
-docker compose up -d
-
-docker compose exec -T postgres psql -U lab -d index_lab < sql/01_schema.sql
-docker compose exec -T postgres psql -U lab -d index_lab < sql/02_seed.sql
-docker compose exec -T postgres psql -U lab -d index_lab < sql/03_experiments.sql | tee db-b01-output.txt
+cd 50_LABS/Spring/SPRING-BOOT-B01
+mvn clean test
 ```
 
-PowerShell commands are documented in [[50_LABS/Databases/DB-B01/README]].
+The GitHub Actions quality workflow executes this lab automatically.
 
-# Running Spring labs
-
-```bash
-cd 50_LABS/Spring/AOP-B01 && mvn clean compile exec:java
-cd 50_LABS/Spring/CACHE-B01 && mvn clean compile exec:java
-cd 50_LABS/Spring/TX-B01 && mvn clean compile exec:java
-cd 50_LABS/Spring/DATA-B01 && mvn clean compile exec:java
-cd 50_LABS/Spring/TEST-B01 && mvn clean test
-```
-
-# Quality policy
-
-- One concept — one canonical note.
-- Advanced route includes topology, sequence, state/data flow and decision tree.
-- Diagram is followed by interpretation and evidence path.
-- Cards contain Question, Russian Translation, Answer, Explanation and Exam Trap.
-- Production case starts with observable symptom and ends with measured proof.
-- Version-sensitive details are explicitly marked.
-- Mermaid passes real `mermaid-cli` rendering.
-- Canvas passes JSON, reference, geometry and connectivity checks.
-- Published routes obey [[90_TEMPLATES/Cross-Linking Standard]].
-- Route graph is machine-checked by `.github/scripts/audit_cross_links.py`.
-
-# Current next routes
+# Quality controls
 
 ```text
-DB-B02 — Transactions, MVCC and Locks
-Spring Boot Internals and Auto-configuration
-Java language / collections / JVM vertical slices
-Messaging and Distributed Systems
+.github/scripts/audit_vault_v2.py
+.github/scripts/audit_cross_links.py
+.github/scripts/audit_certification_readiness.py
+.github/workflows/vault-quality-audit.yml
+```
+
+The gate checks:
+
+- Markdown structure;
+- wikilinks and route graph;
+- Canvas JSON/references/geometry;
+- real Mermaid rendering;
+- strict published-card contracts;
+- readiness-model integrity;
+- SPRING-BOOT-B01 Maven tests.
+
+# Current delivery sequence
+
+```text
+SPRING-BOOT-B02
+SPRING-MVC-B01
+SPRING-MVC-B02
+SPRING-SEC-B01
+SPRING-ACT-B01
+SPRING-JDBC-B01
+SPRING-WEBTEST-B01
+SPRING-SPEL-B01
+Spring legacy-card normalization
+Spring drill bank and mocks
+JAVA-B01 … JAVA-B11
+Java drill bank and mocks
+Concurrency consolidation and mini-mocks
 ```
