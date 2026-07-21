@@ -50,6 +50,7 @@ flowchart LR
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap|AOP and Cache Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap|Transaction Management Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap|Spring Data JPA Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap|Spring Testing Roadmap]]
 
 ## Published Spring Core batches
 
@@ -61,10 +62,6 @@ flowchart LR
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards|CORE-B04]] | 24 | [[10_CONCEPTS/Spring/Core/Container Extension Points]] | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards|CORE-B05]] | 24 | [[10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties]] | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards|CORE-B06]] | 24 | [[10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy]] | published |
-
-```text
-Spring Core total: 140 cards
-```
 
 ## Published AOP and Cache batches
 
@@ -85,13 +82,20 @@ Spring Core total: 140 cards
 |---|---:|---|---|
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards|DATA-B01]] | 36 | [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]] + [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]] | published |
 
+## Published Spring Testing batch
+
+| Batch | Cards | Concepts | Status |
+|---|---:|---|---|
+| [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards|TEST-B01]] | 36 | [[10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices]] + [[10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers]] | published |
+
 ```text
 Spring Core               140
 AOP and Cache               44
 Transaction Management      32
 Spring Data and JPA          36
+Spring Testing               36
 -------------------------------
-Published Spring total     252
+Published Spring total     288
 ```
 
 # Supporting maps, cases and labs
@@ -126,6 +130,13 @@ Published Spring total     252
 - [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
 - [[50_LABS/Spring/DATA-B01/README]]
 - [[98_SOURCES/Spring Data JPA Sources]]
+
+## Spring Testing
+
+- [[01_MAPS/Spring Testing Map.canvas]]
+- [[40_PRODUCTION_CASES/Spring/Spring Testing Production Cases]]
+- [[50_LABS/Spring/TEST-B01/README]]
+- [[98_SOURCES/Spring Testing Sources]]
 
 # Card format
 
@@ -164,13 +175,13 @@ Published Spring total     252
 
 # Next Spring certification route
 
-`Testing`:
+`Spring Boot Internals and Auto-configuration`:
 
-- unit, slice and full-context tests;
-- `@DataJpaTest`;
-- Testcontainers PostgreSQL;
-- flush/clear testing;
-- commit-time failures;
-- propagation and rollback integration tests;
-- N+1/statement-count regression tests;
-- outbox and idempotency verification.
+- application bootstrap;
+- auto-configuration import pipeline;
+- conditions;
+- condition report;
+- starters;
+- custom auto-configuration;
+- `ApplicationContextRunner`;
+- Actuator and startup diagnostics.
