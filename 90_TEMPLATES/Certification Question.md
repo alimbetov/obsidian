@@ -26,14 +26,14 @@ tags:
 ## Question
 
 > [!question]
-> 
+>
 
 ## Russian Translation
 
-> 
+>
 
 > [!answer]- Answer
-> 
+>
 
 ## Explanation
 
@@ -73,14 +73,19 @@ tags:
 
 Добавлять для легко путаемых механизмов. Одна короткая формула памяти.
 
-## Related Concept
+## Route Navigation
 
-- [[Concept]]
+Заменить placeholders реальными Obsidian wikilinks перед публикацией:
 
-## Related Cards
-
-- [[Previous card]]
-- [[Next card]]
+```text
+Roadmap:          <ROADMAP_WIKILINK>
+Canonical concept:<CANONICAL_CONCEPT_WIKILINK>
+Visual model:     <VISUAL_WIKILINK>
+Previous card:    <PREVIOUS_CARD_WIKILINK>
+Next card:        <NEXT_CARD_WIKILINK>
+Production case:  <PRODUCTION_CASE_WIKILINK>
+Lab:              <LAB_WIKILINK>
+```
 
 ## Review Notes
 
