@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import importlib.util
-import json
+import sys
 import tempfile
 import unittest
 from datetime import date, datetime, timezone
@@ -11,6 +11,7 @@ SCRIPT = Path(__file__).with_name("card_progress.py")
 SPEC = importlib.util.spec_from_file_location("card_progress", SCRIPT)
 card_progress = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
+sys.modules[SPEC.name] = card_progress
 SPEC.loader.exec_module(card_progress)
 
 
