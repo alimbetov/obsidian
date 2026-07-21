@@ -145,9 +145,9 @@ Singleton initialization происходит до publication bean как fully
 
 ```mermaid
 flowchart TD
-    A[Create bean A] --> B[@PostConstruct A]
+    A[Create bean A] --> B["@PostConstruct A"]
     B --> C[Wait for bean B]
-    D[Create bean B] --> E[@PostConstruct B]
+    D[Create bean B] --> E["@PostConstruct B"]
     E --> F[Wait for bean A]
     C --> G[Startup deadlock]
     F --> G

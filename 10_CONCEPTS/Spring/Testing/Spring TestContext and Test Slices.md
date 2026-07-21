@@ -48,8 +48,8 @@ flowchart LR
     Q --> A[Application wiring]
     Q --> P[Production database behavior]
     U --> UNIT[JUnit + Mockito]
-    S --> SLICE[@DataJpaTest / @WebMvcTest]
-    A --> FULL[@SpringBootTest]
+    S --> SLICE["@DataJpaTest / @WebMvcTest"]
+    A --> FULL["@SpringBootTest"]
     P --> TC[Testcontainers]
 ```
 

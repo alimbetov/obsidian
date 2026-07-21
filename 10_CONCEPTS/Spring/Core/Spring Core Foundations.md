@@ -244,8 +244,8 @@ class AppConfig {
 
 ```mermaid
 flowchart TD
-    A{Как зарегистрировать object?} -->|Own class in scan tree| B[@Component stereotype]
-    A -->|Third-party or custom factory| C[@Bean method]
+    A{Как зарегистрировать object?} -->|Own class in scan tree| B["@Component stereotype"]
+    A -->|Third-party or custom factory| C["@Bean method"]
     D{Как передать dependency?} -->|Required| E[Constructor]
     D -->|Optional and mutable| F[Setter]
     D -->|Supported but hidden contract| G[Field]

@@ -41,15 +41,15 @@ flowchart TD
     A[Configuration inputs] --> B[Definition selection]
     A --> C[Value resolution]
 
-    B --> B1[@Configuration and @Bean]
-    B --> B2[@Import]
+    B --> B1["@Configuration and @Bean"]
+    B --> B2["@Import"]
     B --> B3[Component scanning]
-    B --> B4[@Profile]
+    B --> B4["@Profile"]
     B --> D[BeanDefinition graph]
 
     C --> C1[Environment]
     C --> C2[PropertySource chain]
-    C --> C3[Placeholders and @Value]
+    C --> C3["Placeholders and @Value"]
     C --> C4[Typed binding]
     C --> E[Resolved configuration values]
 
@@ -927,14 +927,14 @@ Bean graph уже сформирован. Изменение profile string не
 flowchart TD
     A[Configuration need] --> B{Меняется bean graph?}
     B -->|Да| C{Выбор environment-wide на startup?}
-    C -->|Да| D[@Profile]
-    C -->|Нет| E{@Import / selector / registrar / feature architecture}
+    C -->|Да| D["@Profile"]
+    C -->|Нет| E{"@Import / selector / registrar / feature architecture"}
 
     B -->|Нет| F{Одно локальное scalar value?}
-    F -->|Да| G[@Value or Environment at boundary]
+    F -->|Да| G["@Value or Environment at boundary"]
     F -->|Нет| H{Связанная группа settings?}
     H -->|Да| I[Typed configuration properties]
-    H -->|Нет| J[Explicit configuration object/API]
+    H -->|Нет| J["Explicit configuration object / API"]
 ```
 
 ---

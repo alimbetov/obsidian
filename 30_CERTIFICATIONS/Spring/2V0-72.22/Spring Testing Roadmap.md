@@ -31,7 +31,7 @@ TEST-B01  36 cards  PUBLISHED
 flowchart LR
     U[Unit test] --> TC[TestContext]
     TC --> SL[Boot test slices]
-    SL --> JPA[@DataJpaTest]
+    SL --> JPA["@DataJpaTest"]
     JPA --> TX[Test-managed transactions]
     TX --> FC[Full-context service tests]
     FC --> DB[PostgreSQL Testcontainers]

@@ -309,15 +309,15 @@ flowchart TD
     A[Injection failure or wrong strategy] --> B{Candidate count}
     B -->|0| C{Should feature exist?}
     C -->|Required| D[Register implementation or no-op]
-    C -->|Optional| E[Optional Nullable required=false Provider]
+    C -->|Optional| E["Optional / @Nullable / required=false / ObjectProvider"]
     B -->|1| F[Inject]
     B -->|Many, need one| G{Selection semantics}
-    G -->|Default| H[@Primary]
-    G -->|Category| I[@Qualifier]
-    G -->|Specific name| J[@Resource or explicit name contract]
+    G -->|Default| H["@Primary"]
+    G -->|Category| I["@Qualifier"]
+    G -->|Specific name| J["@Resource or explicit name contract"]
     B -->|Many, need all| K[List Set Map Array]
     K --> L{Order matters?}
-    L -->|Yes| M[@Order Ordered or explicit composition]
+    L -->|Yes| M["@Order / Ordered / explicit composition"]
     L -->|No| N[Use set-like contract]
 ```
 

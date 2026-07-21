@@ -34,7 +34,7 @@ flowchart LR
     D --> E[BeanFactory]
     E --> F[ApplicationContext]
     D --> G[Component scanning]
-    D --> H[@Bean configuration]
+    D --> H["@Bean configuration"]
     B --> I[Injection styles]
 ```
 

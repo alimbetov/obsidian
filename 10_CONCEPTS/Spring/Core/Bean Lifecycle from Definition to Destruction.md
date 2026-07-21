@@ -55,17 +55,17 @@ flowchart TD
     C --> D[Populate dependencies and properties]
     D --> E[Aware callbacks]
     E --> F[BeanPostProcessor before-initialization chain]
-    F --> G[@PostConstruct]
-    G --> H[InitializingBean.afterPropertiesSet]
-    H --> I[Custom init-method]
+    F --> G["@PostConstruct"]
+    G --> H["InitializingBean.afterPropertiesSet()"]
+    H --> I["Custom init-method"]
     I --> J[BeanPostProcessor after-initialization chain]
     J --> K[Possible proxy or wrapper]
     K --> L[Ready singleton published]
     L --> M[Context close]
     M --> N[Destruction-aware processors]
-    N --> O[@PreDestroy]
-    O --> P[DisposableBean.destroy]
-    P --> Q[Custom destroy-method]
+    N --> O["@PreDestroy"]
+    O --> P["DisposableBean.destroy()"]
+    P --> Q["Custom destroy-method"]
 ```
 
 > [!warning] Схема показывает устойчивые фазы, а не абсолютный порядок каждого внутреннего processor.
@@ -646,10 +646,10 @@ Spring также поддерживает inferred destroy method для public
 
 ```mermaid
 flowchart TD
-    A[Bean creation callbacks] --> B[@PostConstruct / afterPropertiesSet]
-    C[Container runtime callbacks] --> D[Lifecycle / SmartLifecycle]
+    A[Bean creation callbacks] --> B["@PostConstruct / afterPropertiesSet()"]
+    C[Container runtime callbacks] --> D["Lifecycle / SmartLifecycle"]
     E[After singleton creation] --> F[SmartInitializingSingleton]
-    G[Bean destruction callbacks] --> H[@PreDestroy / DisposableBean]
+    G[Bean destruction callbacks] --> H["@PreDestroy / DisposableBean"]
 ```
 
 # 18. Common production failures
