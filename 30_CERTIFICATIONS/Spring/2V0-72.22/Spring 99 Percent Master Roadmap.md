@@ -19,7 +19,7 @@ tags:
 # Spring 2V0-72.22 — 99 Percent Master Roadmap
 
 > [!summary]
-> Target: 600 base cards + 150 exam-drill cards + six full timed mocks. Existing Core/AOP/Transactions/Data/Testing remain canonical. `SPRING-BOOT-B01` is now published; remaining P0 work is Boot configuration properties, MVC/REST, Security, Actuator, JDBC, MockMvc and SpEL.
+> Target: 600 base cards + 150 drills + six timed mocks. Per-card progress, 57-objective traceability and legacy-card normalization are now implemented. `SPRING-BOOT-B01` and `SPRING-BOOT-B02` are published; next content route is MVC.
 
 # Exam baseline
 
@@ -29,29 +29,43 @@ Questions         60
 Duration          130 minutes
 Format            single and multiple choice
 Passing score     300 scaled
-Primary language  English
+Baseline          Spring Framework 5.3 / Boot 2.5 / Data 2021.0
 ```
 
-Official exam status and logistics must be re-verified immediately before registration.
+Verify current registration logistics immediately before exam purchase.
 
-# Version policy
+# Readiness evidence model
 
 ```text
-EXAM BASELINE
-Spring Framework 5.3-era concepts
-Spring Boot 2.x-era behavior relevant to 2V0-72.22
-javax-era API names where exam wording uses them
-
-CURRENT PRODUCTION DELTA
-Spring Framework 6.x
-Spring Boot 3.x/current
-jakarta namespace
-current auto-configuration and observability APIs
+25% official objective traceability
+75% vertical-slice artifact/card completeness
 ```
 
-Every version-sensitive route must contain explicit `Exam baseline` and `Current delta` sections.
+Machine artifacts:
 
-# Card target and current objective mapping
+```text
+.github/objectives/spring-2V0-72.22.json
+.github/objective-overrides/spring-boot-b02.json
+.github/scripts/audit_objective_traceability.py
+.github/certification-readiness.json
+.github/scripts/audit_certification_readiness.py
+```
+
+# Corrected learning model
+
+```mermaid
+flowchart LR
+    OBJ["Official objective"] --> PRE["Pre-test"]
+    PRE --> THEORY["Canonical + visual"]
+    THEORY --> CARD["Stable card IDs"]
+    CARD --> CASE["Production cases"]
+    CASE --> LAB["Executable evidence"]
+    LAB --> POST["Post-test"]
+    POST --> PROGRESS["Per-card progress"]
+    PROGRESS --> MOCK["Timed mock"]
+```
+
+# Card target
 
 ```text
 Base cards target     600
@@ -60,37 +74,39 @@ Drill cards target    150
 Total target          750
 ```
 
-| Domain | Target | Current mapped | Remaining |
+| Domain | Target | Objective-mapped | Remaining |
 |---|---:|---:|---:|
 | Spring Core and SpEL | 130 | 130 | SpEL route still required |
-| AOP and Cache interception | 50 | 44 | 6 |
-| Data, Transactions, JPA and JDBC | 90 | 68 | 22 + JDBC coverage |
+| AOP and Cache | 50 | 44 | 6 |
+| Data, Transactions, JPA and JDBC | 90 | 68 | 22 + JDBC route |
 | Spring MVC and REST | 60 | 0 | 60 |
 | Testing and MockMvc | 85 | 36 | 49 |
 | Spring Security | 35 | 0 | 35 |
-| Spring Boot and Actuator | 150 | 30 | 120 |
-| **Total** | **600** | **308 objective-mapped** | **292** |
+| Spring Boot and Actuator | 150 | 65 | 85 |
+| **Total** | **600** | **343** | **257** |
 
-Existing Spring Core has 140 cards, but readiness caps its exam contribution at 130 so excess Core volume cannot hide an uncovered domain.
+Published Spring cards total: **353**. Core contribution is capped at its objective allocation so extra Core volume cannot hide missing domains.
 
-# Drill-card target
+# Completed infrastructure gates
 
-| Drill type | Cards |
-|---|---:|
-| Multiple-select traps | 35 |
-| Configuration/code-result questions | 30 |
-| Cross-domain proxy/transaction/testing questions | 25 |
-| Boot condition and property questions | 25 |
-| MVC/Security request-path questions | 20 |
-| Data/JDBC/exception translation questions | 15 |
-| **Total** | **150** |
+- [x] Per-card progress registry and scheduler.
+- [x] Static due/new review queue without Dataview.
+- [x] 57 official Spring objectives in traceability matrix.
+- [x] Objective override model for new routes.
+- [x] Combined objective/vertical readiness formula.
+- [x] CORE-B01 normalized — 20 cards.
+- [x] CORE-B04 normalized — 24 cards.
+- [x] TX-B01 normalized — 32 cards.
+- [x] DATA-B01 normalized — 36 cards.
+- [x] TEST-B01 normalized — 36 cards.
+- [x] All normalized batches included in strict CI gate.
 
-# Published foundation
+# Published routes
 
 ## Spring Core
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
-- 140 cards; objective contribution capped at 130.
+- 140 cards.
 
 ## AOP and Cache
 
@@ -100,265 +116,153 @@ Existing Spring Core has 140 cards, but readiness caps its exam contribution at 
 ## Transaction Management
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
-- 32 cards.
+- 32 normalized cards.
 
-## Spring Data and JPA
+## Spring Data JPA
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
-- 36 cards.
+- 36 normalized cards.
 
 ## Spring Testing
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
-- 36 cards.
+- 36 normalized cards.
 
-## SPRING-BOOT-B01 — published
+## SPRING-BOOT-B01 — Bootstrap and Auto-configuration
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]]
-- [[10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration]]
-- [[10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards|30 cards]]
-- [[40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases|15 cases]]
-- [[50_LABS/Spring/SPRING-BOOT-B01/README|Boot 2.5 ApplicationContextRunner lab]]
-- [[01_MAPS/Spring Boot Auto-configuration Map.canvas]]
-- [[98_SOURCES/Spring Boot Auto-configuration Sources]]
+- 30 cards;
+- 31 diagrams;
+- 15 production cases;
+- 6 executable tests.
 
-Published B01 coverage:
+## SPRING-BOOT-B02 — Externalized Configuration
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
+- [[10_CONCEPTS/Spring/Boot/Spring Boot Externalized Configuration and Type-safe Binding]]
+- [[10_CONCEPTS/Spring/Boot/Spring Boot Configuration Visual Deep Dive]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards|35 cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Assessment|10-question pre-test + 15-question post-test]]
+- [[40_PRODUCTION_CASES/Spring/Spring Boot Configuration Production Cases|12 cases]]
+- [[50_LABS/Spring/SPRING-BOOT-B02/README|7 executable tests]]
+- [[01_MAPS/Spring Boot Configuration Map.canvas]]
+- [[98_SOURCES/Spring Boot Externalized Configuration Sources]]
+
+Mapped objectives:
 
 ```text
-@SpringBootApplication composition
-SpringApplication phases
-Environment and WebApplicationType
-@EnableAutoConfiguration
-candidate discovery and deferred imports
-Boot 2.x spring.factories
-current AutoConfiguration.imports delta
-conditional annotations and back-off
-exclusions and condition report
-starters and dependency management
-custom auto-configuration
-ApplicationContextRunner
-failure analyzers, events, runners and lazy initialization
+SPRING-1.3.1 external properties
+SPRING-1.3.2 profiles
+SPRING-6.2.1 defining and loading properties
 ```
 
 # Remaining P0 routes
-
-## SPRING-BOOT-B02 — Configuration Properties and Externalized Configuration
-
-Target: 35 base cards + 10 drills.
-
-Coverage:
-
-- property-source precedence;
-- Config Data;
-- relaxed binding;
-- `@ConfigurationProperties`;
-- constructor binding/version boundary;
-- validation;
-- metadata generation;
-- profile-specific configuration;
-- test overrides;
-- environment variables;
-- command-line arguments;
-- sensitive-value boundaries.
 
 ## SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline
 
 Target: 35 base cards + 8 drills.
 
-Coverage:
-
-- `DispatcherServlet`;
-- `HandlerMapping` and `HandlerAdapter`;
-- argument resolvers;
-- return-value handlers;
-- message converters;
-- view resolution;
-- content negotiation;
-- request mapping conditions;
-- binding, validation and exception resolvers.
+```text
+DispatcherServlet
+HandlerMapping / HandlerAdapter
+argument resolvers
+return-value handlers
+message converters
+view resolution
+content negotiation
+request mapping conditions
+binding, validation and exception resolvers
+```
 
 ## SPRING-MVC-B02 — REST and HTTP Clients
 
 Target: 25 base cards + 7 drills.
 
-Coverage:
-
-- `@RestController`;
-- request body/path/query parameters;
-- `ResponseEntity`;
-- status/header/body semantics;
-- `@ControllerAdvice` and REST errors;
-- `RestTemplate` exam baseline;
-- `RestTemplateBuilder`;
-- current `RestClient`/`WebClient` comparison.
+```text
+@RestController
+request body/path/query parameters
+ResponseEntity
+status/header/body semantics
+@ControllerAdvice
+RestTemplate exam baseline
+RestTemplateBuilder
+current RestClient/WebClient delta
+```
 
 ## SPRING-SEC-B01 — Authentication and Authorization
 
 Target: 35 base cards + 10 drills.
 
-Coverage:
-
-- authentication versus authorization;
-- `SecurityContext`, `Authentication`, authorities and roles;
-- `UserDetailsService` and password encoding;
-- filter-chain model;
-- request authorization;
-- Basic/form login;
-- CSRF;
-- method security and `@PreAuthorize`;
-- test support.
-
 ## SPRING-ACT-B01 — Actuator, Health and Metrics
 
 Target: 30 base cards + 10 drills.
-
-Coverage:
-
-- endpoint discovery/exposure/security;
-- health, info, metrics, env, beans and mappings;
-- management path/port;
-- custom `HealthIndicator`;
-- `MeterRegistry`, Counter, Gauge and Timer;
-- readiness/liveness version boundary.
 
 ## SPRING-JDBC-B01 — JdbcTemplate and Exception Translation
 
 Target: 30 base cards + 8 drills.
 
-Coverage:
-
-- `DataSource` and `JdbcTemplate` callback model;
-- query/update/batch APIs;
-- `RowMapper` and `ResultSetExtractor`;
-- prepared statements and generated keys;
-- `NamedParameterJdbcTemplate`;
-- `DataAccessException` and SQL exception translation;
-- transaction participation.
-
 ## SPRING-WEBTEST-B01 — MockMvc and Web Slices
 
 Target: 25 base cards + 8 drills.
-
-Coverage:
-
-- `@WebMvcTest`;
-- MockMvc request builders/result matchers;
-- JSON path;
-- validation, advice and error tests;
-- security integration;
-- slice mocks/imports;
-- `@SpringBootTest + @AutoConfigureMockMvc`.
 
 ## SPRING-SPEL-B01 — Spring Expression Language
 
 Target: 10 base cards + 4 drills.
 
-Coverage:
+# Drill target
 
-- `#{}` versus `${}`;
-- property/method/bean access;
-- collection selection/projection;
-- Elvis and safe navigation;
-- `@Value`;
-- security and maintainability boundaries.
-
-# Existing-route normalization
-
-```text
-CORE-B01    2 incomplete cards
-CORE-B04    2 incomplete cards
-TX-B01     28 incomplete cards
-DATA-B01   34 incomplete cards
-TEST-B01   34 incomplete cards
---------------------------------
-TOTAL     100 cards
-```
-
-Order:
-
-1. TX-B01.
-2. DATA-B01.
-3. TEST-B01.
-4. CORE-B01 and CORE-B04.
+| Drill type | Cards |
+|---|---:|
+| Multiple-select traps | 35 |
+| Configuration/code-result | 30 |
+| Cross-domain proxy/transaction/testing | 25 |
+| Boot conditions/properties | 25 |
+| MVC/Security request path | 20 |
+| Data/JDBC translation | 15 |
+| **Total** | **150** |
 
 # Mock system
 
-## Domain mini-mocks
-
 ```text
-12 mini-mocks
-25 questions each
-300 question appearances
+12 domain mini-mocks × 25 questions
+6 full mocks × 60 questions / 130 minutes
 ```
 
-## Full mocks
-
-```text
-6 mocks
-60 questions each
-130 minutes
-360 mixed question appearances
-```
-
-Each question records:
-
-```text
-objective ID
-selected/correct options
-correct-answer count
-confidence
-elapsed time
-error taxonomy
-source artifact
-```
-
-Error taxonomy:
-
-```text
-wrong-concept
-wrong-version
-wrong-proxy-boundary
-wrong-transaction-boundary
-wrong-annotation-semantics
-wrong-multiple-select-count
-wrong-attention
-correct-guessed
-```
+Each result records objective ID, selected/correct options, confidence, elapsed time, outcome taxonomy and source evidence.
 
 # 99% material gate
 
 ```text
-[ ] all official Spring objectives mapped
+[ ] all 57 Spring objectives complete or mock-covered
 [ ] 600 base cards complete
 [ ] 150 drill cards complete
-[ ] 100 legacy incomplete cards normalized
-[ ] every P0 route has canonical + visual + cards + cases + lab + Canvas + sources
+[x] legacy Spring card normalization complete
+[ ] every P0 route has pre/post assessment and full evidence roles
 [ ] six full timed mocks exist
-[ ] version-boundary matrix complete
-[ ] no P0/P1 content gap
-[ ] structural/cross-link/Mermaid/card/readiness CI passes
+[ ] version matrix complete
+[ ] no P0/P1 objective gap
+[ ] all CI gates pass
 ```
 
 # Delivery sequence
 
 ```mermaid
 flowchart LR
-    DONE["BOOT-B01 published"] --> BOOT2["BOOT-B02"]
-    BOOT2 --> MVC1["MVC-B01"]
+    B1["BOOT-B01 done"] --> B2["BOOT-B02 done"]
+    B2 --> MVC1["MVC-B01"]
     MVC1 --> MVC2["MVC-B02"]
-    MVC2 --> SEC["SEC-B01"]
-    SEC --> ACT["ACT-B01"]
-    ACT --> JDBC["JDBC-B01"]
-    JDBC --> WEBTEST["WEBTEST-B01"]
-    WEBTEST --> SPEL["SPEL-B01"]
-    SPEL --> NORMALIZE["Normalize TX/DATA/TEST/Core"]
-    NORMALIZE --> DRILLS["150 drills"]
-    DRILLS --> MOCKS["6 timed mocks"]
+    MVC2 --> SEC["Security"]
+    SEC --> ACT["Actuator"]
+    ACT --> JDBC["JDBC"]
+    JDBC --> WEBTEST["MockMvc"]
+    WEBTEST --> SPEL["SpEL"]
+    SPEL --> DRILLS["150 drills"]
+    DRILLS --> MOCKS["6 mocks"]
 ```
 
-# Adjacent dashboards
+# Related dashboards
 
 - [[00_HOME/Certification 99 Percent Readiness Dashboard]]
+- [[00_HOME/Card Review Dashboard]]
 - [[00_HOME/Knowledge Route Registry]]
 - [[30_CERTIFICATIONS/Certification MOC]]
