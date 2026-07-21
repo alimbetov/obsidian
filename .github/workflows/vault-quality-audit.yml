@@ -27,6 +27,9 @@ jobs:
       - name: Run structural vault audit
         run: python .github/scripts/audit_vault_v2.py
 
+      - name: Run cross-link graph audit
+        run: python .github/scripts/audit_cross_links.py
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -83,10 +86,12 @@ jobs:
             fi
           } >> .audit/vault-audit.md
 
-      - name: Publish audit summary
+      - name: Publish audit summaries
         if: always()
         run: |
           cat .audit/vault-audit.md >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          cat .audit/cross-link-report.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload audit reports and rendered diagrams
         if: always()
@@ -98,15 +103,18 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
-      - name: Enforce structural, diagram and published-card validity
+      - name: Enforce structure, graph, diagrams and published cards
         if: always()
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          report = json.loads(Path('.audit/vault-audit.json').read_text(encoding='utf-8'))
-          structural_errors = report['summary']['findings'].get('error', 0)
+          structural = json.loads(Path('.audit/vault-audit.json').read_text(encoding='utf-8'))
+          cross_links = json.loads(Path('.audit/cross-link-report.json').read_text(encoding='utf-8'))
+
+          structural_errors = structural['summary']['findings'].get('error', 0)
+          cross_link_errors = cross_links['summary']['findings'].get('error', 0)
 
           failure_file = Path('.audit/mermaid-failures.txt')
           mermaid_errors = 0
@@ -124,17 +132,22 @@ jobs:
           }
           published_card_errors = [
               item
-              for item in report.get('findings', [])
+              for item in structural.get('findings', [])
               if item.get('category') == 'card-completeness'
               and item.get('path') in strict_card_paths
           ]
 
           print(f'Structural errors: {structural_errors}')
+          print(f'Cross-link graph errors: {cross_link_errors}')
           print(f'Mermaid render errors: {mermaid_errors}')
           print(f'Published-card contract errors: {len(published_card_errors)}')
-          for item in published_card_errors:
-              print(f"- {item.get('path')}: {item.get('message')}")
 
-          if structural_errors or mermaid_errors or published_card_errors:
+          for item in cross_links.get('findings', []):
+              if item.get('severity') == 'error':
+                  print(f"- cross-link: {item.get('path')}: {item.get('message')}")
+          for item in published_card_errors:
+              print(f"- card: {item.get('path')}: {item.get('message')}")
+
+          if structural_errors or cross_link_errors or mermaid_errors or published_card_errors:
               raise SystemExit(1)
           PY
