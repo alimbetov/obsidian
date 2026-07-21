@@ -1,0 +1,30 @@
+{
+  "nodes": [
+    {"id":"root","type":"text","text":"SPRING CORE VISUAL ATLAS\nMetadata → definitions → resolution → lifecycle → scopes → configuration → diagnostics","x":0,"y":0,"width":420,"height":180,"color":"4"},
+    {"id":"visual","type":"file","file":"10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md","x":520,"y":0,"width":420,"height":180,"color":"4"},
+    {"id":"foundation","type":"file","file":"10_CONCEPTS/Spring/Core/Spring Core Foundations.md","x":0,"y":280,"width":360,"height":160},
+    {"id":"resolution","type":"file","file":"10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection.md","x":430,"y":280,"width":420,"height":160},
+    {"id":"lifecycle","type":"file","file":"10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md","x":920,"y":280,"width":420,"height":160},
+    {"id":"extension","type":"file","file":"10_CONCEPTS/Spring/Core/Container Extension Points.md","x":0,"y":520,"width":420,"height":160},
+    {"id":"config","type":"file","file":"10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties.md","x":490,"y":520,"width":430,"height":160},
+    {"id":"advanced","type":"file","file":"10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy.md","x":990,"y":520,"width":430,"height":160},
+    {"id":"cards","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap.md","x":0,"y":770,"width":390,"height":150,"color":"2"},
+    {"id":"cases","type":"file","file":"40_PRODUCTION_CASES/Spring/Advanced Core Production Cases.md","x":450,"y":770,"width":420,"height":150,"color":"1"},
+    {"id":"labs","type":"file","file":"50_LABS/Spring/Core-B06/README.md","x":930,"y":770,"width":360,"height":150,"color":"3"},
+    {"id":"diagnostic","type":"text","text":"DIAGNOSTIC ORDER\n1 registration\n2 candidate resolution\n3 instantiation\n4 dependency population\n5 initialization\n6 post-processing/proxy","x":1370,"y":280,"width":320,"height":300,"color":"1"}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","fromSide":"right","toNode":"visual","toSide":"left"},
+    {"id":"e2","fromNode":"root","fromSide":"bottom","toNode":"foundation","toSide":"top"},
+    {"id":"e3","fromNode":"visual","fromSide":"bottom","toNode":"resolution","toSide":"top"},
+    {"id":"e4","fromNode":"visual","fromSide":"bottom","toNode":"lifecycle","toSide":"top"},
+    {"id":"e5","fromNode":"foundation","fromSide":"bottom","toNode":"extension","toSide":"top"},
+    {"id":"e6","fromNode":"resolution","fromSide":"bottom","toNode":"config","toSide":"top"},
+    {"id":"e7","fromNode":"lifecycle","fromSide":"bottom","toNode":"advanced","toSide":"top"},
+    {"id":"e8","fromNode":"extension","fromSide":"bottom","toNode":"cards","toSide":"top"},
+    {"id":"e9","fromNode":"config","fromSide":"bottom","toNode":"cases","toSide":"top"},
+    {"id":"e10","fromNode":"advanced","fromSide":"bottom","toNode":"labs","toSide":"top"},
+    {"id":"e11","fromNode":"lifecycle","fromSide":"right","toNode":"diagnostic","toSide":"left"},
+    {"id":"e12","fromNode":"diagnostic","fromSide":"bottom","toNode":"cases","toSide":"right"}
+  ]
+}
