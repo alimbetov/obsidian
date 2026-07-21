@@ -20,14 +20,14 @@ tags:
 # Spring AOP and Cache Roadmap
 
 > [!summary]
-> Маршрут продолжает завершённый Spring Core route. Центральная идея: `@Transactional`, `@Async`, method security и Spring Cache используют proxy/interceptor boundaries, поэтому их типовые failures имеют общий root cause.
+> Маршрут продолжает Spring Core. `@Transactional`, `@Async`, method security и Spring Cache используют proxy/interceptor boundaries, поэтому их типовые failures имеют общий diagnostic model.
 
 ## Progress
 
 ```text
-AOP-B01    24 cards   PUBLISHED
-CACHE-B01  20 cards   PUBLISHED
--------------------------------
+AOP-B01    24 cards  PUBLISHED
+CACHE-B01  20 cards  PUBLISHED
+------------------------------
 TOTAL      44 cards
 ```
 
@@ -35,19 +35,19 @@ TOTAL      44 cards
 
 ```mermaid
 flowchart LR
-    C[Spring Core complete] --> A[AOP terminology]
+    C[Spring Core] --> A[AOP terminology]
     A --> P[Proxy mechanics]
-    P --> S[Self-invocation and boundaries]
-    S --> I[Infrastructure annotations]
-    I --> K[Spring Cache abstraction]
-    K --> CF[Caffeine local cache]
-    K --> R[Redis shared cache]
-    CF --> L2[L1 plus L2 consistency]
+    P --> S[Self-invocation]
+    S --> K[Spring Cache]
+    K --> CF[Caffeine]
+    K --> R[Redis]
+    CF --> L2[L1 and L2 consistency]
     R --> L2
     L2 --> TX[Transaction Management]
+    TX --> DATA[Spring Data and JPA]
 ```
 
-## AOP-B01 — published
+# AOP-B01 — published
 
 Materials:
 
@@ -61,22 +61,17 @@ Coverage:
 
 - aspect, join point, pointcut, advice and advisor;
 - around advice and `proceed()`;
-- JDK dynamic proxy;
-- CGLIB proxy;
+- JDK dynamic proxy and CGLIB;
 - proxy selection;
 - final/private limitations;
-- self-invocation;
-- collaborator refactoring;
+- self-invocation and collaborator refactoring;
 - `AopContext` trade-off;
 - advisor ordering;
 - exception propagation;
 - runtime diagnostics;
-- `@Transactional`;
-- `@Async`;
-- method security;
-- cache proxy relationship.
+- `@Transactional`, `@Async`, method security and caching boundaries.
 
-## CACHE-B01 — published
+# CACHE-B01 — published
 
 Materials:
 
@@ -99,12 +94,11 @@ Coverage:
 - Caffeine size, weight, expiration and statistics;
 - Redis TTL, prefix and serializers;
 - transaction-aware cache timing;
-- Caffeine vs Redis decision;
-- Redis outage behavior;
+- Redis outage policy;
 - L1 Caffeine + L2 Redis invalidation;
-- metrics and operational diagnostics.
+- metrics and diagnostics.
 
-## Vertical-slice quality gate
+# Vertical-slice quality gate
 
 - [x] 24 AOP cards.
 - [x] 20 caching cards.
@@ -116,11 +110,11 @@ Coverage:
 - [x] 12 production cases.
 - [x] Primary source index.
 - [x] Visual Canvas.
-- [ ] Full Maven runtime executed in a connected environment.
+- [ ] Full Maven runtime executed in connected environment.
 - [ ] Redis lab executed against Docker Redis.
 - [ ] Real review outcomes collected.
 
-## Review questions
+# Review questions
 
 1. Через какой object reference входит caller?
 2. JDK или CGLIB proxy?
@@ -133,19 +127,24 @@ Coverage:
 9. Что произойдёт при Redis outage?
 10. Как инвалидируется L1 на других nodes?
 
-## Published next route
+# Published continuations
 
-Transaction Management is now published:
+## Transaction Management
 
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]];
-- [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]];
-- [[10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries]];
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]];
 - [[50_LABS/Spring/TX-B01/README]].
 
-## Next Spring routes
+## Spring Data and JPA
 
-1. Spring Data and JPA.
-2. Testing.
-3. Spring Boot internals and auto-configuration.
-4. Messaging transactions and idempotent consumers.
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]];
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards]];
+- [[50_LABS/Spring/DATA-B01/README]].
+
+# Next Spring routes
+
+1. Testing.
+2. Spring Boot internals and auto-configuration.
+3. Spring MVC/WebFlux.
+4. Spring Security.
+5. Messaging transactions and idempotent consumers.
