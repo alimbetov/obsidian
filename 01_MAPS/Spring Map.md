@@ -16,6 +16,7 @@ tags:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
 - [[00_HOME/Review Dashboard]]
 
 ```mermaid
@@ -25,7 +26,8 @@ flowchart LR
     CACHE --> TX[Transaction management]
     TX --> OUTBOX[Commit boundaries and outbox]
     OUTBOX --> DATA[Spring Data and JPA]
-    DATA --> TEST[Testing]
+    DATA --> TEST[Spring Testing]
+    TEST --> BOOT[Boot internals]
 ```
 
 # Spring Core — completed
@@ -148,33 +150,60 @@ Coverage:
 - optimistic and pessimistic locking;
 - service transaction boundaries around repositories.
 
+# Spring Testing — published
+
+- [[10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices]]
+- [[10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers]]
+- [[01_MAPS/Spring Testing Map.canvas]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards|TEST-B01 — 36 cards]]
+- [[40_PRODUCTION_CASES/Spring/Spring Testing Production Cases]]
+- [[50_LABS/Spring/TEST-B01/README]]
+- [[98_SOURCES/Spring Testing Sources]]
+
+Coverage:
+
+- Spring TestContext lifecycle;
+- `TestContextManager` and `TestExecutionListener`;
+- context caching and `@DirtiesContext`;
+- unit vs slice vs full-context tests;
+- `@DataJpaTest` and `TestEntityManager`;
+- test-managed transaction and default rollback;
+- `@Commit`, `@Rollback`, `TestTransaction`;
+- flush/clear database proof;
+- preemptive timeout thread boundary;
+- PostgreSQL Testcontainers;
+- dynamic datasource properties;
+- real-dialect native query tests;
+- N+1 and SQL-count regression tests;
+- service transaction tests without test-level transaction.
+
 ```text
 Spring Core               140
 AOP and Cache               44
 Transaction Management      32
 Spring Data and JPA          36
+Spring Testing               36
 -------------------------------
-TOTAL                       252 cards
+TOTAL                       288 cards
 ```
 
-# Next route — Testing
+# Next route — Spring Boot Internals
 
-- unit test vs Spring context test;
-- `@DataJpaTest`;
-- repository query tests;
-- Testcontainers PostgreSQL;
-- rollback test vs real commit behavior;
-- flush/clear in tests;
-- optimistic-lock conflict tests;
-- statement-count/N+1 regression tests;
-- transaction propagation integration tests;
-- outbox relay and idempotency tests.
+- `@SpringBootApplication` composition;
+- auto-configuration import pipeline;
+- conditional annotations;
+- condition evaluation report;
+- starters and dependency management;
+- custom auto-configuration and starter;
+- configuration metadata;
+- `ApplicationContextRunner`;
+- startup diagnostics;
+- Actuator and observability.
 
-# Web, Boot and Security
+# Web and Security
 
 - Spring MVC and WebFlux;
 - validation and exception handling;
-- Boot auto-configuration;
-- configuration properties;
-- actuator;
-- Spring Security.
+- servlet filters and reactive filters;
+- Spring Security;
+- API testing.
