@@ -4,6 +4,7 @@ domain: meta
 status: active
 tags:
   - knowledge-map
+  - navigation
 ---
 
 # Java Backend Knowledge System
@@ -11,37 +12,48 @@ tags:
 > [!summary] Назначение
 > Единая система для глубокого изучения, быстрого вспоминания, собеседований, сертификационных тестов и решения production-проблем.
 
-## Главные входы
+# Главные входы
 
+- [[00_HOME/Knowledge Route Registry|Knowledge Route Registry — все опубликованные маршруты]]
 - [[00_HOME/Review Dashboard|Review Dashboard — что повторять сегодня]]
 - [[01_MAPS/Java Backend Map.canvas|Java Backend Canvas]]
 - [[20_QUESTIONS/Interview/Interview Questions MOC|Interview Questions]]
 - [[30_CERTIFICATIONS/Certification MOC|Certification Routes]]
-
-## Общая карта
+- [[90_TEMPLATES/Cross-Linking Standard|Cross-Linking Standard]]
 
 ```mermaid
 flowchart TD
-    HOME[Java Backend Knowledge System]
-    HOME --> REVIEW[Review Dashboard]
-    HOME --> JAVA[Java]
-    HOME --> SPRING[Spring]
-    HOME --> DB[Databases]
-    HOME --> MSG[Messaging]
-    HOME --> DS[Distributed Systems]
-    JAVA --> IQ[Interview Questions]
-    SPRING --> IQ
-    JAVA --> CERT[Certification]
-    SPRING --> CERT
-    SPRING --> CASES[Production Cases]
-    JAVA --> CASES
-    CASES --> LABS[Labs]
-    IQ --> REVIEW
-    CERT --> REVIEW
-    LABS --> REVIEW
+    HOME["Java Backend Knowledge System"] --> REG["Knowledge Route Registry"]
+    HOME --> REVIEW["Review Dashboard"]
+    HOME --> MAP["Java Backend Canvas"]
+    REG --> JAVA["Java"]
+    REG --> SPRING["Spring"]
+    REG --> DB["Databases"]
+    REG --> MSG["Messaging"]
+    REG --> DS["Distributed Systems"]
+    JAVA --> PRACTICE["Questions / Cases / Labs"]
+    SPRING --> PRACTICE
+    DB --> PRACTICE
+    PRACTICE --> REVIEW
 ```
 
 # Выберите режим
+
+## Найти опубликованный маршрут
+
+Откройте [[00_HOME/Knowledge Route Registry]]. Реестр показывает для каждого route:
+
+```text
+Domain MOC
+Roadmap
+Canonical concepts
+Visual deep dive / Canvas
+Cards
+Production cases
+Lab
+Primary sources
+Previous / Next
+```
 
 ## Повторить слабые темы
 
@@ -59,154 +71,94 @@ flowchart TD
 - [[01_MAPS/Messaging Map]]
 - [[01_MAPS/Distributed Systems Map]]
 
-# Подготовиться к Spring certification
+# Java Concurrency route
 
-## Spring Core
+Recommended sequence:
 
-1. [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
-2. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards]]
-3. [[10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection]]
-4. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards]]
-5. [[10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction]]
-6. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards]]
-7. [[10_CONCEPTS/Spring/Core/Container Extension Points]]
-8. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards]]
-9. [[10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties]]
-10. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards]]
-11. [[10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy]]
-12. [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards]]
-13. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+1. [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path]]
+2. [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]]
+3. [[01_MAPS/Java Concurrency Visual Atlas.canvas]]
+4. [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
+5. [[50_LABS/Java/Concurrency/README]]
+6. [[98_SOURCES/Java Concurrency Sources]]
 
-## AOP and Cache
-
-14. [[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics]]
-15. [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards]]
-16. [[10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis]]
-17. [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards]]
-18. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
-
-## Transaction Management
-
-19. [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]]
-20. [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]]
-21. [[10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries]]
-22. [[40_PRODUCTION_CASES/Spring/Transaction Management Production Cases]]
-23. [[50_LABS/Spring/TX-B01/README]]
-24. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
-
-## Spring Data and JPA
-
-25. [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]]
-26. [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]]
-27. [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards]]
-28. [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
-29. [[50_LABS/Spring/DATA-B01/README]]
-30. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
-
-## Spring Testing
-
-31. [[10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices]]
-32. [[10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers]]
-33. [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards]]
-34. [[40_PRODUCTION_CASES/Spring/Spring Testing Production Cases]]
-35. [[50_LABS/Spring/TEST-B01/README]]
-36. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
-
-# Открыть визуальную карту
-
-- [[01_MAPS/Java Backend Map.canvas]]
-- [[01_MAPS/Java Concurrency Map.canvas]]
-- [[01_MAPS/Java Advanced Concurrency Map.canvas]]
-- [[01_MAPS/Spring Core Foundation Map.canvas]]
-- [[01_MAPS/Spring Dependency Resolution Map.canvas]]
-- [[01_MAPS/Spring Bean Lifecycle Map.canvas]]
-- [[01_MAPS/Spring Container Extension Points Map.canvas]]
-- [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
-- [[01_MAPS/Spring Advanced Core Map.canvas]]
-- [[01_MAPS/Spring AOP and Caching Map.canvas]]
-- [[01_MAPS/Spring Transaction Management Map.canvas]]
-- [[01_MAPS/Spring Data JPA Map.canvas]]
-- [[01_MAPS/Spring Testing Map.canvas]]
-
-# Current Published Vertical Slices
-
-## Java Concurrency
+Coverage:
 
 ```text
-Foundations
-  -> JMM and happens-before
-  -> volatile / synchronized / locks
-  -> executors / CompletableFuture / virtual threads
-  -> CAS / deadlock / concurrent collections
-  -> recall + executable labs
+JMM and happens-before
+visibility / atomicity / ordering
+volatile / synchronized / locks
+CAS and atomic state
+executors / futures / backpressure
+ThreadLocal
+virtual threads
+concurrent collections
+liveness diagnostics
 ```
 
+# Spring certification sequence
+
 ## Spring Core
 
+1. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+2. [[10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive]]
+3. [[01_MAPS/Spring Core Visual Atlas.canvas]]
+
+Published batches:
+
 ```text
-CORE-B01  20
-CORE-B02  24
-CORE-B03  24
-CORE-B04  24
-CORE-B05  24
-CORE-B06  24
-------------
+CORE-B01  20 — IoC, registration and injection
+CORE-B02  24 — candidate resolution
+CORE-B03  24 — lifecycle
+CORE-B04  24 — extension points
+CORE-B05  24 — configuration and profiles
+CORE-B06  24 — scopes, FactoryBean and hierarchy
+-----------------------------------------------
 TOTAL    140 cards
 ```
 
-## Spring AOP and Cache
+## AOP and Cache
 
-```text
-AOP-B01    24 cards
-CACHE-B01  20 cards
--------------------
-TOTAL      44 cards
-```
+1. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
+2. [[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics]]
+3. [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]]
+4. [[10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis]]
+5. [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]]
+6. [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards]]
+7. [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards]]
+8. [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]]
+9. [[50_LABS/Spring/AOP-B01/README]]
+10. [[50_LABS/Spring/CACHE-B01/README]]
 
-Практика:
+## Transaction Management
 
-- [[50_LABS/Spring/AOP-B01/README]];
-- [[50_LABS/Spring/CACHE-B01/README]];
-- [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]].
-
-## Spring Transaction Management
-
-```text
-TX-B01: logical/physical tx, propagation, isolation,
-        rollback, callbacks, async and outbox        32 cards
-```
-
-Практика:
-
-- [[01_MAPS/Spring Transaction Management Map.canvas]];
-- [[40_PRODUCTION_CASES/Spring/Transaction Management Production Cases]];
-- [[50_LABS/Spring/TX-B01/README]].
+1. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
+2. [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]]
+3. [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive]]
+4. [[10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries]]
+5. [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]]
+6. [[40_PRODUCTION_CASES/Spring/Transaction Management Production Cases]]
+7. [[50_LABS/Spring/TX-B01/README]]
 
 ## Spring Data and JPA
 
-```text
-DATA-B01: persistence context, lifecycle, flush,
-          repositories, dynamic queries, fetching   36 cards
-```
-
-Практика:
-
-- [[01_MAPS/Spring Data JPA Map.canvas]];
-- [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]];
-- [[50_LABS/Spring/DATA-B01/README]].
+1. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
+2. [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]]
+3. [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]]
+4. [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]]
+5. [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards]]
+6. [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
+7. [[50_LABS/Spring/DATA-B01/README]]
 
 ## Spring Testing
 
-```text
-TEST-B01: TestContext, slices, transactional tests,
-          flush/clear, Testcontainers, SQL regressions 36 cards
-```
-
-Практика:
-
-- [[01_MAPS/Spring Testing Map.canvas]];
-- [[40_PRODUCTION_CASES/Spring/Spring Testing Production Cases]];
-- [[50_LABS/Spring/TEST-B01/README]].
+1. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
+2. [[10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices]]
+3. [[10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers]]
+4. [[10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive]]
+5. [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards]]
+6. [[40_PRODUCTION_CASES/Spring/Spring Testing Production Cases]]
+7. [[50_LABS/Spring/TEST-B01/README]]
 
 ```text
 Spring Core               140
@@ -215,56 +167,89 @@ Transaction Management      32
 Spring Data and JPA          36
 Spring Testing               36
 -------------------------------
-Published Spring total     288
+Published Spring total     288 cards
 ```
 
-# Spring learning sequence
+# Database route
 
-```mermaid
-flowchart LR
-    B1[Container foundation] --> B2[Dependency resolution]
-    B2 --> B3[Bean lifecycle]
-    B3 --> B4[Extension points]
-    B4 --> B5[Configuration]
-    B5 --> B6[Advanced Core]
-    B6 --> AOP[AOP and Proxies]
-    AOP --> CACHE[Caffeine and Redis]
-    CACHE --> TX[Transaction Management]
-    TX --> OUTBOX[Commit boundaries and Outbox]
-    OUTBOX --> JPA[Spring Data and JPA]
-    JPA --> TEST[Spring Testing]
-    TEST --> BOOT[Boot internals]
+## DB-B01 — Indexes and Query Plans
+
+1. [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap]]
+2. [[10_CONCEPTS/Databases/PostgreSQL Index Mechanics]]
+3. [[10_CONCEPTS/Databases/PostgreSQL EXPLAIN and Query Plan Analysis]]
+4. [[01_MAPS/Database Indexes and Query Plans Map.canvas]]
+5. [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards]]
+6. [[40_PRODUCTION_CASES/Databases/Indexes and Query Plans Production Cases]]
+7. [[50_LABS/Databases/DB-B01/README]]
+8. [[98_SOURCES/PostgreSQL Indexes and Query Plans Sources]]
+
+```text
+2 canonical notes
+62 visual diagrams
+30 cards
+14 production cases
+10 PostgreSQL experiments
 ```
 
-# Процесс повторения
+# Visual maps
+
+- [[01_MAPS/Java Backend Map.canvas]]
+- [[01_MAPS/Java Concurrency Visual Atlas.canvas]]
+- [[01_MAPS/Spring Visual Learning Atlas.canvas]]
+- [[01_MAPS/Spring Core Visual Atlas.canvas]]
+- [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]]
+- [[01_MAPS/Spring Transaction Management Map.canvas]]
+- [[01_MAPS/Spring Data JPA Map.canvas]]
+- [[01_MAPS/Spring Testing Map.canvas]]
+- [[01_MAPS/Database Indexes and Query Plans Map.canvas]]
+
+# Review process
 
 ```mermaid
 flowchart TD
-    A[Выбрать тему с низким confidence] --> B[Recall without notes]
-    B --> C[Answer cards]
-    C --> D{Ответ уверенный и объяснён?}
-    D -- Да --> E[Production case]
-    D -- Нет --> F[Mechanism and example]
+    A["Choose low-confidence topic"] --> B["Recall without notes"]
+    B --> C["Answer cards"]
+    C --> D{"Confident and explained?"}
+    D -->|"Yes"| E["Production case"]
+    D -->|"No"| F["Canonical + visual mechanism"]
     F --> C
-    E --> G[Predict or run lab]
-    G --> H[Record outcome]
-    H --> I[Update confidence and next review]
+    E --> G["Predict or run lab"]
+    G --> H["Record evidence"]
+    H --> I["Update confidence"]
 ```
 
 1. Откройте [[00_HOME/Review Dashboard]].
 2. Выберите concept с низким `confidence`.
-3. Воспроизведите определение без чтения.
+3. Воспроизведите mechanism без чтения.
 4. Ответьте на связанные cards.
-5. Объясните mechanism и boundary.
-6. Разберите production case или lab.
+5. Разберите production case.
+6. Предскажите lab outcome, затем проверьте evidence.
 7. Обновите outcome и review metadata.
 
-# Очерёдность наполнения
+# Cross-link quality
 
-1. Java Concurrency и JVM.
-2. Spring Core, AOP, Cache, Transactions, Data/JPA и Testing — опубликованы.
-3. Spring Boot internals и auto-configuration.
-4. Database transactions, locks, indexes и execution plans.
-5. Kafka и RabbitMQ delivery semantics.
-6. Reliability patterns распределённых систем.
-7. Карты exam objectives для Java и Spring.
+Navigation graph is defined by:
+
+- [[00_HOME/Knowledge Route Registry]];
+- [[90_TEMPLATES/Cross-Linking Standard]];
+- `.github/knowledge-routes.json`;
+- `.github/scripts/audit_cross_links.py`.
+
+Published route is complete only when:
+
+```text
+README reaches registry
+registry reaches route hub
+route indexes cover all artifacts
+every published artifact has inbound navigation
+Canvas references exist
+no broken or ambiguous strict-route links
+```
+
+# Next routes
+
+1. DB-B02 — Transactions, MVCC and Locks.
+2. Spring Boot Internals and Auto-configuration.
+3. Java Language, Collections and JVM vertical slices.
+4. Kafka and RabbitMQ delivery semantics.
+5. Distributed Systems resilience and consistency.
