@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "track_id": "JAVA-CONCURRENCY",
+  "title": "Java Concurrency Independent Route",
+  "source": "Java Language Specification 17 chapter 17, Java SE API and OpenJDK documentation",
+  "source_url": "https://docs.oracle.com/javase/specs/jls/se17/html/jls-17.html",
+  "verified_at": "2026-07-22",
+  "baseline": {
+    "java_exam": "17",
+    "production_deltas": ["Java 21 virtual threads"]
+  },
+  "objectives": [
+    {
+      "id": "CONC-B01",
+      "section": "Threads and Cancellation",
+      "title": "Explain thread lifecycle, interruption and cooperative cancellation",
+      "status": "theory-visual",
+      "weight": 10,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Java/Concurrency/Threads.md"],
+        "visual": ["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],
+        "labs": ["50_LABS/Java/Concurrency/README.md"],
+        "sources": ["98_SOURCES/Java Concurrency Sources.md"]
+      }
+    },
+    {
+      "id": "CONC-B02",
+      "section": "Memory Model",
+      "title": "Reason about visibility, ordering, happens-before and safe publication",
+      "status": "theory-visual",
+      "weight": 20,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": [
+          "10_CONCEPTS/Java/Concurrency/Visibility Atomicity Ordering.md",
+          "10_CONCEPTS/Java/Concurrency/Java Memory Model.md",
+          "10_CONCEPTS/Java/Concurrency/Happens-Before.md",
+          "10_CONCEPTS/Java/Concurrency/volatile.md"
+        ],
+        "visual": ["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],
+        "labs": ["50_LABS/Java/Concurrency/README.md"],
+        "sources": ["98_SOURCES/Java Concurrency Sources.md", "98_SOURCES/Advanced Concurrency Sources.md"]
+      }
+    },
+    {
+      "id": "CONC-B03",
+      "section": "Locks and Liveness",
+      "title": "Use monitors, explicit locks and liveness-safe ordering",
+      "status": "theory-visual",
+      "weight": 16,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": [
+          "10_CONCEPTS/Java/Concurrency/synchronized.md",
+          "10_CONCEPTS/Java/Concurrency/ReentrantLock.md",
+          "10_CONCEPTS/Java/Concurrency/Deadlock Livelock and Lock Ordering.md"
+        ],
+        "visual": ["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],
+        "labs": ["50_LABS/Java/Concurrency/README.md"],
+        "sources": ["98_SOURCES/Advanced Concurrency Sources.md"]
+      }
+    },
+    {
+      "id": "CONC-B04",
+      "section": "Atomic State",
+      "title": "Use CAS, atomic references and contention-aware counters",
+      "status": "theory-visual",
+      "weight": 12,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Java/Concurrency/Atomic CAS and Counters.md"],
+        "visual": ["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],
+        "labs": ["50_LABS/Java/Concurrency/README.md"],
+        "sources": ["98_SOURCES/Advanced Concurrency Sources.md"]
+      }
+    },
+    {
+      "id": "CONC-B05",
+      "section": "Executors and Futures",
+      "title": "Design execution policy, saturation, cancellation and result handling",
+      "status": "theory-visual",
+      "weight": 20,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": [
+          "10_CONCEPTS/Java/Concurrency/ExecutorService.md",
+          "10_CONCEPTS/Java/Concurrency/Future.md",
+          "10_CONCEPTS/Java/Concurrency/ForkJoinPool.md",
+          "10_CONCEPTS/Java/Concurrency/CompletableFuture.md"
+        ],
+        "visual": ["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],
+        "labs": ["50_LABS/Java/Concurrency/README.md"],
+        "sources": ["98_SOURCES/Advanced Concurrency Sources.md"]
+      }
+    },
+    {
+      "id": "CONC-B06",
+      "section": "Concurrent Collections and Backpressure",
+      "title": "Choose atomic collection operations and bounded producer-consumer designs",
+      "status": "theory-visual",
+      "weight": 10,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure.md"],
+        "visual": ["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],
+        "labs": ["50_LABS/Java/Concurrency/README.md"],
+        "sources": ["98_SOURCES/Advanced Concurrency Sources.md"]
+      }
+    },
+    {
+      "id": "CONC-B07",
+      "section": "ThreadLocal Context",
+      "title": "Manage ThreadLocal lifecycle and context propagation boundaries",
+      "status": "theory-visual",
+      "weight": 6,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Java/Concurrency/ThreadLocal.md"],
+        "visual": ["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],
+        "labs": ["50_LABS/Java/Concurrency/README.md"],
+        "sources": ["98_SOURCES/Advanced Concurrency Sources.md"]
+      }
+    },
+    {
+      "id": "CONC-B08",
+      "section": "Virtual Threads",
+      "title": "Use virtual threads without ignoring downstream resource limits",
+      "status": "theory-visual",
+      "weight": 6,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Java/Concurrency/Virtual Threads.md"],
+        "visual": ["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],
+        "labs": ["50_LABS/Java/Concurrency/README.md"],
+        "sources": ["98_SOURCES/Advanced Concurrency Sources.md"]
+      }
+    }
+  ]
+}
