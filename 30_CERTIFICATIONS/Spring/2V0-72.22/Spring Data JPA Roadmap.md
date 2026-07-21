@@ -7,6 +7,7 @@ subdomain:
   - jpa
 status: active
 published_cards: 36
+visual_enrichment: complete
 batches:
   - DATA-B01
 tags:
@@ -14,262 +15,170 @@ tags:
   - certification
   - jpa
   - spring-data
+  - navigation
 ---
 
 # Spring Data JPA Roadmap
 
 > [!summary]
-> Маршрут продолжает Transaction Management. Главная идея: service transaction определяет unit of work; persistence context управляет entity identity и dirty state; repository proxy выбирает persist/merge/query strategy; fetch plan и result shape проектируются под конкретный use case.
+> Service transaction определяет unit of work; persistence context управляет identity и dirty state; repository proxy выбирает persist/merge/query strategy; fetch plan и result shape проектируются под use case.
 
-## Progress
+# Route navigation
+
+- **Registry:** [[00_HOME/Knowledge Route Registry]]
+- **Domain map:** [[01_MAPS/Spring Map]]
+- **Previous:** [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
+- **Next:** [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
+- **Visual deep dive:** [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]]
+- **Canvas:** [[01_MAPS/Spring Data JPA Map.canvas]]
+- **Sources:** [[98_SOURCES/Spring Data JPA Sources]]
+
+# Progress
 
 ```text
 DATA-B01  36 cards  PUBLISHED
 ```
 
-Общее число опубликованных Spring cards после последующего Testing route:
-
-```text
-Spring Core               140
-AOP and Cache               44
-Transaction Management      32
-Spring Data and JPA          36
-Spring Testing               36
--------------------------------
-TOTAL                       288
-```
-
-# Learning sequence
-
 ```mermaid
 flowchart LR
-    TX[Transaction Management] --> PC[Persistence Context]
-    PC --> STATE[Entity lifecycle states]
-    STATE --> DIRTY[Dirty checking and flush]
-    DIRTY --> LOCK[Optimistic and pessimistic locking]
-    LOCK --> REPO[Repository proxy]
-    REPO --> QUERY[Derived and declared queries]
-    QUERY --> SPEC[Specifications]
-    QUERY --> PROJ[Projections]
-    QUERY --> PAGE[Page Slice and pagination]
-    QUERY --> FETCH[N plus One and fetch plans]
-    FETCH --> PROD[Production cases]
-    PROD --> LAB[Executable lab]
-    LAB --> TEST[Spring Testing]
+    TX["Transaction Management"] --> PC["Persistence Context"]
+    PC --> STATE["Entity states"]
+    STATE --> DIRTY["Dirty checking and flush"]
+    DIRTY --> LOCK["Locking"]
+    LOCK --> REPO["Repository proxy"]
+    REPO --> QUERY["Queries and Specifications"]
+    QUERY --> SHAPE["Projections and pagination"]
+    SHAPE --> FETCH["Fetch plans and N+1"]
+    FETCH --> CASES["Production cases"]
+    CASES --> LAB["Executable lab"]
+    LAB --> TEST["Spring Testing"]
 ```
 
-# DATA-B01 — published
+# DATA-B01 artifacts
 
-## Canonical concept modules
-
-1. [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]]
-2. [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]]
-
-## Recall
-
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards]]
-
-## Production transfer
-
-- [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
-
-## Executable experiments
-
-- [[50_LABS/Spring/DATA-B01/README]]
-
-## Visual map
-
-- [[01_MAPS/Spring Data JPA Map.canvas]]
-
-## Official sources
-
-- [[98_SOURCES/Spring Data JPA Sources]]
+| Role | Artifact |
+|---|---|
+| Persistence canonical | [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]] |
+| Repository/query canonical | [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]] |
+| Visual deep dive | [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]] |
+| Cards | [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards]] |
+| Cases | [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]] |
+| Lab | [[50_LABS/Spring/DATA-B01/README]] |
+| Canvas | [[01_MAPS/Spring Data JPA Map.canvas]] |
+| Sources | [[98_SOURCES/Spring Data JPA Sources]] |
 
 # Coverage
 
-## Persistence context
+## Persistence context and lifecycle
 
-- identity map;
-- first-level cache;
-- one managed instance per persistent identity;
+- identity map and first-level cache;
+- transient, managed, detached and removed states;
+- `persist`, `find`, `getReference`, `detach`, `clear`, `merge`, `remove`;
+- cascades and orphan removal;
 - transaction-scoped context;
-- entity state inspection;
 - memory growth in long contexts.
-
-## Entity lifecycle
-
-- transient;
-- managed;
-- detached;
-- removed;
-- `persist()`;
-- `find()`;
-- `getReference()`;
-- `detach()`;
-- `clear()`;
-- `merge()`;
-- `remove()`;
-- cascades;
-- orphan removal.
 
 ## Dirty checking and flush
 
-- snapshots;
-- automatic dirty checking;
+- snapshots and automatic dirty checking;
 - write-behind action queue;
-- flush vs commit;
+- flush versus commit;
 - AUTO flush before overlapping queries;
 - constraint failures at flush/commit;
-- `save()` not required for already managed entity;
-- `saveAndFlush()` boundaries;
+- `save()` not required for managed entity;
+- `saveAndFlush()`;
 - batch flush/clear.
-
-## Concurrency
-
-- `@Version`;
-- optimistic locking;
-- lost-update detection;
-- pessimistic read/write locks;
-- lock timeout;
-- deadlock risk;
-- atomic conditional update;
-- database-specific verification.
 
 ## Repository infrastructure
 
-- repository proxy;
-- `SimpleJpaRepository`;
+- repository proxy and `SimpleJpaRepository`;
 - inherited transactional metadata;
-- persist vs merge new-state detection;
+- persist-versus-merge new-state detection;
 - `Persistable.isNew()`;
-- repository fragments/custom implementation;
+- repository fragments;
 - service transaction as unit-of-work boundary.
 
-## Query methods
+## Queries and dynamic query
 
-- derived query parsing;
-- nested property traversal;
+- derived method parsing;
 - reserved method names;
-- declared JPQL with `@Query`;
-- native query trade-offs;
+- JPQL and native `@Query`;
 - named parameters;
-- `@Modifying`;
-- `clearAutomatically` and stale context;
-- streams and resource ownership.
-
-## Dynamic query
-
+- `@Modifying` and stale context;
 - `Specification<T>`;
-- composable predicates;
-- optional filters;
 - Criteria API;
-- join duplication;
-- custom repository for complex reporting queries.
+- optional filters and join duplication.
 
-## Result shape
+## Result shape and pagination
 
-- entities;
-- interface projections;
-- DTO/class projections;
+- entities, interface projections and DTO projections;
 - dynamic projections;
-- nested projections;
-- projection vs managed aggregate.
-
-## Pagination
-
-- `Page`;
-- `Slice`;
-- additional count query;
-- offset cost;
+- `Page` versus `Slice`;
+- count query cost;
 - stable ordering;
-- keyset pagination concept;
+- offset and keyset pagination;
 - collection fetch join limitation.
 
 ## Fetch planning
 
-- lazy/eager mapping defaults;
+- LAZY/EAGER mapping defaults;
 - N+1;
 - fetch join;
 - `@EntityGraph`;
 - batch fetching;
-- projection;
-- over-fetching;
+- projection and over-fetching;
 - SQL statement metrics.
 
-# Vertical-slice quality gate
+## Concurrency
 
-- [x] Two deep canonical notes.
-- [x] 36 certification cards.
-- [x] English questions and Russian translations.
-- [x] Mechanism explanations and exam traps.
+- `@Version` and optimistic locking;
+- pessimistic read/write locks;
+- lock timeout and deadlock risk;
+- atomic conditional update;
+- database-specific verification.
+
+# Production transfer
+
+Use [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]] for:
+
+- detached entity passed to persist;
+- merge result ignored;
+- dirty checking outside transaction;
+- constraint failure delayed until flush;
+- bulk DML leaving persistence context stale;
+- N+1 in production list endpoint;
+- pagination with collection fetch join;
+- locking behavior that differs from H2.
+
+# Quality status
+
+- [x] Central registry and domain MOC links.
+- [x] Two canonical notes.
+- [x] Visual deep dive and Canvas.
+- [x] 36 cards.
 - [x] 16 production incidents.
-- [x] H2/Hibernate executable project structure.
-- [x] Identity-map experiment.
-- [x] Dirty-checking experiment without `save()`.
-- [x] Detach/merge and repository-save experiment.
-- [x] Flush-time failure experiment.
-- [x] N+1 statement-count experiment.
-- [x] Fetch join and entity graph experiments.
-- [x] Specification and projection experiments.
-- [x] Page/Slice comparison.
-- [x] Bulk-DML stale-context experiment.
-- [x] Optimistic and pessimistic locking experiments.
-- [x] Official primary-source index.
-- [x] Visual Canvas.
-- [x] Follow-up Testing route created with H2 slice and PostgreSQL Testcontainers structure.
-- [ ] Full DATA-B01 Maven runtime executed in connected environment.
+- [x] H2/Hibernate lab.
+- [x] Source index.
+- [x] Route manifest and graph audit.
+- [ ] DATA-B01 card normalization complete.
+- [ ] Full Maven runtime executed in connected environment.
 - [ ] PostgreSQL locking exercise executed.
-- [ ] Real review outcomes collected.
+- [ ] Real recall outcomes collected.
 
 # Review questions
 
-1. Какое состояние entity сейчас: transient, managed, detached или removed?
-2. Какая Java instance является canonical для этого ID?
-3. Когда Hibernate выполнит SQL?
-4. Может ли query вызвать AUTO flush?
-5. Нужен ли `save()` для managed object?
-6. Что возвращает `merge()`?
-7. Где находится service transaction boundary?
-8. Repository method использует persist или merge?
-9. Query возвращает entity, projection или DTO?
-10. Сколько SQL statements выполняется?
-11. Есть ли N+1?
-12. Нужны `Page` totals или достаточно `Slice`?
-13. Может ли bulk DML оставить managed state stale?
-14. Как предотвращается lost update?
-15. Проверялось ли поведение на production database?
-
-# Confusion pairs
-
-| Pair | Ключевое различие |
-|---|---|
-| persistence context vs database | managed object state против committed rows |
-| first-level cache vs Redis | identity/unit-of-work против distributed cache |
-| flush vs commit | SQL synchronization против transaction durability |
-| managed vs detached | tracked state против ordinary Java object |
-| persist vs merge | manage new instance против copy state to managed instance |
-| merge argument vs merge result | detached original против managed copy |
-| `save()` vs dirty checking | repository abstraction против JPA managed-state tracking |
-| `save()` vs `saveAndFlush()` | schedule/persist-merge против immediate flush request |
-| `LAZY` vs N+1 | loading timing policy против repeated-query symptom |
-| fetch join vs entity graph | JPQL fetch clause против external fetch plan |
-| entity vs projection | managed aggregate против read shape |
-| `Page` vs `Slice` | total count metadata против next-page knowledge |
-| derived query vs Specification | fixed method grammar против composable runtime predicates |
-| bulk DML vs entity update | direct database mutation против dirty checking |
-| optimistic vs pessimistic lock | conflict detection против database lock acquisition |
-
-# Published follow-up route — Spring Testing
-
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]];
-- [[10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices]];
-- [[10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers]];
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards]];
-- [[50_LABS/Spring/TEST-B01/README]].
-
-# Next Spring routes
-
-1. Spring Boot internals and auto-configuration.
-2. Spring MVC/WebFlux.
-3. Spring Security.
-4. Messaging transactions and idempotent consumers.
+1. What is the current entity state?
+2. Which Java instance is canonical for the database identity?
+3. When will SQL be emitted?
+4. Can a query trigger AUTO flush?
+5. Is `save()` needed for this managed entity?
+6. What does `merge()` return?
+7. Where is the service transaction boundary?
+8. Does repository new-state detection choose persist or merge?
+9. Is the result an entity, projection or DTO?
+10. How many SQL statements execute?
+11. Is there N+1?
+12. Are totals required or is `Slice` sufficient?
+13. Can bulk DML leave managed state stale?
+14. How is lost update prevented?
+15. Was behavior verified on the production database dialect?
