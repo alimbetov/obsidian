@@ -88,6 +88,15 @@ flowchart TD
 17. [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards]]
 18. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
 
+#### Transaction Management
+
+19. [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]]
+20. [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]]
+21. [[10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries]]
+22. [[40_PRODUCTION_CASES/Spring/Transaction Management Production Cases]]
+23. [[50_LABS/Spring/TX-B01/README]]
+24. [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
+
 ### Открыть визуальную карту
 
 - [[01_MAPS/Java Backend Map.canvas]]
@@ -100,6 +109,7 @@ flowchart TD
 - [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
 - [[01_MAPS/Spring Advanced Core Map.canvas]]
 - [[01_MAPS/Spring AOP and Caching Map.canvas]]
+- [[01_MAPS/Spring Transaction Management Map.canvas]]
 
 ## Current Published Vertical Slices
 
@@ -140,6 +150,27 @@ TOTAL                                                          44 cards
 - [[50_LABS/Spring/CACHE-B01/README]];
 - [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]].
 
+### Spring Transaction Management
+
+```text
+TX-B01: logical/physical tx, propagation, isolation,
+        rollback, callbacks, async and outbox                 32 cards
+```
+
+Практика:
+
+- [[01_MAPS/Spring Transaction Management Map.canvas]];
+- [[40_PRODUCTION_CASES/Spring/Transaction Management Production Cases]];
+- [[50_LABS/Spring/TX-B01/README]].
+
+```text
+Spring Core              140
+AOP and Cache              44
+Transaction Management     32
+-----------------------------
+Published Spring total    216
+```
+
 ## Spring learning sequence
 
 ```mermaid
@@ -152,6 +183,8 @@ flowchart LR
     B6 --> AOP[AOP and Proxies]
     AOP --> CACHE[Caffeine and Redis caching]
     CACHE --> TX[Transaction Management]
+    TX --> OUTBOX[Commit boundaries and Outbox]
+    OUTBOX --> JPA[Spring Data and JPA]
 ```
 
 ## Процесс повторения
@@ -180,8 +213,9 @@ flowchart TD
 ## Очерёдность наполнения
 
 1. Java Concurrency и JVM.
-2. Spring Transaction Management после AOP/Cache.
-3. Database transactions, locks, indexes и execution plans.
-4. Kafka и RabbitMQ delivery semantics.
-5. Reliability patterns распределённых систем.
-6. Карты exam objectives для Java и Spring.
+2. Spring Core, AOP, Cache и Transaction Management — опубликованы.
+3. Spring Data and JPA.
+4. Database transactions, locks, indexes и execution plans.
+5. Kafka и RabbitMQ delivery semantics.
+6. Reliability patterns распределённых систем.
+7. Карты exam objectives для Java и Spring.
