@@ -10,7 +10,7 @@ tags:
 
 ## Общая модель
 
-Каноническая теория хранится в `10_CONCEPTS`. Сертификационные карточки используют её для active recall, discrimination, mechanism explanation и production transfer.
+Каноническая теория хранится в `10_CONCEPTS`. Карточки используют её для active recall, discrimination, mechanism explanation и production transfer.
 
 ```mermaid
 flowchart LR
@@ -28,9 +28,9 @@ flowchart LR
 
 - [[00_HOME/Review Dashboard]]
 
-## Java certification route
+# Java certification route
 
-### Java concurrency foundation
+## Java concurrency foundation
 
 - [[10_CONCEPTS/Java/Concurrency/Java Memory Model]]
 - [[10_CONCEPTS/Java/Concurrency/Happens-Before]]
@@ -49,6 +49,7 @@ flowchart LR
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap|Spring Core Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap|AOP and Cache Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap|Transaction Management Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap|Spring Data JPA Roadmap]]
 
 ## Published Spring Core batches
 
@@ -72,27 +73,30 @@ Spring Core total: 140 cards
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards|AOP-B01]] | 24 | [[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics]] | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards|CACHE-B01]] | 20 | [[10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis]] | published |
 
-```text
-AOP and Cache total: 44 cards
-```
-
 ## Published Transaction Management batch
 
 | Batch | Cards | Concepts | Status |
 |---|---:|---|---|
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards|TX-B01]] | 32 | [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]] + [[10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries]] | published |
 
+## Published Spring Data JPA batch
+
+| Batch | Cards | Concepts | Status |
+|---|---:|---|---|
+| [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards|DATA-B01]] | 36 | [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]] + [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]] | published |
+
 ```text
-Spring Core              140
-AOP and Cache              44
-Transaction Management     32
------------------------------
-Published Spring total    216
+Spring Core               140
+AOP and Cache               44
+Transaction Management      32
+Spring Data and JPA          36
+-------------------------------
+Published Spring total     252
 ```
 
-## Supporting maps and labs
+# Supporting maps, cases and labs
 
-### Spring Core
+## Spring Core
 
 - [[01_MAPS/Spring Core Foundation Map.canvas]]
 - [[01_MAPS/Spring Dependency Resolution Map.canvas]]
@@ -101,7 +105,7 @@ Published Spring total    216
 - [[01_MAPS/Spring Configuration and Profiles Map.canvas]]
 - [[01_MAPS/Spring Advanced Core Map.canvas]]
 
-### AOP and Cache
+## AOP and Cache
 
 - [[01_MAPS/Spring AOP and Caching Map.canvas]]
 - [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]]
@@ -109,23 +113,30 @@ Published Spring total    216
 - [[50_LABS/Spring/CACHE-B01/README]]
 - [[98_SOURCES/Spring AOP and Cache Sources]]
 
-### Transaction Management
+## Transaction Management
 
 - [[01_MAPS/Spring Transaction Management Map.canvas]]
 - [[40_PRODUCTION_CASES/Spring/Transaction Management Production Cases]]
 - [[50_LABS/Spring/TX-B01/README]]
 - [[98_SOURCES/Spring Transaction Management Sources]]
 
-## Card format
+## Spring Data and JPA
 
-1. `Question` на английском;
-2. `Russian Translation`;
-3. `Answer`;
-4. `Explanation`;
-5. `Exam Trap`;
-6. `Mini Example` для сложной темы;
-7. `Memory Hook` для легко путаемой темы;
-8. production transfer для mechanism-heavy темы.
+- [[01_MAPS/Spring Data JPA Map.canvas]]
+- [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
+- [[50_LABS/Spring/DATA-B01/README]]
+- [[98_SOURCES/Spring Data JPA Sources]]
+
+# Card format
+
+1. `Question` на английском.
+2. `Russian Translation`.
+3. `Answer`.
+4. `Explanation`.
+5. `Exam Trap`.
+6. `Mini Example` для сложной темы.
+7. `Memory Hook` для легко путаемой темы.
+8. Production transfer для mechanism-heavy темы.
 
 Целевая модель всей Spring certification base:
 
@@ -133,11 +144,11 @@ Published Spring total    216
 750 base cards + 150 exam drill questions = 900 items
 ```
 
-## Testing process
+# Testing process
 
 1. Ответить, не открывая explanation.
 2. Зафиксировать confident или guessed.
-3. Связать вопрос с канонической concept note.
+3. Связать вопрос с canonical concept note.
 4. Разобрать неправильные варианты.
 5. Применить правило к новому production scenario.
 6. Предсказать lab trace до запуска.
@@ -151,18 +162,15 @@ Published Spring total    216
 - `wrong-attention`;
 - `wrong-confusion`.
 
-## Next Spring certification route
+# Next Spring certification route
 
-`Spring Data and JPA`:
+`Testing`:
 
-- persistence context and entity states;
-- dirty checking;
-- flush vs commit;
-- optimistic and pessimistic locking;
-- repository proxies;
-- query derivation;
-- specifications and dynamic queries;
-- projections;
-- pagination;
-- N+1 and fetch plans;
-- transaction boundaries around repositories.
+- unit, slice and full-context tests;
+- `@DataJpaTest`;
+- Testcontainers PostgreSQL;
+- flush/clear testing;
+- commit-time failures;
+- propagation and rollback integration tests;
+- N+1/statement-count regression tests;
+- outbox and idempotency verification.
