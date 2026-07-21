@@ -14,12 +14,15 @@
 # С чего начать
 
 1. [[00_HOME/Java Backend Knowledge System]] — главный маршрут.
-2. [[00_HOME/Review Dashboard]] — ежедневное повторение.
-3. [[01_MAPS/Java Backend Map.canvas]] — общая spatial map.
-4. [[01_MAPS/Spring Visual Learning Atlas.canvas]] — зрелые Spring routes.
-5. [[01_MAPS/Spring Core Visual Atlas.canvas]] — container и lifecycle.
-6. [[01_MAPS/Java Concurrency Visual Atlas.canvas]] — JMM, execution и diagnostics.
-7. [[01_MAPS/Database Indexes and Query Plans Map.canvas]] — DB-B01.
+2. [[00_HOME/Knowledge Route Registry]] — реестр всех опубликованных routes и их artifacts.
+3. [[00_HOME/Review Dashboard]] — ежедневное повторение.
+4. [[01_MAPS/Java Backend Map.canvas]] — общая spatial map.
+5. [[01_MAPS/Spring Visual Learning Atlas.canvas]] — зрелые Spring routes.
+6. [[01_MAPS/Spring Core Visual Atlas.canvas]] — container и lifecycle.
+7. [[01_MAPS/Java Concurrency Visual Atlas.canvas]] — JMM, execution и diagnostics.
+8. [[01_MAPS/Database Indexes and Query Plans Map.canvas]] — DB-B01.
+
+Cross-linking rules: [[90_TEMPLATES/Cross-Linking Standard]].
 
 # Модель знаний
 
@@ -38,6 +41,7 @@ Visual deep dive дополняет canonical note, но не создаёт в�
 
 # Основные карты
 
+- [[00_HOME/Knowledge Route Registry]]
 - [[01_MAPS/Java Map]]
 - [[01_MAPS/Spring Map]]
 - [[01_MAPS/Databases Map]]
@@ -112,6 +116,7 @@ Visual elements                251
 
 Entry points:
 
+- [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path]]
 - [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]]
 - [[01_MAPS/Java Concurrency Visual Atlas.canvas]]
 - [[50_LABS/Java/Concurrency/README]]
@@ -129,6 +134,7 @@ CORE-B06  24 — scopes, FactoryBean, cycles and hierarchy
 
 Visual route covers metadata → BeanDefinition → candidate resolution → lifecycle → post-processing/proxy → scopes → configuration → startup diagnostics.
 
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 - [[10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive]]
 - [[01_MAPS/Spring Core Visual Atlas.canvas]]
 
@@ -140,6 +146,8 @@ Visual route covers metadata → BeanDefinition → candidate resolution → lif
 - AOP and Cache labs;
 - 12 production cases.
 
+Route: [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]].
+
 ## Spring Transaction Management
 
 - `TX-B01`: 32 cards;
@@ -150,6 +158,8 @@ Visual route covers metadata → BeanDefinition → candidate resolution → lif
 - 20 visual diagrams;
 - 15 incidents and H2 lab.
 
+Route: [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]].
+
 ## Spring Data and JPA
 
 - `DATA-B01`: 36 cards;
@@ -158,6 +168,8 @@ Visual route covers metadata → BeanDefinition → candidate resolution → lif
 - N+1, fetch plans and locking;
 - 31 visual diagrams;
 - 16 incidents and H2/Hibernate lab.
+
+Route: [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]].
 
 ## Spring Testing
 
@@ -168,6 +180,8 @@ Visual route covers metadata → BeanDefinition → candidate resolution → lif
 - N+1 regression;
 - 24 visual diagrams;
 - 16 incidents and JUnit suite.
+
+Route: [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]].
 
 ```text
 Spring Core               140
@@ -184,13 +198,13 @@ Published Spring total     288 cards
 Published as a complete visual vertical slice:
 
 ```text
-Canonical notes        2
-Visual diagrams       62
-Cards                 30
-Production cases      14
+Canonical notes         2
+Visual diagrams        62
+Cards                  30
+Production cases       14
 PostgreSQL experiments 10
-Canvas maps            1
-Official source index  1
+Canvas maps             1
+Official source index   1
 ```
 
 Coverage:
@@ -231,7 +245,7 @@ Entry points:
 30_CERTIFICATIONS/    card batches and roadmaps
 40_PRODUCTION_CASES/  incidents with evidence and repair
 50_LABS/              executable experiments
-90_TEMPLATES/         note templates and visual standard
+90_TEMPLATES/         note templates and visual/cross-link standards
 98_SOURCES/           official primary sources
 99_AUDITS/            quality and enrichment reports
 ```
@@ -269,6 +283,8 @@ cd 50_LABS/Spring/TEST-B01 && mvn clean test
 - Version-sensitive details are explicitly marked.
 - Mermaid passes real `mermaid-cli` rendering.
 - Canvas passes JSON, reference, geometry and connectivity checks.
+- Published routes obey [[90_TEMPLATES/Cross-Linking Standard]].
+- Route graph is machine-checked by `.github/scripts/audit_cross_links.py`.
 
 # Current next routes
 
