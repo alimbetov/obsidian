@@ -7,6 +7,7 @@ subdomain:
   - jpa
 batch_id: DATA-B01
 status: published
+normalization_status: complete
 card_count: 36
 first_card: DATA-B01-C001
 last_card: DATA-B01-C036
@@ -27,7 +28,17 @@ tags:
 # DATA-B01 — Spring Data and JPA
 
 > [!summary]
-> 36 карточек по persistence context, entity lifecycle, dirty checking, flush, locking, repository proxies, queries, Specifications, projections, pagination, N+1 и fetch plans.
+> 36 normalized cards по persistence context, entity lifecycle, dirty checking, flush, locking, repository proxies, queries, Specifications, projections, pagination, N+1 и fetch plans.
+
+## Route navigation
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
+- [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]]
+- [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]]
+- [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]]
+- [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
+- [[50_LABS/Spring/DATA-B01/README]]
+- [[98_SOURCES/Spring Data JPA Sources]]
 
 ---
 
@@ -46,11 +57,7 @@ It acts as an identity map and unit of work. Managed changes are tracked and syn
 
 ### Exam Trap
 
-A persistence context is not the same as Redis, a second-level cache or the database transaction itself.
-
-### Memory Hook
-
-**Identity map + unit of work.**
+A persistence context is not Redis, a second-level cache or the database transaction itself.
 
 ---
 
@@ -65,11 +72,11 @@ A persistence context is not the same as Redis, a second-level cache or the data
 
 ### Explanation
 
-New has not been associated with a persistence context; managed is tracked; detached has identity but is no longer tracked; removed is scheduled for deletion.
+New has not entered a persistence context; managed is tracked; detached has identity but is no longer tracked; removed is scheduled for deletion.
 
 ### Exam Trap
 
-Having a non-null ID does not automatically make an object managed.
+A non-null ID does not automatically make an object managed.
 
 ---
 
@@ -82,9 +89,13 @@ Having a non-null ID does not automatically make an object managed.
 > [!answer]- Answer
 > The same object instance becomes managed and is scheduled for insertion at or before flush/commit.
 
+### Explanation
+
+`persist()` changes the entity's lifecycle state immediately, while SQL timing depends on flush mode and identifier strategy.
+
 ### Exam Trap
 
-`persist()` does not always execute INSERT immediately.
+`persist()` does not guarantee an immediate `INSERT` statement.
 
 ---
 
@@ -95,18 +106,22 @@ Having a non-null ID does not automatically make an object managed.
 Делает ли `merge()` переданный object managed?
 
 > [!answer]- Answer
-> No. It copies the argument state into a managed instance and returns that managed copy; the original object remains detached.
+> No. It copies the argument state into a managed instance and returns that managed copy; the original remains detached.
+
+### Explanation
+
+Subsequent managed changes must be applied to the returned instance, not assumed to affect the detached argument.
+
+### Exam Trap
+
+Ignoring the return value of `merge()` commonly leads to updates being applied to the wrong Java instance.
 
 ### Mini Example
 
 ```java
 Customer managed = entityManager.merge(detached);
-managed != detached;
+assert managed != detached;
 ```
-
-### Memory Hook
-
-**Persist manages original; merge returns copy.**
 
 ---
 
@@ -117,11 +132,19 @@ managed != detached;
 Что такое dirty checking?
 
 > [!answer]- Answer
-> It is the detection of changes to managed entity state so the provider can generate SQL updates during flush.
+> It is detection of changes to managed entity state so the provider can generate SQL updates during flush.
+
+### Explanation
+
+The provider compares current managed state with snapshots or enhanced tracking metadata and queues updates for changed persistent attributes.
+
+### Exam Trap
+
+Dirty checking applies to managed entities; changing a detached entity does not automatically schedule an update.
 
 ### Production Transfer
 
-A managed entity normally does not need an explicit repository `save()` after each setter call.
+A managed entity normally does not need an explicit repository `save()` after every setter call.
 
 ---
 
@@ -134,13 +157,13 @@ A managed entity normally does not need an explicit repository `save()` after ea
 > [!answer]- Answer
 > Flush synchronizes persistence-context changes to SQL inside the current transaction; commit finalizes the transaction.
 
+### Explanation
+
+Flush can expose constraint failures and acquire locks before commit, but the transaction can still roll back afterward.
+
 ### Exam Trap
 
-A flushed INSERT can still be rolled back.
-
-### Memory Hook
-
-**Flush sends SQL; commit finalizes TX.**
+A flushed `INSERT` is not yet durable and can still be rolled back.
 
 ---
 
@@ -153,9 +176,13 @@ A flushed INSERT can still be rolled back.
 > [!answer]- Answer
 > Yes. A provider may flush before a query whose result must reflect pending entity changes, as well as before commit.
 
+### Explanation
+
+AUTO mode preserves query consistency by synchronizing relevant pending changes before executing overlapping queries.
+
 ### Exam Trap
 
-Do not assume that no SQL executes until the annotated method returns.
+Do not assume that no SQL runs until the annotated method returns.
 
 ---
 
@@ -168,9 +195,17 @@ Do not assume that no SQL executes until the annotated method returns.
 > [!answer]- Answer
 > It detaches all managed entities from the persistence context.
 
+### Explanation
+
+After `clear()`, changes to those Java objects are no longer tracked unless they are merged or loaded again.
+
+### Exam Trap
+
+Calling `clear()` before flushing can discard pending managed changes from the unit of work.
+
 ### Production Transfer
 
-In batch processing, use `flush()` before `clear()` if queued changes must be preserved.
+In batch processing, use `flush()` before `clear()` when queued changes must be preserved.
 
 ---
 
@@ -183,9 +218,13 @@ In batch processing, use `flush()` before `clear()` if queued changes must be pr
 > [!answer]- Answer
 > It reloads a managed entity from the database and overwrites its current in-memory state.
 
+### Explanation
+
+Refresh is useful when database-side changes must replace the managed snapshot, but it deliberately discards local unflushed state.
+
 ### Exam Trap
 
-Calling refresh can discard unflushed local changes.
+`refresh()` is not a merge and cannot be used on an arbitrary detached object.
 
 ---
 
@@ -197,6 +236,10 @@ Calling refresh can discard unflushed local changes.
 
 > [!answer]- Answer
 > It controls whether an EntityManager lifecycle operation such as persist, merge or remove is propagated across an association.
+
+### Explanation
+
+Cascade settings describe object-graph operation propagation inside JPA, independently for persist, merge, remove, refresh and detach.
 
 ### Exam Trap
 
@@ -213,9 +256,13 @@ JPA cascade is not the same mechanism as database `ON DELETE CASCADE`.
 > [!answer]- Answer
 > `orphanRemoval` deletes a child removed from its owning parent relationship; cascade REMOVE propagates deletion when the parent itself is removed.
 
-### Memory Hook
+### Explanation
 
-**Unlink child vs delete parent.**
+One reacts to unlinking a dependent child, while the other reacts to a remove operation on the parent entity.
+
+### Exam Trap
+
+Removing a child from a collection does not imply deletion unless orphan removal or explicit removal semantics apply.
 
 ---
 
@@ -226,11 +273,19 @@ JPA cascade is not the same mechanism as database `ON DELETE CASCADE`.
 Какая сторона владеет bidirectional association?
 
 > [!answer]- Answer
-> The owning side is the side that defines the foreign-key mapping, typically the side with `@JoinColumn`; `mappedBy` identifies the inverse side.
+> The owning side defines the foreign-key mapping, typically with `@JoinColumn`; `mappedBy` identifies the inverse side.
+
+### Explanation
+
+JPA uses the owning side to decide which relationship state is written to the database.
+
+### Exam Trap
+
+Updating only the inverse side may leave the database relationship unchanged even if the Java graph looks correct.
 
 ### Production Transfer
 
-Helper methods should update both Java sides of the relationship.
+Helper methods should update both Java sides of a bidirectional relationship.
 
 ---
 
@@ -243,9 +298,13 @@ Helper methods should update both Java sides of the relationship.
 > [!answer]- Answer
 > No. The provider may use joins or additional selects, and EAGER can still produce N+1 behavior.
 
+### Explanation
+
+EAGER specifies when data must be available, not the exact SQL fetch strategy used to obtain it.
+
 ### Exam Trap
 
-EAGER is a fetch requirement, not a specific SQL strategy.
+A fetch requirement is not a promise of a single join query.
 
 ---
 
@@ -258,9 +317,17 @@ EAGER is a fetch requirement, not a specific SQL strategy.
 > [!answer]- Answer
 > Accessing an uninitialized lazy association after the owning persistence context has closed.
 
+### Explanation
+
+The proxy or persistent collection needs an active provider session to load data that was not fetched earlier.
+
+### Exam Trap
+
+Changing every association to EAGER hides the boundary problem and can create over-fetching or N+1 queries.
+
 ### Best Fix
 
-Fetch and map the required data inside the application transaction using a projection, fetch join or entity graph.
+Fetch and map required data inside the application transaction using a projection, fetch join or entity graph.
 
 ---
 
@@ -272,6 +339,10 @@ Fetch and map the required data inside the application transaction using a proje
 
 > [!answer]- Answer
 > It permits lazy loading later in the web request but can move SQL outside explicit service transaction boundaries and hide N+1 queries.
+
+### Explanation
+
+OSIV extends persistence-context availability into the presentation layer, reducing immediate lazy failures while weakening query ownership.
 
 ### Exam Trap
 
@@ -286,7 +357,15 @@ OSIV is not a substitute for an intentional query and DTO boundary.
 Как `@Version` поддерживает optimistic locking?
 
 > [!answer]- Answer
-> Updates include the previously read version in the WHERE clause and increment it; zero updated rows indicates a stale writer.
+> Updates include the previously read version in the `WHERE` clause and increment it; zero updated rows indicates a stale writer.
+
+### Explanation
+
+The version column detects concurrent modification without holding a database lock for the entire user interaction.
+
+### Exam Trap
+
+Optimistic locking detects a conflict; it does not automatically merge two competing business changes.
 
 ### Mini Example
 
@@ -307,6 +386,14 @@ where id=? and version=?
 > [!answer]- Answer
 > It blocks competing transactions and can cause lock waits, deadlocks, timeouts and reduced throughput.
 
+### Explanation
+
+The database coordinates access immediately, trading conflict prevention for resource retention and contention risk.
+
+### Exam Trap
+
+A pessimistic lock does not make a long transaction harmless; longer lock duration increases operational risk.
+
 ### Production Transfer
 
 Keep locked transactions short and acquire rows in a stable order.
@@ -322,9 +409,13 @@ Keep locked transactions short and acquire rows in a stable order.
 > [!answer]- Answer
 > The ID can change from null to generated after insertion, changing the hash code while the object is already stored in a hash-based collection.
 
+### Explanation
+
+Hash-based collections assume the key's hash code remains stable while the element is contained.
+
 ### Exam Trap
 
-Do not include mutable collections and associations in entity equality.
+Do not include mutable collections and associations in entity equality because their state also changes over time.
 
 ---
 
@@ -337,9 +428,13 @@ Do not include mutable collections and associations in entity equality.
 > [!answer]- Answer
 > A Spring-created repository proxy that routes methods to base CRUD implementation, query execution infrastructure or custom fragments.
 
-### Memory Hook
+### Explanation
 
-**Repository interface → runtime proxy.**
+The interface is metadata for runtime composition; Spring selects an implementation path per method.
+
+### Exam Trap
+
+A repository interface is not instantiated directly by the JVM and does not require a handwritten implementation for every method.
 
 ---
 
@@ -354,22 +449,30 @@ Do not include mutable collections and associations in entity equality.
 
 ### Explanation
 
-Its inherited read methods normally use read-only transaction configuration, while write methods use ordinary transactional defaults.
+Repository proxies delegate inherited CRUD behavior to this base implementation while derived queries and fragments use other paths.
+
+### Exam Trap
+
+The proxy itself and `SimpleJpaRepository` are related but not the same object role.
 
 ---
 
-## DATA-B01-C021 — Should application transaction boundaries normally be defined only by repository defaults?
+## DATA-B01-C021 — Should transaction boundaries normally be defined only by repository defaults?
 
 ### Russian Translation
 
 Следует ли полагаться только на transaction defaults repository methods?
 
 > [!answer]- Answer
-> Usually no. A service/facade should define the unit-of-work boundary that coordinates repositories, mapping and business rules.
+> Usually no. A service or facade should define the unit-of-work boundary coordinating repositories, mapping and business rules.
 
-### Production Transfer
+### Explanation
 
-One application use case often spans several repository calls.
+Repository defaults apply method by method, while an application use case often spans several calls that must share one transaction.
+
+### Exam Trap
+
+Several successful repository calls do not become one atomic use case unless an outer transaction coordinates them.
 
 ---
 
@@ -381,6 +484,10 @@ One application use case often spans several repository calls.
 
 > [!answer]- Answer
 > For short, stable and readable predicates that can be clearly expressed in a repository method name.
+
+### Explanation
+
+Derived queries reduce boilerplate when the method name remains an accurate and maintainable representation of the predicate.
 
 ### Exam Trap
 
@@ -397,9 +504,13 @@ A very long derived method name is not more maintainable than an explicit query 
 > [!answer]- Answer
 > JPQL queries the entity model and is translated by the provider; native SQL targets database tables and vendor SQL directly.
 
-### Production Transfer
+### Explanation
 
-Native SQL gives more control but requires explicit portability, mapping and count-query decisions.
+JPQL improves object-model portability, while native SQL exposes database-specific syntax and result mapping responsibilities.
+
+### Exam Trap
+
+A native query may require a separate count query and explicit mapping for pagination or projections.
 
 ---
 
@@ -411,6 +522,10 @@ Native SQL gives more control but requires explicit portability, mapping and cou
 
 > [!answer]- Answer
 > It tells Spring Data that the declared query performs DML rather than returning a result set.
+
+### Explanation
+
+Spring Data changes the execution path so the query returns an update count and can apply flush/clear options.
 
 ### Exam Trap
 
@@ -427,6 +542,14 @@ Native SQL gives more control but requires explicit portability, mapping and cou
 > [!answer]- Answer
 > Bulk DML updates database rows directly and does not synchronize every managed entity already present in the persistence context.
 
+### Explanation
+
+The identity map can continue returning old in-memory state after the database has changed underneath it.
+
+### Exam Trap
+
+A successful update count does not prove managed instances were refreshed.
+
 ### Best Fix
 
 Use controlled flush/clear/refresh or `@Modifying(clearAutomatically = true)` according to the use case.
@@ -442,9 +565,13 @@ Use controlled flush/clear/refresh or `@Modifying(clearAutomatically = true)` ac
 > [!answer]- Answer
 > A composable predicate over an entity expressed through the JPA Criteria API and executed through `JpaSpecificationExecutor`.
 
-### Production Transfer
+### Explanation
 
-Specifications are useful for optional filters but do not guarantee an efficient execution plan.
+Specifications allow optional filters to be combined while keeping predicate construction separate from repository method-name parsing.
+
+### Exam Trap
+
+A Specification improves composition, not automatically SQL selectivity, indexing or join efficiency.
 
 ---
 
@@ -456,6 +583,10 @@ Specifications are useful for optional filters but do not guarantee an efficient
 
 > [!answer]- Answer
 > They return a dedicated read model containing selected attributes instead of materializing and exposing an entire entity aggregate.
+
+### Explanation
+
+A projection can reduce transferred columns, detach API shape from entity shape and avoid accidental lazy traversal.
 
 ### Exam Trap
 
@@ -472,9 +603,13 @@ Nested projection properties can still require joins and materialize more data t
 > [!answer]- Answer
 > `Page` normally includes total-count information and therefore often runs a count query; `Slice` only determines whether another chunk exists.
 
-### Production Transfer
+### Explanation
 
-Use Slice when total pages are not a business requirement and count is expensive.
+`Slice` retrieves one extra element to determine `hasNext`, avoiding a global total when the business flow does not require it.
+
+### Exam Trap
+
+Returning `Page` can make an otherwise fast content query expensive because of the additional count query.
 
 ---
 
@@ -486,6 +621,14 @@ Use Slice when total pages are not a business requirement and count is expensive
 
 > [!answer]- Answer
 > Rows with equal primary sort values otherwise have no deterministic order and can move between pages.
+
+### Explanation
+
+A unique final key creates a total ordering, which is required for stable offset or keyset pagination.
+
+### Exam Trap
+
+Sorting only by a timestamp is not deterministic when several rows share the same timestamp.
 
 ### Mini Example
 
@@ -504,9 +647,13 @@ ORDER BY created_at DESC, id DESC
 > [!answer]- Answer
 > One query loads N parent rows and subsequent lazy access triggers up to N additional queries for related data.
 
-### Production Transfer
+### Explanation
 
-Prove N+1 with query counts or statistics, not by inspecting annotations alone.
+The failure is caused by per-row relationship loading after the initial parent query, often during mapping or serialization.
+
+### Exam Trap
+
+The presence of LAZY or EAGER alone does not prove N+1; statement counts and execution traces do.
 
 ---
 
@@ -518,6 +665,10 @@ Prove N+1 with query counts or statistics, not by inspecting annotations alone.
 
 > [!answer]- Answer
 > It instructs a query to fetch a selected association as part of that query result, usually reducing later lazy selects.
+
+### Explanation
+
+The query controls the fetch plan for one use case without globally changing the mapping default.
 
 ### Exam Trap
 
@@ -534,9 +685,13 @@ Fetching multiple collections can create a cartesian product and duplicate root 
 > [!answer]- Answer
 > It applies a named or ad-hoc JPA entity graph as a fetch plan to a repository query method.
 
-### Production Transfer
+### Explanation
 
-It separates the predicate from the association fetch plan, but the provider still chooses the SQL strategy.
+The predicate and fetch plan remain separate, allowing the same query condition to load different graph shapes.
+
+### Exam Trap
+
+An entity graph does not guarantee one SQL statement; the provider still chooses the physical fetch strategy.
 
 ---
 
@@ -548,6 +703,14 @@ It separates the predicate from the association fetch plan, but the provider sti
 
 > [!answer]- Answer
 > SQL rows represent parent-child combinations while pagination must count and limit parent entities, which can cause incorrect or in-memory pagination and expensive count queries.
+
+### Explanation
+
+Limiting joined rows is not equivalent to limiting distinct parent entities when one parent has many children.
+
+### Exam Trap
+
+Adding `DISTINCT` does not automatically make collection fetch pagination efficient or correct at the SQL limit stage.
 
 ### Best Fix
 
@@ -562,11 +725,15 @@ Page root IDs first, then fetch the graph by those IDs, or use a projection.
 Что обычно возвращает `getReferenceById()`?
 
 > [!answer]- Answer
-> A lazy entity reference/proxy that may avoid an immediate SELECT until state is accessed.
+> A lazy entity reference or proxy that may avoid an immediate `SELECT` until state is accessed.
+
+### Explanation
+
+The reference can be useful for setting foreign-key relationships when only identity is required.
 
 ### Exam Trap
 
-A reference is not proof that the row exists; access can fail later.
+A reference is not proof that the row exists; state access can fail later.
 
 ---
 
@@ -578,6 +745,10 @@ A reference is not proof that the row exists; access can fail later.
 
 > [!answer]- Answer
 > JPA auditing records technical creator/modifier timestamps and actors, while a domain audit log records business events and decisions.
+
+### Explanation
+
+Technical metadata answers who/when changed the current row; a domain history explains what business action occurred and preserves prior events.
 
 ### Exam Trap
 
@@ -594,13 +765,23 @@ A reference is not proof that the row exists; access can fail later.
 > [!answer]- Answer
 > When the use case needs a managed aggregate for mutation, invariants and dirty checking; read-only endpoints often benefit from projections or DTOs.
 
-### Memory Hook
+### Explanation
 
-**Entity for behavior; projection for view.**
+Choose entity materialization for behavior-rich transactional work and a dedicated read model for query-oriented output.
 
-## Related materials
+### Exam Trap
 
-- [[10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle]]
-- [[10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching]]
-- [[40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases]]
-- [[50_LABS/Spring/DATA-B01/README]]
+Returning entities from every read endpoint couples API serialization to persistence state and lazy-loading behavior.
+
+---
+
+# Review matrix
+
+| Confusion pair | Correct distinction |
+|---|---|
+| persistence context vs transaction | identity/unit of work vs atomic resource boundary |
+| `persist` vs `merge` | manage original vs return managed copy |
+| flush vs commit | synchronize SQL vs finalize transaction |
+| EAGER vs fetch join | mapping requirement vs query-specific strategy |
+| Page vs Slice | total count vs next-chunk detection |
+| entity vs projection | managed behavior vs read model |
