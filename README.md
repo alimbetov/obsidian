@@ -8,18 +8,21 @@
 - изучить концепцию достаточно глубоко, чтобы объяснить mechanism и trade-offs;
 - готовиться к сертификационным экзаменам Java и Spring;
 - тренировать interview questions, code-output questions и production scenarios;
-- связать Java, Spring, базы данных, messaging и distributed systems в едином графе.
+- связать Java, Spring, базы данных, messaging и distributed systems в едином графе;
+- изучать runtime paths и failure boundaries через diagrams, Canvas и executable labs.
 
 ## С чего начать
 
 1. Открыть [[00_HOME/Java Backend Knowledge System]].
 2. Для ежедневного повторения использовать [[00_HOME/Review Dashboard]].
 3. Для пространственной навигации открыть [[01_MAPS/Java Backend Map.canvas]].
+4. Для углублённого визуального изучения Spring открыть [[01_MAPS/Spring Visual Learning Atlas.canvas]].
 
 ## Модель знаний
 
 ```text
 Concept
+   ├── Visual deep dive
    ├── Interview questions
    ├── Certification questions
    ├── Production cases
@@ -27,7 +30,7 @@ Concept
    └── Labs
 ```
 
-Каноническая теория описывается один раз. Карточки, кейсы и лаборатории ссылаются на неё.
+Каноническая теория описывается один раз. Карточки, визуальные deep dives, кейсы и лаборатории ссылаются на неё.
 
 ## Основные карты
 
@@ -36,12 +39,50 @@ Concept
 - [[01_MAPS/Databases Map]]
 - [[01_MAPS/Messaging Map]]
 - [[01_MAPS/Distributed Systems Map]]
+- [[01_MAPS/Spring Visual Learning Atlas.canvas]]
+- [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]]
 - [[01_MAPS/Spring AOP and Caching Map.canvas]]
 - [[01_MAPS/Spring Transaction Management Map.canvas]]
 - [[01_MAPS/Spring Data JPA Map.canvas]]
 - [[01_MAPS/Spring Testing Map.canvas]]
 - [[20_QUESTIONS/Interview/Interview Questions MOC]]
 - [[30_CERTIFICATIONS/Certification MOC]]
+
+# Visual learning layer
+
+Повторный педагогический audit показал, что line count и наличие одной mental-model diagram недостаточны. Для зрелых Spring routes добавлены отдельные visual deep dives.
+
+```text
+AOP Visual Deep Dive          20 diagrams
+Cache Visual Deep Dive        27 diagrams
+Transactions Visual Deep Dive 20 diagrams
+Data JPA Visual Deep Dive     31 diagrams
+Testing Visual Deep Dive      24 diagrams
+Standard example               1 diagram
+Canvas atlases                 2 maps
+-----------------------------------------
+Total new visual elements    125
+```
+
+## Visual deep dives
+
+- [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]]
+- [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]]
+- [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive]]
+- [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]]
+- [[10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive]]
+- [[90_TEMPLATES/Pedagogical Visual Standard]]
+- [[99_AUDITS/Pedagogical Visual Enrichment Pass]]
+
+Visual notes используют разные типы моделей:
+
+```text
+Topology          → какие компоненты существуют
+Sequence          → как идёт runtime interaction
+State/data flow   → как меняется состояние
+Decision tree     → как выбирать и диагностировать
+Class model       → contracts и proxy/inheritance boundaries
+```
 
 # Текущие опубликованные маршруты
 
@@ -66,11 +107,13 @@ Concept
 
 ## Spring AOP, Caffeine and Redis
 
-- `AOP-B01`: 24 карточки — JDK/CGLIB, self-invocation, advisors и infrastructure annotations;
-- `CACHE-B01`: 20 карточек — Spring Cache, Caffeine, Redis, stampede, TTL и L1/L2;
+- `AOP-B01`: 24 нормализованные карточки;
+- `CACHE-B01`: 20 нормализованных карточек;
 - AOP lab показывает transaction/async proxy boundaries;
 - Cache lab запускается с Caffeine локально и Redis через Docker Compose;
-- 12 production cases связывают proxy/cache mechanics с отказами.
+- 12 production cases связывают proxy/cache mechanics с отказами;
+- AOP visual deep dive содержит 20 diagrams;
+- Cache visual deep dive содержит 27 diagrams.
 
 ## Spring Transaction Management
 
@@ -86,7 +129,8 @@ Concept
 - async/thread boundaries;
 - отдельный deep dive по Transactional Outbox;
 - 15 production incidents;
-- H2 lab с наблюдаемыми commit/rollback outcomes.
+- H2 lab с наблюдаемыми commit/rollback outcomes;
+- visual deep dive содержит 20 diagrams.
 
 ## Spring Data and JPA
 
@@ -101,7 +145,8 @@ Concept
 - N+1, fetch join и `@EntityGraph`;
 - locking;
 - 16 production incidents;
-- H2/Hibernate lab со statement counters.
+- H2/Hibernate lab со statement counters;
+- visual deep dive содержит 31 diagram.
 
 ## Spring Testing
 
@@ -117,7 +162,8 @@ Concept
 - full-context service transaction tests;
 - PostgreSQL Testcontainers;
 - N+1 statement-count regression;
-- 16 testing production incidents.
+- 16 testing production incidents;
+- visual deep dive содержит 24 diagrams.
 
 ```text
 Spring Core               140
@@ -134,14 +180,15 @@ Published Spring total     288
 ```text
 00_HOME/              точки входа и dashboards
 01_MAPS/              Canvas и текстовые карты знаний
-10_CONCEPTS/          канонические заметки по концепциям
+10_CONCEPTS/          канонические и visual deep-dive заметки
 20_QUESTIONS/         интервью, сертификация и troubleshooting
 30_CERTIFICATIONS/    exam objectives и маршруты подготовки
 40_PRODUCTION_CASES/  реальные инженерные ситуации
 50_LABS/              запускаемые примеры
 60_BASES/             будущие динамические представления
-90_TEMPLATES/         шаблоны заметок
+90_TEMPLATES/         шаблоны и pedagogical standards
 98_SOURCES/           первичные официальные источники
+99_AUDITS/            quality и enrichment reports
 99_ATTACHMENTS/       изображения и вложения
 ```
 
@@ -244,13 +291,16 @@ PostgreSQL unique constraint
 
 Confidence повышается только после active recall и transfer practice.
 
-# Правила именования
+# Правила именования и качества
 
 - Одна концепция — одна каноническая заметка.
+- Visual deep dive дополняет canonical note, но не создаёт второй conflicting source of truth.
 - Версии Java, Spring и Spring Boot хранить в properties.
 - Использовать точные названия механизмов.
 - Название вопроса формулировать как вопрос.
 - Production case называть по наблюдаемой проблеме.
+- Advanced route должен содержать topology, sequence, failure path и diagnostic tree.
+- Mermaid должен проходить реальный renderer.
 
 # Текущий фундамент
 
@@ -264,9 +314,12 @@ Confidence повышается только после active recall и transfe
 - Spring Transaction Management с Outbox;
 - Spring Data JPA;
 - Spring Testing с H2 и PostgreSQL Testcontainers;
+- 125 новых visual elements по зрелым Spring routes;
 - certification-card standard;
 - production cases;
 - Java и Spring labs;
 - official source indexes и templates.
+
+Следующий backend-маршрут: **DB-B01 — Indexes and Query Plans**.
 
 Следующий Spring-маршрут: **Spring Boot Internals and Auto-configuration**.
