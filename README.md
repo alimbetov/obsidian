@@ -39,6 +39,7 @@ Concept
 - [[01_MAPS/Spring AOP and Caching Map.canvas]]
 - [[01_MAPS/Spring Transaction Management Map.canvas]]
 - [[01_MAPS/Spring Data JPA Map.canvas]]
+- [[01_MAPS/Spring Testing Map.canvas]]
 - [[20_QUESTIONS/Interview/Interview Questions MOC]]
 - [[30_CERTIFICATIONS/Certification MOC]]
 
@@ -90,29 +91,42 @@ Concept
 ## Spring Data and JPA
 
 - `DATA-B01`: 36 карточек;
-- две глубокие canonical notes: persistence context/lifecycle и repository/query layer;
-- identity map и first-level cache;
-- transient, managed, detached, removed;
-- dirty checking без `save()`;
+- persistence context и repository/query canonical notes;
+- identity map, entity states и dirty checking;
 - flush vs commit;
 - `persist()` vs `merge()`;
-- repository proxy и `SimpleJpaRepository`;
 - derived queries, `@Query`, `@Modifying`;
 - Specifications и dynamic query;
-- interface/DTO projections;
-- `Page` vs `Slice`;
+- projections, Page/Slice;
 - N+1, fetch join и `@EntityGraph`;
-- optimistic/pessimistic locking;
+- locking;
 - 16 production incidents;
-- H2/Hibernate lab со statement counters и real persistence-context experiments.
+- H2/Hibernate lab со statement counters.
+
+## Spring Testing
+
+- `TEST-B01`: 36 карточек;
+- Spring TestContext lifecycle и listeners;
+- unit/slice/full-context decision model;
+- `@DataJpaTest` и `TestEntityManager`;
+- test-managed transaction и rollback by default;
+- `@Commit`, `@Rollback`, `TestTransaction`;
+- flush/clear database proof;
+- context cache и `@DirtiesContext`;
+- H2 slice tests;
+- full-context service transaction tests;
+- PostgreSQL Testcontainers;
+- N+1 statement-count regression;
+- 16 testing production incidents.
 
 ```text
 Spring Core               140
 AOP and Cache               44
 Transaction Management      32
 Spring Data and JPA          36
+Spring Testing               36
 -------------------------------
-Published Spring total     252
+Published Spring total     288
 ```
 
 # Структура репозитория
@@ -150,17 +164,12 @@ cd 50_LABS/Spring/AOP-B01
 mvn clean compile exec:java
 ```
 
-## Caffeine
+## Caffeine / Redis
 
 ```bash
 cd 50_LABS/Spring/CACHE-B01
 mvn clean compile exec:java
-```
 
-## Redis
-
-```bash
-cd 50_LABS/Spring/CACHE-B01
 docker compose up -d redis
 RUN_REDIS=true mvn clean compile exec:java
 ```
@@ -172,21 +181,6 @@ cd 50_LABS/Spring/TX-B01
 mvn clean compile exec:java
 ```
 
-TX-B01 демонстрирует:
-
-```text
-REQUIRED + UnexpectedRollbackException
-REQUIRES_NEW independent commit
-NESTED savepoint
-checked exception commit vs rollbackFor
-TransactionTemplate
-synchronization callbacks
-transaction-bound events
-thread boundary
-outbox atomicity
-physical transaction counters
-```
-
 ## Spring Data and JPA
 
 ```bash
@@ -194,25 +188,40 @@ cd 50_LABS/Spring/DATA-B01
 mvn clean compile exec:java
 ```
 
-DATA-B01 демонстрирует:
+## Spring Testing
+
+```bash
+cd 50_LABS/Spring/TEST-B01
+mvn clean test
+```
+
+Без Docker можно запустить H2/full-context tests:
+
+```bash
+mvn -Dtest=PurchaseOrderRepositorySliceTest test
+mvn -Dtest=PurchaseOrderServiceTransactionTest test
+mvn -Dtest=PurchaseOrderCommitBoundaryTest test
+```
+
+PostgreSQL Testcontainers:
+
+```bash
+mvn -Dtest=PostgreSqlPurchaseOrderRepositoryTest test
+```
+
+TEST-B01 демонстрирует:
 
 ```text
-repository proxy
-persistence-context identity map
+@DataJpaTest slice boundary
+flush + clear round trip
+constraint failure at flush
 dirty checking without save
-detach and merge
-repository save of detached entity
-flush-time constraint failure
-LazyInitializationException
-N+1 statement count
-fetch join
-@EntityGraph
-interface projection
-Specification dynamic query
-Page vs Slice SQL count
-pessimistic lock
-bulk DML stale context
-optimistic-lock conflict
+N+1 SQL-count regression
+Page content + count queries
+service transaction rollback without test transaction
+explicit TestTransaction commit/rollback
+PostgreSQL native ILIKE
+PostgreSQL unique constraint
 ```
 
 # Языковая стратегия
@@ -250,14 +259,14 @@ Confidence повышается только после active recall и transfe
 - главный dashboard и Review Dashboard;
 - Java и Spring Canvas maps;
 - глубокий Java Concurrency route;
-- завершённый Spring Core route `CORE-B01`–`CORE-B06`;
-- Spring AOP and Proxy route;
-- Spring Cache route с Caffeine и Redis;
-- Spring Transaction Management route с Outbox;
-- Spring Data JPA route;
+- Spring Core `CORE-B01`–`CORE-B06`;
+- Spring AOP and Cache;
+- Spring Transaction Management с Outbox;
+- Spring Data JPA;
+- Spring Testing с H2 и PostgreSQL Testcontainers;
 - certification-card standard;
 - production cases;
 - Java и Spring labs;
 - official source indexes и templates.
 
-Следующий Spring-маршрут: **Testing**.
+Следующий Spring-маршрут: **Spring Boot Internals and Auto-configuration**.
