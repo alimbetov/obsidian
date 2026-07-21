@@ -14,6 +14,7 @@ tags:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Certification Card System]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
 - [[00_HOME/Review Dashboard]]
 
 ```mermaid
@@ -21,8 +22,9 @@ flowchart LR
     CORE[Spring Core complete] --> AOP[AOP and proxies]
     AOP --> CACHE[Cache abstraction]
     CACHE --> PROVIDERS[Caffeine and Redis]
-    PROVIDERS --> TX[Transaction deep dive]
-    TX --> DATA[Spring Data and JPA]
+    PROVIDERS --> TX[Transaction management]
+    TX --> OUTBOX[Commit boundaries and outbox]
+    OUTBOX --> DATA[Spring Data and JPA]
 ```
 
 # Spring Core — completed route
@@ -98,30 +100,57 @@ CACHE-B01  20 cards
 TOTAL      44 cards
 ```
 
-# Next route — Transaction Management
+# Transaction Management — published
 
-- transaction interceptor lifecycle;
-- propagation: REQUIRED, REQUIRES_NEW, NESTED, SUPPORTS, MANDATORY, NOT_SUPPORTED, NEVER;
-- isolation levels;
-- rollback rules;
-- checked vs unchecked exceptions;
-- read-only semantics;
-- transaction manager selection;
-- programmatic transactions;
-- transaction synchronization callbacks;
-- database and cache ordering;
-- outbox boundary;
+- [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]]
+- [[10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries]]
+- [[01_MAPS/Spring Transaction Management Map.canvas]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards|TX-B01 — 32 cards]]
+- [[40_PRODUCTION_CASES/Spring/Transaction Management Production Cases]]
+- [[50_LABS/Spring/TX-B01/README]]
+- [[98_SOURCES/Spring Transaction Management Sources]]
+
+Coverage:
+
+- transaction interceptor and manager selection;
+- logical vs physical transactions;
+- `REQUIRED` and `UnexpectedRollbackException`;
+- `REQUIRES_NEW` and connection-pool pressure;
+- `NESTED` savepoints;
+- `SUPPORTS`, `MANDATORY`, `NOT_SUPPORTED`, `NEVER`;
+- isolation phenomena and database-specific semantics;
+- rollback rules for runtime and checked exceptions;
+- read-only and timeout boundaries;
+- `TransactionTemplate`;
+- multiple transaction managers;
+- synchronization callbacks and transactional events;
+- database/cache ordering;
 - async/thread boundaries;
-- testing transactional behavior.
+- Transactional Outbox, idempotency and relay design.
 
-# Data access
+```text
+Spring Core  140 cards
+AOP/Cache     44 cards
+TX-B01        32 cards
+----------------------
+TOTAL        216 cards
+```
 
-- Spring JDBC;
-- Spring Data repositories;
-- JPA lifecycle;
+# Next route — Spring Data and JPA
+
+- persistence context;
+- entity lifecycle states;
+- dirty checking;
+- flush vs commit;
+- optimistic and pessimistic locking;
+- repository proxies;
 - query derivation;
-- specifications;
-- pagination and projections.
+- specifications and dynamic queries;
+- projections;
+- pagination;
+- N+1;
+- fetch joins and entity graphs;
+- transaction boundaries around repositories.
 
 # Web and Boot
 
