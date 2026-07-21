@@ -5,7 +5,7 @@
 ## Цели
 
 - вспомнить тему за 30 секунд перед собеседованием;
-- изучить концепцию достаточно глубоко, чтобы объяснить механизм и trade-offs;
+- изучить концепцию достаточно глубоко, чтобы объяснить mechanism и trade-offs;
 - готовиться к сертификационным экзаменам Java и Spring;
 - тренировать interview questions, code-output questions и production scenarios;
 - связать Java, Spring, базы данных, messaging и distributed systems в едином графе.
@@ -38,12 +38,13 @@ Concept
 - [[01_MAPS/Distributed Systems Map]]
 - [[01_MAPS/Spring AOP and Caching Map.canvas]]
 - [[01_MAPS/Spring Transaction Management Map.canvas]]
+- [[01_MAPS/Spring Data JPA Map.canvas]]
 - [[20_QUESTIONS/Interview/Interview Questions MOC]]
 - [[30_CERTIFICATIONS/Certification MOC]]
 
-## Текущие опубликованные маршруты
+# Текущие опубликованные маршруты
 
-### Java Concurrency
+## Java Concurrency
 
 - Java Memory Model и happens-before;
 - visibility, atomicity и ordering;
@@ -52,33 +53,31 @@ Concept
 - atomic/CAS, deadlock и concurrent collections;
 - interview recall и Java 8/21 labs.
 
-### Spring Core Certification — completed foundation
+## Spring Core Certification
 
 - `CORE-B01`: 20 карточек — IoC, beans, registration и injection styles;
-- `CORE-B02`: 24 карточки — candidate resolution, qualifiers, collections и optionality;
-- `CORE-B03`: 24 карточки — bean lifecycle, initialization, proxy и destruction;
-- `CORE-B04`: 24 карточки — extension points, processor ordering и early references;
-- `CORE-B05`: 24 карточки — configuration, imports, profiles и externalized properties;
-- `CORE-B06`: 24 карточки — scopes, providers, FactoryBean, lazy, cycles и context hierarchy;
-- всего опубликовано **140 Spring Core cards**.
+- `CORE-B02`: 24 карточки — candidate resolution, qualifiers и optionality;
+- `CORE-B03`: 24 карточки — bean lifecycle, initialization и destruction;
+- `CORE-B04`: 24 карточки — extension points и early references;
+- `CORE-B05`: 24 карточки — configuration, profiles и properties;
+- `CORE-B06`: 24 карточки — scopes, FactoryBean, lazy и hierarchy;
+- всего **140 Spring Core cards**.
 
-### Spring AOP, Caffeine and Redis
+## Spring AOP, Caffeine and Redis
 
-- `AOP-B01`: 24 карточки — AOP terminology, JDK/CGLIB, self-invocation, advisor order, transaction/async/security proxy boundaries;
-- `CACHE-B01`: 20 карточек — Spring Cache, keys, stampede, Caffeine, Redis, TTL, serialization и L1/L2 invalidation;
-- `AOP-B01` lab показывает настоящий transaction interceptor, async executor, final/private boundaries и advisor inspection;
-- `CACHE-B01` lab запускается с Caffeine локально и Redis через Docker Compose;
-- 12 production cases связывают proxy и cache mechanics с реальными отказами.
+- `AOP-B01`: 24 карточки — JDK/CGLIB, self-invocation, advisors и infrastructure annotations;
+- `CACHE-B01`: 20 карточек — Spring Cache, Caffeine, Redis, stampede, TTL и L1/L2;
+- AOP lab показывает transaction/async proxy boundaries;
+- Cache lab запускается с Caffeine локально и Redis через Docker Compose;
+- 12 production cases связывают proxy/cache mechanics с отказами.
 
-### Spring Transaction Management
+## Spring Transaction Management
 
 - `TX-B01`: 32 карточки;
 - logical scope против physical database transaction;
-- `REQUIRED`, rollback-only и `UnexpectedRollbackException`;
-- `REQUIRES_NEW`, независимый commit и connection-pool pressure;
-- `NESTED` savepoints;
-- `SUPPORTS`, `MANDATORY`, `NOT_SUPPORTED`, `NEVER`;
-- isolation phenomena, locking и database-specific semantics;
+- все propagation modes;
+- rollback-only и `UnexpectedRollbackException`;
+- isolation and locking boundaries;
 - checked/runtime rollback rules;
 - `TransactionTemplate` и multiple managers;
 - synchronization callbacks и transactional events;
@@ -86,17 +85,37 @@ Concept
 - async/thread boundaries;
 - отдельный deep dive по Transactional Outbox;
 - 15 production incidents;
-- H2 lab с настоящими commit/rollback outcomes.
+- H2 lab с наблюдаемыми commit/rollback outcomes.
+
+## Spring Data and JPA
+
+- `DATA-B01`: 36 карточек;
+- две глубокие canonical notes: persistence context/lifecycle и repository/query layer;
+- identity map и first-level cache;
+- transient, managed, detached, removed;
+- dirty checking без `save()`;
+- flush vs commit;
+- `persist()` vs `merge()`;
+- repository proxy и `SimpleJpaRepository`;
+- derived queries, `@Query`, `@Modifying`;
+- Specifications и dynamic query;
+- interface/DTO projections;
+- `Page` vs `Slice`;
+- N+1, fetch join и `@EntityGraph`;
+- optimistic/pessimistic locking;
+- 16 production incidents;
+- H2/Hibernate lab со statement counters и real persistence-context experiments.
 
 ```text
-Spring Core              140
-AOP and Cache              44
-Transaction Management     32
------------------------------
-Published Spring total    216
+Spring Core               140
+AOP and Cache               44
+Transaction Management      32
+Spring Data and JPA          36
+-------------------------------
+Published Spring total     252
 ```
 
-## Структура репозитория
+# Структура репозитория
 
 ```text
 00_HOME/              точки входа и dashboards
@@ -112,7 +131,7 @@ Published Spring total    216
 99_ATTACHMENTS/       изображения и вложения
 ```
 
-## Открытие в Obsidian
+# Открытие в Obsidian
 
 1. Клонировать репозиторий.
 2. В Obsidian выбрать **Open folder as vault**.
@@ -122,23 +141,23 @@ Published Spring total    216
 
 Community plugins не обязательны: база остаётся переносимым набором Markdown/Canvas-файлов.
 
-## Запуск Spring labs
+# Запуск Spring labs
 
-### AOP
+## AOP
 
 ```bash
 cd 50_LABS/Spring/AOP-B01
 mvn clean compile exec:java
 ```
 
-### Caffeine
+## Caffeine
 
 ```bash
 cd 50_LABS/Spring/CACHE-B01
 mvn clean compile exec:java
 ```
 
-### Redis
+## Redis
 
 ```bash
 cd 50_LABS/Spring/CACHE-B01
@@ -146,14 +165,14 @@ docker compose up -d redis
 RUN_REDIS=true mvn clean compile exec:java
 ```
 
-### Transaction Management
+## Transaction Management
 
 ```bash
 cd 50_LABS/Spring/TX-B01
 mvn clean compile exec:java
 ```
 
-TX-B01 использует H2 и показывает:
+TX-B01 демонстрирует:
 
 ```text
 REQUIRED + UnexpectedRollbackException
@@ -168,14 +187,42 @@ outbox atomicity
 physical transaction counters
 ```
 
-## Языковая стратегия
+## Spring Data and JPA
+
+```bash
+cd 50_LABS/Spring/DATA-B01
+mvn clean compile exec:java
+```
+
+DATA-B01 демонстрирует:
+
+```text
+repository proxy
+persistence-context identity map
+dirty checking without save
+detach and merge
+repository save of detached entity
+flush-time constraint failure
+LazyInitializationException
+N+1 statement count
+fetch join
+@EntityGraph
+interface projection
+Specification dynamic query
+Page vs Slice SQL count
+pessimistic lock
+bulk DML stale context
+optimistic-lock conflict
+```
+
+# Языковая стратегия
 
 - Java/Spring API и технические термины сохраняются на английском;
 - объяснения пишутся на русском;
 - certification questions создаются на английском с русским переводом;
 - aliases используются для альтернативных названий.
 
-## Шкала уверенности
+# Шкала уверенности
 
 | Значение | Состояние |
 |---:|---|
@@ -188,7 +235,7 @@ physical transaction counters
 
 Confidence повышается только после active recall и transfer practice.
 
-## Правила именования
+# Правила именования
 
 - Одна концепция — одна каноническая заметка.
 - Версии Java, Spring и Spring Boot хранить в properties.
@@ -196,7 +243,7 @@ Confidence повышается только после active recall и transfe
 - Название вопроса формулировать как вопрос.
 - Production case называть по наблюдаемой проблеме.
 
-## Текущий фундамент
+# Текущий фундамент
 
 Репозиторий содержит:
 
@@ -207,9 +254,10 @@ Confidence повышается только после active recall и transfe
 - Spring AOP and Proxy route;
 - Spring Cache route с Caffeine и Redis;
 - Spring Transaction Management route с Outbox;
+- Spring Data JPA route;
 - certification-card standard;
 - production cases;
 - Java и Spring labs;
-- source indexes и templates.
+- official source indexes и templates.
 
-Следующий Spring-маршрут: **Spring Data and JPA**.
+Следующий Spring-маршрут: **Testing**.
