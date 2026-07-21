@@ -4,646 +4,407 @@ certification: spring-2V0-72.22
 domain: spring
 subdomain: core
 batch_id: CORE-B01
-status: active
+status: published
+normalization_status: complete
 card_count: 20
-confidence: 0
-attempts: 0
-focus:
-  - IoC and DI
-  - Spring beans
-  - BeanDefinition
-  - BeanFactory and ApplicationContext
-  - component scanning
-  - @Bean and @Configuration
-  - injection styles
-tags: [spring, certification, core-b01]
+first_card: CORE-B01-C001
+last_card: CORE-B01-C020
+tags:
+  - spring
+  - certification
+  - core
+  - ioc
+  - dependency-injection
 ---
 
 # CORE-B01 — IoC and Bean Registration Foundations
 
 > [!summary]
-> Первая фактическая партия из 20 карточек. Сначала ответь на английский вопрос, затем проверь смысл по русскому переводу и только после этого раскрывай ответ.
+> 20 normalized cards по IoC, DI, beans, BeanDefinition, BeanFactory/ApplicationContext, component scanning, Java configuration и injection styles.
 
-## Learning map
+## Route navigation
 
-```mermaid
-flowchart LR
-    A[IoC] --> B[DI]
-    B --> C[Bean]
-    C --> D[BeanDefinition]
-    D --> E[BeanFactory]
-    E --> F[ApplicationContext]
-    D --> G[Component scanning]
-    D --> H["@Bean configuration"]
-    B --> I[Injection styles]
-```
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+- [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
+- [[10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive]]
+- [[01_MAPS/Spring Core Foundation Map.canvas]]
 
 ---
 
-## CORE-B01-C001
-
-### Question
-
-> [!question]
-> What does Inversion of Control mean in Spring?
+## CORE-B01-C001 — What does Inversion of Control mean in Spring?
 
 ### Russian Translation
 
-> Что означает Inversion of Control в Spring?
+Что означает Inversion of Control в Spring?
 
 > [!answer]- Answer
-> The container, rather than application objects, controls object creation, configuration, wiring, and lifecycle.
+> The container, rather than application objects, controls object creation, configuration, wiring and lifecycle.
 
 ### Explanation
 
-Business objects перестают самостоятельно собирать object graph. Configuration metadata передаётся container, который создаёт и связывает objects.
+Application classes describe dependencies and behavior, while container metadata determines how the object graph is assembled.
 
 ### Exam Trap
 
-> IoC не сводится к поиску dependency через container. Dependency Injection — основной способ реализации IoC.
-
-### Memory Hook
-
-> **IoC transfers control.**
+IoC is broader than looking up dependencies; Dependency Injection is its primary Spring implementation style.
 
 ---
 
-## CORE-B01-C002
-
-### Question
-
-> [!question]
-> What is Dependency Injection?
+## CORE-B01-C002 — What is Dependency Injection?
 
 ### Russian Translation
 
-> Что такое Dependency Injection?
+Что такое Dependency Injection?
 
 > [!answer]- Answer
 > Dependencies are supplied to an object from the outside instead of being created or located by that object.
 
 ### Explanation
 
-Constructor, method/setter или field получают collaborator, выбранный container.
-
-### Mini Example
-
-```java
-class OrderService {
-    OrderService(PaymentClient client) { }
-}
-```
+Constructor, setter or field injection lets the container provide collaborators selected from registered bean definitions.
 
 ### Exam Trap
 
-> DI — механизм. IoC — более широкий принцип.
-
-### Memory Hook
-
-> **DI transfers dependencies.**
+DI is a mechanism; IoC is the broader transfer-of-control principle.
 
 ---
 
-## CORE-B01-C003
-
-### Question
-
-> [!question]
-> What is a Spring bean?
+## CORE-B01-C003 — What is a Spring bean?
 
 ### Russian Translation
 
-> Что такое Spring bean?
+Что такое Spring bean?
 
 > [!answer]- Answer
-> An object instantiated, configured, and managed by the Spring IoC container.
+> An object instantiated, configured and managed by the Spring IoC container.
 
 ### Explanation
 
-Bean является обычным Java object, но container управляет его metadata, dependencies, lifecycle и post-processing.
+A bean is an ordinary Java object whose metadata, dependencies, lifecycle and post-processing are container-controlled.
 
 ### Exam Trap
 
-> Не каждый object, созданный через `new` внутри Spring application, является bean.
-
-### Memory Hook
-
-> **Bean = container-managed object.**
+An object created with `new` inside application code is not automatically a Spring bean.
 
 ---
 
-## CORE-B01-C004
-
-### Question
-
-> [!question]
-> What is a BeanDefinition?
+## CORE-B01-C004 — What is a BeanDefinition?
 
 ### Russian Translation
 
-> Что такое BeanDefinition?
+Что такое BeanDefinition?
 
 > [!answer]- Answer
 > Metadata describing how the container should create and manage a bean.
 
 ### Explanation
 
-BeanDefinition может содержать class/factory method, scope, dependencies, constructor arguments, lifecycle callbacks и flags.
+It can include class or factory method, scope, constructor arguments, dependencies, lifecycle callbacks and configuration flags.
 
 ### Exam Trap
 
-> BeanDefinition — recipe, а не сам bean instance.
-
-### Memory Hook
-
-> **Definition is the recipe; bean is the result.**
+A BeanDefinition is the recipe, not the resulting bean instance.
 
 ---
 
-## CORE-B01-C005
-
-### Question
-
-> [!question]
-> What is the main responsibility of BeanFactory?
+## CORE-B01-C005 — What is the main responsibility of BeanFactory?
 
 ### Russian Translation
 
-> Какова основная ответственность BeanFactory?
+Какова основная ответственность BeanFactory?
 
 > [!answer]- Answer
-> It provides the fundamental container contract for bean creation, configuration, dependency resolution, and lookup.
+> It provides the fundamental container contract for bean creation, configuration, dependency resolution and lookup.
 
 ### Explanation
 
-BeanFactory является базовым API Spring bean container.
+Higher-level contexts build on this core engine rather than replacing its responsibilities.
 
 ### Exam Trap
 
-> Не приписывай минимальному BeanFactory все дополнительные ApplicationContext services.
-
-### Memory Hook
-
-> **BeanFactory is the engine.**
+Do not attribute all ApplicationContext services to the minimal BeanFactory contract.
 
 ---
 
-## CORE-B01-C006
-
-### Question
-
-> [!question]
-> How is ApplicationContext related to BeanFactory?
+## CORE-B01-C006 — How is ApplicationContext related to BeanFactory?
 
 ### Russian Translation
 
-> Как ApplicationContext связан с BeanFactory?
+Как ApplicationContext связан с BeanFactory?
 
 > [!answer]- Answer
 > ApplicationContext extends the BeanFactory contract and adds application-level services.
 
 ### Explanation
 
-Он добавляет events, message resolution, resource loading, Environment и удобную infrastructure integration.
+It adds events, message resolution, resource loading, `Environment` support and infrastructure integration.
 
 ### Exam Trap
 
-> Это не два несвязанных конкурирующих container API.
-
-### Memory Hook
-
-> **ApplicationContext = BeanFactory plus application services.**
+They are not unrelated competing container APIs.
 
 ---
 
-## CORE-B01-C007
-
-### Question
-
-> [!question]
-> Which container is normally preferred in Spring applications?
+## CORE-B01-C007 — Which container is normally preferred in Spring applications?
 
 ### Russian Translation
 
-> Какой container обычно предпочитают в Spring-приложениях?
+Какой container обычно предпочитают в Spring-приложениях?
 
 > [!answer]- Answer
-> ApplicationContext.
+> `ApplicationContext`.
 
 ### Explanation
 
-Он включает BeanFactory capabilities и services, обычно необходимые приложению.
+It includes BeanFactory capabilities plus services normally required by real applications.
 
 ### Exam Trap
 
-> BeanFactory остаётся фундаментальным contract, хотя напрямую используется реже.
-
-### Memory Hook
-
-> **Use the vehicle; understand the engine.**
+BeanFactory remains the foundational contract even when applications use ApplicationContext directly.
 
 ---
 
-## CORE-B01-C008
-
-### Question
-
-> [!question]
-> Which configuration metadata styles can define Spring beans?
+## CORE-B01-C008 — Which metadata styles can define Spring beans?
 
 ### Russian Translation
 
-> Какие стили configuration metadata могут определять Spring beans?
+Какие стили configuration metadata могут определять Spring beans?
 
 > [!answer]- Answer
-> Annotated components, Java @Bean methods, XML, and programmatic registration.
+> Annotated components, Java `@Bean` methods, XML and programmatic registration.
 
 ### Explanation
 
-Разные источники переводятся в BeanDefinition metadata.
+Different input formats are normalized into the container's BeanDefinition model.
 
 ### Exam Trap
 
-> Annotation configuration не устранила XML и programmatic registration.
-
-### Memory Hook
-
-> **Different sources, one BeanDefinition model.**
+Annotation configuration did not eliminate XML or programmatic registration.
 
 ---
 
-## CORE-B01-C009
-
-### Question
-
-> [!question]
-> What does @Component indicate?
+## CORE-B01-C009 — What does `@Component` indicate?
 
 ### Russian Translation
 
-> Что обозначает @Component?
+Что обозначает `@Component`?
 
 > [!answer]- Answer
 > The class is a candidate for component scanning and registration as a Spring bean.
 
-### Mini Example
+### Explanation
 
-```java
-@Component
-class PaymentService { }
-```
+The annotation marks discoverability; an active scan must still cover the class package before a BeanDefinition is registered.
 
 ### Exam Trap
 
-> `@Component` не запускает scanning сама. Scan boundary должен быть configured.
-
-### Memory Hook
-
-> **Component marks a discoverable class.**
+`@Component` does not start component scanning by itself.
 
 ---
 
-## CORE-B01-C010
-
-### Question
-
-> [!question]
-> Which annotations are common specializations of @Component?
+## CORE-B01-C010 — Which annotations are common specializations of `@Component`?
 
 ### Russian Translation
 
-> Какие аннотации являются распространёнными специализациями @Component?
+Какие аннотации являются распространёнными специализациями `@Component`?
 
 > [!answer]- Answer
-> @Service, @Repository, and @Controller.
+> `@Service`, `@Repository` and `@Controller`.
 
 ### Explanation
 
-Они сохраняют component-detection semantics и добавляют architectural intent; некоторые участвуют в дополнительной infrastructure semantics.
+They retain component-detection semantics while expressing architectural intent; some also participate in extra infrastructure behavior.
 
 ### Exam Trap
 
-> Они не являются полностью отдельными registration mechanisms.
-
-### Memory Hook
-
-> **Stereotypes add meaning to Component.**
+They are not entirely separate bean-registration mechanisms.
 
 ---
 
-## CORE-B01-C011
-
-### Question
-
-> [!question]
-> What does component scanning do?
+## CORE-B01-C011 — What does component scanning do?
 
 ### Russian Translation
 
-> Что делает component scanning?
+Что делает component scanning?
 
 > [!answer]- Answer
 > It searches configured packages for candidate component classes and registers BeanDefinitions for them.
 
 ### Explanation
 
-Именно configured base packages определяют discoverability.
+Configured base packages define the discovery boundary.
 
 ### Exam Trap
 
-> Аннотированный class вне scan tree не будет автоматически найден.
-
-### Memory Hook
-
-> **No scan path, no component.**
+An annotated class outside the scan tree is not automatically discovered.
 
 ---
 
-## CORE-B01-C012
-
-### Question
-
-> [!question]
-> What is the typical default bean name for an unnamed component class PaymentService?
+## CORE-B01-C012 — What is the typical default bean name for `PaymentService`?
 
 ### Russian Translation
 
-> Каково типичное default bean name для unnamed component class PaymentService?
+Каково типичное default bean name для class `PaymentService`?
 
 > [!answer]- Answer
-> paymentService.
+> `paymentService`.
 
 ### Explanation
 
-Spring обычно выводит name из short class name и применяет decapitalization rules.
+Spring commonly derives the name from the short class name using decapitalization rules.
 
 ### Exam Trap
 
-> Default обычно не является fully qualified class name.
-
-### Memory Hook
-
-> **PaymentService becomes paymentService.**
+The default is not normally the fully qualified class name.
 
 ---
 
-## CORE-B01-C013
-
-### Question
-
-> [!question]
-> What does @Bean indicate?
+## CORE-B01-C013 — What does `@Bean` indicate?
 
 ### Russian Translation
 
-> Что обозначает @Bean?
+Что обозначает `@Bean`?
 
 > [!answer]- Answer
 > The annotated method creates an object to be registered and managed as a Spring bean.
 
-### Mini Example
+### Explanation
 
-```java
-@Bean
-PaymentClient paymentClient() {
-    return new HttpPaymentClient();
-}
-```
+The method acts as an explicit factory, and its return value is registered under the configured or inferred bean name.
 
 ### Exam Trap
 
-> `@Bean` — method-level factory annotation, а не class stereotype.
-
-### Memory Hook
-
-> **Bean marks the factory method.**
+`@Bean` is a method-level factory annotation, not a class stereotype.
 
 ---
 
-## CORE-B01-C014
-
-### Question
-
-> [!question]
-> When is @Bean especially useful?
+## CORE-B01-C014 — When is `@Bean` especially useful?
 
 ### Russian Translation
 
-> Когда @Bean особенно полезен?
+Когда `@Bean` особенно полезен?
 
 > [!answer]- Answer
 > When registering third-party classes or when construction requires explicit factory logic.
 
 ### Explanation
 
-Application owns factory method даже если library class нельзя изменить.
+The application owns the factory method even when it cannot modify the produced class.
 
 ### Exam Trap
 
-> `@Bean` не ограничен third-party classes; это общий Java configuration mechanism.
-
-### Memory Hook
-
-> **Cannot annotate the class? Own the factory.**
+`@Bean` is not limited to third-party classes; it is a general Java configuration mechanism.
 
 ---
 
-## CORE-B01-C015
-
-### Question
-
-> [!question]
-> What is the key difference between @Component and @Bean?
+## CORE-B01-C015 — What is the key difference between `@Component` and `@Bean`?
 
 ### Russian Translation
 
-> Каково ключевое различие между @Component и @Bean?
+Каково ключевое различие между `@Component` и `@Bean`?
 
 > [!answer]- Answer
-> @Component marks a class for scanning; @Bean marks a factory method whose return value becomes a bean.
+> `@Component` marks a class for scanning; `@Bean` marks a factory method whose return value becomes a bean.
 
 ### Explanation
 
-Оба пути создают managed bean, но registration metadata и control over construction различаются.
+Both produce managed beans, but discovery and construction control differ.
 
 ### Exam Trap
 
-> Различие не в том, является ли результат bean: оба результата managed.
-
-### Memory Hook
-
-> **Component = product class; Bean = factory method.**
+The difference is not whether the result is managed; both registration paths create beans.
 
 ---
 
-## CORE-B01-C016
-
-### Question
-
-> [!question]
-> What does @Configuration indicate?
+## CORE-B01-C016 — What does `@Configuration` indicate?
 
 ### Russian Translation
 
-> Что обозначает @Configuration?
+Что обозначает `@Configuration`?
 
 > [!answer]- Answer
-> The class is a source of bean definitions, typically through @Bean methods, with full configuration semantics when processed accordingly.
+> The class is a source of bean definitions, typically through `@Bean` methods, with full configuration semantics when processed accordingly.
 
 ### Explanation
 
-В full mode Spring enhances configuration class для container-aware inter-bean method calls.
+In full mode Spring enhances the class so inter-bean method calls can return container-managed singletons.
 
 ### Exam Trap
 
-> Не каждый class с `@Bean` methods автоматически имеет идентичную full-mode interception semantics.
-
-### Memory Hook
-
-> **Configuration coordinates bean factories.**
+A class containing `@Bean` methods does not always have identical full-mode interception semantics.
 
 ---
 
-## CORE-B01-C017
-
-### Question
-
-> [!question]
-> Which injection style is normally preferred for required dependencies?
+## CORE-B01-C017 — Which injection style is normally preferred for required dependencies?
 
 ### Russian Translation
 
-> Какой стиль injection обычно предпочитают для required dependencies?
+Какой стиль injection обычно предпочитают для required dependencies?
 
 > [!answer]- Answer
 > Constructor injection.
 
 ### Explanation
 
-Required dependencies explicit, fields могут быть final, object нельзя создать incomplete, testing проще.
-
-### Mini Example
-
-```java
-@Service
-class OrderService {
-    private final PaymentClient client;
-
-    OrderService(PaymentClient client) {
-        this.client = client;
-    }
-}
-```
+Required dependencies become explicit, fields can be final and the object cannot be created in an incomplete state.
 
 ### Exam Trap
 
-> Вопрос «что поддерживается?» отличается от «что рекомендуется?».
-
-### Memory Hook
-
-> **Required by constructor.**
+A question about supported injection styles is different from a question about recommended design.
 
 ---
 
-## CORE-B01-C018
-
-### Question
-
-> [!question]
-> Is @Autowired required on the only constructor of a Spring bean?
+## CORE-B01-C018 — Is `@Autowired` required on the only constructor of a Spring bean?
 
 ### Russian Translation
 
-> Нужен ли @Autowired на единственном constructor Spring bean?
+Нужен ли `@Autowired` на единственном constructor Spring bean?
 
 > [!answer]- Answer
 > Usually no.
 
 ### Explanation
 
-Если class имеет один constructor, Spring может использовать его без explicit `@Autowired`.
+When a class has one constructor, Spring can select it implicitly for dependency injection.
 
 ### Exam Trap
 
-> При нескольких constructors правила candidate selection становятся важны.
-
-### Memory Hook
-
-> **One constructor speaks for itself.**
+With multiple constructors, candidate-selection rules become important.
 
 ---
 
-## CORE-B01-C019
-
-### Question
-
-> [!question]
-> When is setter injection appropriate?
+## CORE-B01-C019 — When is setter injection appropriate?
 
 ### Russian Translation
 
-> Когда setter injection уместен?
+Когда setter injection уместен?
 
 > [!answer]- Answer
 > For optional or reconfigurable dependencies when the object remains valid without them.
 
 ### Explanation
 
-Setter injection допускает post-construction configuration, поэтому required invariant должен быть защищён отдельно.
+Setter injection permits post-construction configuration, so required invariants must be protected elsewhere.
 
 ### Exam Trap
 
-> Не используй optionality как оправдание invalid partially configured object.
-
-### Memory Hook
-
-> **Optional by setter.**
+Do not label a dependency optional if the object is invalid without it.
 
 ---
 
-## CORE-B01-C020
-
-### Question
-
-> [!question]
-> What is a major drawback of field injection?
+## CORE-B01-C020 — What is a major drawback of field injection?
 
 ### Russian Translation
 
-> Каков основной недостаток field injection?
+Каков основной недостаток field injection?
 
 > [!answer]- Answer
-> It hides required dependencies, complicates plain unit testing, and prevents final dependency fields.
+> It hides required dependencies, complicates plain unit testing and prevents final dependency fields.
 
 ### Explanation
 
-Container может установить field, но class contract становится менее явным и object трудно создать без reflection/container.
+The class contract becomes less explicit and the object is difficult to instantiate without reflection or a container.
 
 ### Exam Trap
 
-> Field injection поддерживается. Вопрос касается design trade-off, а не basic capability.
-
-### Memory Hook
-
-> **Field injection hides the contract.**
-
----
-
-## Batch review protocol
-
-После прохождения каждой карточки записать outcome:
-
-- `correct-confident`;
-- `correct-guessed`;
-- `wrong-concept`;
-- `wrong-attention`;
-- `wrong-confusion`.
-
-> [!important]
-> Угаданный ответ не считается усвоенным, пока ты не можешь объяснить механизм и отклонить похожий вариант.
-
-## Related concept
-
-- [[10_CONCEPTS/Spring/Core/Spring Core Foundations]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Certification Card System]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+Field injection is supported; the issue is design quality, not basic capability.
