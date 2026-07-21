@@ -399,7 +399,7 @@ public void process() {
     persistAudit();
 }
 
-@Transactional(requiresNew = true) // conceptually ineffective here
+@Transactional(propagation = Propagation.REQUIRES_NEW) // ineffective on a private method
 private void persistAudit() {
 }
 ```
