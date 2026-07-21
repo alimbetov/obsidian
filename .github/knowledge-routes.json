@@ -206,6 +206,31 @@
       ]
     },
     {
+      "id": "SPRING-BOOT-B01",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Spring Boot Auto-configuration Map.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration.md",
+        "10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive.md",
+        "01_MAPS/Spring Boot Auto-configuration Map.canvas",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards.md",
+        "40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases.md",
+        "50_LABS/Spring/SPRING-BOOT-B01/README.md",
+        "98_SOURCES/Spring Boot Auto-configuration Sources.md"
+      ]
+    },
+    {
       "id": "DB-B01",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap.md",
