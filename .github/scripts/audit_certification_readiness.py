@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Calculate certification material readiness from a machine-readable manifest.
+"""Calculate certification material readiness from objective and artifact evidence.
 
-Low readiness is reported, not treated as a CI error. CI errors represent an
-invalid readiness model: missing declared files, invalid weights, impossible
-card counts, or a published domain missing a required artifact role.
+Readiness is intentionally conservative:
+- 25% objective traceability from `.audit/objective-traceability.json`;
+- 75% vertical-slice artifact/card completeness from the readiness manifest.
+
+Low readiness is reported, not treated as a CI error. Invalid or dishonest
+metadata remains a blocking error.
 """
 
 from __future__ import annotations
@@ -15,7 +18,10 @@ from typing import Dict, List
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / ".github/certification-readiness.json"
+OBJECTIVE_REPORT = ROOT / ".audit/objective-traceability.json"
 OUTPUT_DIR = ROOT / ".audit"
+OBJECTIVE_WEIGHT = 0.25
+VERTICAL_WEIGHT = 0.75
 STATUS_CAP = {
     "published": 100.0,
     "partial": 85.0,
@@ -72,6 +78,40 @@ def domain_score(domain: dict) -> tuple[float, dict]:
     }
 
 
+def load_objective_scores(findings: List[dict]) -> Dict[str, float]:
+    if not OBJECTIVE_REPORT.is_file():
+        add_finding(
+            findings,
+            "error",
+            "objective-report",
+            str(OBJECTIVE_REPORT.relative_to(ROOT)),
+            "Objective traceability audit must run before readiness calculation",
+        )
+        return {}
+    try:
+        report = json.loads(OBJECTIVE_REPORT.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        add_finding(findings, "error", "objective-report-json", str(OBJECTIVE_REPORT.relative_to(ROOT)), str(exc))
+        return {}
+
+    if report.get("summary", {}).get("errors", 0):
+        add_finding(
+            findings,
+            "error",
+            "objective-report",
+            str(OBJECTIVE_REPORT.relative_to(ROOT)),
+            "Objective traceability report contains errors",
+        )
+
+    scores: Dict[str, float] = {}
+    for track in report.get("tracks", []):
+        track_id = track.get("track_id")
+        score = track.get("traceability_score")
+        if isinstance(track_id, str) and isinstance(score, (int, float)):
+            scores[track_id] = float(score)
+    return scores
+
+
 def main() -> int:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     findings: List[dict] = []
@@ -86,6 +126,8 @@ def main() -> int:
             add_finding(findings, "error", "manifest-json", str(MANIFEST.relative_to(ROOT)), str(exc))
             data = {"tracks": []}
 
+    objective_scores = load_objective_scores(findings)
+
     dashboard = data.get("dashboard")
     if not exists(dashboard):
         add_finding(findings, "error", "dashboard", str(dashboard), "Readiness dashboard does not exist")
@@ -97,12 +139,15 @@ def main() -> int:
         if not exists(roadmap):
             add_finding(findings, "error", "roadmap", str(roadmap), f"{track_id}: master roadmap does not exist")
 
+        if track_id not in objective_scores:
+            add_finding(findings, "error", "objective-track", track_id, "No objective traceability score exists for track")
+
         domains = track.get("domains", [])
         total_weight = sum(int(domain.get("weight", 0) or 0) for domain in domains)
         if total_weight != 100:
             add_finding(findings, "error", "weights", track_id, f"Domain weights must total 100, found {total_weight}")
 
-        weighted_score = 0.0
+        vertical_score = 0.0
         domain_reports = []
         for domain in domains:
             domain_id = domain.get("id", "UNKNOWN")
@@ -132,7 +177,7 @@ def main() -> int:
                     if not role_details.get("complete", False):
                         add_finding(findings, "error", "published-role", domain_id, f"Published domain missing complete role: {role}")
 
-            weighted_score += score * weight / 100.0
+            vertical_score += score * weight / 100.0
             domain_reports.append({
                 "id": domain_id,
                 "status": status,
@@ -141,13 +186,20 @@ def main() -> int:
                 **details,
             })
 
-        readiness = round(weighted_score, 2)
+        objective_score = objective_scores.get(track_id, 0.0)
+        readiness = round(OBJECTIVE_WEIGHT * objective_score + VERTICAL_WEIGHT * vertical_score, 2)
         target_readiness = float(track.get("target_material_readiness", 99))
         track_reports.append({
             "id": track_id,
             "title": track.get("title", track_id),
             "roadmap": roadmap,
             "material_readiness": readiness,
+            "objective_traceability_score": round(objective_score, 2),
+            "vertical_slice_score": round(vertical_score, 2),
+            "formula": {
+                "objective_weight": OBJECTIVE_WEIGHT,
+                "vertical_weight": VERTICAL_WEIGHT,
+            },
             "target_material_readiness": target_readiness,
             "remaining_to_target": round(max(target_readiness - readiness, 0.0), 2),
             "targets": track.get("targets", {}),
@@ -178,14 +230,17 @@ def main() -> int:
     lines = [
         "# Certification Material Readiness",
         "",
+        "> Formula: 25% objective traceability + 75% vertical-slice artifact/card completeness.",
+        "",
         "## Track summary",
         "",
-        "| Track | Material readiness | Target | Remaining |",
-        "|---|---:|---:|---:|",
+        "| Track | Readiness | Objective traceability | Vertical slices | Target | Remaining |",
+        "|---|---:|---:|---:|---:|---:|",
     ]
     for track in track_reports:
         lines.append(
             f"| {track['title']} | {track['material_readiness']:.2f}% | "
+            f"{track['objective_traceability_score']:.2f}% | {track['vertical_slice_score']:.2f}% | "
             f"{track['target_material_readiness']:.2f}% | {track['remaining_to_target']:.2f}% |"
         )
 
@@ -229,7 +284,11 @@ def main() -> int:
 
     print(json.dumps(report["summary"], ensure_ascii=False, indent=2))
     for track in track_reports:
-        print(f"{track['id']}: {track['material_readiness']:.2f}% / {track['target_material_readiness']:.2f}%")
+        print(
+            f"{track['id']}: {track['material_readiness']:.2f}% "
+            f"(objectives {track['objective_traceability_score']:.2f}%, "
+            f"vertical {track['vertical_slice_score']:.2f}%)"
+        )
 
     return 1 if counts.get("error", 0) else 0
 
