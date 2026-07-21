@@ -1,0 +1,108 @@
+name: Vault Quality Audit
+
+on:
+  push:
+    branches:
+      - agent/knowledge-map-foundation
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run structural vault audit
+        run: python .github/scripts/audit_vault.py
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Render every Mermaid block
+        shell: bash
+        run: |
+          set +e
+          mkdir -p .audit/rendered
+          : > .audit/mermaid-failures.txt
+          : > .audit/mermaid-render.log
+
+          while IFS= read -r -d '' diagram; do
+            output=".audit/rendered/$(basename "${diagram%.mmd}").svg"
+            echo "Rendering ${diagram}"
+            npx -y @mermaid-js/mermaid-cli@11.12.0 \
+              --input "${diagram}" \
+              --output "${output}" \
+              --backgroundColor transparent \
+              >> .audit/mermaid-render.log 2>&1
+            status=$?
+            if [ ${status} -ne 0 ]; then
+              echo "${diagram}" | tee -a .audit/mermaid-failures.txt
+            fi
+          done < <(find .audit/mermaid -type f -name '*.mmd' -print0 | sort -z)
+
+          total=$(find .audit/mermaid -type f -name '*.mmd' | wc -l | tr -d ' ')
+          failed=$(grep -cve '^$' .audit/mermaid-failures.txt || true)
+          passed=$((total - failed))
+
+          {
+            echo
+            echo "## Mermaid renderer result"
+            echo
+            echo "- Total diagrams: **${total}**"
+            echo "- Rendered successfully: **${passed}**"
+            echo "- Failed: **${failed}**"
+            if [ "${failed}" -gt 0 ]; then
+              echo
+              echo "### Failed Mermaid blocks"
+              echo
+              sed 's#^#- `#; s#$#`#' .audit/mermaid-failures.txt
+            fi
+          } >> .audit/vault-audit.md
+
+      - name: Publish audit summary
+        if: always()
+        run: |
+          cat .audit/vault-audit.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload audit reports and rendered diagrams
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vault-quality-audit
+          path: .audit/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Enforce structural and diagram validity
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path('.audit/vault-audit.json').read_text(encoding='utf-8'))
+          structural_errors = report['summary']['findings'].get('error', 0)
+          failure_file = Path('.audit/mermaid-failures.txt')
+          mermaid_errors = 0
+          if failure_file.exists():
+              mermaid_errors = sum(1 for line in failure_file.read_text(encoding='utf-8').splitlines() if line.strip())
+
+          print(f'Structural errors: {structural_errors}')
+          print(f'Mermaid render errors: {mermaid_errors}')
+          if structural_errors or mermaid_errors:
+              raise SystemExit(1)
+          PY
