@@ -13,7 +13,7 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
 
     steps:
       - name: Checkout repository
@@ -43,8 +43,16 @@ jobs:
             --catalog-output .audit/card-catalog.json \
             --queue-output .audit/card-review-queue.md
 
+      - name: Prepare objective manifests
+        run: |
+          python .github/scripts/apply_objective_overrides.py \
+            --root . \
+            --output-dir .audit/objectives
+
       - name: Audit objective traceability
-        run: python .github/scripts/audit_objective_traceability.py
+        run: |
+          python .github/scripts/audit_objective_traceability.py \
+            --manifest-dir .audit/objectives
 
       - name: Calculate certification readiness
         run: python .github/scripts/audit_certification_readiness.py
@@ -55,10 +63,15 @@ jobs:
           distribution: temurin
           java-version: "17"
           cache: maven
-          cache-dependency-path: 50_LABS/Spring/SPRING-BOOT-B01/pom.xml
+          cache-dependency-path: |
+            50_LABS/Spring/SPRING-BOOT-B01/pom.xml
+            50_LABS/Spring/SPRING-BOOT-B02/pom.xml
 
       - name: Run SPRING-BOOT-B01 ApplicationContextRunner tests
         run: mvn --batch-mode --no-transfer-progress -f 50_LABS/Spring/SPRING-BOOT-B01/pom.xml test
+
+      - name: Run SPRING-BOOT-B02 binding and Config Data tests
+        run: mvn --batch-mode --no-transfer-progress -f 50_LABS/Spring/SPRING-BOOT-B02/pom.xml test
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -84,7 +97,7 @@ jobs:
               --input "${diagram}" \
               --output "${output}" \
               --backgroundColor transparent \
-              --puppeteerConfigFile .github/mermaid-puppeteer.json \
+              --pueteerConfigFile .github/mermaid-puppeteer.json \
               >> .audit/mermaid-render.log 2>&1
             status=$?
             if [ ${status} -ne 0 ]; then
@@ -159,9 +172,15 @@ jobs:
               })
 
           strict_card_paths = {
+              '30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards.md',
               '30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards.md',
               '30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards.md',
               '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards.md',
               '30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards.md',
           }
           published_card_errors = [
