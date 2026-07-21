@@ -38,7 +38,7 @@ target method
 5. [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards]]
 6. [[50_LABS/Spring/CACHE-B01/README]]
 7. [[40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases]]
-8. [[01_MAPS/Spring AOP and Cache Map.canvas]]
+8. [[01_MAPS/Spring AOP and Caching Map.canvas]]
 
 ## Что доказать практикой
 
