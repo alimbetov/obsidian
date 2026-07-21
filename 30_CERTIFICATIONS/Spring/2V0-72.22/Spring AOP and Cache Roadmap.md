@@ -44,7 +44,7 @@ flowchart LR
     K --> R[Redis shared cache]
     CF --> L2[L1 plus L2 consistency]
     R --> L2
-    L2 --> PROD[Production cases]
+    L2 --> TX[Transaction Management]
 ```
 
 ## AOP-B01 — published
@@ -133,15 +133,19 @@ Coverage:
 9. Что произойдёт при Redis outage?
 10. Как инвалидируется L1 на других nodes?
 
+## Published next route
+
+Transaction Management is now published:
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]];
+- [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive]];
+- [[10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries]];
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]];
+- [[50_LABS/Spring/TX-B01/README]].
+
 ## Next Spring routes
 
-1. Transaction management deep dive:
-   - propagation;
-   - isolation;
-   - rollback rules;
-   - transaction managers;
-   - synchronization callbacks;
-   - outbox boundary.
-2. Spring Data and JPA.
-3. Testing.
-4. Spring Boot internals and auto-configuration.
+1. Spring Data and JPA.
+2. Testing.
+3. Spring Boot internals and auto-configuration.
+4. Messaging transactions and idempotent consumers.
