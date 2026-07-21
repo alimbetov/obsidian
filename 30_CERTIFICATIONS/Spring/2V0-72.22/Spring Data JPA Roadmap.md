@@ -19,7 +19,7 @@ tags:
 # Spring Data JPA Roadmap
 
 > [!summary]
-> Маршрут продолжает Transaction Management. Главная идея: service transaction определяет unit of work; persistence context управляет entity identity и dirty state; repository proxy выбирает persist/merge/query strategy; fetch plan и result shape должны проектироваться под конкретный use case.
+> Маршрут продолжает Transaction Management. Главная идея: service transaction определяет unit of work; persistence context управляет entity identity и dirty state; repository proxy выбирает persist/merge/query strategy; fetch plan и result shape проектируются под конкретный use case.
 
 ## Progress
 
@@ -27,18 +27,17 @@ tags:
 DATA-B01  36 cards  PUBLISHED
 ```
 
-Общее число опубликованных Spring cards после этого batch:
+Общее число опубликованных Spring cards после последующего Testing route:
 
 ```text
 Spring Core               140
 AOP and Cache               44
 Transaction Management      32
 Spring Data and JPA          36
+Spring Testing               36
 -------------------------------
-TOTAL                       252
+TOTAL                       288
 ```
-
----
 
 # Learning sequence
 
@@ -56,9 +55,8 @@ flowchart LR
     QUERY --> FETCH[N plus One and fetch plans]
     FETCH --> PROD[Production cases]
     PROD --> LAB[Executable lab]
+    LAB --> TEST[Spring Testing]
 ```
-
----
 
 # DATA-B01 — published
 
@@ -86,8 +84,6 @@ flowchart LR
 ## Official sources
 
 - [[98_SOURCES/Spring Data JPA Sources]]
-
----
 
 # Coverage
 
@@ -200,8 +196,6 @@ flowchart LR
 - over-fetching;
 - SQL statement metrics.
 
----
-
 # Vertical-slice quality gate
 
 - [x] Two deep canonical notes.
@@ -222,11 +216,10 @@ flowchart LR
 - [x] Optimistic and pessimistic locking experiments.
 - [x] Official primary-source index.
 - [x] Visual Canvas.
-- [ ] Full Maven runtime executed in connected environment.
-- [ ] PostgreSQL Testcontainers verification.
+- [x] Follow-up Testing route created with H2 slice and PostgreSQL Testcontainers structure.
+- [ ] Full DATA-B01 Maven runtime executed in connected environment.
+- [ ] PostgreSQL locking exercise executed.
 - [ ] Real review outcomes collected.
-
----
 
 # Review questions
 
@@ -245,8 +238,6 @@ flowchart LR
 13. Может ли bulk DML оставить managed state stale?
 14. Как предотвращается lost update?
 15. Проверялось ли поведение на production database?
-
----
 
 # Confusion pairs
 
@@ -268,17 +259,17 @@ flowchart LR
 | bulk DML vs entity update | direct database mutation против dirty checking |
 | optimistic vs pessimistic lock | conflict detection против database lock acquisition |
 
----
+# Published follow-up route — Spring Testing
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]];
+- [[10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices]];
+- [[10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers]];
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards]];
+- [[50_LABS/Spring/TEST-B01/README]].
 
 # Next Spring routes
 
-1. Testing:
-   - unit vs slice vs integration;
-   - `@DataJpaTest`;
-   - transaction rollback tests;
-   - Testcontainers;
-   - SQL-count assertions;
-   - commit-time failure tests.
-2. Spring Boot internals and auto-configuration.
-3. Spring MVC/WebFlux.
-4. Spring Security.
+1. Spring Boot internals and auto-configuration.
+2. Spring MVC/WebFlux.
+3. Spring Security.
+4. Messaging transactions and idempotent consumers.
