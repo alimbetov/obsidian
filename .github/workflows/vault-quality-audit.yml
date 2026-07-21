@@ -13,7 +13,7 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Checkout repository
@@ -34,6 +34,17 @@ jobs:
       - name: Calculate certification readiness
         continue-on-error: true
         run: python .github/scripts/audit_certification_readiness.py
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+          cache-dependency-path: 50_LABS/Spring/SPRING-BOOT-B01/pom.xml
+
+      - name: Run SPRING-BOOT-B01 ApplicationContextRunner tests
+        run: mvn --batch-mode --no-transfer-progress -f 50_LABS/Spring/SPRING-BOOT-B01/pom.xml test
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -137,6 +148,7 @@ jobs:
           strict_card_paths = {
               '30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards.md',
               '30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards.md',
               '30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards.md',
           }
           published_card_errors = [
