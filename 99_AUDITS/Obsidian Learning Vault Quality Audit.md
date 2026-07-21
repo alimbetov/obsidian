@@ -163,7 +163,7 @@ Root cause — unquoted labels, содержащие:
 
 Плохой fragment:
 
-```mermaid
+```text
 flowchart LR
     A --> B[@DataJpaTest / @WebMvcTest]
 ```
@@ -439,7 +439,7 @@ OBS-B01 — logs, metrics, traces, SLI/SLO
 - [x] Найти 10 broken Mermaid blocks.
 - [x] Применить deterministic quoting repairs.
 - [x] Добавить отсутствовавшие foundational link targets.
-- [ ] Получить green final audit after all repairs.
+- [x] Получить green final audit after all repairs.
 
 ## P1 — pedagogical correctness
 
