@@ -98,7 +98,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
-      - name: Enforce structural, diagram and normalized-card validity
+      - name: Enforce structural, diagram and published-card validity
         if: always()
         run: |
           python - <<'PY'
@@ -120,8 +120,9 @@ jobs:
           strict_card_paths = {
               '30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards.md',
               '30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards.md',
+              '30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards.md',
           }
-          normalized_card_errors = [
+          published_card_errors = [
               item
               for item in report.get('findings', [])
               if item.get('category') == 'card-completeness'
@@ -130,10 +131,10 @@ jobs:
 
           print(f'Structural errors: {structural_errors}')
           print(f'Mermaid render errors: {mermaid_errors}')
-          print(f'Normalized-card contract errors: {len(normalized_card_errors)}')
-          for item in normalized_card_errors:
+          print(f'Published-card contract errors: {len(published_card_errors)}')
+          for item in published_card_errors:
               print(f"- {item.get('path')}: {item.get('message')}")
 
-          if structural_errors or mermaid_errors or normalized_card_errors:
+          if structural_errors or mermaid_errors or published_card_errors:
               raise SystemExit(1)
           PY
