@@ -32,7 +32,6 @@ mindmap
       Synchronization
       Atomic CAS
       Liveness
-      Concurrent collections
       Executors
       Future
       ForkJoinPool
@@ -50,17 +49,38 @@ mindmap
       Java 21
 ```
 
-## Concurrency
+# Java Concurrency — visually enriched
 
 > [!tip] Рекомендуемый маршрут
-> Начни с [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path|Concurrency Learning Path]], затем используй две Canvas-карты: фундаментальную и advanced.
+> Начни с [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path|Concurrency Learning Path]], затем открой [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]] и [[01_MAPS/Java Concurrency Visual Atlas.canvas]]. После visual route переходи к canonical notes и lab.
 
-### Visual maps
+## Visual learning
 
-- [[01_MAPS/Java Concurrency Map.canvas|Java Concurrency Canvas]]
-- [[01_MAPS/Java Advanced Concurrency Map.canvas|Java Advanced Concurrency Canvas]]
+- [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]] — 35 visual models;
+- [[01_MAPS/Java Concurrency Visual Atlas.canvas]] — единая learning map;
+- [[01_MAPS/Java Concurrency Map.canvas|Java Concurrency Canvas]];
+- [[01_MAPS/Java Advanced Concurrency Map.canvas|Java Advanced Concurrency Canvas]].
 
-### Foundations
+Visual coverage:
+
+```text
+thread lifecycle
+program order and happens-before
+volatile publication and lost increment
+monitor, wait/notify and ReentrantLock
+CAS, AtomicReference and LongAdder
+ExecutorService, saturation and backpressure
+Future and CompletableFuture
+ForkJoin work stealing
+ThreadLocal leak paths
+virtual threads and resource limits
+ConcurrentHashMap compound actions
+BlockingQueue
+Deadlock/livelock/starvation
+race and saturation diagnostic trees
+```
+
+## Foundations
 
 - [[10_CONCEPTS/Java/Concurrency/Threads]]
 - [[10_CONCEPTS/Java/Concurrency/Visibility Atomicity Ordering]]
@@ -71,13 +91,13 @@ mindmap
 - [[10_CONCEPTS/Java/Concurrency/synchronized]]
 - [[10_CONCEPTS/Java/Concurrency/ReentrantLock]]
 
-### Advanced coordination
+## Advanced coordination
 
 - [[10_CONCEPTS/Java/Concurrency/Atomic CAS and Counters]]
 - [[10_CONCEPTS/Java/Concurrency/Deadlock Livelock and Lock Ordering]]
 - [[10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure]]
 
-### Task execution
+## Task execution
 
 - [[10_CONCEPTS/Java/Concurrency/ExecutorService]]
 - [[10_CONCEPTS/Java/Concurrency/Future]]
@@ -86,60 +106,60 @@ mindmap
 - [[10_CONCEPTS/Java/Concurrency/ThreadLocal]]
 - [[10_CONCEPTS/Java/Concurrency/Virtual Threads]]
 
-### JVM lifecycle risks
+## JVM lifecycle risks
 
 - [[10_CONCEPTS/Java/JVM/Memory Leaks]]
 
-### Active recall and labs
+## Active recall and labs
 
 - [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
 - [[50_LABS/Java/Concurrency/java8/AdvancedConcurrencyLab.java]]
 - [[50_LABS/Java/Concurrency/README]]
 
-## Other Java domains
+# Other Java domains
 
-### Language
+## Language
 
-- OOP
-- Exceptions
-- Generics
-- Annotations
-- Reflection
-- Modules
+- OOP;
+- Exceptions;
+- Generics;
+- Annotations;
+- Reflection;
+- Modules.
 
-### Collections fundamentals
+## Collections fundamentals
 
-- List, Set, Map and Queue
-- HashMap internals
-- equality and hashing
-- iterator semantics
+- List, Set, Map and Queue;
+- HashMap internals;
+- equality and hashing;
+- iterator semantics.
 
-### Functional Java
+## Functional Java
 
-- lambda expressions
-- functional interfaces
-- Stream API
-- collectors
-- Optional
-- parallel streams
+- lambda expressions;
+- functional interfaces;
+- Stream API;
+- collectors;
+- Optional;
+- parallel streams.
 
-### JVM
+## JVM
 
-- runtime data areas
-- class loading
-- bytecode and JIT
-- garbage collectors
-- diagnostics and profiling
+- runtime data areas;
+- class loading;
+- bytecode and JIT;
+- garbage collectors;
+- diagnostics and profiling.
 
-### Version evolution
+## Version evolution
 
-- Java 8
-- Java 11
-- Java 17
-- Java 21
-- migration routes
+- Java 8;
+- Java 11;
+- Java 17;
+- Java 21;
+- migration routes.
 
-## Practice routes
+# Practice routes
 
 - [[20_QUESTIONS/Interview/Interview Questions MOC]]
 - [[30_CERTIFICATIONS/Certification MOC]]
