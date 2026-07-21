@@ -24,6 +24,9 @@ jobs:
           ref: agent/knowledge-map-foundation
           fetch-depth: 0
 
+      - name: Synchronize branch head
+        run: git pull --rebase origin agent/knowledge-map-foundation
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -44,10 +47,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
             "10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md" \
-            "10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md" \
-            "01_MAPS/Spring Testing Map.canvas" \
-            "10_CONCEPTS/Java/Concurrency/Atomic CAS and Counters.md" \
-            "01_MAPS/Java Map.md" \
-            "98_SOURCES/Spring AOP Cache Redis and Caffeine Sources.md"
-          git commit -m "fix: repair vault links and diagram semantics"
+            "10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md"
+          git commit -m "fix: resolve canonical Spring aliases"
+          git pull --rebase origin agent/knowledge-map-foundation
           git push origin HEAD:agent/knowledge-map-foundation
