@@ -47,6 +47,7 @@ jobs:
               --input "${diagram}" \
               --output "${output}" \
               --backgroundColor transparent \
+              --puppeteerConfigFile .github/mermaid-puppeteer.json \
               >> .audit/mermaid-render.log 2>&1
             status=$?
             if [ ${status} -ne 0 ]; then
