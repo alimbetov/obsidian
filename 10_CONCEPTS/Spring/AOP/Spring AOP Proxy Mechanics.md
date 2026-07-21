@@ -20,8 +20,8 @@ prerequisites:
   - "[[Container Extension Points]]"
 related:
   - "[[Spring Cache with Caffeine and Redis]]"
-  - "[[Transaction Propagation]]"
-  - "[[Spring Async]]"
+  - "[[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive|Transaction Propagation]]"
+  - "[[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics#18. @Async and thread boundaries|Spring Async]]"
 tags:
   - spring
   - aop

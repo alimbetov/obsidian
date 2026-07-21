@@ -15,8 +15,8 @@ prerequisites:
   - "[[Spring Core Foundations]]"
   - "[[Dependency Resolution and Optional Injection]]"
 related:
-  - "[[BeanPostProcessor]]"
-  - "[[Spring AOP]]"
+  - "[[10_CONCEPTS/Spring/Core/Container Extension Points|BeanPostProcessor]]"
+  - "[[10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics|Spring AOP]]"
   - "[[Spring Dependency Resolution Map.canvas]]"
 tags:
   - spring
