@@ -164,18 +164,31 @@ sources or diagnostics
 
 # 12. Current application
 
-Стандарт впервые применён полностью к:
+Стандарт полностью применён к:
 
 - [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]];
 - [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]];
-- [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]].
+- [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive]];
+- [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]];
+- [[10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive]];
+- [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]];
+- [[01_MAPS/Spring Visual Learning Atlas.canvas]].
+
+Текущий объём применения:
+
+```text
+Deep-dive Mermaid diagrams  122
+Standard example diagram      1
+Connected Canvas atlases       2
+--------------------------------
+Total visual elements        125
+```
 
 Следующие кандидаты на enrichment:
 
 ```text
-Spring Transaction Management
-Spring Data JPA
-Spring Testing
-Java Concurrency
+Java Concurrency visual consolidation
 DB-B01 — Indexes and Query Plans
+Messaging
+Distributed Systems
 ```
