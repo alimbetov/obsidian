@@ -24,7 +24,7 @@ tags:
 # Spring AOP and Cache Roadmap
 
 > [!summary]
-> Маршрут продолжает Spring Core. `@Transactional`, `@Async`, method security и Spring Cache используют proxy/interceptor boundaries, поэтому их типовые failures имеют общий diagnostic model. Все 44 карточки приведены к единому pedagogical contract. Дополнительно создан визуальный слой с 37 Mermaid-моделями, production traces и отдельным Canvas-atlas.
+> Маршрут продолжает Spring Core. `@Transactional`, `@Async`, method security и Spring Cache используют proxy/interceptor boundaries, поэтому их типовые failures имеют общий diagnostic model. Все 44 карточки приведены к единому pedagogical contract. Дополнительно создан визуальный слой с 47 Mermaid-моделями, production traces и двумя связанными Canvas-atlases.
 
 ## Progress
 
@@ -62,16 +62,17 @@ flowchart LR
 - [[10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive]];
 - [[10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive]];
 - [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]];
+- [[01_MAPS/Spring Visual Learning Atlas.canvas]];
 - [[90_TEMPLATES/Pedagogical Visual Standard]].
 
 ## Visual coverage
 
 ```text
-AOP visual models      16 Mermaid diagrams
-Cache visual models    21 Mermaid diagrams
-Canvas atlas            1 connected learning map
-------------------------------------------------
-New visual elements    38
+AOP visual models      20 Mermaid diagrams
+Cache visual models    27 Mermaid diagrams
+Canvas atlases           2 connected learning maps
+---------------------------------------------------
+New visual elements     49
 ```
 
 Diagrams include:
@@ -81,7 +82,7 @@ Diagrams include:
 - JDK and CGLIB class models;
 - external invocation versus self-invocation;
 - advisor ordering and nested exits;
-- around advice with missing or duplicate `proceed()`;
+- around advice with normal, missing or duplicate `proceed()`;
 - exception and rollback paths;
 - async executor/thread boundary;
 - method-security bypass;
@@ -144,7 +145,7 @@ Visual walkthroughs include:
 - JDK versus CGLIB class diagrams;
 - external versus internal call traces;
 - nested advisor-chain sequence;
-- missing/double `proceed()` paths;
+- normal/missing/double `proceed()` paths;
 - swallowed-exception path;
 - async executor and transaction boundary;
 - security bypass path;
@@ -207,6 +208,7 @@ Visual walkthroughs include:
 - hit and miss as different execution paths;
 - `condition` before and `unless` after target invocation;
 - tenant-key collision sequence;
+- stable-key composition;
 - `@CachePut` and `@CacheEvict` timing;
 - database transaction versus cache update timeline;
 - Caffeine per-node topology;
@@ -241,9 +243,9 @@ Real examples include:
 - [x] 44/44 direct answers.
 - [x] 44/44 mechanism explanations.
 - [x] 44/44 concrete exam traps.
-- [x] AOP visual deep dive with multiple diagram types.
-- [x] Cache visual deep dive with topology and failure diagrams.
-- [x] Connected visual Canvas atlas.
+- [x] AOP visual deep dive with 20 diagrams and multiple diagram types.
+- [x] Cache visual deep dive with 27 topology, sequence and failure diagrams.
+- [x] Two connected visual Canvas atlases.
 - [x] Pedagogical visual standard documented.
 - [x] Real transaction, async and security proxy examples.
 - [x] Real Caffeine, Redis and L1/L2 failure examples.
@@ -273,35 +275,36 @@ Real examples include:
 13. Какая diagram объясняет runtime path, а какая — topology?
 14. Показан ли failure path, а не только happy path?
 
-# Published continuations
+# Published visual continuations
 
 ## Transaction Management
 
+- [[10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive]];
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]];
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards]];
 - [[50_LABS/Spring/TX-B01/README]].
 
 ## Spring Data and JPA
 
+- [[10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive]];
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]];
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards]];
 - [[50_LABS/Spring/DATA-B01/README]].
 
 ## Spring Testing
 
+- [[10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive]];
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]];
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards]];
 - [[50_LABS/Spring/TEST-B01/README]].
 
 # Next enrichment targets
 
-Before expanding breadth, the same visual standard should be applied to:
-
 ```text
-1. Spring Transaction Management
-2. Spring Data JPA
-3. Spring Testing
-4. Java Concurrency
+1. Java Concurrency visual consolidation
+2. DB-B01 — Indexes and Query Plans
+3. Messaging routes
+4. Distributed Systems routes
 ```
 
 # Next implementation route
