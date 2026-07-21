@@ -8,6 +8,7 @@ subdomain:
   - data-jpa-testing
 batch_id: TEST-B01
 status: published
+normalization_status: complete
 card_count: 36
 first_card: TEST-B01-C001
 last_card: TEST-B01-C036
@@ -26,7 +27,17 @@ tags:
 # TEST-B01 — Spring Testing
 
 > [!summary]
-> 36 карточек по TestContext Framework, test slices, transactional tests, `@DataJpaTest`, `flush/clear`, commit boundaries, context caching, Testcontainers и SQL regression tests.
+> 36 normalized cards по TestContext Framework, test slices, transactional tests, `@DataJpaTest`, `flush/clear`, commit boundaries, context caching, Testcontainers и SQL regression tests.
+
+## Route navigation
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
+- [[10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices]]
+- [[10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers]]
+- [[10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive]]
+- [[40_PRODUCTION_CASES/Spring/Spring Testing Production Cases]]
+- [[50_LABS/Spring/TEST-B01/README]]
+- [[98_SOURCES/Spring Testing Sources]]
 
 ---
 
@@ -41,15 +52,11 @@ tags:
 
 ### Explanation
 
-JUnit executes the test, while SpringExtension/TestContextManager prepare the test instance and delegate lifecycle phases to listeners.
+JUnit executes tests, while Spring prepares test instances and infrastructure around the test lifecycle.
 
 ### Exam Trap
 
-It is not only an annotation collection and it does not require a full Boot application context.
-
-### Memory Hook
-
-`JUnit runs; TestContext integrates Spring.`
+It is not only an annotation collection and does not require a full Boot context.
 
 ---
 
@@ -64,11 +71,11 @@ It is not only an annotation collection and it does not require a full Boot appl
 
 ### Explanation
 
-It manages a `TestContext` for a test class and invokes registered `TestExecutionListener` implementations at defined phases.
+It manages the `TestContext` and delegates phases to registered `TestExecutionListener` implementations.
 
 ### Exam Trap
 
-`ApplicationContext` contains application beans; it does not itself coordinate JUnit lifecycle callbacks.
+`ApplicationContext` contains beans but does not coordinate JUnit lifecycle callbacks.
 
 ---
 
@@ -79,11 +86,15 @@ It manages a `TestContext` for a test class and invokes registered `TestExecutio
 Что делает `TestExecutionListener`?
 
 > [!answer]- Answer
-> It reacts to test execution phases to provide infrastructure such as dependency injection, transactions, SQL scripts and context dirtiness handling.
+> It reacts to test phases to provide infrastructure such as dependency injection, transactions, SQL scripts and context dirtiness handling.
 
-### Memory Hook
+### Explanation
 
-`Listener instruments the test lifecycle.`
+Listeners insert Spring behavior before and after test-class, test-instance and test-method events.
+
+### Exam Trap
+
+A listener is test infrastructure, not an application event listener.
 
 ---
 
@@ -96,9 +107,13 @@ It manages a `TestContext` for a test class and invokes registered `TestExecutio
 > [!answer]- Answer
 > Compatible test classes can reuse the same loaded `ApplicationContext`, reducing suite startup cost.
 
+### Explanation
+
+Context construction is expensive, so reuse can dominate total test-suite performance.
+
 ### Exam Trap
 
-The cache is based on merged context configuration, not only on the test class name.
+The cache key is based on merged configuration, not only on the test class name.
 
 ---
 
@@ -111,9 +126,13 @@ The cache is based on merged context configuration, not only on the test class n
 > [!answer]- Answer
 > Different configuration classes, profiles, test properties, context customizers, mock beans, resource locations or parent contexts.
 
-### Production Transfer
+### Explanation
 
-Dozens of unique inline properties can turn one reusable context into dozens of startups.
+Each unique configuration fingerprint can force another context startup and reduce cache reuse.
+
+### Exam Trap
+
+Many small `@MockBean` or inline-property variations can fragment the cache unexpectedly.
 
 ---
 
@@ -124,11 +143,15 @@ Dozens of unique inline properties can turn one reusable context into dozens of 
 Что означает `@DirtiesContext`?
 
 > [!answer]- Answer
-> The test has modified context-level state, so the context should be removed from the cache and rebuilt for later tests.
+> The test modified context-level state, so the context should be removed from the cache and rebuilt for later tests.
+
+### Explanation
+
+It protects later tests from a mutated singleton graph or altered application context.
 
 ### Exam Trap
 
-It is not the preferred mechanism for cleaning database rows.
+It is not the preferred mechanism for cleaning ordinary database rows.
 
 ---
 
@@ -139,11 +162,15 @@ It is not the preferred mechanism for cleaning database rows.
 Когда plain unit test предпочтительнее `@SpringBootTest`?
 
 > [!answer]- Answer
-> When the behavior is pure Java logic and does not depend on Spring configuration, proxies or infrastructure.
+> When behavior is pure Java logic and does not depend on Spring configuration, proxies or infrastructure.
 
-### Mini Example
+### Explanation
 
-A price calculation rule should normally be instantiated directly and tested without a container.
+A plain test is faster and isolates domain behavior from container wiring.
+
+### Exam Trap
+
+Loading a context does not automatically make a test more realistic or valuable.
 
 ---
 
@@ -158,7 +185,11 @@ A price calculation rule should normally be instantiated directly and tested wit
 
 ### Explanation
 
-It is useful for focused Framework-level integration tests without Boot auto-configuration.
+It is a compact way to write focused Framework-level integration tests without Boot auto-configuration.
+
+### Exam Trap
+
+It is not equivalent to `@SpringBootTest`.
 
 ---
 
@@ -171,9 +202,13 @@ It is useful for focused Framework-level integration tests without Boot auto-con
 > [!answer]- Answer
 > To load a broad Spring Boot application context and verify application wiring and integration behavior.
 
+### Explanation
+
+It tests the composed Boot application graph rather than a narrow slice.
+
 ### Exam Trap
 
-It does not automatically mean a real web server or production database is used.
+It does not automatically start a real server or connect to a production-like database.
 
 ---
 
@@ -184,11 +219,15 @@ It does not automatically mean a real web server or production database is used.
 Что такое Spring Boot test slice?
 
 > [!answer]- Answer
-> A focused test context that includes auto-configuration and components relevant to one infrastructure layer.
+> A focused test context including auto-configuration and components relevant to one infrastructure layer.
 
-### Memory Hook
+### Explanation
 
-`Slice narrows the graph, not the assertion quality.`
+A slice reduces graph size while preserving the framework behavior of the selected layer.
+
+### Exam Trap
+
+A slice narrows loaded components; it does not improve assertions by itself.
 
 ---
 
@@ -201,9 +240,13 @@ It does not automatically mean a real web server or production database is used.
 > [!answer]- Answer
 > JPA entities, Spring Data repositories, JPA infrastructure, an embedded database when available, `TestEntityManager`, and transactional rollback semantics.
 
+### Explanation
+
+It creates a focused persistence-layer context rather than the complete service/application graph.
+
 ### Exam Trap
 
-Regular service components are not generally included by the slice.
+Regular service components are not generally included automatically.
 
 ---
 
@@ -214,7 +257,15 @@ Regular service components are not generally included by the slice.
 Являются ли методы `@DataJpaTest` transactional по умолчанию?
 
 > [!answer]- Answer
-> Yes. They normally run in a test-managed transaction that is rolled back after each test.
+> Yes. They normally run in a test-managed transaction rolled back after each test.
+
+### Explanation
+
+Rollback improves isolation and speed but can hide commit-time or after-commit behavior.
+
+### Exam Trap
+
+Transactional rollback does not prove what happens after a real application commit.
 
 ---
 
@@ -227,9 +278,13 @@ Regular service components are not generally included by the slice.
 > [!answer]- Answer
 > Hibernate may defer SQL until flush or commit, and the test can finish before the deferred operation is forced.
 
-### Correct Practice
+### Explanation
 
-Call `flush()` when the assertion depends on SQL execution or a database constraint.
+Write-behind means in-memory persistence-context state can look correct even when the database has not accepted the row.
+
+### Exam Trap
+
+An assertion against the same managed entity does not prove SQL or constraints executed.
 
 ---
 
@@ -242,9 +297,13 @@ Call `flush()` when the assertion depends on SQL execution or a database constra
 > [!answer]- Answer
 > To ensure the assertion reads from the database instead of returning the same managed entity from the first-level cache.
 
-### Memory Hook
+### Explanation
 
-`Flush proves SQL; clear proves reload.`
+`flush()` proves SQL execution; `clear()` removes identity-map reuse so a subsequent find proves a database round trip.
+
+### Exam Trap
+
+Reloading without clearing may return the same Java instance.
 
 ---
 
@@ -255,11 +314,15 @@ Call `flush()` when the assertion depends on SQL execution or a database constra
 Что такое `TestEntityManager`?
 
 > [!answer]- Answer
-> A test-focused facade around JPA `EntityManager` that provides convenient persist, flush, clear and find operations.
+> A test-focused facade around JPA `EntityManager` providing convenient persist, flush, clear and find operations.
+
+### Explanation
+
+It shortens common persistence-test operations while preserving underlying JPA semantics.
 
 ### Exam Trap
 
-It does not replace understanding of persistence-context semantics.
+It does not replace understanding entity lifecycle and persistence-context behavior.
 
 ---
 
@@ -274,7 +337,11 @@ It does not replace understanding of persistence-context semantics.
 
 ### Explanation
 
-Application `REQUIRED` transactions commonly participate in it, but other propagation modes can change the topology.
+Application `REQUIRED` transactions commonly join it, but other propagation modes can create a different topology.
+
+### Exam Trap
+
+A test transaction is infrastructure around the test, not necessarily the exact production caller topology.
 
 ---
 
@@ -287,9 +354,13 @@ Application `REQUIRED` transactions commonly participate in it, but other propag
 > [!answer]- Answer
 > Rollback after the test method completes.
 
+### Explanation
+
+The default protects data isolation without requiring explicit cleanup for every test.
+
 ### Exam Trap
 
-Default rollback does not prove after-commit behavior.
+Rollback by default does not verify commit callbacks, triggers or durable side effects.
 
 ---
 
@@ -302,9 +373,13 @@ Default rollback does not prove after-commit behavior.
 > [!answer]- Answer
 > It instructs the test transaction to commit after the test instead of rolling back.
 
-### Production Transfer
+### Explanation
 
-Use it narrowly and ensure committed data is cleaned or isolated.
+It is useful for targeted commit-boundary tests but requires deliberate cleanup or isolated infrastructure.
+
+### Exam Trap
+
+Using `@Commit` broadly can make tests order-dependent through persistent data.
 
 ---
 
@@ -317,9 +392,13 @@ Use it narrowly and ensure committed data is cleaned or isolated.
 > [!answer]- Answer
 > To inspect, start, end and choose commit or rollback for the current test-managed transaction programmatically.
 
-### Mini Example
+### Explanation
 
-`flagForCommit()` followed by `end()` can expose commit-time failures inside a test method.
+It allows a test method to force commit-time behavior and then begin a new verification transaction.
+
+### Exam Trap
+
+Calling repository `flush()` is not the same as ending and committing the test transaction.
 
 ---
 
@@ -332,9 +411,13 @@ Use it narrowly and ensure committed data is cleaned or isolated.
 > [!answer]- Answer
 > Outside the test-managed transaction, immediately before it begins and after it ends.
 
+### Explanation
+
+They are intended for setup or verification that must not participate in the test transaction.
+
 ### Exam Trap
 
-`@BeforeEach` and `@AfterEach` run inside the test transaction for a transactional test method.
+`@BeforeEach` and `@AfterEach` normally run inside the test transaction for a transactional test method.
 
 ---
 
@@ -345,11 +428,15 @@ Use it narrowly and ensure committed data is cleaned or isolated.
 Почему `assertTimeoutPreemptively` опасен с transactional tests?
 
 > [!answer]- Answer
-> It may execute test code in another thread that does not inherit Spring's thread-bound test transaction, so writes can commit unexpectedly.
+> It may execute code in another thread that does not inherit Spring's thread-bound test transaction, so writes can commit unexpectedly.
 
-### Memory Hook
+### Explanation
 
-`New thread, no test transaction.`
+Spring binds imperative transaction state to the original test thread.
+
+### Exam Trap
+
+A timeout helper that starts another thread can invalidate rollback assumptions.
 
 ---
 
@@ -360,11 +447,15 @@ Use it narrowly and ensure committed data is cleaned or isolated.
 Управляет ли test-level `rollbackFor` правилами test-managed rollback?
 
 > [!answer]- Answer
-> No. Test-managed transaction outcome should be controlled with `@Commit`, `@Rollback` or `TestTransaction`.
+> No. Test-managed outcome should be controlled with `@Commit`, `@Rollback` or `TestTransaction`.
+
+### Explanation
+
+Not every production `@Transactional` attribute has the same meaning for the TestContext transaction wrapper.
 
 ### Exam Trap
 
-Do not assume all production `@Transactional` attributes have identical test-managed meaning.
+Do not assume production rollback metadata is the supported control surface for test-managed completion.
 
 ---
 
@@ -375,11 +466,15 @@ Do not assume all production `@Transactional` attributes have identical test-man
 Почему transactional test может скрыть production propagation behavior?
 
 > [!answer]- Answer
-> The application service may join the surrounding test transaction, creating a different transaction topology than a real non-transactional caller.
+> The application service may join the surrounding test transaction, creating a different topology than a real non-transactional caller.
 
-### Production Transfer
+### Explanation
 
-Propagation tests often should call the service without a test-level transaction.
+The test wrapper can eliminate the “no existing transaction” condition that production propagation depends on.
+
+### Exam Trap
+
+Propagation tests often need to call the service without test-level `@Transactional`.
 
 ---
 
@@ -392,9 +487,13 @@ Propagation tests often should call the service without a test-level transaction
 > [!answer]- Answer
 > It proves that application events were published in the test `ApplicationContext`.
 
+### Explanation
+
+The feature records in-process Spring application events for assertions.
+
 ### Exam Trap
 
-It does not prove durable broker delivery.
+It does not prove broker publication, external delivery or consumer processing.
 
 ---
 
@@ -405,7 +504,15 @@ It does not prove durable broker delivery.
 Что защищает `@AutoConfigureTestDatabase(replace = NONE)`?
 
 > [!answer]- Answer
-> It prevents the configured datasource, such as a Testcontainers PostgreSQL datasource, from being replaced with an embedded test database.
+> It prevents a configured datasource, such as Testcontainers PostgreSQL, from being replaced with an embedded test database.
+
+### Explanation
+
+The annotation preserves the intended database dialect and behavior in the test slice.
+
+### Exam Trap
+
+Creating a container is insufficient if the slice silently replaces its datasource.
 
 ---
 
@@ -416,11 +523,15 @@ It does not prove durable broker delivery.
 Почему connection details Testcontainers нужно получать динамически?
 
 > [!answer]- Answer
-> Containers commonly use randomized host ports and may run on a non-localhost Docker host.
+> Containers commonly use randomized host ports and may run on a non-local Docker host.
 
-### Mini Example
+### Explanation
 
-Use `postgres.getJdbcUrl()` instead of hard-coding `jdbc:postgresql://localhost:5432/...`.
+The container object is the source of truth for JDBC URL, username and password after startup.
+
+### Exam Trap
+
+Hard-coded `localhost:5432` can pass locally and fail in CI or remote Docker environments.
 
 ---
 
@@ -433,6 +544,14 @@ Use `postgres.getJdbcUrl()` instead of hard-coding `jdbc:postgresql://localhost:
 > [!answer]- Answer
 > It registers dynamic properties, such as container JDBC URL and credentials, before the Spring test context is created.
 
+### Explanation
+
+The values participate in environment preparation and therefore affect bean definitions and auto-configuration.
+
+### Exam Trap
+
+Registering properties after context creation is too late for datasource auto-configuration.
+
 ---
 
 ## TEST-B01-C028 — What is the lifecycle difference between static and instance `@Container` fields?
@@ -442,11 +561,15 @@ Use `postgres.getJdbcUrl()` instead of hard-coding `jdbc:postgresql://localhost:
 Чем отличается lifecycle static и instance `@Container` fields?
 
 > [!answer]- Answer
-> A static container is typically shared across all methods in the test class, while an instance container is started for each test instance/method lifecycle.
+> A static container is typically shared across all methods in the test class, while an instance container follows each test-instance lifecycle.
 
-### Production Transfer
+### Explanation
 
-Static containers are faster but require explicit data isolation.
+Static reuse improves speed but increases the need for explicit database isolation.
+
+### Exam Trap
+
+A shared container does not imply shared test data is safe.
 
 ---
 
@@ -457,11 +580,15 @@ Static containers are faster but require explicit data isolation.
 Почему H2 недостаточно для PostgreSQL-specific repository tests?
 
 > [!answer]- Answer
-> H2 has different SQL grammar, type system, MVCC, locking, planner, sequences and constraint behavior.
+> H2 differs in SQL grammar, type system, MVCC, locking, planner, sequences and constraint behavior.
 
-### Memory Hook
+### Explanation
 
-`Compatibility mode is not database identity.`
+Compatibility mode can imitate syntax but cannot reproduce all semantics of the production database.
+
+### Exam Trap
+
+An H2 pass is not evidence that native SQL, locking or migration behavior works on PostgreSQL.
 
 ---
 
@@ -472,11 +599,15 @@ Static containers are faster but require explicit data isolation.
 Как optimistic-lock test должен создавать настоящий conflict?
 
 > [!answer]- Answer
-> Load the same row in two independent persistence contexts/transactions, commit one update, then commit the stale update.
+> Load the same row in two independent persistence contexts or transactions, commit one update, then commit the stale update.
+
+### Explanation
+
+A real conflict requires two independently versioned snapshots.
 
 ### Exam Trap
 
-Two references from one `EntityManager` are normally the same managed instance.
+Two references loaded by one `EntityManager` are usually the same managed instance.
 
 ---
 
@@ -487,7 +618,15 @@ Two references from one `EntityManager` are normally the same managed instance.
 Какая infrastructure нужна для meaningful pessimistic-lock test?
 
 > [!answer]- Answer
-> At least two transactions/connections, coordination between threads, a bounded timeout and the real target database.
+> At least two transactions or connections, coordination between threads, a bounded timeout and the real target database.
+
+### Explanation
+
+The test must create genuine concurrent lock ownership and a measurable competing operation.
+
+### Exam Trap
+
+Sequential calls in one transaction do not test lock contention.
 
 ---
 
@@ -498,11 +637,15 @@ Two references from one `EntityManager` are normally the same managed instance.
 Как защититься от N+1 автоматическим regression test?
 
 > [!answer]- Answer
-> Execute the use case, initialize the required associations and assert Hibernate/JDBC statement count or a bounded query-count invariant.
+> Execute the use case, initialize required associations and assert a Hibernate/JDBC statement-count or bounded query-count invariant.
+
+### Explanation
+
+Correct returned data does not reveal whether it required one query or hundreds.
 
 ### Exam Trap
 
-Checking that the returned data is correct does not detect N+1.
+Inspecting fetch annotations alone is not a performance regression test.
 
 ---
 
@@ -513,11 +656,15 @@ Checking that the returned data is correct does not detect N+1.
 Почему exact SQL-count assertions могут стать brittle?
 
 > [!answer]- Answer
-> Legitimate provider, batching or fetch-plan changes can alter statement count without violating the business performance invariant.
+> Legitimate provider, batching or fetch-plan changes can alter statement count without violating the intended performance invariant.
 
-### Correct Practice
+### Explanation
 
-Use exact counts for focused query contracts and upper bounds for broader service behavior.
+Exact counts fit narrow repository contracts; service-level tests often need an upper bound or relative invariant.
+
+### Exam Trap
+
+Avoid replacing all query-count assertions with vague timing tests, which are even less deterministic.
 
 ---
 
@@ -528,7 +675,11 @@ Use exact counts for focused query contracts and upper bounds for broader servic
 Как наиболее надёжно тестировать database migrations?
 
 > [!answer]- Answer
-> Start an empty real database container, apply the production Flyway/Liquibase migrations, and then run schema and repository assertions.
+> Start an empty real database container, apply production Flyway or Liquibase migrations, and then run schema and repository assertions.
+
+### Explanation
+
+This exercises the same migration scripts, dialect and object-creation order used in deployment.
 
 ### Exam Trap
 
@@ -545,9 +696,13 @@ Hibernate `create-drop` does not test production migration files.
 > [!answer]- Answer
 > Spring may reuse a cached `ApplicationContext` whose datasource still points to the stopped container.
 
-### Memory Hook
+### Explanation
 
-`Container lifecycle must outlive cached context.`
+Container lifetime and context-cache lifetime must be compatible.
+
+### Exam Trap
+
+Stopping shared infrastructure in one test class can invalidate other cached contexts.
 
 ---
 
@@ -560,11 +715,23 @@ Hibernate `create-drop` does not test production migration files.
 > [!answer]- Answer
 > Use unit tests for domain rules, `@DataJpaTest` for repository/mapping behavior, full-context tests for service transactions, and Testcontainers for real database semantics.
 
-### Memory Hook
+### Explanation
 
-```text
-Unit → logic
-Slice → layer
-Full context → wiring
-Container → real dependency
-```
+Each layer proves a different risk with the smallest context capable of producing trustworthy evidence.
+
+### Exam Trap
+
+One broad `@SpringBootTest` suite cannot efficiently replace focused unit, slice and real-database tests.
+
+---
+
+# Review matrix
+
+| Risk | Best proof |
+|---|---|
+| pure domain rule | plain unit test |
+| repository mapping/query | `@DataJpaTest` + flush/clear |
+| service transaction | full context without test wrapper when topology matters |
+| PostgreSQL semantics | Testcontainers PostgreSQL |
+| N+1 | statement-count invariant |
+| commit callback | explicit commit boundary |
