@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +16,15 @@ import javax.persistence.Table;
 public class PurchaseOrderLine {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "purchase_order_line_seq"
+    )
+    @SequenceGenerator(
+            name = "purchase_order_line_seq",
+            sequenceName = "purchase_order_line_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(nullable = false, length = 100)
