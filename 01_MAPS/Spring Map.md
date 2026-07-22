@@ -23,6 +23,7 @@ tags:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
 
 # Learning route
 
@@ -34,7 +35,8 @@ flowchart LR
     DATA --> TEST["Testing"]
     TEST --> B1["Boot B01 bootstrap"]
     B1 --> B2["Boot B02 configuration"]
-    B2 --> MVC["MVC B01 — next"]
+    B2 --> MVC1["MVC B01 pipeline"]
+    MVC1 --> MVC2["MVC B02 REST — next"]
 ```
 
 # Visual metrics
@@ -48,9 +50,10 @@ Data JPA                          31 diagrams
 Testing                           24 diagrams
 Boot Auto-configuration           31 diagrams
 Boot Externalized Configuration   30 diagrams
-Canvas entry maps                  5
+MVC DispatcherServlet             30 diagrams
+Canvas entry maps                  6
 ---------------------------------------------
-Spring visual elements           214
+Spring visual elements           245
 ```
 
 Visual maps:
@@ -59,6 +62,7 @@ Visual maps:
 - [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]]
 - [[01_MAPS/Spring Boot Auto-configuration Map.canvas]]
 - [[01_MAPS/Spring Boot Configuration Map.canvas]]
+- [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]]
 - [[01_MAPS/Spring Visual Learning Atlas.canvas]]
 
 # Published card routes
@@ -72,7 +76,8 @@ Visual maps:
 | Spring Testing | 36 | normalized |
 | SPRING-BOOT-B01 | 30 | published |
 | SPRING-BOOT-B02 | 35 | published |
-| **Total** | **353** | |
+| SPRING-MVC-B01 | 35 | published |
+| **Total** | **388** | |
 
 # Spring Core
 
@@ -139,16 +144,36 @@ SPRING-1.3.2 profiles
 SPRING-6.2.1 property definition/loading options
 ```
 
+# SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
+- [[10_CONCEPTS/Spring/MVC/DispatcherServlet and Annotated Controller Pipeline]]
+- [[10_CONCEPTS/Spring/MVC/Spring MVC DispatcherServlet Visual Deep Dive]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Assessment]]
+- [[40_PRODUCTION_CASES/Spring/Spring MVC DispatcherServlet Production Cases]]
+- [[50_LABS/Spring/SPRING-MVC-B01/README]]
+- [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]]
+- [[98_SOURCES/Spring MVC DispatcherServlet Sources]]
+
+Objective coverage:
+
+```text
+SPRING-3.1.1 Boot MVC application
+SPRING-3.1.2 request-processing lifecycle
+SPRING-3.1.3 simple GET REST controller
+SPRING-3.1.4 deployment configuration — cards-ready
+```
+
 # Next Spring route
 
 ```text
-SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline
+SPRING-MVC-B02 — REST Endpoints and HTTP Clients
 ```
 
 Remaining P0 routes:
 
 ```text
-SPRING-MVC-B01
 SPRING-MVC-B02
 SPRING-SEC-B01
 SPRING-ACT-B01
