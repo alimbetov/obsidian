@@ -10,7 +10,7 @@ visual_diagrams: 30
 production_cases: 12
 pre_test_questions: 10
 post_test_questions: 15
-executable_tests: 11
+executable_tests: 12
 objectives:
   - SPRING-3.1.1
   - SPRING-3.1.2
@@ -85,7 +85,7 @@ flowchart LR
     THEORY --> VISUAL[30 visual models]
     VISUAL --> CARDS[35 stable card IDs]
     CARDS --> CASES[12 production incidents]
-    CASES --> LAB[11 executable tests]
+    CASES --> LAB[12 executable tests]
     LAB --> POST[15-question post-test]
     POST --> PROGRESS[Per-card progress registry]
 ```
@@ -196,7 +196,7 @@ SPRING-MVC-B02
 - [x] Java 8 / Boot 2.5 source lab created.
 - [x] Canvas and primary-source index created.
 - [x] Exam baseline and current delta separated.
-- [ ] Eleven Maven tests passed in GitHub Actions.
+- [ ] Twelve Maven tests passed in GitHub Actions.
 - [ ] Delayed learner review data collected.
 - [ ] Mixed Spring timed mock coverage added.
 
