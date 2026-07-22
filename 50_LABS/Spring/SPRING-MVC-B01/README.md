@@ -6,7 +6,7 @@ route: SPRING-MVC-B01
 status: published
 runtime: spring-boot-2.5.15
 java_source: 8
-test_count: 11
+test_count: 12
 objectives:
   - SPRING-3.1.1
   - SPRING-3.1.2
@@ -108,7 +108,7 @@ Translates `CatalogItemNotFoundException` into a stable 404 JSON response and `C
 | unknown path | 404 |
 | mapping-registry inspection | `getItem` `HandlerMethod` registered |
 
-The Java test class currently contains 11 JUnit methods; the first row combines several pipeline assertions in one test.
+The Java test class contains twelve JUnit methods, each proving a distinct mapping, resolution, conversion, validation, return-value, error, or registry boundary.
 
 # Prediction worksheet
 
