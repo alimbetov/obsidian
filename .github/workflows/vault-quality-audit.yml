@@ -13,7 +13,7 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 40
 
     steps:
       - name: Checkout repository
@@ -66,12 +66,16 @@ jobs:
           cache-dependency-path: |
             50_LABS/Spring/SPRING-BOOT-B01/pom.xml
             50_LABS/Spring/SPRING-BOOT-B02/pom.xml
+            50_LABS/Spring/SPRING-MVC-B01/pom.xml
 
       - name: Run SPRING-BOOT-B01 ApplicationContextRunner tests
         run: mvn --batch-mode --no-transfer-progress -f 50_LABS/Spring/SPRING-BOOT-B01/pom.xml test
 
       - name: Run SPRING-BOOT-B02 binding and Config Data tests
         run: mvn --batch-mode --no-transfer-progress -f 50_LABS/Spring/SPRING-BOOT-B02/pom.xml test
+
+      - name: Run SPRING-MVC-B01 DispatcherServlet pipeline tests
+        run: mvn --batch-mode --no-transfer-progress -f 50_LABS/Spring/SPRING-MVC-B01/pom.xml test
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -181,6 +185,7 @@ jobs:
               '30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards.md',
               '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards.md',
               '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards.md',
               '30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards.md',
           }
           published_card_errors = [
