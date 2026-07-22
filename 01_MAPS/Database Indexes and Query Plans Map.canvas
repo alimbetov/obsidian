@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    {"id":"root","type":"text","text":"DB-B01 — INDEXES AND QUERY PLANS\nQuery shape → estimates → access path → physical page work → measured evidence","x":0,"y":0,"width":460,"height":190,"color":"4"},
+    {"id":"roadmap","type":"file","file":"30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap.md","x":550,"y":0,"width":430,"height":180,"color":"4"},
+    {"id":"mechanics","type":"file","file":"10_CONCEPTS/Databases/PostgreSQL Index Mechanics.md","x":0,"y":290,"width":430,"height":170},
+    {"id":"explain","type":"file","file":"10_CONCEPTS/Databases/PostgreSQL EXPLAIN and Query Plan Analysis.md","x":510,"y":290,"width":460,"height":170},
+    {"id":"btree","type":"text","text":"B-TREE PHYSICS\nroot/internal/leaf pages\nTIDs and heap visits\nranges and ordering\nwrite amplification","x":1040,"y":250,"width":330,"height":250,"color":"5"},
+    {"id":"access","type":"text","text":"ACCESS PATHS\nSeq Scan\nIndex Scan\nIndex Only Scan\nBitmap Index + Heap","x":1430,"y":250,"width":310,"height":250,"color":"5"},
+    {"id":"stats","type":"text","text":"CARDINALITY MODEL\nMCV + histograms\nndistinct + correlation\nextended statistics\nestimated vs actual rows","x":1800,"y":250,"width":330,"height":250,"color":"5"},
+    {"id":"cards","type":"file","file":"30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards.md","x":0,"y":600,"width":390,"height":160,"color":"2"},
+    {"id":"cases","type":"file","file":"40_PRODUCTION_CASES/Databases/Indexes and Query Plans Production Cases.md","x":460,"y":600,"width":470,"height":160,"color":"1"},
+    {"id":"lab","type":"file","file":"50_LABS/Databases/DB-B01/README.md","x":1000,"y":600,"width":390,"height":160,"color":"3"},
+    {"id":"experiments","type":"file","file":"50_LABS/Databases/DB-B01/sql/03_experiments.sql","x":1460,"y":600,"width":420,"height":160,"color":"3"},
+    {"id":"sources","type":"file","file":"98_SOURCES/PostgreSQL Indexes and Query Plans Sources.md","x":1950,"y":600,"width":430,"height":160},
+    {"id":"diagnostic","type":"text","text":"DIAGNOSTIC ORDER\n1 exact SQL and binds\n2 dominant subtree\n3 estimated vs actual rows\n4 rows × loops\n5 buffers / heap fetches\n6 one measured change","x":2180,"y":250,"width":350,"height":300,"color":"1"},
+    {"id":"next","type":"text","text":"NEXT\nDB-B02 — Transactions, MVCC and Locks","x":1080,"y":870,"width":380,"height":140,"color":"6"}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","fromSide":"right","toNode":"roadmap","toSide":"left"},
+    {"id":"e2","fromNode":"root","fromSide":"bottom","toNode":"mechanics","toSide":"top"},
+    {"id":"e3","fromNode":"roadmap","fromSide":"bottom","toNode":"explain","toSide":"top"},
+    {"id":"e4","fromNode":"mechanics","fromSide":"right","toNode":"btree","toSide":"left"},
+    {"id":"e5","fromNode":"btree","fromSide":"right","toNode":"access","toSide":"left"},
+    {"id":"e6","fromNode":"explain","fromSide":"right","toNode":"stats","toSide":"left"},
+    {"id":"e7","fromNode":"stats","fromSide":"right","toNode":"diagnostic","toSide":"left"},
+    {"id":"e8","fromNode":"mechanics","fromSide":"bottom","toNode":"cards","toSide":"top"},
+    {"id":"e9","fromNode":"explain","fromSide":"bottom","toNode":"cases","toSide":"top"},
+    {"id":"e10","fromNode":"access","fromSide":"bottom","toNode":"lab","toSide":"top"},
+    {"id":"e11","fromNode":"stats","fromSide":"bottom","toNode":"experiments","toSide":"top"},
+    {"id":"e12","fromNode":"diagnostic","fromSide":"bottom","toNode":"sources","toSide":"top"},
+    {"id":"e13","fromNode":"cards","fromSide":"right","toNode":"cases","toSide":"left"},
+    {"id":"e14","fromNode":"cases","fromSide":"right","toNode":"lab","toSide":"left"},
+    {"id":"e15","fromNode":"lab","fromSide":"right","toNode":"experiments","toSide":"left"},
+    {"id":"e16","fromNode":"lab","fromSide":"bottom","toNode":"next","toSide":"top"}
+  ]
+}

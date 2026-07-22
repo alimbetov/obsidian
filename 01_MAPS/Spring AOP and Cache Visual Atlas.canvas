@@ -1,0 +1,173 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "text",
+      "text": "# Spring AOP and Cache Visual Atlas\n\nProxy mechanics → interception paths → cache topology → production diagnostics",
+      "x": 0,
+      "y": 0,
+      "width": 460,
+      "height": 180,
+      "color": "4"
+    },
+    {
+      "id": "aop-canonical",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md",
+      "x": -900,
+      "y": 260,
+      "width": 420,
+      "height": 140,
+      "color": "1"
+    },
+    {
+      "id": "aop-visual",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive.md",
+      "x": -430,
+      "y": 260,
+      "width": 420,
+      "height": 140,
+      "color": "1"
+    },
+    {
+      "id": "cache-canonical",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis.md",
+      "x": 40,
+      "y": 260,
+      "width": 420,
+      "height": 140,
+      "color": "5"
+    },
+    {
+      "id": "cache-visual",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive.md",
+      "x": 510,
+      "y": 260,
+      "width": 420,
+      "height": 140,
+      "color": "5"
+    },
+    {
+      "id": "proxy-path",
+      "type": "text",
+      "text": "## Proxy path\nCaller → proxy → advisors → target\n\nExternal call vs self-invocation\nJDK vs CGLIB\nfinal/private/manual new",
+      "x": -900,
+      "y": 500,
+      "width": 420,
+      "height": 210,
+      "color": "1"
+    },
+    {
+      "id": "advisor-chain",
+      "type": "text",
+      "text": "## Advisor chain\nSecurity → tracing → retry → transaction → target\n\nOrdering changes resource use, rollback and audit semantics",
+      "x": -430,
+      "y": 500,
+      "width": 420,
+      "height": 210,
+      "color": "1"
+    },
+    {
+      "id": "cache-path",
+      "type": "text",
+      "text": "## Cache invocation\nProxy → operation → key → manager → provider\n\nHit skips target\ncondition before\nunless after",
+      "x": 40,
+      "y": 500,
+      "width": 420,
+      "height": 210,
+      "color": "5"
+    },
+    {
+      "id": "cache-topology",
+      "type": "text",
+      "text": "## Cache topology\nCaffeine = local L1\nRedis = shared L2\n\nTTL, serialization, stampede, invalidation and outage policy",
+      "x": 510,
+      "y": 500,
+      "width": 420,
+      "height": 210,
+      "color": "5"
+    },
+    {
+      "id": "aop-cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards.md",
+      "x": -900,
+      "y": 810,
+      "width": 420,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "cache-cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards.md",
+      "x": 510,
+      "y": 810,
+      "width": 420,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "cases",
+      "type": "file",
+      "file": "40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases.md",
+      "x": -430,
+      "y": 810,
+      "width": 420,
+      "height": 120,
+      "color": "2"
+    },
+    {
+      "id": "aop-lab",
+      "type": "file",
+      "file": "50_LABS/Spring/AOP-B01/README.md",
+      "x": -900,
+      "y": 1030,
+      "width": 420,
+      "height": 120,
+      "color": "6"
+    },
+    {
+      "id": "cache-lab",
+      "type": "file",
+      "file": "50_LABS/Spring/CACHE-B01/README.md",
+      "x": 510,
+      "y": 1030,
+      "width": 420,
+      "height": 120,
+      "color": "6"
+    },
+    {
+      "id": "diagnostics",
+      "type": "text",
+      "text": "# Production diagnostic loop\n\n1. Ownership\n2. Proxy crossing\n3. Advisor or CacheManager\n4. Key and policy\n5. Thread and transaction boundary\n6. Runtime metrics and traces",
+      "x": -195,
+      "y": 1030,
+      "width": 420,
+      "height": 220,
+      "color": "4"
+    }
+  ],
+  "edges": [
+    {"id": "e1", "fromNode": "root", "toNode": "aop-canonical", "label": "AOP theory"},
+    {"id": "e2", "fromNode": "root", "toNode": "aop-visual", "label": "AOP visual route"},
+    {"id": "e3", "fromNode": "root", "toNode": "cache-canonical", "label": "Cache theory"},
+    {"id": "e4", "fromNode": "root", "toNode": "cache-visual", "label": "Cache visual route"},
+    {"id": "e5", "fromNode": "aop-canonical", "toNode": "proxy-path"},
+    {"id": "e6", "fromNode": "aop-visual", "toNode": "advisor-chain"},
+    {"id": "e7", "fromNode": "cache-canonical", "toNode": "cache-path"},
+    {"id": "e8", "fromNode": "cache-visual", "toNode": "cache-topology"},
+    {"id": "e9", "fromNode": "proxy-path", "toNode": "aop-cards"},
+    {"id": "e10", "fromNode": "advisor-chain", "toNode": "cases"},
+    {"id": "e11", "fromNode": "cache-path", "toNode": "cases"},
+    {"id": "e12", "fromNode": "cache-topology", "toNode": "cache-cards"},
+    {"id": "e13", "fromNode": "aop-cards", "toNode": "aop-lab"},
+    {"id": "e14", "fromNode": "cache-cards", "toNode": "cache-lab"},
+    {"id": "e15", "fromNode": "cases", "toNode": "diagnostics"},
+    {"id": "e16", "fromNode": "aop-lab", "toNode": "diagnostics"},
+    {"id": "e17", "fromNode": "cache-lab", "toNode": "diagnostics"}
+  ]
+}

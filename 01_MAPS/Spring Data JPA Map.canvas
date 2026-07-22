@@ -1,0 +1,292 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap.md",
+      "x": 0,
+      "y": -820,
+      "width": 520,
+      "height": 220,
+      "color": "4"
+    },
+    {
+      "id": "pc-group",
+      "type": "group",
+      "label": "1. Persistence context and entity state",
+      "x": -1240,
+      "y": -450,
+      "width": 1420,
+      "height": 540,
+      "color": "2"
+    },
+    {
+      "id": "repo-group",
+      "type": "group",
+      "label": "2. Repository and query construction",
+      "x": 260,
+      "y": -450,
+      "width": 1440,
+      "height": 540,
+      "color": "3"
+    },
+    {
+      "id": "fetch-group",
+      "type": "group",
+      "label": "3. Result shape, fetching and pagination",
+      "x": -1120,
+      "y": 180,
+      "width": 1540,
+      "height": 560,
+      "color": "1"
+    },
+    {
+      "id": "practice-group",
+      "type": "group",
+      "label": "4. Recall, production and executable proof",
+      "x": 520,
+      "y": 180,
+      "width": 1200,
+      "height": 560,
+      "color": "5"
+    },
+    {
+      "id": "pc-concept",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle.md",
+      "x": -1160,
+      "y": -350,
+      "width": 420,
+      "height": 220
+    },
+    {
+      "id": "identity",
+      "type": "text",
+      "text": "# Identity map\n\nOne persistence context keeps one canonical managed Java instance for each entity identity.",
+      "x": -680,
+      "y": -350,
+      "width": 360,
+      "height": 220
+    },
+    {
+      "id": "states",
+      "type": "text",
+      "text": "# Entity states\n\nTransient → managed → detached / removed. State determines tracking, SQL scheduling and valid operations.",
+      "x": -260,
+      "y": -350,
+      "width": 360,
+      "height": 220
+    },
+    {
+      "id": "dirty",
+      "type": "text",
+      "text": "# Dirty checking\n\nManaged changes need no repository save. Hibernate compares state and emits SQL during flush.",
+      "x": -920,
+      "y": -70,
+      "width": 370,
+      "height": 210
+    },
+    {
+      "id": "flush",
+      "type": "text",
+      "text": "# Flush ≠ commit\n\nFlush synchronizes the persistence context with the current DB transaction. Commit makes the transaction durable.",
+      "x": -500,
+      "y": -70,
+      "width": 390,
+      "height": 210,
+      "color": "1"
+    },
+    {
+      "id": "locking",
+      "type": "text",
+      "text": "# Concurrency\n\n@Version detects stale updates. Pessimistic locks delegate to database locking. Verify semantics on the real DB.",
+      "x": -60,
+      "y": -70,
+      "width": 360,
+      "height": 210
+    },
+    {
+      "id": "repo-concept",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching.md",
+      "x": 340,
+      "y": -350,
+      "width": 420,
+      "height": 220
+    },
+    {
+      "id": "proxy",
+      "type": "text",
+      "text": "# Repository proxy\n\nSpring Data creates a proxy backed by SimpleJpaRepository and query-method infrastructure.",
+      "x": 820,
+      "y": -350,
+      "width": 360,
+      "height": 220
+    },
+    {
+      "id": "save",
+      "type": "text",
+      "text": "# save() decision\n\nNew entity → persist. Existing entity → merge. Merge returns the managed copy; the argument may remain detached.",
+      "x": 1240,
+      "y": -350,
+      "width": 390,
+      "height": 220
+    },
+    {
+      "id": "derived",
+      "type": "text",
+      "text": "# Derived and declared queries\n\nMethod-name parsing is useful for stable simple predicates. @Query/custom repository handles explicit complex queries.",
+      "x": 500,
+      "y": -70,
+      "width": 390,
+      "height": 210
+    },
+    {
+      "id": "spec",
+      "type": "text",
+      "text": "# Specification\n\nComposable runtime predicates for optional filters. Avoid turning one Specification into an entire hidden query engine.",
+      "x": 950,
+      "y": -70,
+      "width": 390,
+      "height": 210
+    },
+    {
+      "id": "bulk",
+      "type": "text",
+      "text": "# Bulk DML boundary\n\n@Modifying updates the database directly and can leave managed entities stale until clear/refresh.",
+      "x": 1390,
+      "y": -70,
+      "width": 280,
+      "height": 210,
+      "color": "1"
+    },
+    {
+      "id": "nplusone",
+      "type": "text",
+      "text": "# N+1\n\nOne root query plus one association query per root row. Prove it with SQL/Statistics, not assumptions.",
+      "x": -1030,
+      "y": 290,
+      "width": 340,
+      "height": 220,
+      "color": "1"
+    },
+    {
+      "id": "fetch",
+      "type": "text",
+      "text": "# Fetch plan\n\nFetch join, @EntityGraph, batch fetch or projection are use-case choices. Mapping EAGER is not a universal fix.",
+      "x": -640,
+      "y": 290,
+      "width": 380,
+      "height": 220
+    },
+    {
+      "id": "projection",
+      "type": "text",
+      "text": "# Projection\n\nReturn only the data the read use case needs. Interface projections are runtime proxies; DTO projections use constructors.",
+      "x": -200,
+      "y": 290,
+      "width": 380,
+      "height": 220
+    },
+    {
+      "id": "page",
+      "type": "text",
+      "text": "# Page vs Slice\n\nPage usually needs a count query. Slice needs only hasNext. Large offsets and unstable ordering require redesign.",
+      "x": -820,
+      "y": 550,
+      "width": 390,
+      "height": 210
+    },
+    {
+      "id": "fetch-page",
+      "type": "text",
+      "text": "# Collection fetch + pagination\n\nJoined rows and root-entity pages are different units. Prefer ID page + fetch, batch fetch or dedicated projection.",
+      "x": -360,
+      "y": 550,
+      "width": 420,
+      "height": 210,
+      "color": "1"
+    },
+    {
+      "id": "cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards.md",
+      "x": 610,
+      "y": 290,
+      "width": 310,
+      "height": 210
+    },
+    {
+      "id": "cases",
+      "type": "file",
+      "file": "40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases.md",
+      "x": 980,
+      "y": 290,
+      "width": 330,
+      "height": 210
+    },
+    {
+      "id": "lab",
+      "type": "file",
+      "file": "50_LABS/Spring/DATA-B01/README.md",
+      "x": 1370,
+      "y": 290,
+      "width": 280,
+      "height": 210
+    },
+    {
+      "id": "sources",
+      "type": "file",
+      "file": "98_SOURCES/Spring Data JPA Sources.md",
+      "x": 690,
+      "y": 550,
+      "width": 300,
+      "height": 210
+    },
+    {
+      "id": "diagnostics",
+      "type": "text",
+      "text": "# Diagnostic order\n\nTransaction → entity state → flush point → generated SQL → statement count → execution plan → lock behavior.",
+      "x": 1050,
+      "y": 550,
+      "width": 350,
+      "height": 210
+    },
+    {
+      "id": "production-db",
+      "type": "text",
+      "text": "# Production DB proof\n\nH2 teaches lifecycle. PostgreSQL/Oracle tests prove MVCC, locks, plans, sequences, constraints and dialect behavior.",
+      "x": 1460,
+      "y": 550,
+      "width": 210,
+      "height": 210,
+      "color": "1"
+    }
+  ],
+  "edges": [
+    {"id":"e01","fromNode":"root","toNode":"pc-concept","label":"entity model","fromSide":"bottom","toSide":"top"},
+    {"id":"e02","fromNode":"root","toNode":"repo-concept","label":"repository model","fromSide":"bottom","toSide":"top"},
+    {"id":"e03","fromNode":"pc-concept","toNode":"identity","label":"canonical instance"},
+    {"id":"e04","fromNode":"identity","toNode":"states","label":"lifecycle"},
+    {"id":"e05","fromNode":"states","toNode":"dirty","label":"managed state"},
+    {"id":"e06","fromNode":"dirty","toNode":"flush","label":"synchronize"},
+    {"id":"e07","fromNode":"flush","toNode":"locking","label":"concurrent commit"},
+    {"id":"e08","fromNode":"repo-concept","toNode":"proxy","label":"runtime implementation"},
+    {"id":"e09","fromNode":"proxy","toNode":"save","label":"persist or merge"},
+    {"id":"e10","fromNode":"proxy","toNode":"derived","label":"query strategy"},
+    {"id":"e11","fromNode":"derived","toNode":"spec","label":"dynamic predicates"},
+    {"id":"e12","fromNode":"spec","toNode":"bulk","label":"direct DML boundary"},
+    {"id":"e13","fromNode":"repo-concept","toNode":"nplusone","label":"observe fetching"},
+    {"id":"e14","fromNode":"nplusone","toNode":"fetch","label":"select fetch plan"},
+    {"id":"e15","fromNode":"fetch","toNode":"projection","label":"select result shape"},
+    {"id":"e16","fromNode":"projection","toNode":"page","label":"consume in chunks"},
+    {"id":"e17","fromNode":"page","toNode":"fetch-page","label":"pagination constraint"},
+    {"id":"e18","fromNode":"pc-concept","toNode":"cards","label":"recall"},
+    {"id":"e19","fromNode":"repo-concept","toNode":"cards","label":"recall"},
+    {"id":"e20","fromNode":"cards","toNode":"cases","label":"production transfer"},
+    {"id":"e21","fromNode":"cases","toNode":"lab","label":"executable proof"},
+    {"id":"e22","fromNode":"sources","toNode":"root","label":"formal basis"},
+    {"id":"e23","fromNode":"lab","toNode":"diagnostics","label":"measure SQL/state"},
+    {"id":"e24","fromNode":"diagnostics","toNode":"production-db","label":"verify dialect"}
+  ]
+}

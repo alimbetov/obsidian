@@ -1,0 +1,207 @@
+name: Vault Quality Audit
+
+on:
+  push:
+    branches:
+      - agent/knowledge-map-foundation
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run structural vault audit
+        run: python .github/scripts/audit_vault_v2.py
+
+      - name: Run cross-link graph audit
+        run: python .github/scripts/audit_cross_links_with_overrides.py
+
+      - name: Test per-card progress scheduler
+        run: python .github/scripts/test_card_progress.py -v
+
+      - name: Audit card catalog and progress registry
+        run: |
+          python .github/scripts/card_progress.py audit \
+            --root . \
+            --progress 70_PROGRESS/card-progress.json \
+            --catalog-output .audit/card-catalog.json \
+            --queue-output .audit/card-review-queue.md
+
+      - name: Prepare objective manifests
+        run: |
+          python .github/scripts/apply_objective_overrides.py \
+            --root . \
+            --output-dir .audit/objectives
+
+      - name: Audit objective traceability
+        run: |
+          python .github/scripts/audit_objective_traceability.py \
+            --manifest-dir .audit/objectives
+
+      - name: Calculate certification readiness
+        run: python .github/scripts/audit_certification_readiness.py
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+          cache-dependency-path: |
+            50_LABS/Spring/SPRING-BOOT-B01/pom.xml
+            50_LABS/Spring/SPRING-BOOT-B02/pom.xml
+            50_LABS/Spring/SPRING-MVC-B01/pom.xml
+
+      - name: Run SPRING-BOOT-B01 ApplicationContextRunner tests
+        run: mvn --batch-mode --no-transfer-progress -f 50_LABS/Spring/SPRING-BOOT-B01/pom.xml test
+
+      - name: Run SPRING-BOOT-B02 binding and Config Data tests
+        run: mvn --batch-mode --no-transfer-progress -f 50_LABS/Spring/SPRING-BOOT-B02/pom.xml test
+
+      - name: Run SPRING-MVC-B01 DispatcherServlet pipeline tests
+        run: mvn --batch-mode --no-transfer-progress -f 50_LABS/Spring/SPRING-MVC-B01/pom.xml test
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Mermaid CLI once
+        run: npm install --global @mermaid-js/mermaid-cli@11.12.0
+
+      - name: Render every Mermaid block
+        shell: bash
+        run: |
+          set +e
+          mkdir -p .audit/rendered
+          : > .audit/mermaid-failures.txt
+          : > .audit/mermaid-render.log
+
+          render_diagram() {
+            diagram="$1"
+            output=".audit/rendered/$(basename "${diagram%.mmd}").svg"
+            echo "Rendering ${diagram}"
+            mmdc \
+              --input "${diagram}" \
+              --output "${output}" \
+              --backgroundColor transparent \
+              --puppeteerConfigFile .github/mermaid-puppeteer.json \
+              >> .audit/mermaid-render.log 2>&1
+            status=$?
+            if [ ${status} -ne 0 ]; then
+              printf '%s\n' "${diagram}" >> .audit/mermaid-failures.txt
+            fi
+          }
+
+          export -f render_diagram
+          find .audit/mermaid -type f -name '*.mmd' -print0 \
+            | sort -z \
+            | xargs -0 -n 1 -P 4 bash -c 'render_diagram "$1"' _
+
+          total=$(find .audit/mermaid -type f -name '*.mmd' | wc -l | tr -d ' ')
+          failed=$(grep -cve '^$' .audit/mermaid-failures.txt || true)
+          passed=$((total - failed))
+
+          {
+            echo
+            echo "## Mermaid renderer result"
+            echo
+            echo "- Total diagrams: **${total}**"
+            echo "- Rendered successfully: **${passed}**"
+            echo "- Failed: **${failed}**"
+            if [ "${failed}" -gt 0 ]; then
+              echo
+              echo "### Failed Mermaid blocks"
+              echo
+              sort -u .audit/mermaid-failures.txt | sed 's#^#- `#; s#$#`#'
+            fi
+          } >> .audit/vault-audit.md
+
+      - name: Publish audit summaries
+        if: always()
+        run: |
+          cat .audit/vault-audit.md >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          cat .audit/cross-link-report.md >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          cat .audit/objective-traceability.md >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          cat .audit/certification-readiness.md >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          cat .audit/card-review-queue.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload audit reports and rendered diagrams
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vault-quality-audit
+          path: .audit/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Enforce structure, diagrams and published cards
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          structural = json.loads(Path('.audit/vault-audit.json').read_text(encoding='utf-8'))
+          structural_errors = structural['summary']['findings'].get('error', 0)
+
+          failure_file = Path('.audit/mermaid-failures.txt')
+          mermaid_errors = 0
+          if failure_file.exists():
+              mermaid_errors = len({
+                  line.strip()
+                  for line in failure_file.read_text(encoding='utf-8').splitlines()
+                  if line.strip()
+              })
+
+          strict_card_paths = {
+              '30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards.md',
+              '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards.md',
+              '30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards.md',
+          }
+          published_card_errors = [
+              item
+              for item in structural.get('findings', [])
+              if item.get('category') == 'card-completeness'
+              and item.get('path') in strict_card_paths
+          ]
+
+          print(f'Structural errors: {structural_errors}')
+          print(f'Mermaid render errors: {mermaid_errors}')
+          print(f'Published-card contract errors: {len(published_card_errors)}')
+
+          for item in published_card_errors:
+              print(f"- card: {item.get('path')}: {item.get('message')}")
+
+          if structural_errors or mermaid_errors or published_card_errors:
+              raise SystemExit(1)
+          PY

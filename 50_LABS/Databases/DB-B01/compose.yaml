@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: obsidian-db-b01-postgres
+    environment:
+      POSTGRES_DB: index_lab
+      POSTGRES_USER: lab
+      POSTGRES_PASSWORD: lab
+    ports:
+      - "55432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lab -d index_lab"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - db_b01_data:/var/lib/postgresql
+
+volumes:
+  db_b01_data:

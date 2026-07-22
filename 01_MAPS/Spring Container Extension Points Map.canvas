@@ -1,0 +1,178 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Core/Container Extension Points.md",
+      "x": 0,
+      "y": -720,
+      "width": 480,
+      "height": 220,
+      "color": "4"
+    },
+    {
+      "id": "metadata-group",
+      "type": "group",
+      "label": "1. Metadata plane — definitions before objects",
+      "x": -1050,
+      "y": -350,
+      "width": 1200,
+      "height": 440,
+      "color": "2"
+    },
+    {
+      "id": "instance-group",
+      "type": "group",
+      "label": "2. Instance plane — creation and publication",
+      "x": 230,
+      "y": -350,
+      "width": 1350,
+      "height": 440,
+      "color": "3"
+    },
+    {
+      "id": "advanced-group",
+      "type": "group",
+      "label": "3. Advanced hooks — prediction, early reference, destruction",
+      "x": -850,
+      "y": 180,
+      "width": 1450,
+      "height": 430,
+      "color": "1"
+    },
+    {
+      "id": "practice-group",
+      "type": "group",
+      "label": "4. Recall, production and lab",
+      "x": 680,
+      "y": 180,
+      "width": 1000,
+      "height": 430,
+      "color": "5"
+    },
+    {
+      "id": "registry",
+      "type": "text",
+      "text": "# BeanDefinitionRegistryPostProcessor\n\nAdds or removes definitions before normal metadata processing.",
+      "x": -970,
+      "y": -250,
+      "width": 340,
+      "height": 210
+    },
+    {
+      "id": "factory",
+      "type": "text",
+      "text": "# BeanFactoryPostProcessor\n\nEdits existing BeanDefinition metadata. Avoid getBean().",
+      "x": -570,
+      "y": -250,
+      "width": 340,
+      "height": 210
+    },
+    {
+      "id": "static",
+      "type": "text",
+      "text": "# Registration discipline\n\nUse static @Bean for BFPP and expose infrastructure return types.",
+      "x": -170,
+      "y": -250,
+      "width": 280,
+      "height": 210
+    },
+    {
+      "id": "basic-bpp",
+      "type": "text",
+      "text": "# BeanPostProcessor\n\nBefore init and after init. May return a proxy or wrapper.",
+      "x": 310,
+      "y": -250,
+      "width": 330,
+      "height": 210
+    },
+    {
+      "id": "instantiation",
+      "type": "text",
+      "text": "# InstantiationAware BPP\n\nBefore instantiation, after instantiation, postProcessProperties.",
+      "x": 700,
+      "y": -250,
+      "width": 350,
+      "height": 210
+    },
+    {
+      "id": "ordering",
+      "type": "text",
+      "text": "# Ordering\n\nAuto-detected: PriorityOrdered → Ordered → unordered.\nProgrammatic: registration order.",
+      "x": 1110,
+      "y": -250,
+      "width": 390,
+      "height": 210
+    },
+    {
+      "id": "smart",
+      "type": "text",
+      "text": "# SmartInstantiationAware BPP\n\npredictBeanType\ndetermineCandidateConstructors\ngetEarlyBeanReference",
+      "x": -760,
+      "y": 280,
+      "width": 390,
+      "height": 220
+    },
+    {
+      "id": "early",
+      "type": "text",
+      "text": "# Early creation trap\n\nBPP dependencies may be created before all processors and miss auto-proxying.",
+      "x": -310,
+      "y": 280,
+      "width": 390,
+      "height": 220
+    },
+    {
+      "id": "destruction",
+      "type": "text",
+      "text": "# DestructionAware BPP\n\nCleanup hook before bean destruction. Prototype ownership still matters.",
+      "x": 140,
+      "y": 280,
+      "width": 390,
+      "height": 220
+    },
+    {
+      "id": "cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards.md",
+      "x": 760,
+      "y": 280,
+      "width": 320,
+      "height": 210
+    },
+    {
+      "id": "cases",
+      "type": "file",
+      "file": "40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases.md",
+      "x": 1120,
+      "y": 280,
+      "width": 320,
+      "height": 210
+    },
+    {
+      "id": "lab",
+      "type": "file",
+      "file": "50_LABS/Spring/Core-B04/README.md",
+      "x": 1480,
+      "y": 280,
+      "width": 160,
+      "height": 210
+    }
+  ],
+  "edges": [
+    {"id":"e01","fromNode":"root","toNode":"registry","label":"definition set","fromSide":"bottom","toSide":"top"},
+    {"id":"e02","fromNode":"registry","toNode":"factory","label":"then refine","fromSide":"right","toSide":"left"},
+    {"id":"e03","fromNode":"factory","toNode":"static","label":"register safely","fromSide":"right","toSide":"left"},
+    {"id":"e04","fromNode":"static","toNode":"basic-bpp","label":"create processors","fromSide":"right","toSide":"left"},
+    {"id":"e05","fromNode":"basic-bpp","toNode":"instantiation","label":"earlier hooks","fromSide":"right","toSide":"left"},
+    {"id":"e06","fromNode":"instantiation","toNode":"ordering","label":"coordinate chain","fromSide":"right","toSide":"left"},
+    {"id":"e07","fromNode":"instantiation","toNode":"smart","label":"specialized decisions"},
+    {"id":"e08","fromNode":"ordering","toNode":"early","label":"early startup risk"},
+    {"id":"e09","fromNode":"basic-bpp","toNode":"destruction","label":"extended lifecycle"},
+    {"id":"e10","fromNode":"smart","toNode":"early","label":"early references","fromSide":"right","toSide":"left"},
+    {"id":"e11","fromNode":"early","toNode":"destruction","label":"complete lifecycle","fromSide":"right","toSide":"left"},
+    {"id":"e12","fromNode":"destruction","toNode":"cards","label":"active recall"},
+    {"id":"e13","fromNode":"cards","toNode":"cases","label":"production transfer","fromSide":"right","toSide":"left"},
+    {"id":"e14","fromNode":"cases","toNode":"lab","label":"experiment","fromSide":"right","toSide":"left"}
+  ]
+}

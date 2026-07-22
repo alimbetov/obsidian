@@ -1,0 +1,39 @@
+{
+  "nodes": [
+    {"id":"root","type":"text","text":"SPRING-BOOT-B02\nSources → Config Data → Environment → Binder → Validation → Evidence","x":0,"y":0,"width":460,"height":190,"color":"4"},
+    {"id":"roadmap","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap.md","x":540,"y":0,"width":450,"height":180,"color":"4"},
+    {"id":"canonical","type":"file","file":"10_CONCEPTS/Spring/Boot/Spring Boot Externalized Configuration and Type-safe Binding.md","x":0,"y":300,"width":480,"height":180},
+    {"id":"visual","type":"file","file":"10_CONCEPTS/Spring/Boot/Spring Boot Configuration Visual Deep Dive.md","x":550,"y":300,"width":450,"height":180},
+    {"id":"sources-model","type":"text","text":"SOURCE ORDER\nCLI / tests / system / env\nexternal config\npackaged config\ndefaults\nwinning PropertySource","x":1080,"y":250,"width":350,"height":280,"color":"5"},
+    {"id":"config-data","type":"text","text":"CONFIG DATA\nlocations\nadditional locations\nimports / optional\nconfig trees\nprofiles / documents","x":1510,"y":250,"width":350,"height":290,"color":"5"},
+    {"id":"binding","type":"text","text":"TYPE-SAFE BINDING\n@Value vs properties\nrelaxed names\nnested/list/map\nDuration/DataSize\nconstructor binding\nvalidation","x":1940,"y":250,"width":370,"height":330,"color":"5"},
+    {"id":"assessment","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Assessment.md","x":-250,"y":650,"width":430,"height":160,"color":"6"},
+    {"id":"cards","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards.md","x":250,"y":650,"width":430,"height":160,"color":"2"},
+    {"id":"cases","type":"file","file":"40_PRODUCTION_CASES/Spring/Spring Boot Configuration Production Cases.md","x":750,"y":650,"width":470,"height":160,"color":"1"},
+    {"id":"lab","type":"file","file":"50_LABS/Spring/SPRING-BOOT-B02/README.md","x":1290,"y":650,"width":410,"height":160,"color":"3"},
+    {"id":"sources","type":"file","file":"98_SOURCES/Spring Boot Externalized Configuration Sources.md","x":1770,"y":650,"width":460,"height":160},
+    {"id":"progress","type":"file","file":"70_PROGRESS/README.md","x":2300,"y":650,"width":360,"height":160,"color":"6"},
+    {"id":"diagnostic","type":"text","text":"DIAGNOSTIC ORDER\n1 canonical key\n2 all sources\n3 winning origin\n4 profiles/documents\n5 conversion\n6 validation\n7 secret exposure","x":2360,"y":230,"width":360,"height":330,"color":"1"},
+    {"id":"next","type":"text","text":"NEXT\nSPRING-MVC-B01\nDispatcherServlet and Controller Pipeline","x":900,"y":920,"width":450,"height":150,"color":"6"}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","fromSide":"right","toNode":"roadmap","toSide":"left"},
+    {"id":"e2","fromNode":"root","fromSide":"bottom","toNode":"canonical","toSide":"top"},
+    {"id":"e3","fromNode":"roadmap","fromSide":"bottom","toNode":"visual","toSide":"top"},
+    {"id":"e4","fromNode":"canonical","fromSide":"right","toNode":"sources-model","toSide":"left"},
+    {"id":"e5","fromNode":"sources-model","fromSide":"right","toNode":"config-data","toSide":"left"},
+    {"id":"e6","fromNode":"config-data","fromSide":"right","toNode":"binding","toSide":"left"},
+    {"id":"e7","fromNode":"binding","fromSide":"right","toNode":"diagnostic","toSide":"left"},
+    {"id":"e8","fromNode":"canonical","fromSide":"bottom","toNode":"assessment","toSide":"top"},
+    {"id":"e9","fromNode":"visual","fromSide":"bottom","toNode":"cards","toSide":"top"},
+    {"id":"e10","fromNode":"sources-model","fromSide":"bottom","toNode":"cases","toSide":"top"},
+    {"id":"e11","fromNode":"config-data","fromSide":"bottom","toNode":"lab","toSide":"top"},
+    {"id":"e12","fromNode":"binding","fromSide":"bottom","toNode":"sources","toSide":"top"},
+    {"id":"e13","fromNode":"diagnostic","fromSide":"bottom","toNode":"progress","toSide":"top"},
+    {"id":"e14","fromNode":"assessment","fromSide":"right","toNode":"cards","toSide":"left"},
+    {"id":"e15","fromNode":"cards","fromSide":"right","toNode":"cases","toSide":"left"},
+    {"id":"e16","fromNode":"cases","fromSide":"right","toNode":"lab","toSide":"left"},
+    {"id":"e17","fromNode":"lab","fromSide":"right","toNode":"sources","toSide":"left"},
+    {"id":"e18","fromNode":"lab","fromSide":"bottom","toNode":"next","toSide":"top"}
+  ]
+}

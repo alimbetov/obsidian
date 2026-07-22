@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "routes": [
+    {
+      "id": "SPRING-BOOT-B02",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Spring Boot Configuration Map.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Spring/Boot/Spring Boot Externalized Configuration and Type-safe Binding.md",
+        "10_CONCEPTS/Spring/Boot/Spring Boot Configuration Visual Deep Dive.md",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards.md",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Assessment.md",
+        "40_PRODUCTION_CASES/Spring/Spring Boot Configuration Production Cases.md",
+        "50_LABS/Spring/SPRING-BOOT-B02/README.md",
+        "01_MAPS/Spring Boot Configuration Map.canvas",
+        "98_SOURCES/Spring Boot Externalized Configuration Sources.md",
+        "70_PROGRESS/README.md"
+      ]
+    }
+  ]
+}

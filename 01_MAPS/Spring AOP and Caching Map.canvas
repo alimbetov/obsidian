@@ -1,0 +1,251 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap.md",
+      "x": 0,
+      "y": -760,
+      "width": 500,
+      "height": 220,
+      "color": "4"
+    },
+    {
+      "id": "proxy-group",
+      "type": "group",
+      "label": "1. Proxy mechanics",
+      "x": -1180,
+      "y": -400,
+      "width": 1320,
+      "height": 470,
+      "color": "2"
+    },
+    {
+      "id": "infra-group",
+      "type": "group",
+      "label": "2. Infrastructure annotations",
+      "x": 220,
+      "y": -400,
+      "width": 1120,
+      "height": 470,
+      "color": "3"
+    },
+    {
+      "id": "cache-group",
+      "type": "group",
+      "label": "3. Cache topology and policy",
+      "x": -1040,
+      "y": 160,
+      "width": 1520,
+      "height": 500,
+      "color": "1"
+    },
+    {
+      "id": "practice-group",
+      "type": "group",
+      "label": "4. Recall, production and labs",
+      "x": 560,
+      "y": 160,
+      "width": 1160,
+      "height": 500,
+      "color": "5"
+    },
+    {
+      "id": "aop-concept",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md",
+      "x": -1110,
+      "y": -310,
+      "width": 360,
+      "height": 220
+    },
+    {
+      "id": "jdk",
+      "type": "text",
+      "text": "# JDK Dynamic Proxy\n\nImplements interfaces. Caller works through the contract. Implementation-only methods are not exposed.",
+      "x": -700,
+      "y": -310,
+      "width": 330,
+      "height": 220
+    },
+    {
+      "id": "cglib",
+      "type": "text",
+      "text": "# CGLIB Proxy\n\nSubclasses target class. Final/private methods cannot be advised.",
+      "x": -310,
+      "y": -310,
+      "width": 360,
+      "height": 220
+    },
+    {
+      "id": "self",
+      "type": "text",
+      "text": "# Self-invocation\n\nthis.method() stays inside target. No proxy crossing means no transaction, async, cache or security advice.",
+      "x": -700,
+      "y": -30,
+      "width": 380,
+      "height": 210,
+      "color": "1"
+    },
+    {
+      "id": "order",
+      "type": "text",
+      "text": "# Advisor chain\n\nSecurity → tracing → transaction → audit → target. Ordering changes resource and rollback semantics.",
+      "x": -260,
+      "y": -30,
+      "width": 330,
+      "height": 210
+    },
+    {
+      "id": "tx",
+      "type": "text",
+      "text": "# @Transactional\n\nProxy opens/joins transaction before target and commits or rolls back after target outcome.",
+      "x": 290,
+      "y": -310,
+      "width": 300,
+      "height": 220
+    },
+    {
+      "id": "async",
+      "type": "text",
+      "text": "# @Async\n\nProxy submits invocation to executor. Internal call runs on current thread.",
+      "x": 650,
+      "y": -310,
+      "width": 280,
+      "height": 220
+    },
+    {
+      "id": "security",
+      "type": "text",
+      "text": "# Method Security\n\nAuthorization interceptor is a runtime boundary, not a compile-time guard.",
+      "x": 990,
+      "y": -310,
+      "width": 280,
+      "height": 220
+    },
+    {
+      "id": "cache-concept",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis.md",
+      "x": -970,
+      "y": 260,
+      "width": 390,
+      "height": 220
+    },
+    {
+      "id": "annotations",
+      "type": "text",
+      "text": "# Cache annotations\n\n@Cacheable skips target on hit. @CachePut always invokes. @CacheEvict removes stale copies.",
+      "x": -520,
+      "y": 260,
+      "width": 350,
+      "height": 220
+    },
+    {
+      "id": "caffeine",
+      "type": "text",
+      "text": "# Caffeine L1\n\nLocal JVM memory, very low latency, per-node state, size/weight/expiration/statistics.",
+      "x": -110,
+      "y": 260,
+      "width": 300,
+      "height": 220
+    },
+    {
+      "id": "redis",
+      "type": "text",
+      "text": "# Redis L2\n\nShared external cache, TTL, prefix, serialization, network and availability dependency.",
+      "x": -520,
+      "y": 520,
+      "width": 350,
+      "height": 210
+    },
+    {
+      "id": "l1l2",
+      "type": "text",
+      "text": "# L1 + L2\n\nFaster reads but two copies. Requires cross-node invalidation, versioning or bounded-staleness contract.",
+      "x": -110,
+      "y": 520,
+      "width": 350,
+      "height": 210,
+      "color": "1"
+    },
+    {
+      "id": "aop-cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards.md",
+      "x": 630,
+      "y": 260,
+      "width": 300,
+      "height": 210
+    },
+    {
+      "id": "cache-cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards.md",
+      "x": 980,
+      "y": 260,
+      "width": 300,
+      "height": 210
+    },
+    {
+      "id": "cases",
+      "type": "file",
+      "file": "40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases.md",
+      "x": 1330,
+      "y": 260,
+      "width": 320,
+      "height": 210
+    },
+    {
+      "id": "aop-lab",
+      "type": "file",
+      "file": "50_LABS/Spring/AOP-B01/README.md",
+      "x": 720,
+      "y": 520,
+      "width": 300,
+      "height": 210
+    },
+    {
+      "id": "cache-lab",
+      "type": "file",
+      "file": "50_LABS/Spring/CACHE-B01/README.md",
+      "x": 1070,
+      "y": 520,
+      "width": 300,
+      "height": 210
+    },
+    {
+      "id": "sources",
+      "type": "file",
+      "file": "98_SOURCES/Spring AOP and Cache Sources.md",
+      "x": 1420,
+      "y": 520,
+      "width": 230,
+      "height": 210
+    }
+  ],
+  "edges": [
+    {"id":"e01","fromNode":"root","toNode":"aop-concept","label":"start","fromSide":"bottom","toSide":"top"},
+    {"id":"e02","fromNode":"aop-concept","toNode":"jdk","label":"interface proxy","fromSide":"right","toSide":"left"},
+    {"id":"e03","fromNode":"jdk","toNode":"cglib","label":"class proxy alternative","fromSide":"right","toSide":"left"},
+    {"id":"e04","fromNode":"jdk","toNode":"self","label":"caller path"},
+    {"id":"e05","fromNode":"cglib","toNode":"self","label":"same limitation"},
+    {"id":"e06","fromNode":"self","toNode":"order","label":"advisor chain"},
+    {"id":"e07","fromNode":"order","toNode":"tx","label":"infrastructure advisor"},
+    {"id":"e08","fromNode":"tx","toNode":"async","label":"same proxy law","fromSide":"right","toSide":"left"},
+    {"id":"e09","fromNode":"async","toNode":"security","label":"same proxy law","fromSide":"right","toSide":"left"},
+    {"id":"e10","fromNode":"tx","toNode":"cache-concept","label":"cache also uses advice"},
+    {"id":"e11","fromNode":"cache-concept","toNode":"annotations","label":"operations","fromSide":"right","toSide":"left"},
+    {"id":"e12","fromNode":"annotations","toNode":"caffeine","label":"local provider","fromSide":"right","toSide":"left"},
+    {"id":"e13","fromNode":"annotations","toNode":"redis","label":"shared provider"},
+    {"id":"e14","fromNode":"caffeine","toNode":"l1l2","label":"L1"},
+    {"id":"e15","fromNode":"redis","toNode":"l1l2","label":"L2","fromSide":"right","toSide":"left"},
+    {"id":"e16","fromNode":"aop-concept","toNode":"aop-cards","label":"recall"},
+    {"id":"e17","fromNode":"cache-concept","toNode":"cache-cards","label":"recall"},
+    {"id":"e18","fromNode":"aop-cards","toNode":"cases","label":"production transfer","fromSide":"right","toSide":"left"},
+    {"id":"e19","fromNode":"cache-cards","toNode":"cases","label":"production transfer","fromSide":"right","toSide":"left"},
+    {"id":"e20","fromNode":"cases","toNode":"aop-lab","label":"proxy experiments"},
+    {"id":"e21","fromNode":"cases","toNode":"cache-lab","label":"cache experiments"},
+    {"id":"e22","fromNode":"sources","toNode":"root","label":"formal basis"}
+  ]
+}

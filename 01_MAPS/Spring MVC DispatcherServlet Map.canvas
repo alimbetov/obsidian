@@ -1,0 +1,39 @@
+{
+  "nodes": [
+    {"id":"root","type":"text","text":"SPRING-MVC-B01\nContainer → DispatcherServlet → Mapping → Adapter → Arguments → Controller → Return → Response","x":0,"y":0,"width":520,"height":200,"color":"4"},
+    {"id":"roadmap","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap.md","x":600,"y":0,"width":470,"height":180,"color":"4"},
+    {"id":"canonical","type":"file","file":"10_CONCEPTS/Spring/MVC/DispatcherServlet and Annotated Controller Pipeline.md","x":0,"y":300,"width":500,"height":180},
+    {"id":"visual","type":"file","file":"10_CONCEPTS/Spring/MVC/Spring MVC DispatcherServlet Visual Deep Dive.md","x":580,"y":300,"width":480,"height":180},
+    {"id":"mapping","type":"text","text":"MAPPING\nRequestMappingHandlerMapping\nRequestMappingInfo\nHandlerMethod\nconditions and specificity\nHandlerExecutionChain","x":1140,"y":250,"width":380,"height":310,"color":"5"},
+    {"id":"adapter","type":"text","text":"INVOCATION\nRequestMappingHandlerAdapter\nmodel initialization\nInitBinder\nargument resolvers\nmethod invocation","x":1600,"y":250,"width":380,"height":310,"color":"5"},
+    {"id":"result","type":"text","text":"RESULT\nreturn-value handlers\nResponseBody / ResponseEntity\nmessage converters\nview names / ModelAndView\nViewResolver","x":2060,"y":250,"width":390,"height":330,"color":"5"},
+    {"id":"errors","type":"text","text":"FAILURES\nExceptionHandlerExceptionResolver\nResponseStatusExceptionResolver\nDefaultHandlerExceptionResolver\n404 / 400 / 415 / 406","x":2530,"y":240,"width":410,"height":350,"color":"1"},
+    {"id":"assessment","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Assessment.md","x":-240,"y":680,"width":430,"height":160,"color":"6"},
+    {"id":"cards","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards.md","x":260,"y":680,"width":430,"height":160,"color":"2"},
+    {"id":"cases","type":"file","file":"40_PRODUCTION_CASES/Spring/Spring MVC DispatcherServlet Production Cases.md","x":760,"y":680,"width":500,"height":160,"color":"1"},
+    {"id":"lab","type":"file","file":"50_LABS/Spring/SPRING-MVC-B01/README.md","x":1330,"y":680,"width":430,"height":160,"color":"3"},
+    {"id":"sources","type":"file","file":"98_SOURCES/Spring MVC DispatcherServlet Sources.md","x":1830,"y":680,"width":470,"height":160},
+    {"id":"progress","type":"file","file":"70_PROGRESS/README.md","x":2370,"y":680,"width":370,"height":160,"color":"6"},
+    {"id":"next","type":"text","text":"NEXT\nSPRING-MVC-B02\nREST endpoints and HTTP clients","x":1020,"y":960,"width":460,"height":150,"color":"6"}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","fromSide":"right","toNode":"roadmap","toSide":"left"},
+    {"id":"e2","fromNode":"root","fromSide":"bottom","toNode":"canonical","toSide":"top"},
+    {"id":"e3","fromNode":"roadmap","fromSide":"bottom","toNode":"visual","toSide":"top"},
+    {"id":"e4","fromNode":"canonical","fromSide":"right","toNode":"mapping","toSide":"left"},
+    {"id":"e5","fromNode":"mapping","fromSide":"right","toNode":"adapter","toSide":"left"},
+    {"id":"e6","fromNode":"adapter","fromSide":"right","toNode":"result","toSide":"left"},
+    {"id":"e7","fromNode":"result","fromSide":"right","toNode":"errors","toSide":"left"},
+    {"id":"e8","fromNode":"canonical","fromSide":"bottom","toNode":"assessment","toSide":"top"},
+    {"id":"e9","fromNode":"visual","fromSide":"bottom","toNode":"cards","toSide":"top"},
+    {"id":"e10","fromNode":"mapping","fromSide":"bottom","toNode":"cases","toSide":"top"},
+    {"id":"e11","fromNode":"adapter","fromSide":"bottom","toNode":"lab","toSide":"top"},
+    {"id":"e12","fromNode":"result","fromSide":"bottom","toNode":"sources","toSide":"top"},
+    {"id":"e13","fromNode":"errors","fromSide":"bottom","toNode":"progress","toSide":"top"},
+    {"id":"e14","fromNode":"assessment","fromSide":"right","toNode":"cards","toSide":"left"},
+    {"id":"e15","fromNode":"cards","fromSide":"right","toNode":"cases","toSide":"left"},
+    {"id":"e16","fromNode":"cases","fromSide":"right","toNode":"lab","toSide":"left"},
+    {"id":"e17","fromNode":"lab","fromSide":"right","toNode":"sources","toSide":"left"},
+    {"id":"e18","fromNode":"lab","fromSide":"bottom","toNode":"next","toSide":"top"}
+  ]
+}

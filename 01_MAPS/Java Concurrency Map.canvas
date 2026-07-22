@@ -1,0 +1,238 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/Concurrency Learning Path.md",
+      "x": 0,
+      "y": -720,
+      "width": 440,
+      "height": 220,
+      "color": "4"
+    },
+    {
+      "id": "foundations-group",
+      "type": "group",
+      "label": "1. Foundations — понять проблему",
+      "x": -1050,
+      "y": -380,
+      "width": 1260,
+      "height": 420,
+      "color": "1"
+    },
+    {
+      "id": "tools-group",
+      "type": "group",
+      "label": "2. Coordination tools — выбрать гарантию",
+      "x": 280,
+      "y": -380,
+      "width": 1260,
+      "height": 420,
+      "color": "2"
+    },
+    {
+      "id": "execution-group",
+      "type": "group",
+      "label": "3. Task execution and modern Java",
+      "x": -770,
+      "y": 130,
+      "width": 1560,
+      "height": 420,
+      "color": "3"
+    },
+    {
+      "id": "practice-group",
+      "type": "group",
+      "label": "4. Recall and experiments",
+      "x": 850,
+      "y": 130,
+      "width": 980,
+      "height": 720,
+      "color": "5"
+    },
+    {
+      "id": "vao",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/Visibility Atomicity Ordering.md",
+      "x": -990,
+      "y": -290,
+      "width": 340,
+      "height": 220
+    },
+    {
+      "id": "race",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/Race Condition.md",
+      "x": -590,
+      "y": -290,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "jmm",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/Java Memory Model.md",
+      "x": -210,
+      "y": -290,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "hb",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/Happens-Before.md",
+      "x": -590,
+      "y": -10,
+      "width": 340,
+      "height": 220
+    },
+    {
+      "id": "volatile",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/volatile.md",
+      "x": 350,
+      "y": -290,
+      "width": 300,
+      "height": 220
+    },
+    {
+      "id": "sync",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/synchronized.md",
+      "x": 710,
+      "y": -290,
+      "width": 300,
+      "height": 220
+    },
+    {
+      "id": "lock",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/ReentrantLock.md",
+      "x": 1070,
+      "y": -290,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "threadlocal",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/ThreadLocal.md",
+      "x": 710,
+      "y": -10,
+      "width": 300,
+      "height": 220
+    },
+    {
+      "id": "executor",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/ExecutorService.md",
+      "x": -690,
+      "y": 230,
+      "width": 340,
+      "height": 220
+    },
+    {
+      "id": "cf",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/CompletableFuture.md",
+      "x": -270,
+      "y": 230,
+      "width": 340,
+      "height": 220
+    },
+    {
+      "id": "virtual",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Concurrency/Virtual Threads.md",
+      "x": 150,
+      "y": 230,
+      "width": 340,
+      "height": 220
+    },
+    {
+      "id": "labs",
+      "type": "file",
+      "file": "50_LABS/Java/Concurrency/README.md",
+      "x": 570,
+      "y": 230,
+      "width": 340,
+      "height": 220
+    },
+    {
+      "id": "q1",
+      "type": "file",
+      "file": "20_QUESTIONS/Interview/Java/Concurrency/Why volatile does not make increment atomic.md",
+      "x": 920,
+      "y": 230,
+      "width": 390,
+      "height": 190
+    },
+    {
+      "id": "q2",
+      "type": "file",
+      "file": "20_QUESTIONS/Interview/Java/Concurrency/What does happens-before actually guarantee.md",
+      "x": 1360,
+      "y": 230,
+      "width": 390,
+      "height": 190
+    },
+    {
+      "id": "q3",
+      "type": "file",
+      "file": "20_QUESTIONS/Interview/Java/Concurrency/How synchronized provides visibility.md",
+      "x": 920,
+      "y": 460,
+      "width": 390,
+      "height": 190
+    },
+    {
+      "id": "q4",
+      "type": "file",
+      "file": "20_QUESTIONS/Interview/Java/Concurrency/execute vs submit.md",
+      "x": 1360,
+      "y": 460,
+      "width": 390,
+      "height": 190
+    },
+    {
+      "id": "q5",
+      "type": "file",
+      "file": "20_QUESTIONS/Interview/Java/Concurrency/thenApply vs thenCompose.md",
+      "x": 920,
+      "y": 690,
+      "width": 390,
+      "height": 190
+    },
+    {
+      "id": "q6",
+      "type": "file",
+      "file": "20_QUESTIONS/Interview/Java/Concurrency/Are virtual threads faster.md",
+      "x": 1360,
+      "y": 690,
+      "width": 390,
+      "height": 190
+    }
+  ],
+  "edges": [
+    {"id":"e01","fromNode":"root","toNode":"vao","label":"start here","fromSide":"bottom","toSide":"top"},
+    {"id":"e02","fromNode":"vao","toNode":"race","label":"symptom","fromSide":"right","toSide":"left"},
+    {"id":"e03","fromNode":"race","toNode":"jmm","label":"needs model","fromSide":"right","toSide":"left"},
+    {"id":"e04","fromNode":"jmm","toNode":"hb","label":"proof rule","fromSide":"bottom","toSide":"top"},
+    {"id":"e05","fromNode":"hb","toNode":"volatile","label":"visibility edge","fromSide":"right","toSide":"left"},
+    {"id":"e06","fromNode":"hb","toNode":"sync","label":"monitor edge","fromSide":"right","toSide":"left"},
+    {"id":"e07","fromNode":"sync","toNode":"lock","label":"advanced control","fromSide":"right","toSide":"left"},
+    {"id":"e08","fromNode":"sync","toNode":"threadlocal","label":"different purpose","fromSide":"bottom","toSide":"top"},
+    {"id":"e09","fromNode":"hb","toNode":"executor","label":"task hand-off","fromSide":"bottom","toSide":"top"},
+    {"id":"e10","fromNode":"executor","toNode":"cf","label":"compose tasks","fromSide":"right","toSide":"left"},
+    {"id":"e11","fromNode":"executor","toNode":"virtual","label":"modern execution","fromSide":"right","toSide":"left"},
+    {"id":"e12","fromNode":"volatile","toNode":"q1","label":"recall"},
+    {"id":"e13","fromNode":"hb","toNode":"q2","label":"recall"},
+    {"id":"e14","fromNode":"sync","toNode":"q3","label":"recall"},
+    {"id":"e15","fromNode":"executor","toNode":"q4","label":"recall"},
+    {"id":"e16","fromNode":"cf","toNode":"q5","label":"recall"},
+    {"id":"e17","fromNode":"virtual","toNode":"q6","label":"recall"},
+    {"id":"e18","fromNode":"executor","toNode":"labs","label":"experiment","fromSide":"right","toSide":"left"},
+    {"id":"e19","fromNode":"cf","toNode":"labs","label":"experiment"},
+    {"id":"e20","fromNode":"virtual","toNode":"labs","label":"experiment"}
+  ]
+}

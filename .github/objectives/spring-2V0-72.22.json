@@ -1,0 +1,752 @@
+{
+  "schema_version": 1,
+  "track_id": "SPRING-2V0-72.22",
+  "title": "Spring Professional Develop 2V0-72.22",
+  "source": "Broadcom Spring Professional Develop Exam Guide, updated 2024-01-26",
+  "source_url": "https://docs.broadcom.com/doc/vmw-spring-professional-develop-exam-guide",
+  "verified_at": "2026-07-22",
+  "baseline": {
+    "spring_framework": "5.3",
+    "spring_boot": "2.5",
+    "spring_data": "2021.0"
+  },
+  "objectives": [
+    {
+      "id": "SPRING-1.1",
+      "section": "Spring Core",
+      "title": "Explain the purpose and core model of the Spring Framework",
+      "status": "theory-visual",
+      "weight": 1,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Spring Core Foundations.md"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],
+        "card_prefixes": ["CORE-B01-"],
+        "sources": ["98_SOURCES/Spring Dependency Resolution Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.2.1",
+      "section": "Spring Core / Java Configuration",
+      "title": "Define Spring beans using Java configuration",
+      "status": "cards-ready",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Spring Core Foundations.md"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],
+        "card_prefixes": ["CORE-B01-"],
+        "canvas": ["01_MAPS/Spring Core Foundation Map.canvas"]
+      }
+    },
+    {
+      "id": "SPRING-1.2.2",
+      "section": "Spring Core / Java Configuration",
+      "title": "Access beans from the application context",
+      "status": "cards-ready",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Spring Core Foundations.md"],
+        "card_prefixes": ["CORE-B01-"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.2.3",
+      "section": "Spring Core / Java Configuration",
+      "title": "Compose multiple configuration classes",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties.md"],
+        "card_prefixes": ["CORE-B05-"],
+        "labs": ["50_LABS/Spring/Core-B05/README.md"],
+        "sources": ["98_SOURCES/Spring Configuration and Profiles Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.2.4",
+      "section": "Spring Core / Java Configuration",
+      "title": "Express and resolve dependencies between beans",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection.md"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],
+        "card_prefixes": ["CORE-B02-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases.md"],
+        "labs": ["50_LABS/Spring/Core-B02/README.md"],
+        "sources": ["98_SOURCES/Spring Dependency Resolution Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.2.5",
+      "section": "Spring Core / Java Configuration",
+      "title": "Explain and configure bean scopes",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy.md"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],
+        "card_prefixes": ["CORE-B06-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Advanced Core Production Cases.md"],
+        "labs": ["50_LABS/Spring/Core-B06/README.md"],
+        "sources": ["98_SOURCES/Spring Advanced Core Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.3.1",
+      "section": "Spring Core / Properties and Profiles",
+      "title": "Use external properties to control configuration",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties.md"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],
+        "card_prefixes": ["CORE-B05-"],
+        "labs": ["50_LABS/Spring/Core-B05/README.md"],
+        "sources": ["98_SOURCES/Spring Configuration and Profiles Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.3.2",
+      "section": "Spring Core / Properties and Profiles",
+      "title": "Explain and use profiles",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties.md"],
+        "card_prefixes": ["CORE-B05-"],
+        "labs": ["50_LABS/Spring/Core-B05/README.md"],
+        "sources": ["98_SOURCES/Spring Configuration and Profiles Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.3.3",
+      "section": "Spring Core / Properties and Profiles",
+      "title": "Use Spring Expression Language",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-1.4.1",
+      "section": "Spring Core / Annotation Configuration",
+      "title": "Explain and use annotation-based configuration",
+      "status": "cards-ready",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Spring Core Foundations.md"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],
+        "card_prefixes": ["CORE-B01-"]
+      }
+    },
+    {
+      "id": "SPRING-1.4.2",
+      "section": "Spring Core / Annotation Configuration",
+      "title": "Choose configuration approaches using maintainability boundaries",
+      "status": "cards-ready",
+      "weight": 1,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties.md"],
+        "card_prefixes": ["CORE-B05-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.4.3",
+      "section": "Spring Core / Annotation Configuration",
+      "title": "Use initialization and destruction annotations",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],
+        "card_prefixes": ["CORE-B03-"],
+        "labs": ["50_LABS/Spring/Core-B03/README.md"],
+        "sources": ["98_SOURCES/Spring Bean Lifecycle Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.4.4",
+      "section": "Spring Core / Annotation Configuration",
+      "title": "Explain and use stereotype annotations",
+      "status": "cards-ready",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Spring Core Foundations.md"],
+        "card_prefixes": ["CORE-B01-"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.5.1",
+      "section": "Spring Core / Bean Lifecycle",
+      "title": "Explain the Spring bean lifecycle",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],
+        "card_prefixes": ["CORE-B03-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases.md"],
+        "labs": ["50_LABS/Spring/Core-B03/README.md"],
+        "sources": ["98_SOURCES/Spring Bean Lifecycle Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.5.2",
+      "section": "Spring Core / Bean Lifecycle",
+      "title": "Use BeanFactoryPostProcessor and BeanPostProcessor extension points",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Container Extension Points.md"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],
+        "card_prefixes": ["CORE-B04-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases.md"],
+        "labs": ["50_LABS/Spring/Core-B04/README.md"],
+        "sources": ["98_SOURCES/Spring Container Extension Point Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.5.3",
+      "section": "Spring Core / Bean Lifecycle",
+      "title": "Explain how Spring proxies add runtime behavior",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md"],
+        "visual": ["10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive.md"],
+        "card_prefixes": ["AOP-B01-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases.md"],
+        "labs": ["50_LABS/Spring/AOP-B01/README.md"],
+        "sources": ["98_SOURCES/Spring AOP and Cache Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.5.4",
+      "section": "Spring Core / Bean Lifecycle",
+      "title": "Describe bean creation ordering and dependency ordering",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md"],
+        "card_prefixes": ["CORE-B03-"],
+        "labs": ["50_LABS/Spring/Core-B03/README.md"],
+        "sources": ["98_SOURCES/Spring Bean Lifecycle Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.5.5",
+      "section": "Spring Core / Bean Lifecycle",
+      "title": "Avoid ambiguity when injecting beans by type",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection.md"],
+        "visual": ["10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md"],
+        "card_prefixes": ["CORE-B02-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases.md"],
+        "labs": ["50_LABS/Spring/Core-B02/README.md"],
+        "sources": ["98_SOURCES/Spring Dependency Resolution Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.6.1",
+      "section": "Spring Core / AOP",
+      "title": "Explain AOP concepts and the problems they solve",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md"],
+        "visual": ["10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive.md"],
+        "card_prefixes": ["AOP-B01-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases.md"],
+        "labs": ["50_LABS/Spring/AOP-B01/README.md"],
+        "sources": ["98_SOURCES/Spring AOP and Cache Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.6.2",
+      "section": "Spring Core / AOP",
+      "title": "Implement and apply advice using Spring AOP",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md"],
+        "visual": ["10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive.md"],
+        "card_prefixes": ["AOP-B01-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases.md"],
+        "labs": ["50_LABS/Spring/AOP-B01/README.md"],
+        "sources": ["98_SOURCES/Spring AOP and Cache Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.6.3",
+      "section": "Spring Core / AOP",
+      "title": "Use pointcut expressions",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md"],
+        "card_prefixes": ["AOP-B01-"],
+        "labs": ["50_LABS/Spring/AOP-B01/README.md"],
+        "sources": ["98_SOURCES/Spring AOP and Cache Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-1.6.4",
+      "section": "Spring Core / AOP",
+      "title": "Distinguish advice types and choose an appropriate type",
+      "status": "cards-ready",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md"],
+        "visual": ["10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive.md"],
+        "card_prefixes": ["AOP-B01-"],
+        "sources": ["98_SOURCES/Spring AOP and Cache Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-2.1.1",
+      "section": "Data Management / JDBC",
+      "title": "Configure and use JdbcTemplate",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-2.1.2",
+      "section": "Data Management / JDBC",
+      "title": "Execute queries using result-set callbacks",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-2.1.3",
+      "section": "Data Management / JDBC",
+      "title": "Handle translated data-access exceptions",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-2.2.1",
+      "section": "Data Management / Transactions",
+      "title": "Describe and use Spring transaction management",
+      "status": "cards-ready",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive.md"],
+        "visual": ["10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive.md"],
+        "card_prefixes": ["TX-B01-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Transaction Management Production Cases.md"],
+        "sources": ["98_SOURCES/Spring Transaction Management Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-2.2.2",
+      "section": "Data Management / Transactions",
+      "title": "Configure transaction propagation",
+      "status": "cards-ready",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive.md"],
+        "visual": ["10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive.md"],
+        "card_prefixes": ["TX-B01-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Transaction Management Production Cases.md"]
+      }
+    },
+    {
+      "id": "SPRING-2.2.3",
+      "section": "Data Management / Transactions",
+      "title": "Configure rollback rules",
+      "status": "cards-ready",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive.md"],
+        "card_prefixes": ["TX-B01-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Transaction Management Production Cases.md"]
+      }
+    },
+    {
+      "id": "SPRING-2.2.4",
+      "section": "Data Management / Transactions",
+      "title": "Use transactions in tests",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices.md"],
+        "card_prefixes": ["TEST-B01-"],
+        "labs": ["50_LABS/Spring/TEST-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Testing Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-2.3.1",
+      "section": "Data Management / Boot and JPA",
+      "title": "Implement a JPA application using Spring Boot",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle.md"],
+        "visual": ["10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive.md"],
+        "card_prefixes": ["DATA-B01-"],
+        "labs": ["50_LABS/Spring/DATA-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Data JPA Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-2.3.2",
+      "section": "Data Management / Boot and JPA",
+      "title": "Create Spring Data repositories for JPA",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching.md"],
+        "visual": ["10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive.md"],
+        "card_prefixes": ["DATA-B01-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases.md"],
+        "labs": ["50_LABS/Spring/DATA-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Data JPA Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-3.1.1",
+      "section": "Spring MVC / Boot Web Applications",
+      "title": "Create a Spring MVC application using Spring Boot",
+      "status": "theory-only",
+      "weight": 1,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration.md"],
+        "sources": ["98_SOURCES/Spring Boot Auto-configuration Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-3.1.2",
+      "section": "Spring MVC / Boot Web Applications",
+      "title": "Describe the request-processing lifecycle for REST requests",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-3.1.3",
+      "section": "Spring MVC / Boot Web Applications",
+      "title": "Create a simple REST controller for GET requests",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-3.1.4",
+      "section": "Spring MVC / Boot Web Applications",
+      "title": "Configure a Spring MVC application for deployment",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-3.2.1",
+      "section": "Spring MVC / REST",
+      "title": "Create REST endpoints for multiple HTTP verbs",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-3.2.2",
+      "section": "Spring MVC / REST",
+      "title": "Use RestTemplate to invoke REST services",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-4.1.1",
+      "section": "Testing / Spring Applications",
+      "title": "Write tests using JUnit 5",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices.md"],
+        "card_prefixes": ["TEST-B01-"],
+        "labs": ["50_LABS/Spring/TEST-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Testing Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-4.1.2",
+      "section": "Testing / Spring Applications",
+      "title": "Write Spring integration tests",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices.md"],
+        "visual": ["10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive.md"],
+        "card_prefixes": ["TEST-B01-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Spring Testing Production Cases.md"],
+        "labs": ["50_LABS/Spring/TEST-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Testing Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-4.1.3",
+      "section": "Testing / Spring Applications",
+      "title": "Configure tests using Spring profiles",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices.md"],
+        "card_prefixes": ["TEST-B01-"],
+        "labs": ["50_LABS/Spring/TEST-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Testing Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-4.1.4",
+      "section": "Testing / Spring Applications",
+      "title": "Extend Spring tests to work with databases",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers.md"],
+        "visual": ["10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive.md"],
+        "card_prefixes": ["TEST-B01-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Spring Testing Production Cases.md"],
+        "labs": ["50_LABS/Spring/TEST-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Testing Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-4.2.1",
+      "section": "Testing / Boot and MockMvc",
+      "title": "Enable Spring Boot testing",
+      "status": "cards-ready",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices.md"],
+        "visual": ["10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive.md"],
+        "card_prefixes": ["TEST-B01-"],
+        "sources": ["98_SOURCES/Spring Testing Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-4.2.2",
+      "section": "Testing / Boot and MockMvc",
+      "title": "Perform Boot integration testing",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices.md"],
+        "card_prefixes": ["TEST-B01-"],
+        "labs": ["50_LABS/Spring/TEST-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Testing Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-4.2.3",
+      "section": "Testing / Boot and MockMvc",
+      "title": "Perform MockMvc testing",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-4.2.4",
+      "section": "Testing / Boot and MockMvc",
+      "title": "Perform slice testing",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "batch",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices.md"],
+        "visual": ["10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive.md"],
+        "card_prefixes": ["TEST-B01-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Spring Testing Production Cases.md"],
+        "labs": ["50_LABS/Spring/TEST-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Testing Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-5.1",
+      "section": "Security",
+      "title": "Explain basic security concepts",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-5.2",
+      "section": "Security",
+      "title": "Configure authentication and authorization with Spring Security",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-5.3",
+      "section": "Security",
+      "title": "Define method-level security",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-6.1.1",
+      "section": "Spring Boot / Feature Introduction",
+      "title": "Explain and use Spring Boot features",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "card",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration.md"],
+        "visual": ["10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive.md"],
+        "cards": ["SPRING-BOOT-B01-C001", "SPRING-BOOT-B01-C004", "SPRING-BOOT-B01-C005", "SPRING-BOOT-B01-C028", "SPRING-BOOT-B01-C029"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases.md"],
+        "labs": ["50_LABS/Spring/SPRING-BOOT-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Boot Auto-configuration Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-6.1.2",
+      "section": "Spring Boot / Feature Introduction",
+      "title": "Describe Spring Boot dependency management",
+      "status": "cards-ready",
+      "weight": 1,
+      "mapping_granularity": "card",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration.md"],
+        "visual": ["10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive.md"],
+        "cards": ["SPRING-BOOT-B01-C022", "SPRING-BOOT-B01-C023"],
+        "sources": ["98_SOURCES/Spring Boot Auto-configuration Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-6.2.1",
+      "section": "Spring Boot / Properties and Auto-configuration",
+      "title": "Describe options for defining and loading properties",
+      "status": "theory-only",
+      "weight": 1,
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties.md"],
+        "sources": ["98_SOURCES/Spring Configuration and Profiles Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-6.2.2",
+      "section": "Spring Boot / Properties and Auto-configuration",
+      "title": "Use auto-configuration",
+      "status": "complete",
+      "weight": 1,
+      "mapping_granularity": "card",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration.md"],
+        "visual": ["10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive.md"],
+        "cards": ["SPRING-BOOT-B01-C006", "SPRING-BOOT-B01-C007", "SPRING-BOOT-B01-C008", "SPRING-BOOT-B01-C009", "SPRING-BOOT-B01-C010", "SPRING-BOOT-B01-C011", "SPRING-BOOT-B01-C012", "SPRING-BOOT-B01-C013", "SPRING-BOOT-B01-C014", "SPRING-BOOT-B01-C015", "SPRING-BOOT-B01-C016", "SPRING-BOOT-B01-C017", "SPRING-BOOT-B01-C018", "SPRING-BOOT-B01-C020", "SPRING-BOOT-B01-C021", "SPRING-BOOT-B01-C024", "SPRING-BOOT-B01-C025", "SPRING-BOOT-B01-C026", "SPRING-BOOT-B01-C027", "SPRING-BOOT-B01-C030"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases.md"],
+        "labs": ["50_LABS/Spring/SPRING-BOOT-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Boot Auto-configuration Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-6.2.3",
+      "section": "Spring Boot / Properties and Auto-configuration",
+      "title": "Override default Boot configuration",
+      "status": "lab-proven",
+      "weight": 1,
+      "mapping_granularity": "card",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration.md"],
+        "cards": ["SPRING-BOOT-B01-C014", "SPRING-BOOT-B01-C018", "SPRING-BOOT-B01-C019", "SPRING-BOOT-B01-C024"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases.md"],
+        "labs": ["50_LABS/Spring/SPRING-BOOT-B01/README.md"],
+        "sources": ["98_SOURCES/Spring Boot Auto-configuration Sources.md"]
+      }
+    },
+    {
+      "id": "SPRING-6.3.1",
+      "section": "Spring Boot / Actuator",
+      "title": "Configure Actuator endpoints",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-6.3.2",
+      "section": "Spring Boot / Actuator",
+      "title": "Secure Actuator HTTP endpoints",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-6.3.3",
+      "section": "Spring Boot / Actuator",
+      "title": "Define custom metrics",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    },
+    {
+      "id": "SPRING-6.3.4",
+      "section": "Spring Boot / Actuator",
+      "title": "Define custom health indicators",
+      "status": "unmapped",
+      "weight": 1,
+      "mapping_granularity": "none",
+      "evidence": {}
+    }
+  ]
+}

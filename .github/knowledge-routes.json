@@ -1,0 +1,259 @@
+{
+  "registry": "00_HOME/Knowledge Route Registry.md",
+  "global_entry_points": [
+    "README.md",
+    "00_HOME/Java Backend Knowledge System.md",
+    "30_CERTIFICATIONS/Certification MOC.md"
+  ],
+  "routes": [
+    {
+      "id": "JAVA-CONCURRENCY",
+      "status": "published",
+      "hub": "10_CONCEPTS/Java/Concurrency/Concurrency Learning Path.md",
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Java Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "10_CONCEPTS/Java/Concurrency/Concurrency Learning Path.md",
+        "01_MAPS/Java Map.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Java Concurrency Visual Atlas.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md",
+        "01_MAPS/Java Concurrency Visual Atlas.canvas",
+        "01_MAPS/Java Concurrency Map.canvas",
+        "01_MAPS/Java Advanced Concurrency Map.canvas",
+        "10_CONCEPTS/Java/Concurrency/Threads.md",
+        "10_CONCEPTS/Java/Concurrency/Visibility Atomicity Ordering.md",
+        "10_CONCEPTS/Java/Concurrency/Race Condition.md",
+        "10_CONCEPTS/Java/Concurrency/Java Memory Model.md",
+        "10_CONCEPTS/Java/Concurrency/Happens-Before.md",
+        "10_CONCEPTS/Java/Concurrency/volatile.md",
+        "10_CONCEPTS/Java/Concurrency/synchronized.md",
+        "10_CONCEPTS/Java/Concurrency/ReentrantLock.md",
+        "10_CONCEPTS/Java/Concurrency/Atomic CAS and Counters.md",
+        "10_CONCEPTS/Java/Concurrency/Deadlock Livelock and Lock Ordering.md",
+        "10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure.md",
+        "10_CONCEPTS/Java/Concurrency/ExecutorService.md",
+        "10_CONCEPTS/Java/Concurrency/Future.md",
+        "10_CONCEPTS/Java/Concurrency/ForkJoinPool.md",
+        "10_CONCEPTS/Java/Concurrency/CompletableFuture.md",
+        "10_CONCEPTS/Java/Concurrency/ThreadLocal.md",
+        "10_CONCEPTS/Java/Concurrency/Virtual Threads.md",
+        "20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall.md",
+        "50_LABS/Java/Concurrency/README.md",
+        "98_SOURCES/Java Concurrency Sources.md",
+        "98_SOURCES/Advanced Concurrency Sources.md"
+      ]
+    },
+    {
+      "id": "SPRING-CORE",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Spring Core Visual Atlas.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive.md",
+        "01_MAPS/Spring Core Visual Atlas.canvas",
+        "10_CONCEPTS/Spring/Core/Spring Core Foundations.md",
+        "10_CONCEPTS/Spring/Core/Dependency Resolution and Optional Injection.md",
+        "10_CONCEPTS/Spring/Core/Bean Lifecycle from Definition to Destruction.md",
+        "10_CONCEPTS/Spring/Core/Container Extension Points.md",
+        "10_CONCEPTS/Spring/Core/Configuration Profiles and Externalized Properties.md",
+        "10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy.md",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards.md",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards.md",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards.md",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards.md",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards.md",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards.md",
+        "40_PRODUCTION_CASES/Spring/Dependency Resolution Production Cases.md",
+        "40_PRODUCTION_CASES/Spring/Bean Lifecycle Production Cases.md",
+        "40_PRODUCTION_CASES/Spring/Container Extension Point Production Cases.md",
+        "40_PRODUCTION_CASES/Spring/Configuration and Profiles Production Cases.md",
+        "40_PRODUCTION_CASES/Spring/Advanced Core Production Cases.md",
+        "50_LABS/Spring/Core-B02/README.md",
+        "50_LABS/Spring/Core-B03/README.md",
+        "50_LABS/Spring/Core-B04/README.md",
+        "50_LABS/Spring/Core-B05/README.md",
+        "50_LABS/Spring/Core-B06/README.md",
+        "98_SOURCES/Spring Dependency Resolution Sources.md",
+        "98_SOURCES/Spring Bean Lifecycle Sources.md",
+        "98_SOURCES/Spring Container Extension Point Sources.md",
+        "98_SOURCES/Spring Configuration and Profiles Sources.md",
+        "98_SOURCES/Spring Advanced Core Sources.md"
+      ]
+    },
+    {
+      "id": "SPRING-AOP-CACHE",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Spring AOP and Cache Visual Atlas.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Spring/AOP/Spring AOP Proxy Mechanics.md",
+        "10_CONCEPTS/Spring/AOP/Spring AOP Visual Deep Dive.md",
+        "10_CONCEPTS/Spring/AOP/Spring AOP Proxies and Cache Interception.md",
+        "10_CONCEPTS/Spring/Cache/Spring Cache with Caffeine and Redis.md",
+        "10_CONCEPTS/Spring/Cache/Spring Cache Visual Deep Dive.md",
+        "01_MAPS/Spring AOP and Cache Visual Atlas.canvas",
+        "01_MAPS/Spring AOP and Caching Map.canvas",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards.md",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards.md",
+        "40_PRODUCTION_CASES/Spring/AOP and Cache Production Cases.md",
+        "50_LABS/Spring/AOP-B01/README.md",
+        "50_LABS/Spring/CACHE-B01/README.md",
+        "98_SOURCES/Spring AOP and Cache Sources.md"
+      ]
+    },
+    {
+      "id": "SPRING-TX",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Spring Transaction Management Map.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Spring/Transactions/Spring Transaction Management Deep Dive.md",
+        "10_CONCEPTS/Spring/Transactions/Spring Transaction Management Visual Deep Dive.md",
+        "10_CONCEPTS/Spring/Transactions/Transactional Outbox and Commit Boundaries.md",
+        "01_MAPS/Spring Transaction Management Map.canvas",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards.md",
+        "40_PRODUCTION_CASES/Spring/Transaction Management Production Cases.md",
+        "50_LABS/Spring/TX-B01/README.md",
+        "98_SOURCES/Spring Transaction Management Sources.md"
+      ]
+    },
+    {
+      "id": "SPRING-DATA-JPA",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Spring Data JPA Map.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Spring/Data/Spring Data JPA Persistence Context and Entity Lifecycle.md",
+        "10_CONCEPTS/Spring/Data/Spring Data Repositories Queries and Fetching.md",
+        "10_CONCEPTS/Spring/Data/Spring Data JPA Visual Deep Dive.md",
+        "01_MAPS/Spring Data JPA Map.canvas",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards.md",
+        "40_PRODUCTION_CASES/Spring/Spring Data JPA Production Cases.md",
+        "50_LABS/Spring/DATA-B01/README.md",
+        "98_SOURCES/Spring Data JPA Sources.md"
+      ]
+    },
+    {
+      "id": "SPRING-TEST",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Spring Testing Map.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Spring/Testing/Spring TestContext and Test Slices.md",
+        "10_CONCEPTS/Spring/Testing/Spring Data JPA Testing with Testcontainers.md",
+        "10_CONCEPTS/Spring/Testing/Spring Testing Visual Deep Dive.md",
+        "01_MAPS/Spring Testing Map.canvas",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards.md",
+        "40_PRODUCTION_CASES/Spring/Spring Testing Production Cases.md",
+        "50_LABS/Spring/TEST-B01/README.md",
+        "98_SOURCES/Spring Testing Sources.md"
+      ]
+    },
+    {
+      "id": "SPRING-BOOT-B01",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Spring Boot Auto-configuration Map.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration.md",
+        "10_CONCEPTS/Spring/Boot/Spring Boot Auto-configuration Visual Deep Dive.md",
+        "01_MAPS/Spring Boot Auto-configuration Map.canvas",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards.md",
+        "40_PRODUCTION_CASES/Spring/Spring Boot Auto-configuration Production Cases.md",
+        "50_LABS/Spring/SPRING-BOOT-B01/README.md",
+        "98_SOURCES/Spring Boot Auto-configuration Sources.md"
+      ]
+    },
+    {
+      "id": "DB-B01",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Databases Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap.md",
+        "01_MAPS/Databases Map.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Database Indexes and Query Plans Map.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Databases/PostgreSQL Index Mechanics.md",
+        "10_CONCEPTS/Databases/PostgreSQL EXPLAIN and Query Plan Analysis.md",
+        "01_MAPS/Database Indexes and Query Plans Map.canvas",
+        "30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards.md",
+        "40_PRODUCTION_CASES/Databases/Indexes and Query Plans Production Cases.md",
+        "50_LABS/Databases/DB-B01/README.md",
+        "98_SOURCES/PostgreSQL Indexes and Query Plans Sources.md"
+      ]
+    }
+  ]
+}

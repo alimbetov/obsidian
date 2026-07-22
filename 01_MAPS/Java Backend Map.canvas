@@ -1,0 +1,21 @@
+{
+  "nodes": [
+    {"id":"root","type":"file","file":"00_HOME/Java Backend Knowledge System.md","x":0,"y":0,"width":400,"height":220},
+    {"id":"java","type":"file","file":"01_MAPS/Java Map.md","x":-900,"y":420,"width":360,"height":220},
+    {"id":"spring","type":"file","file":"01_MAPS/Spring Map.md","x":-450,"y":420,"width":360,"height":220},
+    {"id":"db","type":"file","file":"01_MAPS/Databases Map.md","x":0,"y":420,"width":360,"height":220},
+    {"id":"msg","type":"file","file":"01_MAPS/Messaging Map.md","x":450,"y":420,"width":360,"height":220},
+    {"id":"dist","type":"file","file":"01_MAPS/Distributed Systems Map.md","x":900,"y":420,"width":360,"height":220},
+    {"id":"interview","type":"file","file":"20_QUESTIONS/Interview/Interview Questions MOC.md","x":-300,"y":800,"width":360,"height":220},
+    {"id":"cert","type":"file","file":"30_CERTIFICATIONS/Certification MOC.md","x":300,"y":800,"width":360,"height":220}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","fromSide":"bottom","toNode":"java","toSide":"top"},
+    {"id":"e2","fromNode":"root","fromSide":"bottom","toNode":"spring","toSide":"top"},
+    {"id":"e3","fromNode":"root","fromSide":"bottom","toNode":"db","toSide":"top"},
+    {"id":"e4","fromNode":"root","fromSide":"bottom","toNode":"msg","toSide":"top"},
+    {"id":"e5","fromNode":"root","fromSide":"bottom","toNode":"dist","toSide":"top"},
+    {"id":"e6","fromNode":"root","fromSide":"bottom","toNode":"interview","toSide":"top"},
+    {"id":"e7","fromNode":"root","fromSide":"bottom","toNode":"cert","toSide":"top"}
+  ]
+}

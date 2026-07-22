@@ -1,0 +1,196 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "10_CONCEPTS/Spring/Core/Advanced Core Scopes FactoryBean and Context Hierarchy.md",
+      "x": 0,
+      "y": -760,
+      "width": 520,
+      "height": 220,
+      "color": "4"
+    },
+    {
+      "id": "scope-group",
+      "type": "group",
+      "label": "1. Identity and lifetime",
+      "x": -1180,
+      "y": -400,
+      "width": 1320,
+      "height": 470,
+      "color": "2"
+    },
+    {
+      "id": "creation-group",
+      "type": "group",
+      "label": "2. Creation timing and indirection",
+      "x": 220,
+      "y": -400,
+      "width": 1320,
+      "height": 470,
+      "color": "3"
+    },
+    {
+      "id": "hierarchy-group",
+      "type": "group",
+      "label": "3. Context and infrastructure abstractions",
+      "x": -920,
+      "y": 160,
+      "width": 1380,
+      "height": 450,
+      "color": "1"
+    },
+    {
+      "id": "practice-group",
+      "type": "group",
+      "label": "4. Recall, production and lab",
+      "x": 540,
+      "y": 160,
+      "width": 1120,
+      "height": 450,
+      "color": "5"
+    },
+    {
+      "id": "singleton",
+      "type": "text",
+      "text": "# Singleton\n\nOne instance per bean definition per container. Identity does not imply thread safety.",
+      "x": -1110,
+      "y": -300,
+      "width": 330,
+      "height": 220
+    },
+    {
+      "id": "prototype",
+      "type": "text",
+      "text": "# Prototype\n\nNew instance per lookup. Initialization managed; destruction ownership transferred to caller.",
+      "x": -720,
+      "y": -300,
+      "width": 340,
+      "height": 220
+    },
+    {
+      "id": "scoped",
+      "type": "text",
+      "text": "# Contextual scopes\n\nRequest, session or custom scope stores target by context boundary.",
+      "x": -320,
+      "y": -300,
+      "width": 390,
+      "height": 220
+    },
+    {
+      "id": "provider",
+      "type": "text",
+      "text": "# ObjectProvider\n\nAsk the container at use time. Target scope decides identity.",
+      "x": 300,
+      "y": -300,
+      "width": 300,
+      "height": 220
+    },
+    {
+      "id": "proxy",
+      "type": "text",
+      "text": "# Scoped proxy\n\nStable injected reference resolves the current scoped target on invocation.",
+      "x": 660,
+      "y": -300,
+      "width": 330,
+      "height": 220
+    },
+    {
+      "id": "factory",
+      "type": "text",
+      "text": "# FactoryBean\n\nbeanName → product\n&beanName → factory\nFactory identity and product identity are separate.",
+      "x": 1050,
+      "y": -300,
+      "width": 400,
+      "height": 220
+    },
+    {
+      "id": "lazy",
+      "type": "text",
+      "text": "# Lazy initialization\n\nChanges creation time, not scope. Eager consumers can force creation.",
+      "x": 660,
+      "y": -30,
+      "width": 330,
+      "height": 170
+    },
+    {
+      "id": "cycle",
+      "type": "text",
+      "text": "# Circular dependencies\n\nConstructor cycle has no first object. Early references are not fully initialized beans.",
+      "x": 1050,
+      "y": -30,
+      "width": 400,
+      "height": 170
+    },
+    {
+      "id": "hierarchy",
+      "type": "text",
+      "text": "# Parent / child context\n\nChild resolves local first, then parent. Parent cannot see child. Child can shadow parent by name.",
+      "x": -840,
+      "y": 260,
+      "width": 400,
+      "height": 220
+    },
+    {
+      "id": "resource",
+      "type": "text",
+      "text": "# Resource\n\nA storage-independent handle. Classpath resource inside JAR is not necessarily a File.",
+      "x": -380,
+      "y": 260,
+      "width": 370,
+      "height": 220
+    },
+    {
+      "id": "messages",
+      "type": "text",
+      "text": "# MessageSource\n\nmessage code + arguments + locale. Human text stays separate from stable domain error codes.",
+      "x": 50,
+      "y": 260,
+      "width": 340,
+      "height": 220
+    },
+    {
+      "id": "cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards.md",
+      "x": 620,
+      "y": 260,
+      "width": 320,
+      "height": 210
+    },
+    {
+      "id": "cases",
+      "type": "file",
+      "file": "40_PRODUCTION_CASES/Spring/Advanced Core Production Cases.md",
+      "x": 990,
+      "y": 260,
+      "width": 320,
+      "height": 210
+    },
+    {
+      "id": "lab",
+      "type": "file",
+      "file": "50_LABS/Spring/Core-B06/README.md",
+      "x": 1360,
+      "y": 260,
+      "width": 220,
+      "height": 210
+    }
+  ],
+  "edges": [
+    {"id":"e01","fromNode":"root","toNode":"singleton","label":"identity","fromSide":"bottom","toSide":"top"},
+    {"id":"e02","fromNode":"singleton","toNode":"prototype","label":"different lookup policy","fromSide":"right","toSide":"left"},
+    {"id":"e03","fromNode":"prototype","toNode":"scoped","label":"contextual lifetime","fromSide":"right","toSide":"left"},
+    {"id":"e04","fromNode":"scoped","toNode":"provider","label":"runtime lookup"},
+    {"id":"e05","fromNode":"provider","toNode":"proxy","label":"alternative indirection","fromSide":"right","toSide":"left"},
+    {"id":"e06","fromNode":"proxy","toNode":"factory","label":"product indirection","fromSide":"right","toSide":"left"},
+    {"id":"e07","fromNode":"provider","toNode":"lazy","label":"delay resolution"},
+    {"id":"e08","fromNode":"factory","toNode":"cycle","label":"initialization boundary"},
+    {"id":"e09","fromNode":"cycle","toNode":"hierarchy","label":"graph redesign"},
+    {"id":"e10","fromNode":"hierarchy","toNode":"resource","label":"context capability","fromSide":"right","toSide":"left"},
+    {"id":"e11","fromNode":"resource","toNode":"messages","label":"context capability","fromSide":"right","toSide":"left"},
+    {"id":"e12","fromNode":"messages","toNode":"cards","label":"active recall"},
+    {"id":"e13","fromNode":"cards","toNode":"cases","label":"production transfer","fromSide":"right","toSide":"left"},
+    {"id":"e14","fromNode":"cases","toNode":"lab","label":"experiment","fromSide":"right","toSide":"left"}
+  ]
+}
