@@ -130,9 +130,24 @@ flowchart LR
 | Sources | [[98_SOURCES/Spring Boot Externalized Configuration Sources]] |
 | Progress | [[70_PROGRESS/README]] |
 
-Previous: [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]].
+## SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline
 
-Next: `SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline`.
+| Role | Artifact |
+|---|---|
+| Roadmap | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]] |
+| Canonical | [[10_CONCEPTS/Spring/MVC/DispatcherServlet and Annotated Controller Pipeline]] |
+| Visual | [[10_CONCEPTS/Spring/MVC/Spring MVC DispatcherServlet Visual Deep Dive]] |
+| Cards | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards]] |
+| Assessment | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Assessment]] |
+| Cases | [[40_PRODUCTION_CASES/Spring/Spring MVC DispatcherServlet Production Cases]] |
+| Lab | [[50_LABS/Spring/SPRING-MVC-B01/README]] |
+| Canvas | [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]] |
+| Sources | [[98_SOURCES/Spring MVC DispatcherServlet Sources]] |
+| Progress | [[70_PROGRESS/README]] |
+
+Previous: [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]].
+
+Next: `SPRING-MVC-B02 — REST Endpoints and HTTP Clients`.
 
 # Database routes
 
@@ -149,8 +164,7 @@ Next: `SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline`.
 
 | ID | Route | Status |
 |---|---|---|
-| SPRING-MVC-B01 | DispatcherServlet pipeline | next |
-| SPRING-MVC-B02 | REST and RestTemplate | planned |
+| SPRING-MVC-B02 | REST and HTTP clients | next |
 | SPRING-SEC-B01 | Security | planned |
 | SPRING-ACT-B01 | Actuator | planned |
 | SPRING-JDBC-B01 | JdbcTemplate | planned |
@@ -162,12 +176,12 @@ Next: `SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline`.
 # Registry quality checklist
 
 ```text
-[ ] README links registry and route
-[ ] domain MOC links route hub
-[ ] registry links route hub directly
-[ ] route lists canonical/visual/cards/assessment/cases/lab/sources
-[ ] objective matrix maps evidence
-[ ] card IDs are unique and progress-compatible
-[ ] Canvas references exist
-[ ] no broken or ambiguous strict-route link
+[x] README links registry and route
+[x] domain MOC links route hub
+[x] registry links route hub directly
+[x] route lists canonical/visual/cards/assessment/cases/lab/sources
+[x] objective matrix maps evidence
+[x] card IDs are unique and progress-compatible
+[x] Canvas references exist
+[ ] no broken or ambiguous strict-route link — enforced by CI
 ```
