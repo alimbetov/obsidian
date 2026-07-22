@@ -68,7 +68,8 @@ Machine controls:
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards|TEST-B01]] | 36 | normalized |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards|SPRING-BOOT-B01]] | 30 | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards|SPRING-BOOT-B02]] | 35 | published |
-| **Total** | **353** | |
+| [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards|SPRING-MVC-B01]] | 35 | published |
+| **Total** | **388** | |
 
 # Spring route hubs
 
@@ -79,6 +80,7 @@ Machine controls:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
 
 ## SPRING-BOOT-B02 evidence
 
@@ -88,6 +90,16 @@ Machine controls:
 - [[40_PRODUCTION_CASES/Spring/Spring Boot Configuration Production Cases]]
 - [[50_LABS/Spring/SPRING-BOOT-B02/README]]
 - [[98_SOURCES/Spring Boot Externalized Configuration Sources]]
+
+## SPRING-MVC-B01 evidence
+
+- [[10_CONCEPTS/Spring/MVC/DispatcherServlet and Annotated Controller Pipeline]]
+- [[10_CONCEPTS/Spring/MVC/Spring MVC DispatcherServlet Visual Deep Dive]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Assessment]]
+- [[40_PRODUCTION_CASES/Spring/Spring MVC DispatcherServlet Production Cases]]
+- [[50_LABS/Spring/SPRING-MVC-B01/README]]
+- [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]]
+- [[98_SOURCES/Spring MVC DispatcherServlet Sources]]
 
 # Java 1Z0-829
 
@@ -150,5 +162,5 @@ Additional sections such as Mini Example, Memory Hook and Production Transfer st
 # Next implementation route
 
 ```text
-SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline
+SPRING-MVC-B02 — REST Endpoints and HTTP Clients
 ```
