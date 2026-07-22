@@ -19,7 +19,7 @@ tags:
 # Spring 2V0-72.22 — 99 Percent Master Roadmap
 
 > [!summary]
-> Target: 600 base cards + 150 drills + six timed mocks. Per-card progress, 57-objective traceability and legacy-card normalization are now implemented. `SPRING-BOOT-B01` and `SPRING-BOOT-B02` are published; next content route is MVC.
+> Target: 600 base cards + 150 drills + six timed mocks. Per-card progress, 57-objective traceability and legacy-card normalization are implemented. Boot B01/B02 and MVC B01 are published; the next content route is `SPRING-MVC-B02`.
 
 # Exam baseline
 
@@ -46,6 +46,7 @@ Machine artifacts:
 ```text
 .github/objectives/spring-2V0-72.22.json
 .github/objective-overrides/spring-boot-b02.json
+.github/objective-overrides/spring-mvc-b01.json
 .github/scripts/audit_objective_traceability.py
 .github/certification-readiness.json
 .github/scripts/audit_certification_readiness.py
@@ -79,13 +80,13 @@ Total target          750
 | Spring Core and SpEL | 130 | 130 | SpEL route still required |
 | AOP and Cache | 50 | 44 | 6 |
 | Data, Transactions, JPA and JDBC | 90 | 68 | 22 + JDBC route |
-| Spring MVC and REST | 60 | 0 | 60 |
+| Spring MVC and REST | 60 | 35 | 25 + MVC-B02 |
 | Testing and MockMvc | 85 | 36 | 49 |
 | Spring Security | 35 | 0 | 35 |
 | Spring Boot and Actuator | 150 | 65 | 85 |
-| **Total** | **600** | **343** | **257** |
+| **Total** | **600** | **378** | **222** |
 
-Published Spring cards total: **353**. Core contribution is capped at its objective allocation so extra Core volume cannot hide missing domains.
+Published Spring cards total: **388**. Core contribution is capped at its objective allocation so extra Core volume cannot hide missing domains.
 
 # Completed infrastructure gates
 
@@ -99,7 +100,7 @@ Published Spring cards total: **353**. Core contribution is capped at its object
 - [x] TX-B01 normalized — 32 cards.
 - [x] DATA-B01 normalized — 36 cards.
 - [x] TEST-B01 normalized — 36 cards.
-- [x] All normalized batches included in strict CI gate.
+- [x] All normalized and newly published batches included in strict CI gate.
 
 # Published routes
 
@@ -156,23 +157,28 @@ SPRING-1.3.2 profiles
 SPRING-6.2.1 defining and loading properties
 ```
 
-# Remaining P0 routes
-
 ## SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline
 
-Target: 35 base cards + 8 drills.
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
+- [[10_CONCEPTS/Spring/MVC/DispatcherServlet and Annotated Controller Pipeline]]
+- [[10_CONCEPTS/Spring/MVC/Spring MVC DispatcherServlet Visual Deep Dive]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards|35 cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Assessment|10-question pre-test + 15-question post-test]]
+- [[40_PRODUCTION_CASES/Spring/Spring MVC DispatcherServlet Production Cases|12 cases]]
+- [[50_LABS/Spring/SPRING-MVC-B01/README|12 executable tests]]
+- [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]]
+- [[98_SOURCES/Spring MVC DispatcherServlet Sources]]
+
+Mapped objectives:
 
 ```text
-DispatcherServlet
-HandlerMapping / HandlerAdapter
-argument resolvers
-return-value handlers
-message converters
-view resolution
-content negotiation
-request mapping conditions
-binding, validation and exception resolvers
+SPRING-3.1.1 Boot MVC application — complete
+SPRING-3.1.2 request-processing lifecycle — complete
+SPRING-3.1.3 simple GET controller — complete
+SPRING-3.1.4 deployment configuration — cards-ready
 ```
+
+# Remaining P0 routes
 
 ## SPRING-MVC-B02 — REST and HTTP Clients
 
@@ -249,7 +255,7 @@ Each result records objective ID, selected/correct options, confidence, elapsed 
 ```mermaid
 flowchart LR
     B1["BOOT-B01 done"] --> B2["BOOT-B02 done"]
-    B2 --> MVC1["MVC-B01"]
+    B2 --> MVC1["MVC-B01 done"]
     MVC1 --> MVC2["MVC-B02"]
     MVC2 --> SEC["Security"]
     SEC --> ACT["Actuator"]
