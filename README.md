@@ -80,7 +80,7 @@ python .github/scripts/card_progress.py audit
 python .github/scripts/card_progress.py sync
 python .github/scripts/card_progress.py due --limit 30
 python .github/scripts/card_progress.py record \
-  --card-id SPRING-BOOT-B02-C001 \
+  --card-id SPRING-MVC-B01-C001 \
   --outcome correct-confident \
   --confidence 4
 ```
@@ -128,12 +128,13 @@ Spring Data JPA                     31 diagrams
 Spring Testing                      24 diagrams
 Spring Boot Auto-configuration      31 diagrams
 Spring Boot Configuration           30 diagrams
+Spring MVC DispatcherServlet        30 diagrams
 Java Concurrency                    35 diagrams
 DB-B01                              62 diagrams
 Standard example                     1 diagram
-Canvas atlases                       7 maps
+Canvas atlases                       8 maps
 ------------------------------------------------
-Visual elements                    315
+Visual elements                    346
 ```
 
 Visual entry points:
@@ -142,6 +143,7 @@ Visual entry points:
 - [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]]
 - [[01_MAPS/Spring Boot Auto-configuration Map.canvas]]
 - [[01_MAPS/Spring Boot Configuration Map.canvas]]
+- [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]]
 - [[01_MAPS/Java Concurrency Visual Atlas.canvas]]
 - [[01_MAPS/Database Indexes and Query Plans Map.canvas]]
 - [[01_MAPS/Certification 99 Percent Map.canvas]]
@@ -225,6 +227,30 @@ Source index              1
 - [[01_MAPS/Spring Boot Configuration Map.canvas]]
 - [[98_SOURCES/Spring Boot Externalized Configuration Sources]]
 
+## SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline
+
+```text
+Canonical sections       50
+Visual diagrams          30
+Cards                    35
+Pre-test questions       10
+Post-test questions      15
+Production cases         12
+Executable tests         11
+Canvas                    1
+Source index              1
+```
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
+- [[10_CONCEPTS/Spring/MVC/DispatcherServlet and Annotated Controller Pipeline]]
+- [[10_CONCEPTS/Spring/MVC/Spring MVC DispatcherServlet Visual Deep Dive]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Assessment]]
+- [[40_PRODUCTION_CASES/Spring/Spring MVC DispatcherServlet Production Cases]]
+- [[50_LABS/Spring/SPRING-MVC-B01/README]]
+- [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]]
+- [[98_SOURCES/Spring MVC DispatcherServlet Sources]]
+
 # Published Spring total
 
 ```text
@@ -235,8 +261,9 @@ Spring Data and JPA          36
 Spring Testing               36
 Spring Boot B01              30
 Spring Boot B02              35
+Spring MVC B01               35
 -------------------------------
-TOTAL                       353 cards
+TOTAL                       388 cards
 ```
 
 # Java Concurrency foundation
@@ -285,11 +312,12 @@ JAVA-B11 Localization
 - 14 production cases;
 - 10 PostgreSQL experiments.
 
-# Running Boot labs
+# Running Spring route labs
 
 ```bash
 mvn clean test -f 50_LABS/Spring/SPRING-BOOT-B01/pom.xml
 mvn clean test -f 50_LABS/Spring/SPRING-BOOT-B02/pom.xml
+mvn clean test -f 50_LABS/Spring/SPRING-MVC-B01/pom.xml
 ```
 
 # Quality controls
@@ -301,6 +329,7 @@ per-card progress tests and catalog audit
 objective traceability audit
 combined readiness calculation
 Boot B01/B02 Maven tests
+MVC B01 DispatcherServlet pipeline tests
 Canvas validation
 full Mermaid rendering
 strict published-card contract
@@ -309,7 +338,6 @@ strict published-card contract
 # Current delivery sequence
 
 ```text
-SPRING-MVC-B01
 SPRING-MVC-B02
 SPRING-SEC-B01
 SPRING-ACT-B01
