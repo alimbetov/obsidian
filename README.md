@@ -236,7 +236,7 @@ Cards                    35
 Pre-test questions       10
 Post-test questions      15
 Production cases         12
-Executable tests         11
+Executable tests         12
 Canvas                    1
 Source index              1
 ```
