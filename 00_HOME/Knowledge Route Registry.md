@@ -17,6 +17,7 @@ tags:
 # Global entry points
 
 - [[00_HOME/Certification 99 Percent Readiness Dashboard]]
+- [[00_HOME/Java 11 17 21 Complete Knowledge Program]]
 - [[00_HOME/Card Review Dashboard]]
 - [[30_CERTIFICATIONS/Certification MOC]]
 - [[00_HOME/Review Dashboard]]
@@ -36,15 +37,38 @@ flowchart LR
     POST --> PROGRESS["Per-card progress"]
 ```
 
-# Certification tracks
+# Certification and platform tracks
 
 | Track | Master roadmap | Target |
 |---|---|---:|
 | Spring 2V0-72.22 | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]] | 99% |
+| Java 11/17/21 platform | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] | 99% |
 | Java 1Z0-829 | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | 99% |
 | Java Concurrency | [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]] | 99% |
 
 # Java routes
+
+## JAVA-LTS-B01 — Java 11, 17 and 21 Evolution and Migration
+
+| Role | Artifact |
+|---|---|
+| Program | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] |
+| Roadmap | [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap]] |
+| Canonical | [[10_CONCEPTS/Java/Versions/Java 11 17 21 LTS Evolution]] |
+| Cards | [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Cards]] |
+| Cases | [[40_PRODUCTION_CASES/Java/Java 11 17 21 Migration Cases]] |
+| Lab | [[50_LABS/Java/JAVA-LTS-B01/README]] |
+| Sources | [[98_SOURCES/Java 11 17 21 Official Sources]] |
+| Domain map | [[01_MAPS/Java Map]] |
+| Progress | [[70_PROGRESS/README]] |
+
+Machine controls:
+
+```text
+.github/java-version-coverage.json
+.github/scripts/audit_java_version_coverage.py
+JDK 11 / 17 / 21 GitHub Actions matrix
+```
 
 ## JAVA-CONCURRENCY
 
@@ -62,7 +86,9 @@ flowchart LR
 
 - [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]]
 - [[98_SOURCES/Java SE 17 1Z0-829 Sources]]
-- Status: Concurrency foundation exists; ten other domain routes remain planned.
+- Exact exam baseline: Java 17.
+- Required context: Java 11 compatibility baseline and Java 21 production delta.
+- Status: `JAVA-LTS-B01` published; ten Java 17 domain routes remain planned.
 
 # Spring routes
 
@@ -128,7 +154,6 @@ flowchart LR
 | Lab | [[50_LABS/Spring/SPRING-BOOT-B02/README]] |
 | Canvas | [[01_MAPS/Spring Boot Configuration Map.canvas]] |
 | Sources | [[98_SOURCES/Spring Boot Externalized Configuration Sources]] |
-| Progress | [[70_PROGRESS/README]] |
 
 ## SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline
 
@@ -143,11 +168,8 @@ flowchart LR
 | Lab | [[50_LABS/Spring/SPRING-MVC-B01/README]] |
 | Canvas | [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]] |
 | Sources | [[98_SOURCES/Spring MVC DispatcherServlet Sources]] |
-| Progress | [[70_PROGRESS/README]] |
 
-Previous: [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]].
-
-Next: `SPRING-MVC-B02 — REST Endpoints and HTTP Clients`.
+Next Spring route: `SPRING-MVC-B02 — REST Endpoints and HTTP Clients`.
 
 # Database routes
 
@@ -164,24 +186,26 @@ Next: `SPRING-MVC-B02 — REST Endpoints and HTTP Clients`.
 
 | ID | Route | Status |
 |---|---|---|
-| SPRING-MVC-B02 | REST and HTTP clients | next |
+| JAVA-B01…B11 | Java 17 exam domains with Java 11/21 deltas | next Java program |
+| JAVA-JVM-B01 | Class loading, bytecode and runtime areas | planned |
+| JAVA-GC-B01 | G1, ZGC and Generational ZGC | planned |
+| JAVA-DIAG-B01 | JFR, jcmd, dumps and profiling | planned |
+| SPRING-MVC-B02 | REST and HTTP clients | next Spring route |
 | SPRING-SEC-B01 | Security | planned |
 | SPRING-ACT-B01 | Actuator | planned |
 | SPRING-JDBC-B01 | JdbcTemplate | planned |
 | SPRING-WEBTEST-B01 | MockMvc | planned |
 | SPRING-SPEL-B01 | SpEL | planned |
-| JAVA-B01…B11 | Java 1Z0-829 domains | planned |
 | DB-B02 | MVCC and Locks | planned |
 
 # Registry quality checklist
 
 ```text
-[x] README links registry and route
-[x] domain MOC links route hub
-[x] registry links route hub directly
-[x] route lists canonical/visual/cards/assessment/cases/lab/sources
-[x] objective matrix maps evidence
+[x] registry links every published route hub
+[x] route lists canonical/cards/cases/lab/sources
 [x] card IDs are unique and progress-compatible
-[x] Canvas references exist
+[x] machine coverage manifest exists
+[x] Java LTS runtime lanes declared
+[ ] all Java 11/17/21 domains complete
 [ ] no broken or ambiguous strict-route link — enforced by CI
 ```
