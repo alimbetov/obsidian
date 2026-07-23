@@ -10,7 +10,7 @@ java_versions:
   - 11
   - 17
   - 21
-card_count: 30
+published_cards: 30
 visual_diagrams: 15
 pre_test_questions: 10
 post_test_questions: 15
