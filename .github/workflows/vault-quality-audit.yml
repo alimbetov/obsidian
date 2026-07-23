@@ -3,6 +3,7 @@ name: Vault Quality Audit
 on:
   push:
     branches:
+      - main
       - agent/knowledge-map-foundation
   pull_request:
   workflow_dispatch:
