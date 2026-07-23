@@ -95,7 +95,7 @@ sequenceDiagram
     Container->>DispatcherServlet: init
     DispatcherServlet->>Context: create or obtain WebApplicationContext
     Context-->>DispatcherServlet: refreshed context
-    DispatcherServlet->>Strategies: detect HandlerMappings, Adapters, Resolvers
+    DispatcherServlet->>Strategies: detect mappings, adapters and resolvers
     Strategies-->>DispatcherServlet: ordered strategy lists
 ```
 
@@ -122,7 +122,7 @@ sequenceDiagram
     participant HM as HandlerMapping
     participant HA as HandlerAdapter
     participant HR as HandlerExceptionResolver
-    participant VR as View or Body path
+    participant VR as View or body path
     DS->>HM: getHandler(request)
     HM-->>DS: HandlerExecutionChain
     DS->>HA: handle(request, response, handler)
@@ -239,8 +239,8 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    URI[/catalog/42] --> PAT[/catalog/{id}]
-    PAT --> VAR[id equals 42]
+    URI["/catalog/42"] --> PAT["/catalog/{id}"]
+    PAT --> VAR["id = 42"]
     VAR --> CONV[String to Long]
     CONV --> ARG[Controller argument]
 ```
@@ -365,7 +365,7 @@ flowchart TD
     R[404 symptom] --> REACH{Reached expected app?}
     REACH -->|no| ROUTE[Gateway or container routing]
     REACH -->|yes| MAP{HandlerMapping match?}
-    MAP -->|no| COND[Inspect path, method, params, headers, consumes, produces]
+    MAP -->|no| COND[Inspect path, method, params, headers, consumes and produces]
     MAP -->|yes| DOMAIN{Controller returned domain not-found?}
     DOMAIN -->|yes| APP[Application exception policy]
     DOMAIN -->|no| RESOURCE[Static resource or later response path]
@@ -398,7 +398,7 @@ flowchart LR
     I --> J[Return-value handler]
     J --> K[Converter or ViewResolver]
     K --> L[ExceptionResolver if failed]
-    L --> M[Committed status, headers, body]
+    L --> M[Committed status, headers and body]
 ```
 
 # Visual recall prompts
