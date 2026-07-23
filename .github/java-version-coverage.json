@@ -233,9 +233,12 @@
       },
       "evidence": [
         "10_CONCEPTS/Java/Versions/Java 11 17 21 LTS Evolution.md",
+        "10_CONCEPTS/Java/Versions/Java 11 17 21 Visual Deep Dive.md",
         "30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Assessment.md",
         "40_PRODUCTION_CASES/Java/Java 11 17 21 Migration Cases.md",
         "50_LABS/Java/JAVA-LTS-B01/README.md",
+        "01_MAPS/Java 11 17 21 LTS Map.canvas",
         "98_SOURCES/Java 11 17 21 Official Sources.md"
       ]
     }
