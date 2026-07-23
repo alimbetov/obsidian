@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    {"id":"root","type":"file","file":"00_HOME/Java 11 17 21 Complete Knowledge Program.md","x":0,"y":0,"width":470,"height":190,"color":"4"},
+    {"id":"roadmap","type":"file","file":"30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap.md","x":540,"y":0,"width":450,"height":180,"color":"4"},
+    {"id":"j11","type":"text","text":"JAVA 11\ncompatibility baseline\n8→11 migration\nHTTP Client\nremoved modules\nJFR and TLS 1.3","x":-620,"y":300,"width":370,"height":250,"color":"2"},
+    {"id":"j17","type":"text","text":"JAVA 17\n1Z0-829 baseline\nrecords and sealed types\ntext blocks and switch\nstrong encapsulation","x":-120,"y":300,"width":370,"height":250,"color":"3"},
+    {"id":"j21","type":"text","text":"JAVA 21\nproduction baseline\nvirtual threads\nrecord/switch patterns\nsequenced collections","x":380,"y":300,"width":370,"height":250,"color":"5"},
+    {"id":"canonical","type":"file","file":"10_CONCEPTS/Java/Versions/Java 11 17 21 LTS Evolution.md","x":880,"y":300,"width":470,"height":180},
+    {"id":"visual","type":"file","file":"10_CONCEPTS/Java/Versions/Java 11 17 21 Visual Deep Dive.md","x":1440,"y":300,"width":470,"height":180},
+    {"id":"cards","type":"file","file":"30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Cards.md","x":-260,"y":700,"width":430,"height":160,"color":"2"},
+    {"id":"assessment","type":"file","file":"30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Assessment.md","x":260,"y":700,"width":450,"height":160,"color":"2"},
+    {"id":"cases","type":"file","file":"40_PRODUCTION_CASES/Java/Java 11 17 21 Migration Cases.md","x":800,"y":700,"width":450,"height":160,"color":"1"},
+    {"id":"lab","type":"file","file":"50_LABS/Java/JAVA-LTS-B01/README.md","x":1340,"y":700,"width":400,"height":160,"color":"3"},
+    {"id":"sources","type":"file","file":"98_SOURCES/Java 11 17 21 Official Sources.md","x":1830,"y":700,"width":430,"height":160},
+    {"id":"domains","type":"text","text":"18 REQUIRED DOMAINS\nlanguage\ncollections/streams\nI/O/modules\nconcurrency\nJVM/GC/JIT\nHTTP/security/JDBC\ndiagnostics/migration","x":1840,"y":0,"width":410,"height":300,"color":"6"},
+    {"id":"next","type":"text","text":"NEXT\nJAVA-B01\nData, Text and Date-Time\nwith Java 11 baseline, Java 17 exam semantics and Java 21 delta","x":640,"y":1010,"width":520,"height":180,"color":"6"}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","fromSide":"right","toNode":"roadmap","toSide":"left"},
+    {"id":"e2","fromNode":"root","fromSide":"bottom","toNode":"j11","toSide":"top"},
+    {"id":"e3","fromNode":"root","fromSide":"bottom","toNode":"j17","toSide":"top"},
+    {"id":"e4","fromNode":"root","fromSide":"bottom","toNode":"j21","toSide":"top"},
+    {"id":"e5","fromNode":"roadmap","fromSide":"bottom","toNode":"canonical","toSide":"top"},
+    {"id":"e6","fromNode":"canonical","fromSide":"right","toNode":"visual","toSide":"left"},
+    {"id":"e7","fromNode":"visual","fromSide":"right","toNode":"domains","toSide":"left"},
+    {"id":"e8","fromNode":"j11","fromSide":"bottom","toNode":"cards","toSide":"top"},
+    {"id":"e9","fromNode":"j17","fromSide":"bottom","toNode":"assessment","toSide":"top"},
+    {"id":"e10","fromNode":"j21","fromSide":"bottom","toNode":"cases","toSide":"top"},
+    {"id":"e11","fromNode":"canonical","fromSide":"bottom","toNode":"lab","toSide":"top"},
+    {"id":"e12","fromNode":"visual","fromSide":"bottom","toNode":"sources","toSide":"top"},
+    {"id":"e13","fromNode":"cards","fromSide":"right","toNode":"assessment","toSide":"left"},
+    {"id":"e14","fromNode":"assessment","fromSide":"right","toNode":"cases","toSide":"left"},
+    {"id":"e15","fromNode":"cases","fromSide":"right","toNode":"lab","toSide":"left"},
+    {"id":"e16","fromNode":"lab","fromSide":"bottom","toNode":"next","toSide":"top"}
+  ]
+}
