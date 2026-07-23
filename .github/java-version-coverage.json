@@ -224,8 +224,8 @@
     {
       "id": "JAVA-LTS-D18",
       "title": "Migration and compatibility",
-      "shared_status": "cards-ready",
-      "version_status": {"11": "cards-ready", "17": "cards-ready", "21": "cards-ready"},
+      "shared_status": "lab-proven",
+      "version_status": {"11": "lab-proven", "17": "lab-proven", "21": "lab-proven"},
       "version_topics": {
         "11": ["8 to 11 migration", "removed modules", "--release 11"],
         "17": ["11 to 17 migration", "strong encapsulation", "--release 17"],
