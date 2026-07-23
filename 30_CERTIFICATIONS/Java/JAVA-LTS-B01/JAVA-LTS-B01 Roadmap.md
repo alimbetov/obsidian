@@ -9,11 +9,15 @@ java_versions:
   - 17
   - 21
 card_count: 30
+visual_diagrams: 15
+pre_test_questions: 10
+post_test_questions: 15
 production_cases: 10
 lab_matrix:
   - 11
   - 17
   - 21
+canvas: Java 11 17 21 LTS Map
 tags:
   - java
   - java-11
@@ -49,11 +53,15 @@ After completing the route, the learner can:
 |---|---|
 | Program | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] |
 | Canonical | [[10_CONCEPTS/Java/Versions/Java 11 17 21 LTS Evolution]] |
+| Visual deep dive | [[10_CONCEPTS/Java/Versions/Java 11 17 21 Visual Deep Dive]] |
 | Cards | [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Cards]] |
+| Assessment | [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Assessment]] |
 | Production cases | [[40_PRODUCTION_CASES/Java/Java 11 17 21 Migration Cases]] |
 | Lab | [[50_LABS/Java/JAVA-LTS-B01/README]] |
+| Canvas | [[01_MAPS/Java 11 17 21 LTS Map.canvas]] |
 | Sources | [[98_SOURCES/Java 11 17 21 Official Sources]] |
 | Domain map | [[01_MAPS/Java Map]] |
+| Progress | [[70_PROGRESS/README]] |
 
 # Scope
 
@@ -106,8 +114,11 @@ preview/incubator feature boundaries
 # Assessment model
 
 ```text
+10-question pre-test
 30 base comparison cards
+15-question post-test
 10 production migration cases
+15 visual models
 3 JDK compile/run lanes
 future target: 20 version drills
 future target: 3 timed migration mini-mocks
@@ -124,15 +135,26 @@ JDK 21 virtual threads, record patterns, pattern switch and sequenced collection
 minimum-version compile boundaries
 ```
 
+Expected CI matrix:
+
+```text
+JDK 11 → Java11Baseline
+JDK 17 → Java11Baseline + Java17Features
+JDK 21 → Java11Baseline + Java17Features + Java21Features
+```
+
 # Quality checklist
 
 - [x] Canonical comparison note.
+- [x] Visual deep dive with 15 diagrams.
+- [x] Pre-test and post-test.
 - [x] Official source index.
-- [x] Stable card IDs.
-- [x] Production migration cases.
+- [x] 30 stable card IDs.
+- [x] 10 production migration cases.
 - [x] Multi-JDK lab source.
-- [ ] JDK 11/17/21 CI matrix passing.
-- [ ] Version-coverage audit passing.
+- [x] Canvas route map.
+- [ ] JDK 11/17/21 GitHub Actions matrix passing on current head.
+- [ ] Version-coverage audit passing on current head.
 - [ ] Cross-version drill bank.
 - [ ] Migration mini-mocks.
 
@@ -151,6 +173,17 @@ JAVA-B09 I/O and NIO.2
 JAVA-B10 JDBC
 JAVA-B11 Localization
 JVM/GC/JIT/diagnostics routes
+```
+
+Each next route must include:
+
+```text
+shared Java mechanism
+Java 11 compatibility baseline
+Java 17 exact exam semantics
+Java 21 production delta
+version-aware cards and drills
+multi-JDK evidence where applicable
 ```
 
 # Related certification
