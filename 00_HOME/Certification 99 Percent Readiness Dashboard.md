@@ -21,12 +21,13 @@ tags:
 # Certification 99 Percent Readiness Dashboard
 
 > [!summary]
-> Material readiness measures objective-linked repository evidence. Candidate readiness measures stable timed performance. Java is now tracked in two complementary models: the exact Java 17 `1Z0-829` exam route and the complete Java 11/17/21 platform program.
+> Material readiness measures objective-linked repository evidence. Candidate readiness measures stable timed performance. Java is tracked in two complementary models: the exact Java 17 `1Z0-829` exam route and the complete Java 11/17/21 platform program. The first verified Java platform score is **15.35%**.
 
 # Entry points
 
 - [[00_HOME/Java 11 17 21 Complete Knowledge Program]]
 - [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap]]
+- [[01_MAPS/Java 11 17 21 LTS Map.canvas]]
 - [[01_MAPS/Certification 99 Percent Map.canvas]]
 - [[00_HOME/Card Review Dashboard]]
 - [[00_HOME/Knowledge Route Registry]]
@@ -55,9 +56,28 @@ flowchart LR
 | Java SE 17 Developer 1Z0-829 | **4.50%** | 4.00% | 4.67% | 99% |
 | Java Concurrency | **45.70%** | 40.00% | 47.60% | 99% |
 
-These are repository-evidence scores, not pass probabilities. They remain unchanged until a successful workflow produces a newer report.
+These are repository-evidence scores, not pass probabilities.
 
 # Java 11, 17 and 21 platform readiness
+
+## Verified machine score
+
+| Layer | Evidence coverage |
+|---|---:|
+| Shared Java domains | **10.83%** |
+| Java 11 compatibility layer | **19.17%** |
+| Java 17 certification layer | **15.00%** |
+| Java 21 production layer | **16.39%** |
+| **Overall Java platform** | **15.35%** |
+
+Formula:
+
+```text
+25% shared-domain evidence
+25% Java 11 layer
+25% Java 17 layer
+25% Java 21 layer
+```
 
 Machine controls:
 
@@ -68,7 +88,7 @@ Machine controls:
 .audit/java-version-coverage.md
 ```
 
-The Java platform score is calculated separately across:
+The model tracks:
 
 ```text
 18 shared Java domains
@@ -77,23 +97,38 @@ The Java platform score is calculated separately across:
 18 Java 21 baseline/delta layers
 ```
 
-Published first route:
+## Published route — JAVA-LTS-B01
 
 ```text
-JAVA-LTS-B01 — Java 11, 17 and 21 Evolution and Migration
+canonical LTS evolution note
+15 visual models
 30 stable comparison cards
+10-question pre-test
+15-question post-test
 10 production migration cases
 JDK 11/17/21 compile-run matrix
+Canvas
 primary OpenJDK/Oracle source index
 ```
 
 - [[10_CONCEPTS/Java/Versions/Java 11 17 21 LTS Evolution]]
+- [[10_CONCEPTS/Java/Versions/Java 11 17 21 Visual Deep Dive]]
 - [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Cards]]
+- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Assessment]]
 - [[40_PRODUCTION_CASES/Java/Java 11 17 21 Migration Cases]]
 - [[50_LABS/Java/JAVA-LTS-B01/README]]
+- [[01_MAPS/Java 11 17 21 LTS Map.canvas]]
 - [[98_SOURCES/Java 11 17 21 Official Sources]]
 
-The first Java LTS numeric score will be accepted only from a successful CI report.
+Runtime evidence from GitHub Actions run `30027027138`:
+
+```text
+Java LTS 11 proof  PASS
+Java LTS 17 proof  PASS
+Java LTS 21 proof  PASS
+```
+
+`JAVA-LTS-D18 — Migration and compatibility` is therefore `lab-proven`. The overall platform score remains low because most of the other 17 required domains do not yet have complete vertical slices.
 
 # Corrected learning-system status
 
@@ -106,8 +141,8 @@ The first Java LTS numeric score will be accepted only from a successful CI repo
 - [x] Java version-coverage audit.
 - [x] 148 legacy Spring cards normalized.
 - [x] `SPRING-BOOT-B01`, `SPRING-BOOT-B02`, `SPRING-MVC-B01` vertical slices.
-- [x] `JAVA-LTS-B01` version/migration vertical slice.
-- [ ] JDK 11/17/21 matrix verified on current head.
+- [x] `JAVA-LTS-B01` complete vertical slice.
+- [x] JDK 11/17/21 matrix verified.
 - [ ] Timed mock engine and results.
 
 # Objective status scale
@@ -176,7 +211,7 @@ exam drills                 0 / 180
 full timed mocks            0 / 6
 ```
 
-Required preliminary route is now published:
+Required preliminary route is complete and runtime-proven:
 
 - [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap]].
 
@@ -201,7 +236,7 @@ controlled-lab target    25
 mini-mocks                0 / 6
 ```
 
-Conceptual coverage is strong, but assessment coverage is incomplete. The Java 21 layer must additionally prove virtual-thread, pinning, context-propagation and downstream-capacity behavior.
+Conceptual coverage is strong, but assessment coverage is incomplete. The Java 21 layer must additionally prove virtual-thread pinning, context propagation and downstream-capacity behavior.
 
 # Complete Java platform gate
 
@@ -212,7 +247,8 @@ Conceptual coverage is strong, but assessment coverage is incomplete. The Java 2
 [ ] every domain has Java 21 baseline/delta
 [ ] complete JEP status classification
 [ ] every code example declares minimum version
-[ ] all JDK 11/17/21 labs pass
+[x] JAVA-LTS-B01 JDK 11/17/21 lanes pass
+[ ] all future domain labs pass on applicable JDKs
 [ ] 120 cross-version cards
 [ ] 30 migration cases
 [ ] 30 multi-JDK labs
