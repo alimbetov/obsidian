@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "program_id": "JAVA-LTS-11-17-21",
+  "title": "Java 11, 17 and 21 Complete Knowledge Program",
+  "roadmap": "00_HOME/Java 11 17 21 Complete Knowledge Program.md",
+  "sources": "98_SOURCES/Java 11 17 21 Official Sources.md",
+  "versions": {
+    "11": {"role": "compatibility-baseline", "required": true},
+    "17": {"role": "certification-baseline", "required": true},
+    "21": {"role": "production-baseline", "required": true}
+  },
+  "status_scores": {
+    "unmapped": 0,
+    "theory-only": 25,
+    "theory-visual": 40,
+    "cards-ready": 60,
+    "lab-proven": 80,
+    "mock-covered": 95,
+    "complete": 100
+  },
+  "required_domain_ids": [
+    "JAVA-LTS-D01", "JAVA-LTS-D02", "JAVA-LTS-D03", "JAVA-LTS-D04",
+    "JAVA-LTS-D05", "JAVA-LTS-D06", "JAVA-LTS-D07", "JAVA-LTS-D08",
+    "JAVA-LTS-D09", "JAVA-LTS-D10", "JAVA-LTS-D11", "JAVA-LTS-D12",
+    "JAVA-LTS-D13", "JAVA-LTS-D14", "JAVA-LTS-D15", "JAVA-LTS-D16",
+    "JAVA-LTS-D17", "JAVA-LTS-D18"
+  ],
+  "domains": [
+    {
+      "id": "JAVA-LTS-D01",
+      "title": "Language foundations, text and date-time",
+      "shared_status": "unmapped",
+      "version_status": {"11": "theory-only", "17": "unmapped", "21": "unmapped"},
+      "version_topics": {
+        "11": ["var lambda parameters", "String additions", "Files readString/writeString"],
+        "17": ["text blocks", "language/API certification baseline"],
+        "21": ["modern language interoperability"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D02",
+      "title": "Control flow and pattern matching",
+      "shared_status": "unmapped",
+      "version_status": {"11": "unmapped", "17": "theory-only", "21": "theory-only"},
+      "version_topics": {
+        "11": ["classic switch and flow"],
+        "17": ["switch expressions", "pattern instanceof"],
+        "21": ["record patterns", "pattern switch"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D03",
+      "title": "Object model and type system",
+      "shared_status": "unmapped",
+      "version_status": {"11": "unmapped", "17": "theory-only", "21": "theory-only"},
+      "version_topics": {
+        "11": ["classes interfaces enums nested types"],
+        "17": ["records", "sealed classes"],
+        "21": ["record pattern integration"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D04",
+      "title": "Generics and type inference",
+      "shared_status": "unmapped",
+      "version_status": {"11": "unmapped", "17": "unmapped", "21": "unmapped"},
+      "version_topics": {
+        "11": ["type inference baseline"],
+        "17": ["Java 17 overload and inference rules"],
+        "21": ["modern API inference interactions"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D05",
+      "title": "Collections and data structures",
+      "shared_status": "unmapped",
+      "version_status": {"11": "unmapped", "17": "unmapped", "21": "theory-only"},
+      "version_topics": {
+        "11": ["immutable factories and core collections"],
+        "17": ["Java 17 collections exam baseline"],
+        "21": ["sequenced collections"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D06",
+      "title": "Functional Java and Streams",
+      "shared_status": "unmapped",
+      "version_status": {"11": "theory-only", "17": "unmapped", "21": "unmapped"},
+      "version_topics": {
+        "11": ["Predicate.not", "Optional and String refinements"],
+        "17": ["Stream.toList and certification stream baseline"],
+        "21": ["modern collection/stream integration"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D07",
+      "title": "Exceptions and deterministic cleanup",
+      "shared_status": "unmapped",
+      "version_status": {"11": "unmapped", "17": "theory-only", "21": "unmapped"},
+      "version_topics": {
+        "11": ["try-with-resources baseline"],
+        "17": ["helpful NullPointerExceptions"],
+        "21": ["modern concurrent failure boundaries"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D08",
+      "title": "I/O, NIO.2 and serialization",
+      "shared_status": "unmapped",
+      "version_status": {"11": "theory-only", "17": "unmapped", "21": "theory-only"},
+      "version_topics": {
+        "11": ["Files readString/writeString", "NIO baseline"],
+        "17": ["serialization filters"],
+        "21": ["UTF-8 default inherited from JDK 18"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D09",
+      "title": "Modules, packaging and deployment",
+      "shared_status": "unmapped",
+      "version_status": {"11": "theory-only", "17": "unmapped", "21": "unmapped"},
+      "version_topics": {
+        "11": ["module migration", "single-file launch", "jdeps and jlink"],
+        "17": ["strong encapsulation and modular deployment"],
+        "21": ["modern runtime images and packaging"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D10",
+      "title": "Concurrency and parallelism",
+      "shared_status": "theory-visual",
+      "version_status": {"11": "theory-visual", "17": "theory-visual", "21": "theory-visual"},
+      "version_topics": {
+        "11": ["platform threads", "executors", "Future", "CompletableFuture"],
+        "17": ["JMM and Java 17 certification concurrency"],
+        "21": ["virtual threads", "structured concurrency status", "scoped values status"]
+      },
+      "evidence": [
+        "10_CONCEPTS/Java/Concurrency/Concurrency Learning Path.md",
+        "10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md",
+        "10_CONCEPTS/Java/Concurrency/Virtual Threads.md",
+        "50_LABS/Java/Concurrency/README.md"
+      ]
+    },
+    {
+      "id": "JAVA-LTS-D11",
+      "title": "JVM, class loading and bytecode",
+      "shared_status": "theory-only",
+      "version_status": {"11": "theory-only", "17": "unmapped", "21": "unmapped"},
+      "version_topics": {
+        "11": ["nestmates", "dynamic constants", "class loading changes"],
+        "17": ["class-file and encapsulation evolution"],
+        "21": ["modern class-file/runtime evolution"]
+      },
+      "evidence": ["10_CONCEPTS/Java/JVM/Memory Leaks.md"]
+    },
+    {
+      "id": "JAVA-LTS-D12",
+      "title": "Garbage collection and memory",
+      "shared_status": "theory-only",
+      "version_status": {"11": "theory-only", "17": "theory-only", "21": "theory-only"},
+      "version_topics": {
+        "11": ["G1 default", "Epsilon", "experimental ZGC"],
+        "17": ["mature low-pause collector choices"],
+        "21": ["Generational ZGC"]
+      },
+      "evidence": ["10_CONCEPTS/Java/JVM/Memory Leaks.md"]
+    },
+    {
+      "id": "JAVA-LTS-D13",
+      "title": "JIT and performance engineering",
+      "shared_status": "unmapped",
+      "version_status": {"11": "unmapped", "17": "unmapped", "21": "unmapped"},
+      "version_topics": {
+        "11": ["tiered compilation and profiling baseline"],
+        "17": ["JIT/runtime migration effects"],
+        "21": ["modern profiling and optimization evidence"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D14",
+      "title": "Networking and HTTP",
+      "shared_status": "unmapped",
+      "version_status": {"11": "theory-only", "17": "unmapped", "21": "unmapped"},
+      "version_topics": {
+        "11": ["standard HTTP Client", "WebSocket client"],
+        "17": ["Unix-domain socket channels"],
+        "21": ["Simple Web Server inherited from JDK 18"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D15",
+      "title": "Security and cryptography",
+      "shared_status": "unmapped",
+      "version_status": {"11": "theory-only", "17": "theory-only", "21": "theory-only"},
+      "version_topics": {
+        "11": ["TLS 1.3", "ChaCha20-Poly1305", "Curve25519/448"],
+        "17": ["Security Manager deprecation", "deserialization filters"],
+        "21": ["KEM API"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D16",
+      "title": "JDBC and data access",
+      "shared_status": "unmapped",
+      "version_status": {"11": "unmapped", "17": "unmapped", "21": "unmapped"},
+      "version_topics": {
+        "11": ["JDBC baseline"],
+        "17": ["Java 17 certification JDBC"],
+        "21": ["modern driver/runtime compatibility"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D17",
+      "title": "Tooling, observability and diagnostics",
+      "shared_status": "theory-only",
+      "version_status": {"11": "theory-only", "17": "theory-only", "21": "theory-only"},
+      "version_topics": {
+        "11": ["JFR", "jcmd", "jdeps", "unified logging"],
+        "17": ["strong-encapsulation diagnostics"],
+        "21": ["virtual-thread-aware JFR and thread dumps"]
+      }
+    },
+    {
+      "id": "JAVA-LTS-D18",
+      "title": "Migration and compatibility",
+      "shared_status": "cards-ready",
+      "version_status": {"11": "cards-ready", "17": "cards-ready", "21": "cards-ready"},
+      "version_topics": {
+        "11": ["8 to 11 migration", "removed modules", "--release 11"],
+        "17": ["11 to 17 migration", "strong encapsulation", "--release 17"],
+        "21": ["17 to 21 migration", "virtual threads", "charset", "--release 21"]
+      },
+      "evidence": [
+        "10_CONCEPTS/Java/Versions/Java 11 17 21 LTS Evolution.md",
+        "30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Cards.md",
+        "40_PRODUCTION_CASES/Java/Java 11 17 21 Migration Cases.md",
+        "50_LABS/Java/JAVA-LTS-B01/README.md",
+        "98_SOURCES/Java 11 17 21 Official Sources.md"
+      ]
+    }
+  ]
+}
