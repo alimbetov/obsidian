@@ -4,6 +4,8 @@ route: JAVA-LTS-B01
 domain: java
 subdomain: java-versions
 status: published
+evidence_status: lab-proven
+verified_at: 2026-07-23
 java_versions:
   - 11
   - 17
@@ -30,7 +32,7 @@ tags:
 # JAVA-LTS-B01 — Java 11, 17 and 21 Evolution and Migration
 
 > [!summary]
-> This route establishes the cumulative Java LTS model before the detailed language, API, JVM and certification routes. It teaches release boundaries, feature status, safe migration and the distinction between Java 17 exam semantics and Java 21 production semantics.
+> This route establishes the cumulative Java LTS model before the detailed language, API, JVM and certification routes. It teaches release boundaries, feature status, safe migration and the distinction between Java 17 exam semantics and Java 21 production semantics. The route is runtime-proven independently on JDK 11, 17 and 21.
 
 # Learning outcomes
 
@@ -126,22 +128,45 @@ future target: 3 timed migration mini-mocks
 
 # Runtime evidence
 
-The lab verifies:
+GitHub Actions run `30027027138` executed three independent jobs:
+
+```text
+Java LTS 11 proof  PASS
+Java LTS 17 proof  PASS
+Java LTS 21 proof  PASS
+```
+
+The matrix proves:
 
 ```text
 JDK 11-compatible API usage
 JDK 17 records, sealed classes, text blocks and switch expressions
 JDK 21 virtual threads, record patterns, pattern switch and sequenced collections
 minimum-version compile boundaries
+actual execution on matching runtimes
 ```
 
-Expected CI matrix:
+Lane contract:
 
 ```text
 JDK 11 → Java11Baseline
 JDK 17 → Java11Baseline + Java17Features
 JDK 21 → Java11Baseline + Java17Features + Java21Features
 ```
+
+# Current platform contribution
+
+`JAVA-LTS-D18 — Migration and compatibility` is classified as `lab-proven` for shared knowledge and all three version layers.
+
+```text
+Overall Java 11/17/21 platform evidence  15.35%
+Shared-domain evidence                   10.83%
+Java 11 layer                            19.17%
+Java 17 layer                            15.00%
+Java 21 layer                            16.39%
+```
+
+This low overall percentage is intentional: the migration route is complete, but most of the remaining 17 shared domains still require full vertical slices.
 
 # Quality checklist
 
@@ -153,8 +178,8 @@ JDK 21 → Java11Baseline + Java17Features + Java21Features
 - [x] 10 production migration cases.
 - [x] Multi-JDK lab source.
 - [x] Canvas route map.
-- [ ] JDK 11/17/21 GitHub Actions matrix passing on current head.
-- [ ] Version-coverage audit passing on current head.
+- [x] JDK 11/17/21 GitHub Actions matrix passing.
+- [x] Version-coverage audit passing.
 - [ ] Cross-version drill bank.
 - [ ] Migration mini-mocks.
 
