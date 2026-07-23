@@ -58,6 +58,9 @@ jobs:
       - name: Calculate certification readiness
         run: python .github/scripts/audit_certification_readiness.py
 
+      - name: Audit Java 11, 17 and 21 knowledge coverage
+        run: python .github/scripts/audit_java_version_coverage.py
+
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
@@ -145,6 +148,8 @@ jobs:
           echo >> "$GITHUB_STEP_SUMMARY"
           cat .audit/certification-readiness.md >> "$GITHUB_STEP_SUMMARY"
           echo >> "$GITHUB_STEP_SUMMARY"
+          cat .audit/java-version-coverage.md >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
           cat .audit/card-review-queue.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload audit reports and rendered diagrams
@@ -187,6 +192,7 @@ jobs:
               '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards.md',
               '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards.md',
               '30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards.md',
+              '30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Cards.md',
               '30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards.md',
           }
           published_card_errors = [
@@ -206,3 +212,27 @@ jobs:
           if structural_errors or mermaid_errors or published_card_errors:
               raise SystemExit(1)
           PY
+
+  java-lts-matrix:
+    name: Java LTS ${{ matrix.java }} proof
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        java: ["11", "17", "21"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+
+      - name: Compile and run JAVA-LTS-B01
+        run: bash 50_LABS/Java/JAVA-LTS-B01/run.sh "${{ matrix.java }}"
