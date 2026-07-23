@@ -13,6 +13,7 @@ tags:
 # Entry points
 
 - [[00_HOME/Certification 99 Percent Readiness Dashboard]]
+- [[00_HOME/Java 11 17 21 Complete Knowledge Program]]
 - [[00_HOME/Card Review Dashboard]]
 - [[00_HOME/Knowledge Route Registry]]
 - [[00_HOME/Review Dashboard]]
@@ -41,6 +42,8 @@ Machine controls:
 .github/objective-overrides/*.json
 .github/scripts/audit_objective_traceability.py
 .github/scripts/audit_certification_readiness.py
+.github/java-version-coverage.json
+.github/scripts/audit_java_version_coverage.py
 ```
 
 # Master tracks
@@ -48,8 +51,57 @@ Machine controls:
 | Track | Roadmap | Target |
 |---|---|---:|
 | Spring 2V0-72.22 | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]] | 99% |
+| Java 11/17/21 platform | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] | 99% |
 | Java 1Z0-829 | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | 99% |
 | Java Concurrency | [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]] | 99% |
+
+# Java 11, 17 and 21
+
+## JAVA-LTS-B01 — Evolution and Migration
+
+- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap]]
+- [[10_CONCEPTS/Java/Versions/Java 11 17 21 LTS Evolution]]
+- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Cards|30 cards]]
+- [[40_PRODUCTION_CASES/Java/Java 11 17 21 Migration Cases|10 cases]]
+- [[50_LABS/Java/JAVA-LTS-B01/README|JDK 11/17/21 lab]]
+- [[98_SOURCES/Java 11 17 21 Official Sources]]
+
+```text
+Java 11  compatibility baseline
+Java 17  exact 1Z0-829 exam baseline
+Java 21  modern production baseline
+```
+
+The route is cumulative, but exam answers remain version-bound.
+
+# Java 1Z0-829
+
+- [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]]
+- [[98_SOURCES/Java SE 17 1Z0-829 Sources]]
+
+```text
+JAVA-B01 Data/Text/Date-Time
+JAVA-B02 Control Flow and Pattern Matching
+JAVA-B03 Object Model
+JAVA-B04 Exceptions and Resources
+JAVA-B05 Collections and Generics
+JAVA-B06 Lambdas and Streams
+JAVA-B07 Modules and Deployment
+JAVA-B08 Concurrency
+JAVA-B09 I/O and NIO.2
+JAVA-B10 JDBC
+JAVA-B11 Localization
+```
+
+Every route must include Java 11 baseline, Java 17 exam semantics and Java 21 production delta.
+
+# Java Concurrency
+
+- [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]]
+- [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path]]
+- [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]]
+- [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
+- [[50_LABS/Java/Concurrency/README]]
 
 # Spring published batches
 
@@ -82,52 +134,6 @@ Machine controls:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
 
-## SPRING-BOOT-B02 evidence
-
-- [[10_CONCEPTS/Spring/Boot/Spring Boot Externalized Configuration and Type-safe Binding]]
-- [[10_CONCEPTS/Spring/Boot/Spring Boot Configuration Visual Deep Dive]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Assessment]]
-- [[40_PRODUCTION_CASES/Spring/Spring Boot Configuration Production Cases]]
-- [[50_LABS/Spring/SPRING-BOOT-B02/README]]
-- [[98_SOURCES/Spring Boot Externalized Configuration Sources]]
-
-## SPRING-MVC-B01 evidence
-
-- [[10_CONCEPTS/Spring/MVC/DispatcherServlet and Annotated Controller Pipeline]]
-- [[10_CONCEPTS/Spring/MVC/Spring MVC DispatcherServlet Visual Deep Dive]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Assessment]]
-- [[40_PRODUCTION_CASES/Spring/Spring MVC DispatcherServlet Production Cases]]
-- [[50_LABS/Spring/SPRING-MVC-B01/README]]
-- [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]]
-- [[98_SOURCES/Spring MVC DispatcherServlet Sources]]
-
-# Java 1Z0-829
-
-- [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]]
-- [[98_SOURCES/Java SE 17 1Z0-829 Sources]]
-
-```text
-JAVA-B01 Data/Text/Date-Time
-JAVA-B02 Control Flow
-JAVA-B03 Object Model
-JAVA-B04 Exceptions
-JAVA-B05 Collections/Generics
-JAVA-B06 Lambdas/Streams
-JAVA-B07 Modules
-JAVA-B08 Concurrency
-JAVA-B09 I/O and NIO.2
-JAVA-B10 JDBC
-JAVA-B11 Localization
-```
-
-# Java Concurrency
-
-- [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]]
-- [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path]]
-- [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]]
-- [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
-- [[50_LABS/Java/Concurrency/README]]
-
 # Database route
 
 - [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap]]
@@ -146,21 +152,23 @@ Explanation
 Exam Trap
 ```
 
-Additional sections such as Mini Example, Memory Hook and Production Transfer strengthen the card but do not replace the mandatory contract.
+Additional sections strengthen the card but do not replace the mandatory contract.
 
 # Assessment process
 
-1. Pre-test without confidence updates.
-2. Study canonical and visual mechanism.
-3. Answer stable card IDs.
-4. Record outcome and confidence per card.
-5. Apply the mechanism to production cases.
-6. Predict and execute lab evidence.
-7. Complete post-test.
-8. Enter mixed timed mock only after delayed review.
+1. Identify the target Java/framework version.
+2. Complete pre-test without confidence updates.
+3. Study canonical and visual mechanism.
+4. Answer stable card IDs.
+5. Record outcome and confidence per card.
+6. Apply the mechanism to production cases.
+7. Predict and execute lab evidence.
+8. Complete post-test.
+9. Enter mixed timed mock only after delayed review.
 
-# Next implementation route
+# Next implementation routes
 
 ```text
-SPRING-MVC-B02 — REST Endpoints and HTTP Clients
+Spring: SPRING-MVC-B02 — REST Endpoints and HTTP Clients
+Java:   JAVA-B01 — Data, Text and Date-Time across Java 11/17/21
 ```
