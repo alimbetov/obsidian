@@ -24,6 +24,7 @@ tags:
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
 
 # Learning route
 
@@ -36,7 +37,8 @@ flowchart LR
     TEST --> B1["Boot B01 bootstrap"]
     B1 --> B2["Boot B02 configuration"]
     B2 --> MVC1["MVC B01 pipeline"]
-    MVC1 --> MVC2["MVC B02 REST — next"]
+    MVC1 --> MVC2["MVC B02 REST"]
+    MVC2 --> SEC["Security — next"]
 ```
 
 # Visual metrics
@@ -51,9 +53,10 @@ Testing                           24 diagrams
 Boot Auto-configuration           31 diagrams
 Boot Externalized Configuration   30 diagrams
 MVC DispatcherServlet             30 diagrams
-Canvas entry maps                  6
+MVC REST                          25 diagrams
+Canvas entry maps                  7
 ---------------------------------------------
-Spring visual elements           245
+Spring visual elements           271
 ```
 
 Visual maps:
@@ -63,6 +66,7 @@ Visual maps:
 - [[01_MAPS/Spring Boot Auto-configuration Map.canvas]]
 - [[01_MAPS/Spring Boot Configuration Map.canvas]]
 - [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]]
+- [[01_MAPS/Spring MVC REST Map.canvas]]
 - [[01_MAPS/Spring Visual Learning Atlas.canvas]]
 
 # Published card routes
@@ -77,7 +81,8 @@ Visual maps:
 | SPRING-BOOT-B01 | 30 | published |
 | SPRING-BOOT-B02 | 35 | published |
 | SPRING-MVC-B01 | 35 | published |
-| **Total** | **388** | |
+| SPRING-MVC-B02 | 25 | published |
+| **Total** | **413** | |
 
 # Spring Core
 
@@ -165,16 +170,34 @@ SPRING-3.1.3 simple GET REST controller
 SPRING-3.1.4 deployment configuration — cards-ready
 ```
 
+# SPRING-MVC-B02 — REST Verbs, ResponseEntity and RestTemplate
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
+- [[10_CONCEPTS/Spring/MVC/REST Endpoints ResponseEntity and RestTemplate]]
+- [[10_CONCEPTS/Spring/MVC/Spring MVC REST Visual Deep Dive]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Assessment]]
+- [[40_PRODUCTION_CASES/Spring/Spring MVC REST Production Cases]]
+- [[50_LABS/Spring/SPRING-MVC-B02/README]]
+- [[01_MAPS/Spring MVC REST Map.canvas]]
+- [[98_SOURCES/Spring MVC REST and RestTemplate Sources]]
+
+Objective coverage:
+
+```text
+SPRING-3.2.1 REST endpoints for multiple HTTP verbs
+SPRING-3.2.2 RestTemplate client operations
+```
+
 # Next Spring route
 
 ```text
-SPRING-MVC-B02 — REST Endpoints and HTTP Clients
+SPRING-SEC-B01 — Authentication, Authorization and Method Security
 ```
 
 Remaining P0 routes:
 
 ```text
-SPRING-MVC-B02
 SPRING-SEC-B01
 SPRING-ACT-B01
 SPRING-JDBC-B01
