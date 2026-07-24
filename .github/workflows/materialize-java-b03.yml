@@ -7,6 +7,12 @@ on:
     paths:
       - tools/java-b03-materialize.py
       - .github/workflows/materialize-java-b03.yml
+  pull_request:
+    branches:
+      - agent/java-17-21-certification-tracks
+    paths:
+      - tools/java-b03-materialize.py
+      - .github/workflows/materialize-java-b03.yml
 
 permissions:
   contents: write
