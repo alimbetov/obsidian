@@ -1,351 +1,187 @@
 # Java Backend Knowledge System
 
-Структурированная Obsidian-база для Java backend: mechanism-oriented explanations, visual models, per-card progress, objective traceability, active recall, production incidents, executable labs и certification readiness.
+Структурированная Obsidian-база для Java backend: canonical mechanisms, atomic concepts, visual maps, stable cards, spaced repetition, production cases, executable labs и certification traceability.
 
-# Главные входы
+## Start here
 
-1. [[00_HOME/Certification 99 Percent Readiness Dashboard]] — Spring, Java и Concurrency readiness.
-2. [[00_HOME/Card Review Dashboard]] — per-card review queue и spaced repetition.
-3. [[00_HOME/Knowledge Route Registry]] — все published routes.
-4. [[00_HOME/Java Backend Knowledge System]] — учебный вход.
-5. [[30_CERTIFICATIONS/Certification MOC]] — certification navigation.
-6. [[01_MAPS/Java Backend Map.canvas]] — общая spatial map.
+1. [[00_HOME/Java Learning Dashboard]] — текущий Java-маршрут, atomic concepts, cards, drills и labs.
+2. [[00_HOME/Certification 99 Percent Readiness Dashboard]] — material readiness и оставшиеся gaps.
+3. [[00_HOME/Card Review Dashboard]] — per-card review queue и spaced repetition.
+4. [[00_HOME/Knowledge Route Registry]] — реестр опубликованных routes.
+5. [[30_CERTIFICATIONS/Certification MOC]] — навигация по сертификациям.
+6. [[01_MAPS/Java Certification Routes.canvas]] — Java 17/21 spatial navigation.
+7. [[01_MAPS/Certification 99 Percent Map.canvas]] — общая certification map.
 
-# Corrected learning model
+## How the vault works
 
 ```text
 Official objective
     ↓
-Pre-test
+Route roadmap
     ↓
-Canonical mechanism
+Canonical hub
     ↓
-Visual deep dive / Canvas
+Atomic concept notes
     ↓
-Stable card IDs + per-card progress
+Stable card IDs
     ↓
-Production cases
+Compile/output drills
     ↓
-Executable lab
+Production transfer and executable lab
     ↓
-Post-test
+Per-card progress and delayed review
     ↓
-Timed mock + delayed review
+Timed mocks
 ```
 
-System components:
+The canonical hub preserves route-level reading order. Atomic notes improve backlinks, Graph View, focused review and reuse by later routes.
+
+## Current Java delivery
+
+### JAVA-LTS-B01 — Java 11, 17 and 21 evolution
+
+- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap]]
+- JDK 11/17/21 runtime matrix.
+
+### JAVA-B01 — Values, Text and Date-Time
 
 ```text
-70_PROGRESS/card-progress.json
-.github/scripts/card_progress.py
-.github/objectives/*.json
-.github/objective-overrides/*.json
-.github/scripts/audit_objective_traceability.py
-.github/scripts/audit_certification_readiness.py
+9 atomic concepts
+75 base cards
+15 drills
+3 proof classes
+JDK 17 and 21 PASS
+status: lab-proven
 ```
 
-# 99 percent targets
+- [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap]]
+- [[10_CONCEPTS/Java/Core/Java Values Text and Date-Time]]
+
+### JAVA-B02 — Control Flow and Pattern Switch
 
 ```text
-Spring 2V0-72.22
-  600 base cards
-  150 drill cards
-  6 full timed mocks
-
-Java 1Z0-829
-  720 base cards
-  180 drill cards
-  6 full timed mocks
-
-Java Concurrency
-  140 base cards
-  40 drill cards
-  20 production cases
-  25 labs
-  6 timed mini-mocks
+8 atomic concepts
+60 base cards
+20 drills
+2 positive proof classes
+11 expected compile failures
+JDK 17 and 21 PASS
+status: lab-proven
 ```
 
-Master roadmaps:
+- [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]]
+- [[10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch]]
 
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]]
-- [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]]
-- [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]]
+### Navigation inventory
 
-# Per-card progress
+```text
+canonical route hubs             2
+atomic Java concept notes       17
+Java learning dashboard          1
+Java certification Canvas        1
+machine-registered Java routes   2
+```
 
-Cards may remain in batch files, but learning state is stored by stable `card_id`.
+### Next Java route
+
+```text
+JAVA-B03 — Object Model, Records, Sealed Types and Record Patterns
+```
+
+B03 should be implemented in a separate route PR after this foundation and navigation slice is reviewed.
+
+## Java certification lanes
+
+| Track | Exact baseline | Roadmap |
+|---|---|---|
+| Oracle Java SE 17 `1Z0-829` | Java 17 | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] |
+| Oracle Java SE 21 `1Z0-830` | Java 21 | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] |
+| Java 11/17/21 platform | version migration and production | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] |
+
+Shared knowledge is reused, but compile/API answers remain version-bound. See [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]].
+
+## Repository structure
+
+```text
+00_HOME              dashboards and entry points
+01_MAPS              Obsidian Canvas maps
+10_CONCEPTS          canonical hubs and atomic notes
+20_QUESTIONS         interview recall
+30_CERTIFICATIONS    roadmaps, cards, assessments and mocks
+40_PRODUCTION_CASES  symptoms, root causes, repairs and proofs
+50_LABS              executable evidence
+70_PROGRESS          per-card learning state
+90_TEMPLATES         content and cross-link standards
+98_SOURCES           official and primary sources
+99_AUDITS            audit reports
+```
+
+## Daily learning workflow
+
+```text
+1. Open Java Learning Dashboard.
+2. Continue from the next atomic concept.
+3. Answer Active recall without notes.
+4. Review the matching card batch.
+5. Attempt compile/output drills before execution.
+6. Predict lab results.
+7. Run the correct JDK lane.
+8. Record per-card outcome and confidence.
+```
+
+Progress commands:
 
 ```bash
 python .github/scripts/card_progress.py audit
 python .github/scripts/card_progress.py sync
 python .github/scripts/card_progress.py due --limit 30
 python .github/scripts/card_progress.py record \
-  --card-id SPRING-MVC-B01-C001 \
+  --card-id JAVA-FLOW-B02-C001 \
   --outcome correct-confident \
   --confidence 4
 ```
 
-Details:
-
-- [[70_PROGRESS/README]]
-- [[00_HOME/Card Review Dashboard]]
-
-# Objective traceability
-
-Traceability manifests map official/capability objectives to:
+## Quality controls
 
 ```text
-canonical notes
-visual models
-card IDs
-production cases
-labs
-sources
-mocks
-```
-
-Current manifests:
-
-- Spring `2V0-72.22`: 57 detailed objectives;
-- Java `1Z0-829`: 11 capability domains;
-- Java Concurrency: 8 advanced objectives.
-
-Readiness formula:
-
-```text
-25% objective traceability
-75% vertical-slice artifact/card completeness
-```
-
-# Visual layer
-
-```text
-Spring Core                         26 diagrams
-AOP                                 20 diagrams
-Cache                               27 diagrams
-Transactions                        20 diagrams
-Spring Data JPA                     31 diagrams
-Spring Testing                      24 diagrams
-Spring Boot Auto-configuration      31 diagrams
-Spring Boot Configuration           30 diagrams
-Spring MVC DispatcherServlet        30 diagrams
-Java Concurrency                    35 diagrams
-DB-B01                              62 diagrams
-Standard example                     1 diagram
-Canvas atlases                       8 maps
-------------------------------------------------
-Visual elements                    346
-```
-
-Visual entry points:
-
-- [[01_MAPS/Spring Core Visual Atlas.canvas]]
-- [[01_MAPS/Spring AOP and Cache Visual Atlas.canvas]]
-- [[01_MAPS/Spring Boot Auto-configuration Map.canvas]]
-- [[01_MAPS/Spring Boot Configuration Map.canvas]]
-- [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]]
-- [[01_MAPS/Java Concurrency Visual Atlas.canvas]]
-- [[01_MAPS/Database Indexes and Query Plans Map.canvas]]
-- [[01_MAPS/Certification 99 Percent Map.canvas]]
-
-# Published Spring routes
-
-## Spring Core
-
-```text
-CORE-B01  20 normalized
-CORE-B02  24
-CORE-B03  24
-CORE-B04  24 normalized
-CORE-B05  24
-CORE-B06  24
-----------------------
-TOTAL    140 cards
-```
-
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
-- [[10_CONCEPTS/Spring/Core/Spring Core Visual Deep Dive]]
-
-## AOP and Cache
-
-```text
-AOP-B01    24 normalized
-CACHE-B01  20 normalized
-```
-
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
-
-## Transaction Management
-
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
-- `TX-B01`: 32 normalized cards.
-
-## Spring Data and JPA
-
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
-- `DATA-B01`: 36 normalized cards.
-
-## Spring Testing
-
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
-- `TEST-B01`: 36 normalized cards.
-
-## SPRING-BOOT-B01 — Bootstrap and Auto-configuration
-
-```text
-31 diagrams
-30 cards
-15 production cases
-6 ApplicationContextRunner tests
-```
-
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]]
-- [[10_CONCEPTS/Spring/Boot/Spring Boot Bootstrap and Auto-configuration]]
-- [[50_LABS/Spring/SPRING-BOOT-B01/README]]
-
-## SPRING-BOOT-B02 — Externalized Configuration
-
-```text
-Canonical sections       44
-Visual diagrams          30
-Cards                    35
-Pre-test questions       10
-Post-test questions      15
-Production cases         12
-Executable tests          7
-Canvas                    1
-Source index              1
-```
-
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
-- [[10_CONCEPTS/Spring/Boot/Spring Boot Externalized Configuration and Type-safe Binding]]
-- [[10_CONCEPTS/Spring/Boot/Spring Boot Configuration Visual Deep Dive]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Assessment]]
-- [[40_PRODUCTION_CASES/Spring/Spring Boot Configuration Production Cases]]
-- [[50_LABS/Spring/SPRING-BOOT-B02/README]]
-- [[01_MAPS/Spring Boot Configuration Map.canvas]]
-- [[98_SOURCES/Spring Boot Externalized Configuration Sources]]
-
-## SPRING-MVC-B01 — DispatcherServlet and Controller Pipeline
-
-```text
-Canonical sections       50
-Visual diagrams          30
-Cards                    35
-Pre-test questions       10
-Post-test questions      15
-Production cases         12
-Executable tests         12
-Canvas                    1
-Source index              1
-```
-
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
-- [[10_CONCEPTS/Spring/MVC/DispatcherServlet and Annotated Controller Pipeline]]
-- [[10_CONCEPTS/Spring/MVC/Spring MVC DispatcherServlet Visual Deep Dive]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Assessment]]
-- [[40_PRODUCTION_CASES/Spring/Spring MVC DispatcherServlet Production Cases]]
-- [[50_LABS/Spring/SPRING-MVC-B01/README]]
-- [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]]
-- [[98_SOURCES/Spring MVC DispatcherServlet Sources]]
-
-# Published Spring total
-
-```text
-Spring Core               140
-AOP and Cache               44
-Transaction Management      32
-Spring Data and JPA          36
-Spring Testing               36
-Spring Boot B01              30
-Spring Boot B02              35
-Spring MVC B01               35
--------------------------------
-TOTAL                       388 cards
-```
-
-# Java Concurrency foundation
-
-- [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]]
-- [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path]]
-- [[10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive]]
-- [[50_LABS/Java/Concurrency/README]]
-
-Still required for 99%:
-
-```text
-140-card dedicated bank
-40 drills
-20 consolidated production cases
-25 controlled labs
-6 timed mini-mocks
-```
-
-# Java 1Z0-829 route
-
-Master roadmap: [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]].
-
-```text
-JAVA-B01 Data/Text/Date-Time
-JAVA-B02 Control Flow
-JAVA-B03 Object Model
-JAVA-B04 Exceptions
-JAVA-B05 Collections and Generics
-JAVA-B06 Lambdas and Streams
-JAVA-B07 Modules and Deployment
-JAVA-B08 Concurrency Exam Objectives
-JAVA-B09 I/O and NIO.2
-JAVA-B10 JDBC
-JAVA-B11 Localization
-```
-
-# Database route
-
-## DB-B01 — Indexes and Query Plans
-
-- [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap]]
-- 2 canonical notes;
-- 62 diagrams;
-- 30 cards;
-- 14 production cases;
-- 10 PostgreSQL experiments.
-
-# Running Spring route labs
-
-```bash
-mvn clean test -f 50_LABS/Spring/SPRING-BOOT-B01/pom.xml
-mvn clean test -f 50_LABS/Spring/SPRING-BOOT-B02/pom.xml
-mvn clean test -f 50_LABS/Spring/SPRING-MVC-B01/pom.xml
-```
-
-# Quality controls
-
-```text
-structural Markdown/card audit
-cross-link graph with route overrides
+structural Markdown and card audit
+cross-link graph audit
 per-card progress tests and catalog audit
-objective traceability audit
-combined readiness calculation
-Boot B01/B02 Maven tests
-MVC B01 DispatcherServlet pipeline tests
+objective traceability
+certification readiness calculation
+Java version coverage
 Canvas validation
-full Mermaid rendering
-strict published-card contract
+Mermaid rendering
+route-specific executable proof workflows
 ```
 
-# Current delivery sequence
+Dedicated Java B01 and B02 workflows pass on JDK 17 and JDK 21. The aggregate vault workflow may also report unrelated Spring route regressions; route-specific proof remains separately visible.
+
+## Published non-Java areas
+
+The vault also contains:
+
+- Spring Core, AOP, Cache, Transactions, Data JPA and Testing;
+- Spring Boot B01/B02;
+- Spring MVC B01/B02;
+- Java Concurrency foundation;
+- PostgreSQL indexes and query-plan route.
+
+Use [[00_HOME/Knowledge Route Registry]] and [[30_CERTIFICATIONS/Certification MOC]] for their current artifact lists.
+
+## Navigation standard
+
+Every published route should be reachable through:
 
 ```text
-SPRING-MVC-B02
-SPRING-SEC-B01
-SPRING-ACT-B01
-SPRING-JDBC-B01
-SPRING-WEBTEST-B01
-SPRING-SPEL-B01
-Spring drill bank and mocks
-JAVA-B01 … JAVA-B11
-Java drill bank and mocks
-Concurrency consolidation and mini-mocks
+README
+→ Dashboard / MOC
+→ Route roadmap
+→ Canonical hub
+→ Atomic concepts
+→ Cards and drills
+→ Lab and sources
+→ Progress review
 ```
+
+Cross-link rules: [[90_TEMPLATES/Cross-Linking Standard]].

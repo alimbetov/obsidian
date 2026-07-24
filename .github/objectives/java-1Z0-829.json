@@ -4,29 +4,88 @@
   "title": "Java SE 17 Developer 1Z0-829",
   "source": "Oracle Java SE 17 Developer learning path and Java SE 17 specifications",
   "source_url": "https://learn.oracle.com/ols/learning-path/become-a-java-se-17-developer/88323/99487",
-  "verified_at": "2026-07-22",
+  "verified_at": "2026-07-24",
   "baseline": {
     "java": "17",
-    "normative_sources": ["JLS 17", "Java SE 17 API", "JDK 17 Tool Specifications"]
+    "normative_sources": [
+      "JLS 17",
+      "Java SE 17 API",
+      "JDK 17 Tool Specifications"
+    ]
+  },
+  "coverage": {
+    "mapped_objectives": 3,
+    "lab_proven_objectives": 2,
+    "total_objectives": 11,
+    "implemented_routes": [
+      "JAVA-B01",
+      "JAVA-B02"
+    ]
   },
   "objectives": [
     {
       "id": "JAVA-B01",
       "section": "Language and Core APIs",
       "title": "Use primitive values, operators, text APIs and date/time APIs",
-      "status": "unmapped",
+      "status": "lab-proven",
       "weight": 10,
-      "mapping_granularity": "domain",
-      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": [
+          "10_CONCEPTS/Java/Core/Java Values Text and Date-Time.md"
+        ],
+        "card_prefixes": [
+          "JAVA-VALUES-B01-C",
+          "JAVA-TEXT-B01-C",
+          "JAVA-TIME-B01-C"
+        ],
+        "cases": [
+          "30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Drills.md"
+        ],
+        "labs": [
+          "50_LABS/Java/JAVA-B01/README.md",
+          "50_LABS/Java/JAVA-B01/src/main/java/lab/b01/ValuesProof.java",
+          "50_LABS/Java/JAVA-B01/src/main/java/lab/b01/TextProof.java",
+          "50_LABS/Java/JAVA-B01/src/main/java/lab/b01/DateTimeProof.java"
+        ],
+        "roadmaps": [
+          "30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap.md"
+        ],
+        "sources": [
+          "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
+        ]
+      }
     },
     {
       "id": "JAVA-B02",
       "section": "Language and Core APIs",
       "title": "Control program flow with conditions, loops, switch and patterns",
-      "status": "unmapped",
+      "status": "lab-proven",
       "weight": 6,
-      "mapping_granularity": "domain",
-      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+      "mapping_granularity": "route",
+      "evidence": {
+        "canonical": [
+          "10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch.md"
+        ],
+        "card_prefixes": [
+          "JAVA-FLOW-B02-C",
+          "JAVA-SWITCH-B02-C"
+        ],
+        "cases": [
+          "30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Drills.md"
+        ],
+        "labs": [
+          "50_LABS/Java/JAVA-B02/README.md",
+          "50_LABS/Java/JAVA-B02/run.sh",
+          "50_LABS/Java/JAVA-B02/src/shared/java/lab/b02/ClassicFlowProof.java"
+        ],
+        "roadmaps": [
+          "30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap.md"
+        ],
+        "sources": [
+          "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
+        ]
+      }
     },
     {
       "id": "JAVA-B03",
@@ -35,7 +94,11 @@
       "status": "unmapped",
       "weight": 13,
       "mapping_granularity": "domain",
-      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+      "evidence": {
+        "sources": [
+          "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
+        ]
+      }
     },
     {
       "id": "JAVA-B04",
@@ -44,7 +107,11 @@
       "status": "unmapped",
       "weight": 7,
       "mapping_granularity": "domain",
-      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+      "evidence": {
+        "sources": [
+          "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
+        ]
+      }
     },
     {
       "id": "JAVA-B05",
@@ -53,7 +120,11 @@
       "status": "unmapped",
       "weight": 13,
       "mapping_granularity": "domain",
-      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+      "evidence": {
+        "sources": [
+          "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
+        ]
+      }
     },
     {
       "id": "JAVA-B06",
@@ -62,7 +133,11 @@
       "status": "unmapped",
       "weight": 14,
       "mapping_granularity": "domain",
-      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+      "evidence": {
+        "sources": [
+          "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
+        ]
+      }
     },
     {
       "id": "JAVA-B07",
@@ -71,7 +146,11 @@
       "status": "unmapped",
       "weight": 8,
       "mapping_granularity": "domain",
-      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+      "evidence": {
+        "sources": [
+          "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
+        ]
+      }
     },
     {
       "id": "JAVA-B08",
@@ -88,9 +167,17 @@
           "10_CONCEPTS/Java/Concurrency/Future.md",
           "10_CONCEPTS/Java/Concurrency/Concurrent Collections and Backpressure.md"
         ],
-        "visual": ["10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"],
-        "labs": ["50_LABS/Java/Concurrency/README.md"],
-        "sources": ["98_SOURCES/Java Concurrency Sources.md", "98_SOURCES/Advanced Concurrency Sources.md", "98_SOURCES/Java SE 17 1Z0-829 Sources.md"]
+        "visual": [
+          "10_CONCEPTS/Java/Concurrency/Java Concurrency Visual Deep Dive.md"
+        ],
+        "labs": [
+          "50_LABS/Java/Concurrency/README.md"
+        ],
+        "sources": [
+          "98_SOURCES/Java Concurrency Sources.md",
+          "98_SOURCES/Advanced Concurrency Sources.md",
+          "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
+        ]
       }
     },
     {
@@ -100,7 +187,11 @@
       "status": "unmapped",
       "weight": 9,
       "mapping_granularity": "domain",
-      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+      "evidence": {
+        "sources": [
+          "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
+        ]
+      }
     },
     {
       "id": "JAVA-B10",
@@ -109,7 +200,11 @@
       "status": "unmapped",
       "weight": 5,
       "mapping_granularity": "domain",
-      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+      "evidence": {
+        "sources": [
+          "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
+        ]
+      }
     },
     {
       "id": "JAVA-B11",
@@ -118,7 +213,11 @@
       "status": "unmapped",
       "weight": 5,
       "mapping_granularity": "domain",
-      "evidence": {"sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]}
+      "evidence": {
+        "sources": [
+          "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
+        ]
+      }
     }
   ]
 }

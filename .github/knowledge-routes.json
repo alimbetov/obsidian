@@ -3,9 +3,79 @@
   "global_entry_points": [
     "README.md",
     "00_HOME/Java Backend Knowledge System.md",
+    "00_HOME/Java Learning Dashboard.md",
     "30_CERTIFICATIONS/Certification MOC.md"
   ],
   "routes": [
+    {
+      "id": "JAVA-B01",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "00_HOME/Java Learning Dashboard.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "30_CERTIFICATIONS/Certification MOC.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap.md",
+        "10_CONCEPTS/Java/Core/Java Values Text and Date-Time.md",
+        "00_HOME/Java Learning Dashboard.md",
+        "01_MAPS/Java Certification Routes.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Java/Core/Java Primitive Values and Literals.md",
+        "10_CONCEPTS/Java/Core/Java Numeric Promotion and Casting.md",
+        "10_CONCEPTS/Java/Core/Java Wrappers Boxing and Math.md",
+        "10_CONCEPTS/Java/Core/Java String Identity and Operations.md",
+        "10_CONCEPTS/Java/Core/Java StringBuilder Mutation.md",
+        "10_CONCEPTS/Java/Core/Java Text Blocks.md",
+        "10_CONCEPTS/Java/Core/Java Local Date-Time Types.md",
+        "10_CONCEPTS/Java/Core/Java Period Duration and Instant.md",
+        "10_CONCEPTS/Java/Core/Java Zones DST and Formatting.md",
+        "30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01A Values Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01B Text Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01C Date-Time Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Drills.md",
+        "50_LABS/Java/JAVA-B01/README.md",
+        "98_SOURCES/Java SE 17 1Z0-829 Sources.md",
+        "98_SOURCES/Java SE 21 1Z0-830 Sources.md"
+      ]
+    },
+    {
+      "id": "JAVA-B02",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "00_HOME/Java Learning Dashboard.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "30_CERTIFICATIONS/Certification MOC.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap.md",
+        "10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch.md",
+        "00_HOME/Java Learning Dashboard.md",
+        "01_MAPS/Java Certification Routes.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Java/Core/Java Conditions and Definite Assignment.md",
+        "10_CONCEPTS/Java/Core/Java Loops Transfers and Labels.md",
+        "10_CONCEPTS/Java/Core/Java Reachability Rules.md",
+        "10_CONCEPTS/Java/Core/Java Classic Switch.md",
+        "10_CONCEPTS/Java/Core/Java Switch Expressions.md",
+        "10_CONCEPTS/Java/Core/Java Pattern Matching for instanceof.md",
+        "10_CONCEPTS/Java/Core/Java 21 Pattern Switch.md",
+        "10_CONCEPTS/Java/Core/Java Switch Dominance and Exhaustiveness.md",
+        "30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02A Control Flow Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02B Switch Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02C Pattern Switch Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Drills.md",
+        "50_LABS/Java/JAVA-B02/README.md",
+        "98_SOURCES/Java SE 17 1Z0-829 Sources.md",
+        "98_SOURCES/Java SE 21 1Z0-830 Sources.md"
+      ]
+    },
     {
       "id": "JAVA-CONCURRENCY",
       "status": "published",
@@ -53,11 +123,7 @@
       "id": "SPRING-CORE",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap.md",
-      "entry_points": [
-        "README.md",
-        "01_MAPS/Spring Map.md",
-        "00_HOME/Knowledge Route Registry.md"
-      ],
+      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -100,11 +166,7 @@
       "id": "SPRING-AOP-CACHE",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap.md",
-      "entry_points": [
-        "README.md",
-        "01_MAPS/Spring Map.md",
-        "00_HOME/Knowledge Route Registry.md"
-      ],
+      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -131,11 +193,7 @@
       "id": "SPRING-TX",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap.md",
-      "entry_points": [
-        "README.md",
-        "01_MAPS/Spring Map.md",
-        "00_HOME/Knowledge Route Registry.md"
-      ],
+      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -157,11 +215,7 @@
       "id": "SPRING-DATA-JPA",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap.md",
-      "entry_points": [
-        "README.md",
-        "01_MAPS/Spring Map.md",
-        "00_HOME/Knowledge Route Registry.md"
-      ],
+      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -183,11 +237,7 @@
       "id": "SPRING-TEST",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap.md",
-      "entry_points": [
-        "README.md",
-        "01_MAPS/Spring Map.md",
-        "00_HOME/Knowledge Route Registry.md"
-      ],
+      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -209,11 +259,7 @@
       "id": "SPRING-BOOT-B01",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md",
-      "entry_points": [
-        "README.md",
-        "01_MAPS/Spring Map.md",
-        "00_HOME/Knowledge Route Registry.md"
-      ],
+      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -234,11 +280,7 @@
       "id": "DB-B01",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap.md",
-      "entry_points": [
-        "README.md",
-        "01_MAPS/Databases Map.md",
-        "00_HOME/Knowledge Route Registry.md"
-      ],
+      "entry_points": ["README.md", "01_MAPS/Databases Map.md", "00_HOME/Knowledge Route Registry.md"],
       "indexes": [
         "30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap.md",
         "01_MAPS/Databases Map.md",
