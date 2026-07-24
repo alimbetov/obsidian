@@ -2,7 +2,7 @@
 type: certification-batch
 domain: java
 subdomain: date-time-zones
-batch: JAVA-B01C
+batch: JAVA-TIME-B01
 status: published
 card_count: 25
 java_versions:
@@ -29,7 +29,7 @@ tags:
 
 ---
 
-## JAVA-B01C-C001 — Are `java.time` value types mutable?
+## JAVA-TIME-B01-C001 — Are `java.time` value types mutable?
 
 ### Russian Translation
 
@@ -48,7 +48,7 @@ Ignoring a returned temporal value has the same practical effect as ignoring a r
 
 ---
 
-## JAVA-B01C-C002 — What does `LocalDate` contain?
+## JAVA-TIME-B01-C002 — What does `LocalDate` contain?
 
 ### Russian Translation
 
@@ -67,7 +67,7 @@ Do not assume the system default zone is silently attached.
 
 ---
 
-## JAVA-B01C-C003 — What happens when an invalid date is constructed?
+## JAVA-TIME-B01-C003 — What happens when an invalid date is constructed?
 
 ### Russian Translation
 
@@ -86,7 +86,7 @@ Construction does not automatically roll excess days into the next month.
 
 ---
 
-## JAVA-B01C-C004 — How does `plusMonths` handle the end of a month?
+## JAVA-TIME-B01-C004 — How does `plusMonths` handle the end of a month?
 
 ### Russian Translation
 
@@ -105,7 +105,7 @@ Adding one month is not equivalent to adding 30 or 31 days.
 
 ---
 
-## JAVA-B01C-C005 — What does a `Period` represent?
+## JAVA-TIME-B01-C005 — What does a `Period` represent?
 
 ### Russian Translation
 
@@ -124,7 +124,7 @@ It follows calendar arithmetic rather than a fixed number of seconds.
 
 ---
 
-## JAVA-B01C-C006 — What does a `Duration` represent?
+## JAVA-TIME-B01-C006 — What does a `Duration` represent?
 
 ### Russian Translation
 
@@ -143,7 +143,7 @@ A date-only `LocalDate` cannot add a duration measured in hours.
 
 ---
 
-## JAVA-B01C-C007 — What does `Period.normalized()` change?
+## JAVA-TIME-B01-C007 — What does `Period.normalized()` change?
 
 ### Russian Translation
 
@@ -162,7 +162,7 @@ Days are not converted to months because month length is calendar-dependent.
 
 ---
 
-## JAVA-B01C-C008 — Can a `Duration` be added to `LocalDate`?
+## JAVA-TIME-B01-C008 — Can a `Duration` be added to `LocalDate`?
 
 ### Russian Translation
 
@@ -181,7 +181,7 @@ Distinguish method availability from support for a particular temporal unit.
 
 ---
 
-## JAVA-B01C-C009 — What sign does `Duration.between(start, end)` use?
+## JAVA-TIME-B01-C009 — What sign does `Duration.between(start, end)` use?
 
 ### Russian Translation
 
@@ -200,7 +200,7 @@ Do not take an absolute value unless the requirement explicitly asks for magnitu
 
 ---
 
-## JAVA-B01C-C010 — What is `Instant.EPOCH`?
+## JAVA-TIME-B01-C010 — What is `Instant.EPOCH`?
 
 ### Russian Translation
 
@@ -219,7 +219,7 @@ The `Z` suffix means UTC offset zero.
 
 ---
 
-## JAVA-B01C-C011 — Does `LocalDateTime` identify a unique instant?
+## JAVA-TIME-B01-C011 — Does `LocalDateTime` identify a unique instant?
 
 ### Russian Translation
 
@@ -238,7 +238,7 @@ A local timestamp from a log is ambiguous unless its zone/offset contract is kno
 
 ---
 
-## JAVA-B01C-C012 — How do `ZoneOffset` and region `ZoneId` differ?
+## JAVA-TIME-B01-C012 — How do `ZoneOffset` and region `ZoneId` differ?
 
 ### Russian Translation
 
@@ -257,7 +257,7 @@ Current offset equality does not make a fixed offset and a region zone semantica
 
 ---
 
-## JAVA-B01C-C013 — What extra information does `ZonedDateTime` have over `OffsetDateTime`?
+## JAVA-TIME-B01-C013 — What extra information does `ZonedDateTime` have over `OffsetDateTime`?
 
 ### Russian Translation
 
@@ -276,7 +276,7 @@ Future scheduling by civil rules usually requires a region zone, not only today'
 
 ---
 
-## JAVA-B01C-C014 — What does `withZoneSameInstant` preserve?
+## JAVA-TIME-B01-C014 — What does `withZoneSameInstant` preserve?
 
 ### Russian Translation
 
@@ -295,7 +295,7 @@ Do not expect the displayed clock time to remain unchanged.
 
 ---
 
-## JAVA-B01C-C015 — What does `withZoneSameLocal` preserve?
+## JAVA-TIME-B01-C015 — What does `withZoneSameLocal` preserve?
 
 ### Russian Translation
 
@@ -314,7 +314,7 @@ The method name does not promise same instant.
 
 ---
 
-## JAVA-B01C-C016 — What happens when a local time falls inside a DST gap?
+## JAVA-TIME-B01-C016 — What happens when a local time falls inside a DST gap?
 
 ### Russian Translation
 
@@ -333,7 +333,7 @@ The requested local fields may not survive construction because that wall-clock 
 
 ---
 
-## JAVA-B01C-C017 — Which offset is chosen by default during a DST overlap?
+## JAVA-TIME-B01-C017 — Which offset is chosen by default during a DST overlap?
 
 ### Russian Translation
 
@@ -352,7 +352,7 @@ The repeated local time maps to two valid instants.
 
 ---
 
-## JAVA-B01C-C018 — How is the later occurrence in an overlap selected?
+## JAVA-TIME-B01-C018 — How is the later occurrence in an overlap selected?
 
 ### Russian Translation
 
@@ -371,7 +371,7 @@ Outside an overlap these methods do not invent a transition.
 
 ---
 
-## JAVA-B01C-C019 — Why can adding one day differ from adding 24 hours?
+## JAVA-TIME-B01-C019 — Why can adding one day differ from adding 24 hours?
 
 ### Russian Translation
 
@@ -390,7 +390,7 @@ On ordinary dates the two results may look identical and hide the distinction.
 
 ---
 
-## JAVA-B01C-C020 — Are DateTimeFormatter pattern letters case-sensitive?
+## JAVA-TIME-B01-C020 — Are DateTimeFormatter pattern letters case-sensitive?
 
 ### Russian Translation
 
@@ -409,7 +409,7 @@ A visually minor case change can produce a valid but semantically wrong formatte
 
 ---
 
-## JAVA-B01C-C021 — What is the difference between `u` and `y` in a date pattern?
+## JAVA-TIME-B01-C021 — What is the difference between `u` and `y` in a date pattern?
 
 ### Russian Translation
 
@@ -428,7 +428,7 @@ Using `yyyy` with strict resolver settings can require era semantics that the in
 
 ---
 
-## JAVA-B01C-C022 — What resolver style does `DateTimeFormatter.ofPattern` use by default?
+## JAVA-TIME-B01-C022 — What resolver style does `DateTimeFormatter.ofPattern` use by default?
 
 ### Russian Translation
 
@@ -447,7 +447,7 @@ Pattern syntax validity does not imply strict calendar validation.
 
 ---
 
-## JAVA-B01C-C023 — How is strict date parsing requested?
+## JAVA-TIME-B01-C023 — How is strict date parsing requested?
 
 ### Russian Translation
 
@@ -466,7 +466,7 @@ Strict `yyyy` parsing can fail for era-related reasons; understand the selected 
 
 ---
 
-## JAVA-B01C-C024 — Why should exact-output formatters specify a Locale?
+## JAVA-TIME-B01-C024 — Why should exact-output formatters specify a Locale?
 
 ### Russian Translation
 
@@ -485,7 +485,7 @@ Numeric-looking patterns can still contain locale-sensitive text or decimal conv
 
 ---
 
-## JAVA-B01C-C025 — How do `next` and `nextOrSame` TemporalAdjusters differ?
+## JAVA-TIME-B01-C025 — How do `next` and `nextOrSame` TemporalAdjusters differ?
 
 ### Russian Translation
 
