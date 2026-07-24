@@ -2,7 +2,7 @@
 type: certification-batch
 domain: java
 subdomain: values-and-expressions
-batch: JAVA-B01A
+batch: JAVA-VALUES-B01
 status: published
 card_count: 25
 java_versions:
@@ -29,7 +29,7 @@ tags:
 
 ---
 
-## JAVA-B01A-C001 — What are the default types of integer and floating-point literals?
+## JAVA-VALUES-B01-C001 — What are the default types of integer and floating-point literals?
 
 ### Russian Translation
 
@@ -48,7 +48,7 @@ The assignment target does not retroactively change an oversized decimal integer
 
 ---
 
-## JAVA-B01A-C002 — Where may underscores appear in numeric literals?
+## JAVA-VALUES-B01-C002 — Where may underscores appear in numeric literals?
 
 ### Russian Translation
 
@@ -67,7 +67,7 @@ The assignment target does not retroactively change an oversized decimal integer
 
 ---
 
-## JAVA-B01A-C003 — How are binary, octal and hexadecimal integer literals written?
+## JAVA-VALUES-B01-C003 — How are binary, octal and hexadecimal integer literals written?
 
 ### Russian Translation
 
@@ -86,7 +86,7 @@ A leading zero is not decorative: `010` is octal 8, not decimal 10.
 
 ---
 
-## JAVA-B01A-C004 — Is `char` a numeric primitive?
+## JAVA-VALUES-B01-C004 — Is `char` a numeric primitive?
 
 ### Russian Translation
 
@@ -105,7 +105,7 @@ A leading zero is not decorative: `010` is octal 8, not decimal 10.
 
 ---
 
-## JAVA-B01A-C005 — Can `boolean` be converted to or from an integer?
+## JAVA-VALUES-B01-C005 — Can `boolean` be converted to or from an integer?
 
 ### Russian Translation
 
@@ -124,7 +124,7 @@ Patterns familiar from C, such as `if (1)`, do not compile in Java.
 
 ---
 
-## JAVA-B01A-C006 — Which primitive conversions are widening?
+## JAVA-VALUES-B01-C006 — Which primitive conversions are widening?
 
 ### Russian Translation
 
@@ -143,7 +143,7 @@ Widening is normally implicit, although widening to floating point can lose prec
 
 ---
 
-## JAVA-B01A-C007 — What does a narrowing integral cast do?
+## JAVA-VALUES-B01-C007 — What does a narrowing integral cast do?
 
 ### Russian Translation
 
@@ -162,7 +162,7 @@ The cast can change both magnitude and sign.
 
 ---
 
-## JAVA-B01A-C008 — When can an `int` constant be assigned to `byte`, `short` or `char` without a cast?
+## JAVA-VALUES-B01-C008 — When can an `int` constant be assigned to `byte`, `short` or `char` without a cast?
 
 ### Russian Translation
 
@@ -181,7 +181,7 @@ A merely unchanged local variable is not automatically a compile-time constant.
 
 ---
 
-## JAVA-B01A-C009 — What type results from unary promotion of `byte`, `short` or `char`?
+## JAVA-VALUES-B01-C009 — What type results from unary promotion of `byte`, `short` or `char`?
 
 ### Russian Translation
 
@@ -200,7 +200,7 @@ Unary `+`, unary `-` and bitwise complement `~` therefore produce `int` for thes
 
 ---
 
-## JAVA-B01A-C010 — What is the binary numeric promotion order?
+## JAVA-VALUES-B01-C010 — What is the binary numeric promotion order?
 
 ### Russian Translation
 
@@ -219,7 +219,7 @@ The smaller assignment target does not stop promotion.
 
 ---
 
-## JAVA-B01A-C011 — Why does compound assignment compile where ordinary assignment fails?
+## JAVA-VALUES-B01-C011 — Why does compound assignment compile where ordinary assignment fails?
 
 ### Russian Translation
 
@@ -238,7 +238,7 @@ The left-hand expression is evaluated once, so the equivalence is not exact when
 
 ---
 
-## JAVA-B01A-C012 — How does integral division round?
+## JAVA-VALUES-B01-C012 — How does integral division round?
 
 ### Russian Translation
 
@@ -257,7 +257,7 @@ It does not use mathematical floor for negative values.
 
 ---
 
-## JAVA-B01A-C013 — What sign does the remainder operator produce?
+## JAVA-VALUES-B01-C013 — What sign does the remainder operator produce?
 
 ### Russian Translation
 
@@ -276,7 +276,7 @@ Do not apply a language-independent modulo rule without checking Java semantics.
 
 ---
 
-## JAVA-B01A-C014 — What happens on integral overflow?
+## JAVA-VALUES-B01-C014 — What happens on integral overflow?
 
 ### Russian Translation
 
@@ -295,7 +295,7 @@ Use `Math.addExact`, `subtractExact` or `multiplyExact` when overflow must throw
 
 ---
 
-## JAVA-B01A-C015 — How does division by zero differ for integral and floating operands?
+## JAVA-VALUES-B01-C015 — How does division by zero differ for integral and floating operands?
 
 ### Russian Translation
 
@@ -314,7 +314,7 @@ A literal expression such as `1 / 0` can fail during compile-time constant evalu
 
 ---
 
-## JAVA-B01A-C016 — How should NaN be tested?
+## JAVA-VALUES-B01-C016 — How should NaN be tested?
 
 ### Russian Translation
 
@@ -333,7 +333,7 @@ NaN compares unequal to every value, including itself.
 
 ---
 
-## JAVA-B01A-C017 — What is the difference between `&&` and `&` for booleans?
+## JAVA-VALUES-B01-C017 — What is the difference between `&&` and `&` for booleans?
 
 ### Russian Translation
 
@@ -352,7 +352,7 @@ A side effect or exception in the right operand may occur with `&` but not with 
 
 ---
 
-## JAVA-B01A-C018 — What does boolean XOR (`^`) mean?
+## JAVA-VALUES-B01-C018 — What does boolean XOR (`^`) mean?
 
 ### Russian Translation
 
@@ -371,7 +371,7 @@ A side effect or exception in the right operand may occur with `&` but not with 
 
 ---
 
-## JAVA-B01A-C019 — When does `==` compare wrapper values and when does it compare references?
+## JAVA-VALUES-B01-C019 — When does `==` compare wrapper values and when does it compare references?
 
 ### Russian Translation
 
@@ -390,7 +390,7 @@ Do not infer value equality from the small-wrapper cache.
 
 ---
 
-## JAVA-B01A-C020 — What wrapper cache range is required for `Integer.valueOf` and autoboxing?
+## JAVA-VALUES-B01-C020 — What wrapper cache range is required for `Integer.valueOf` and autoboxing?
 
 ### Russian Translation
 
@@ -409,7 +409,7 @@ Use `equals`, not `==`, even when a demonstration happens to return true.
 
 ---
 
-## JAVA-B01A-C021 — What happens when `null` is unboxed?
+## JAVA-VALUES-B01-C021 — What happens when `null` is unboxed?
 
 ### Russian Translation
 
@@ -428,7 +428,7 @@ Arithmetic, comparison with a primitive and method argument conversion can all t
 
 ---
 
-## JAVA-B01A-C022 — How do `parseInt` and `valueOf` differ?
+## JAVA-VALUES-B01-C022 — How do `parseInt` and `valueOf` differ?
 
 ### Russian Translation
 
@@ -447,7 +447,7 @@ Radix overloads interpret digits in the supplied base; the source string does no
 
 ---
 
-## JAVA-B01A-C023 — What are the return types of `Math.round(float)` and `Math.round(double)`?
+## JAVA-VALUES-B01-C023 — What are the return types of `Math.round(float)` and `Math.round(double)`?
 
 ### Russian Translation
 
@@ -466,7 +466,7 @@ Do not assign `Math.round(double)` to `int` without considering narrowing.
 
 ---
 
-## JAVA-B01A-C024 — Why can `Math.abs(Integer.MIN_VALUE)` remain negative?
+## JAVA-VALUES-B01-C024 — Why can `Math.abs(Integer.MIN_VALUE)` remain negative?
 
 ### Russian Translation
 
@@ -485,7 +485,7 @@ The same asymmetry exists for signed integral minimum values.
 
 ---
 
-## JAVA-B01A-C025 — What do the `Math.*Exact` methods add to ordinary arithmetic?
+## JAVA-VALUES-B01-C025 — What do the `Math.*Exact` methods add to ordinary arithmetic?
 
 ### Russian Translation
 
