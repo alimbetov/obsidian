@@ -2,8 +2,10 @@
 type: lab
 lab: JAVA-B02
 domain: java
-status: source-validated
-runtime_status: local-jdk21-release17-release21-pass
+status: lab-proven
+runtime_status: jdk17-jdk21-ci-pass
+verified_at: 2026-07-24
+ci_run_id: 30089425851
 java_versions:
   - 17
   - 21
@@ -146,11 +148,11 @@ OpenJDK 21.0.10 with --release 21  PASS
 shared negative sources              PASS as expected failures
 Java 17 version trap                 PASS as expected failure
 Java 21 negative sources             PASS as expected failures
-independent GitHub JDK 17 lane       pending
-independent GitHub JDK 21 lane       pending
+independent GitHub JDK 17 lane       PASS
+independent GitHub JDK 21 lane       PASS
 ```
 
-The route becomes `lab-proven` after both GitHub Actions lanes complete successfully.
+Dedicated GitHub Actions run `30089425851` passed both JDK lanes. The route and objectives `JAVA-B02` and `JAVA21-2.1` are classified as `lab-proven`.
 
 # Related
 
