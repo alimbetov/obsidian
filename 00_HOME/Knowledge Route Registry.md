@@ -169,7 +169,19 @@ JDK 11 / 17 / 21 GitHub Actions matrix
 | Canvas | [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]] |
 | Sources | [[98_SOURCES/Spring MVC DispatcherServlet Sources]] |
 
-Next Spring route: `SPRING-MVC-B02 — REST Endpoints and HTTP Clients`.
+## SPRING-MVC-B02 — REST Verbs, ResponseEntity and RestTemplate
+
+| Role | Artifact |
+|---|---|
+| Roadmap | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]] |
+| Canonical | [[10_CONCEPTS/Spring/MVC/REST Endpoints ResponseEntity and RestTemplate]] |
+| Visual | [[10_CONCEPTS/Spring/MVC/Spring MVC REST Visual Deep Dive]] |
+| Cards | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Cards]] |
+| Assessment | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Assessment]] |
+| Cases | [[40_PRODUCTION_CASES/Spring/Spring MVC REST Production Cases]] |
+| Lab | [[50_LABS/Spring/SPRING-MVC-B02/README]] |
+| Canvas | [[01_MAPS/Spring MVC REST Map.canvas]] |
+| Sources | [[98_SOURCES/Spring MVC REST and RestTemplate Sources]] |
 
 # Database routes
 
@@ -190,8 +202,7 @@ Next Spring route: `SPRING-MVC-B02 — REST Endpoints and HTTP Clients`.
 | JAVA-JVM-B01 | Class loading, bytecode and runtime areas | planned |
 | JAVA-GC-B01 | G1, ZGC and Generational ZGC | planned |
 | JAVA-DIAG-B01 | JFR, jcmd, dumps and profiling | planned |
-| SPRING-MVC-B02 | REST and HTTP clients | next Spring route |
-| SPRING-SEC-B01 | Security | planned |
+| SPRING-SEC-B01 | Security | next Spring route |
 | SPRING-ACT-B01 | Actuator | planned |
 | SPRING-JDBC-B01 | JdbcTemplate | planned |
 | SPRING-WEBTEST-B01 | MockMvc | planned |
