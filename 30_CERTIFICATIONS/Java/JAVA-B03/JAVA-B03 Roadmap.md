@@ -3,9 +3,11 @@ type: learning-route
 route: JAVA-B03
 domain: java
 subdomain: object-model-record-patterns
-status: implementation-ready
-evidence_status: local-jdk21-release17-release21-pass
+status: lab-proven
+evidence_status: jdk17-jdk21-ci-pass
 verified_at: 2026-07-24
+ci_workflow: JAVA-B03 Proof
+ci_run_id: 30097320887
 java_versions:
   - 17
   - 21
@@ -37,7 +39,7 @@ tags:
 # JAVA-B03 — Object Model, Records and Record Patterns
 
 > [!summary]
-> `JAVA-B03` builds the object model required by exceptions, collections, streams and concurrency. Shared Java 17/21 semantics cover construction, overloads, inheritance, interfaces, records, enums and sealed types; Java 21 adds final record patterns and nested deconstruction.
+> `JAVA-B03` builds the object model required by exceptions, collections, streams and concurrency. Shared Java 17/21 semantics cover construction, overloads, inheritance, interfaces, records, enums and sealed types; Java 21 adds final record patterns and nested deconstruction. Dedicated CI run `30097320887` passed both release lanes and every intended negative source.
 
 ## Prerequisites
 
@@ -68,6 +70,7 @@ tags:
 | Records/sealed/pattern cards | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03D Records Sealed and Patterns Cards]] |
 | Drills | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Drills]] |
 | Executable lab | [[50_LABS/Java/JAVA-B03/README]] |
+| Canvas | [[01_MAPS/Java Object Model and Record Patterns Map.canvas]] |
 | Sources | [[98_SOURCES/Java SE 17 1Z0-829 Sources]], [[98_SOURCES/Java SE 21 1Z0-830 Sources]] |
 
 ## Atomic concept sequence
@@ -118,6 +121,19 @@ Java 21 positive source      record/nested pattern runtime proof
 Java 21 negative bank        arity, component type, dominance, exhaustiveness
 ```
 
+## Confirmed CI evidence
+
+`JAVA-B03 Proof` run `30097320887` produced:
+
+```text
+JDK 17 shared compile/runtime                    PASS
+JDK 17 shared expected-failure bank              PASS
+JDK 17 record-pattern version trap               PASS
+JDK 21 shared compile/runtime                    PASS
+JDK 21 record and nested-pattern runtime proof   PASS
+JDK 21 arity/type/dominance/exhaustiveness bank  PASS
+```
+
 ## Completion gate
 
 ```text
@@ -127,10 +143,10 @@ Java 21 negative bank        arity, component type, dominance, exhaustiveness
 [x] Java 17/21 shared positive proof
 [x] Java 21 record-pattern positive proof
 [x] 17 expected compile-fail sources
-[ ] GitHub JDK 17 lane PASS
-[ ] GitHub JDK 21 lane PASS
-[ ] objective manifests classified lab-proven
-[ ] attach workflow run ID
+[x] GitHub JDK 17 lane PASS
+[x] GitHub JDK 21 lane PASS
+[x] objective manifests classified lab-proven
+[x] attach workflow run ID 30097320887
 ```
 
 ## Next route
