@@ -1,0 +1,35 @@
+{
+  "nodes": [
+    {"id":"root","type":"text","text":"SPRING-MVC-B02\nREST verbs → ResponseEntity → negotiation → error contract → RestTemplate","x":0,"y":0,"width":470,"height":180,"color":"4"},
+    {"id":"roadmap","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap.md","x":540,"y":0,"width":460,"height":170,"color":"4"},
+    {"id":"canonical","type":"file","file":"10_CONCEPTS/Spring/MVC/REST Endpoints ResponseEntity and RestTemplate.md","x":0,"y":280,"width":480,"height":170},
+    {"id":"visual","type":"file","file":"10_CONCEPTS/Spring/MVC/Spring MVC REST Visual Deep Dive.md","x":540,"y":280,"width":460,"height":170},
+    {"id":"verbs","type":"text","text":"SERVER\nGET / POST / PUT / PATCH / DELETE\n@PathVariable\n@RequestBody\n@Valid","x":1060,"y":240,"width":360,"height":240,"color":"5"},
+    {"id":"entity","type":"text","text":"RESPONSE CONTRACT\nResponseEntity\nstatus\nheaders\nbody\n201 Location\n204 No Content","x":1490,"y":240,"width":360,"height":260,"color":"5"},
+    {"id":"client","type":"text","text":"CLIENT\nRestTemplate\ngetForObject\ngetForEntity\npostForEntity\nexchange\nMockRestServiceServer","x":1920,"y":240,"width":360,"height":270,"color":"6"},
+    {"id":"cards","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Cards.md","x":0,"y":600,"width":430,"height":160,"color":"2"},
+    {"id":"assessment","type":"file","file":"30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Assessment.md","x":500,"y":600,"width":450,"height":160,"color":"2"},
+    {"id":"cases","type":"file","file":"40_PRODUCTION_CASES/Spring/Spring MVC REST Production Cases.md","x":1020,"y":600,"width":450,"height":160,"color":"1"},
+    {"id":"lab","type":"file","file":"50_LABS/Spring/SPRING-MVC-B02/README.md","x":1540,"y":600,"width":410,"height":160,"color":"3"},
+    {"id":"sources","type":"file","file":"98_SOURCES/Spring MVC REST and RestTemplate Sources.md","x":2020,"y":600,"width":450,"height":160},
+    {"id":"next","type":"text","text":"NEXT\nSPRING-SEC-B01\nAuthentication, Authorization and Method Security","x":980,"y":900,"width":500,"height":150,"color":"6"}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"root","fromSide":"right","toNode":"roadmap","toSide":"left"},
+    {"id":"e2","fromNode":"root","fromSide":"bottom","toNode":"canonical","toSide":"top"},
+    {"id":"e3","fromNode":"roadmap","fromSide":"bottom","toNode":"visual","toSide":"top"},
+    {"id":"e4","fromNode":"canonical","fromSide":"right","toNode":"verbs","toSide":"left"},
+    {"id":"e5","fromNode":"verbs","fromSide":"right","toNode":"entity","toSide":"left"},
+    {"id":"e6","fromNode":"entity","fromSide":"right","toNode":"client","toSide":"left"},
+    {"id":"e7","fromNode":"canonical","fromSide":"bottom","toNode":"cards","toSide":"top"},
+    {"id":"e8","fromNode":"visual","fromSide":"bottom","toNode":"assessment","toSide":"top"},
+    {"id":"e9","fromNode":"verbs","fromSide":"bottom","toNode":"cases","toSide":"top"},
+    {"id":"e10","fromNode":"entity","fromSide":"bottom","toNode":"lab","toSide":"top"},
+    {"id":"e11","fromNode":"client","fromSide":"bottom","toNode":"sources","toSide":"top"},
+    {"id":"e12","fromNode":"cards","fromSide":"right","toNode":"assessment","toSide":"left"},
+    {"id":"e13","fromNode":"assessment","fromSide":"right","toNode":"cases","toSide":"left"},
+    {"id":"e14","fromNode":"cases","fromSide":"right","toNode":"lab","toSide":"left"},
+    {"id":"e15","fromNode":"lab","fromSide":"right","toNode":"sources","toSide":"left"},
+    {"id":"e16","fromNode":"lab","fromSide":"bottom","toNode":"next","toSide":"top"}
+  ]
+}
