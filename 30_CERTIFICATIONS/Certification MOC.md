@@ -2,6 +2,7 @@
 type: moc
 domain: certification
 status: active
+verified_at: 2026-07-24
 tags:
   - certification
   - navigation
@@ -10,28 +11,29 @@ tags:
 
 # Certification MOC
 
-# Entry points
+## Primary entry points
 
+- [[00_HOME/Java Learning Dashboard]]
 - [[00_HOME/Certification 99 Percent Readiness Dashboard]]
 - [[00_HOME/Oracle Java 17 and 21 Certification Program]]
 - [[00_HOME/Java 11 17 21 Complete Knowledge Program]]
 - [[00_HOME/Card Review Dashboard]]
 - [[00_HOME/Knowledge Route Registry]]
-- [[00_HOME/Review Dashboard]]
+- [[01_MAPS/Java Certification Routes.canvas]]
 - [[01_MAPS/Certification 99 Percent Map.canvas]]
 
-# Corrected learning system
+## Learning-system contract
 
 ```mermaid
 flowchart LR
-    OBJ["Objective"] --> PRE["Pre-test"]
-    PRE --> CONCEPT["Canonical + visual"]
-    CONCEPT --> CARD["Stable card IDs"]
-    CARD --> CASE["Cases"]
-    CASE --> LAB["Lab"]
-    LAB --> POST["Post-test"]
-    POST --> PROGRESS["Progress registry"]
-    PROGRESS --> MOCK["Timed mock"]
+    OBJ[Official objective] --> ROAD[Route roadmap]
+    ROAD --> HUB[Canonical hub]
+    HUB --> NOTE[Atomic concepts]
+    NOTE --> CARD[Stable cards]
+    CARD --> DRILL[Drills and cases]
+    DRILL --> LAB[Executable evidence]
+    LAB --> REVIEW[Per-card progress]
+    REVIEW --> MOCK[Timed mock]
 ```
 
 Machine controls:
@@ -47,90 +49,99 @@ Machine controls:
 .github/scripts/audit_java_version_coverage.py
 ```
 
-# Master tracks
+## Master tracks
 
-| Track | Roadmap | Target |
-|---|---|---:|
-| Spring 2V0-72.22 | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]] | 99% |
-| Java 11/17/21 platform | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] | 99% |
-| Oracle Java 17 + 21 certification program | [[00_HOME/Oracle Java 17 and 21 Certification Program]] | 99% |
-| Java 1Z0-829 | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | 99% |
-| Java 1Z0-830 | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | 99% |
-| Java Concurrency | [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]] | 99% |
+| Track | Roadmap | Current delivery |
+|---|---|---|
+| Spring 2V0-72.22 | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]] | multiple published routes |
+| Java 11/17/21 platform | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] | `JAVA-LTS-B01` published |
+| Oracle Java 17 + 21 | [[00_HOME/Oracle Java 17 and 21 Certification Program]] | B01 and B02 lab-proven |
+| Java `1Z0-829` | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | B01 and B02 published |
+| Java `1Z0-830` | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | B01 and B02 published |
+| Java Concurrency | [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]] | foundation published |
 
-# Java 11, 17 and 21
+# Java certification navigation
 
-## JAVA-LTS-B01 — Evolution and Migration
-
-- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap]]
-- [[10_CONCEPTS/Java/Versions/Java 11 17 21 LTS Evolution]]
-- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Cards|30 cards]]
-- [[40_PRODUCTION_CASES/Java/Java 11 17 21 Migration Cases|10 cases]]
-- [[50_LABS/Java/JAVA-LTS-B01/README|JDK 11/17/21 lab]]
-- [[98_SOURCES/Java 11 17 21 Official Sources]]
+## Version model
 
 ```text
-Java 11  compatibility baseline
-Java 17  exact 1Z0-829 exam baseline
-Java 21  exact 1Z0-830 and modern production baseline
+Java 11  compatibility and migration baseline
+Java 17  exact 1Z0-829 compile/API baseline
+Java 21  exact 1Z0-830 compile/API baseline
 ```
 
-The route is cumulative, but exam answers remain version-bound.
+Shared mechanisms are reused, but questions and proofs remain version-bound.
 
-# Oracle Java certification dual track
-
-- [[00_HOME/Oracle Java 17 and 21 Certification Program]]
 - [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]]
-
-```text
-shared canonical knowledge
-→ exact Java 17 lane
-→ exact Java 21 lane
-→ separate objective evidence and timed mocks
-```
-
-# Java 1Z0-829
-
-- [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]]
 - [[98_SOURCES/Java SE 17 1Z0-829 Sources]]
-
-```text
-JAVA-B01 Data/Text/Date-Time
-JAVA-B02 Control Flow and Pattern Matching
-JAVA-B03 Object Model
-JAVA-B04 Exceptions and Resources
-JAVA-B05 Collections and Generics
-JAVA-B06 Lambdas and Streams
-JAVA-B07 Modules and Deployment
-JAVA-B08 Concurrency
-JAVA-B09 I/O and NIO.2
-JAVA-B10 JDBC
-JAVA-B11 Localization
-```
-
-Java 17 is the exact compile/API baseline. JDBC is a direct `1Z0-829` objective.
-
-# Java 1Z0-830
-
-- [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]]
 - [[98_SOURCES/Java SE 21 1Z0-830 Sources]]
-- [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]]
+
+## JAVA-B01 — Values, Text and Date-Time
+
+Status: **lab-proven**.
 
 ```text
-JAVA-B01 Values/Text/Date-Time
-JAVA-B02 Program Flow + pattern switch
-JAVA-B03 Object Model + record patterns
-JAVA-B04 Exceptions and Resources
-JAVA-B05 Collections/Generics + sequenced collections
-JAVA-B06 Lambdas and Streams
-JAVA-B07 Modules and Deployment
-JAVA-B08 Concurrency + virtual threads
-JAVA-B09 I/O and NIO.2
-JAVA-B11 Localization
-JAVA-SUP-B01 Logging/Annotations/Generics
+9 atomic concepts
+75 base cards
+15 drills
+3 proof classes
+JDK 17 / JDK 21 PASS
 ```
 
-Java 21 is the exact compile/API baseline. JDBC remains backend knowledge but is not counted toward the main `1Z0-830` objective quota.
+- [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap]]
+- [[10_CONCEPTS/Java/Core/Java Values Text and Date-Time]]
+- [[50_LABS/Java/JAVA-B01/README]]
+
+Atomic start: [[10_CONCEPTS/Java/Core/Java Primitive Values and Literals]].
+
+## JAVA-B02 — Control Flow and Java 21 Pattern Switch
+
+Status: **lab-proven**.
+
+```text
+8 atomic concepts
+60 base cards
+20 drills
+2 positive proof classes
+11 expected compile failures
+JDK 17 / JDK 21 PASS
+```
+
+- [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]]
+- [[10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch]]
+- [[50_LABS/Java/JAVA-B02/README]]
+
+Atomic start: [[10_CONCEPTS/Java/Core/Java Conditions and Definite Assignment]].
+
+## Java route sequence
+
+| Order | Route | Java 17 | Java 21 | Status |
+|---:|---|---|---|---|
+| 1 | JAVA-B01 Values/Text/Date-Time | included | included | lab-proven |
+| 2 | JAVA-B02 Control Flow | included | pattern-switch delta | lab-proven |
+| 3 | JAVA-B03 Object Model | records/sealed | record patterns | next |
+| 4 | JAVA-B05 Collections/Generics | included | sequenced collections | planned |
+| 5 | JAVA-B06 Lambdas/Streams | included | included | planned |
+| 6 | JAVA-B04 Exceptions/Resources | included | included | planned |
+| 7 | JAVA-B07 Modules/Deployment | included | included | planned |
+| 8 | JAVA-B08 Concurrency | included | virtual threads | planned |
+| 9 | JAVA-B09 I/O/NIO.2 | included | included | planned |
+| 10 | JAVA-B10 JDBC | direct objective | supplementary backend only | planned |
+| 11 | JAVA-B11 Localization | included | included | planned |
+| 12 | JAVA-SUP-B01 | supporting | logging/annotations/generics | planned |
+
+## Java progress inventory
+
+```text
+published exam routes          2
+atomic notes                  17
+base cards                   135
+drills                        35
+positive proof classes         5
+expected compile failures     11
+```
+
+Use [[00_HOME/Java Learning Dashboard]] for the operational learning flow.
 
 # Java Concurrency
 
@@ -140,40 +151,25 @@ Java 21 is the exact compile/API baseline. JDBC remains backend knowledge but is
 - [[20_QUESTIONS/Interview/Java/Concurrency/Advanced Concurrency Recall]]
 - [[50_LABS/Java/Concurrency/README]]
 
-# Spring published batches
+# Spring navigation
 
-| Batch | Cards | Status |
-|---|---:|---|
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B01/CORE-B01 Cards|CORE-B01]] | 20 | normalized |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B02/CORE-B02 Cards|CORE-B02]] | 24 | published |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B03/CORE-B03 Cards|CORE-B03]] | 24 | published |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B04/CORE-B04 Cards|CORE-B04]] | 24 | normalized |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B05/CORE-B05 Cards|CORE-B05]] | 24 | published |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/CORE-B06/CORE-B06 Cards|CORE-B06]] | 24 | published |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/AOP-B01/AOP-B01 Cards|AOP-B01]] | 24 | normalized |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/CACHE-B01/CACHE-B01 Cards|CACHE-B01]] | 20 | normalized |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/TX-B01/TX-B01 Cards|TX-B01]] | 32 | normalized |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/DATA-B01/DATA-B01 Cards|DATA-B01]] | 36 | normalized |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/TEST-B01/TEST-B01 Cards|TEST-B01]] | 36 | normalized |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards|SPRING-BOOT-B01]] | 30 | published |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards|SPRING-BOOT-B02]] | 35 | published |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards|SPRING-MVC-B01]] | 35 | published |
-| [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Cards|SPRING-MVC-B02]] | 25 | published |
-| **Total** | **413** | |
+## Published batches
 
-# Spring route hubs
+| Area | Route hub |
+|---|---|
+| Spring Core | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]] |
+| AOP and Cache | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]] |
+| Transactions | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]] |
+| Data JPA | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]] |
+| Testing | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]] |
+| Spring Boot B01 | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]] |
+| Spring Boot B02 | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]] |
+| Spring MVC B01 | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]] |
+| Spring MVC B02 | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]] |
 
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
+The aggregate workflow currently has an unrelated `SPRING-MVC-B02` regression; Java B01/B02 route-specific checks pass separately.
 
-# Database route
+# Database navigation
 
 - [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap]]
 - [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Cards]]
@@ -191,23 +187,21 @@ Explanation
 Exam Trap
 ```
 
-Additional sections strengthen the card but do not replace the mandatory contract.
+Learning state is stored per stable `card_id`, not in batch frontmatter.
 
-# Assessment process
+# Recommended user process
 
-1. Identify the exact target exam and Java version.
-2. Complete pre-test without confidence updates.
-3. Study canonical and visual mechanism.
-4. Answer stable card IDs.
-5. Record outcome and confidence per card.
-6. Apply the mechanism to production cases.
-7. Predict and execute lab evidence.
-8. Complete post-test.
-9. Enter the matching version-specific timed mock only after delayed review.
+1. Open the relevant dashboard.
+2. Select the exact exam and Java version.
+3. Follow route roadmap → canonical hub → atomic notes.
+4. Answer active recall without notes.
+5. Complete stable cards and record confidence.
+6. Attempt drills before execution.
+7. Predict and run the lab.
+8. Enter timed mocks only after delayed review.
 
-# Next implementation routes
+# Next implementation route
 
 ```text
-Spring: SPRING-SEC-B01 — Authentication, Authorization and Method Security
-Java:   JAVA-B01 — Values, Text and Date-Time for 1Z0-829 and 1Z0-830
+JAVA-B03 — Object Model, Records, Sealed Types and Record Patterns
 ```
