@@ -72,11 +72,23 @@ status: lab-proven
 - [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]]
 - [[10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch]]
 
+### Navigation inventory
+
+```text
+canonical route hubs             2
+atomic Java concept notes       17
+Java learning dashboard          1
+Java certification Canvas        1
+machine-registered Java routes   2
+```
+
 ### Next Java route
 
 ```text
 JAVA-B03 — Object Model, Records, Sealed Types and Record Patterns
 ```
+
+B03 should be implemented in a separate route PR after this foundation and navigation slice is reviewed.
 
 ## Java certification lanes
 
@@ -134,7 +146,7 @@ python .github/scripts/card_progress.py record \
 ```text
 structural Markdown and card audit
 cross-link graph audit
-stable card catalog and progress compatibility
+per-card progress tests and catalog audit
 objective traceability
 certification readiness calculation
 Java version coverage
