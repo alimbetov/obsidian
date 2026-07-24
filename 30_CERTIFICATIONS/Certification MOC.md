@@ -13,6 +13,7 @@ tags:
 # Entry points
 
 - [[00_HOME/Certification 99 Percent Readiness Dashboard]]
+- [[00_HOME/Oracle Java 17 and 21 Certification Program]]
 - [[00_HOME/Java 11 17 21 Complete Knowledge Program]]
 - [[00_HOME/Card Review Dashboard]]
 - [[00_HOME/Knowledge Route Registry]]
@@ -52,7 +53,9 @@ Machine controls:
 |---|---|---:|
 | Spring 2V0-72.22 | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]] | 99% |
 | Java 11/17/21 platform | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] | 99% |
+| Oracle Java 17 + 21 certification program | [[00_HOME/Oracle Java 17 and 21 Certification Program]] | 99% |
 | Java 1Z0-829 | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | 99% |
+| Java 1Z0-830 | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | 99% |
 | Java Concurrency | [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]] | 99% |
 
 # Java 11, 17 and 21
@@ -69,10 +72,22 @@ Machine controls:
 ```text
 Java 11  compatibility baseline
 Java 17  exact 1Z0-829 exam baseline
-Java 21  modern production baseline
+Java 21  exact 1Z0-830 and modern production baseline
 ```
 
 The route is cumulative, but exam answers remain version-bound.
+
+# Oracle Java certification dual track
+
+- [[00_HOME/Oracle Java 17 and 21 Certification Program]]
+- [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]]
+
+```text
+shared canonical knowledge
+→ exact Java 17 lane
+→ exact Java 21 lane
+→ separate objective evidence and timed mocks
+```
 
 # Java 1Z0-829
 
@@ -93,7 +108,29 @@ JAVA-B10 JDBC
 JAVA-B11 Localization
 ```
 
-Every route must include Java 11 baseline, Java 17 exam semantics and Java 21 production delta.
+Java 17 is the exact compile/API baseline. JDBC is a direct `1Z0-829` objective.
+
+# Java 1Z0-830
+
+- [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]]
+- [[98_SOURCES/Java SE 21 1Z0-830 Sources]]
+- [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]]
+
+```text
+JAVA-B01 Values/Text/Date-Time
+JAVA-B02 Program Flow + pattern switch
+JAVA-B03 Object Model + record patterns
+JAVA-B04 Exceptions and Resources
+JAVA-B05 Collections/Generics + sequenced collections
+JAVA-B06 Lambdas and Streams
+JAVA-B07 Modules and Deployment
+JAVA-B08 Concurrency + virtual threads
+JAVA-B09 I/O and NIO.2
+JAVA-B11 Localization
+JAVA-SUP-B01 Logging/Annotations/Generics
+```
+
+Java 21 is the exact compile/API baseline. JDBC remains backend knowledge but is not counted toward the main `1Z0-830` objective quota.
 
 # Java Concurrency
 
@@ -158,7 +195,7 @@ Additional sections strengthen the card but do not replace the mandatory contrac
 
 # Assessment process
 
-1. Identify the target Java/framework version.
+1. Identify the exact target exam and Java version.
 2. Complete pre-test without confidence updates.
 3. Study canonical and visual mechanism.
 4. Answer stable card IDs.
@@ -166,11 +203,11 @@ Additional sections strengthen the card but do not replace the mandatory contrac
 6. Apply the mechanism to production cases.
 7. Predict and execute lab evidence.
 8. Complete post-test.
-9. Enter mixed timed mock only after delayed review.
+9. Enter the matching version-specific timed mock only after delayed review.
 
 # Next implementation routes
 
 ```text
 Spring: SPRING-SEC-B01 — Authentication, Authorization and Method Security
-Java:   JAVA-B01 — Data, Text and Date-Time across Java 11/17/21
+Java:   JAVA-B01 — Values, Text and Date-Time for 1Z0-829 and 1Z0-830
 ```
