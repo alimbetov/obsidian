@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "track_id": "SPRING-2V0-72.22",
+  "reason": "SPRING-MVC-B02 published evidence",
+  "objective_updates": [
+    {
+      "id": "SPRING-3.2.1",
+      "status": "complete",
+      "mapping_granularity": "card",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/MVC/REST Endpoints ResponseEntity and RestTemplate.md"],
+        "visual": ["10_CONCEPTS/Spring/MVC/Spring MVC REST Visual Deep Dive.md"],
+        "card_prefixes": ["SPRING-MVC-B02-"],
+        "cases": ["40_PRODUCTION_CASES/Spring/Spring MVC REST Production Cases.md"],
+        "labs": ["50_LABS/Spring/SPRING-MVC-B02/README.md"],
+        "sources": ["98_SOURCES/Spring MVC REST and RestTemplate Sources.md"],
+        "roadmaps": ["30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap.md"],
+        "canvas": ["01_MAPS/Spring MVC REST Map.canvas"]
+      }
+    },
+    {
+      "id": "SPRING-3.2.2",
+      "status": "complete",
+      "mapping_granularity": "card",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Spring/MVC/REST Endpoints ResponseEntity and RestTemplate.md"],
+        "visual": ["10_CONCEPTS/Spring/MVC/Spring MVC REST Visual Deep Dive.md"],
+        "cards": [
+          "SPRING-MVC-B02-C014",
+          "SPRING-MVC-B02-C015",
+          "SPRING-MVC-B02-C016",
+          "SPRING-MVC-B02-C017",
+          "SPRING-MVC-B02-C018",
+          "SPRING-MVC-B02-C019",
+          "SPRING-MVC-B02-C020",
+          "SPRING-MVC-B02-C021",
+          "SPRING-MVC-B02-C022",
+          "SPRING-MVC-B02-C023"
+        ],
+        "cases": ["40_PRODUCTION_CASES/Spring/Spring MVC REST Production Cases.md"],
+        "labs": ["50_LABS/Spring/SPRING-MVC-B02/README.md"],
+        "sources": ["98_SOURCES/Spring MVC REST and RestTemplate Sources.md"],
+        "roadmaps": ["30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap.md"],
+        "canvas": ["01_MAPS/Spring MVC REST Map.canvas"]
+      }
+    }
+  ]
+}
