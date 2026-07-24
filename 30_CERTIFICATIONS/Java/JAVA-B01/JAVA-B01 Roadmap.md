@@ -17,6 +17,7 @@ objectives:
   - JAVA21-1.1
   - JAVA21-1.2
   - JAVA21-1.3
+atomic_note_count: 9
 base_card_target: 75
 drill_card_target: 15
 published_base_cards: 75
@@ -25,6 +26,7 @@ card_batches:
   - JAVA-VALUES-B01
   - JAVA-TEXT-B01
   - JAVA-TIME-B01
+next_route: JAVA-B02
 tags:
   - java
   - java-17
@@ -39,158 +41,71 @@ tags:
 # JAVA-B01 — Values, Strings, Text Blocks and Date-Time
 
 > [!summary]
-> `JAVA-B01` is the first executable certification domain. It establishes the value, conversion, text and temporal rules reused by later compile/output questions. Java 17 and Java 21 share the core behavior covered here; the exact exam lane is still recorded on every question. The route is independently compile/run proven on JDK 17 and JDK 21.
+> First lab-proven Java certification route. It establishes expression, text and temporal rules reused by later compile/output questions. The route is now navigated through nine atomic concept notes instead of one 800-line chapter.
 
-# Why this route is first
+## Fast entry
 
-Later domains assume that the learner can already reason about:
+- **Java dashboard:** [[00_HOME/Java Learning Dashboard]]
+- **Canonical hub:** [[10_CONCEPTS/Java/Core/Java Values Text and Date-Time]]
+- **Visual map:** [[01_MAPS/Java Certification Routes.canvas]]
+- **Start concept:** [[10_CONCEPTS/Java/Core/Java Primitive Values and Literals]]
+- **Cards:** [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01A Values Cards]], [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01B Text Cards]], [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01C Date-Time Cards]]
+- **Drills:** [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Drills]]
+- **Lab:** [[50_LABS/Java/JAVA-B01/README]]
 
-```text
-literal type
-numeric promotion
-cast legality
-operator precedence
-short-circuit evaluation
-String identity versus equality
-StringBuilder mutation and aliasing
-text-block indentation and escapes
-temporal immutability
-Period versus Duration
-Instant versus local date-time
-zone gaps and overlaps
-formatter symbols and resolver behavior
-```
+## Objective mapping
 
-Without these rules, questions about overload resolution, collections, streams, exceptions and concurrency become guesswork.
-
-# Objective mapping
-
-| Objective | Scope | Route evidence |
+| Objective | Scope | Evidence |
 |---|---|---|
-| `JAVA21-1.1` | primitives, wrappers, Math, promotions, casts and boolean expressions | `JAVA-VALUES-B01` cards, drills and `ValuesProof` |
-| `JAVA21-1.2` | String, StringBuilder and text blocks | `JAVA-TEXT-B01` cards, drills and `TextProof` |
-| `JAVA21-1.3` | date/time, period, duration, instant, zones and DST | `JAVA-TIME-B01` cards, drills and `DateTimeProof` |
+| `JAVA21-1.1` | primitives, wrappers, Math, promotions, casts, boolean expressions | 3 atomic notes, 25 cards, drills, `ValuesProof` |
+| `JAVA21-1.2` | String, StringBuilder, text blocks | 3 atomic notes, 25 cards, drills, `TextProof` |
+| `JAVA21-1.3` | local temporal types, period, duration, instant, zones, DST, formatting | 3 atomic notes, 25 cards, drills, `DateTimeProof` |
 
-# Route artifacts
+## Atomic knowledge sequence
 
-| Role | Artifact |
-|---|---|
-| Canonical knowledge | [[10_CONCEPTS/Java/Core/Java Values Text and Date-Time]] |
-| Values cards | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01A Values Cards]] |
-| Text cards | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01B Text Cards]] |
-| Date-time cards | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01C Date-Time Cards]] |
-| Compile/output drills | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Drills]] |
-| Executable lab | [[50_LABS/Java/JAVA-B01/README]] |
-| Java 21 source index | [[98_SOURCES/Java SE 21 1Z0-830 Sources]] |
-| Java 17 source index | [[98_SOURCES/Java SE 17 1Z0-829 Sources]] |
-| Java 17/21 delta | [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]] |
+| Order | Concept ID | Note | Card batch |
+|---:|---|---|---|
+| 1 | `JAVA-B01-N01` | [[10_CONCEPTS/Java/Core/Java Primitive Values and Literals]] | `JAVA-VALUES-B01` |
+| 2 | `JAVA-B01-N02` | [[10_CONCEPTS/Java/Core/Java Numeric Promotion and Casting]] | `JAVA-VALUES-B01` |
+| 3 | `JAVA-B01-N03` | [[10_CONCEPTS/Java/Core/Java Wrappers Boxing and Math]] | `JAVA-VALUES-B01` |
+| 4 | `JAVA-B01-N04` | [[10_CONCEPTS/Java/Core/Java String Identity and Operations]] | `JAVA-TEXT-B01` |
+| 5 | `JAVA-B01-N05` | [[10_CONCEPTS/Java/Core/Java StringBuilder Mutation]] | `JAVA-TEXT-B01` |
+| 6 | `JAVA-B01-N06` | [[10_CONCEPTS/Java/Core/Java Text Blocks]] | `JAVA-TEXT-B01` |
+| 7 | `JAVA-B01-N07` | [[10_CONCEPTS/Java/Core/Java Local Date-Time Types]] | `JAVA-TIME-B01` |
+| 8 | `JAVA-B01-N08` | [[10_CONCEPTS/Java/Core/Java Period Duration and Instant]] | `JAVA-TIME-B01` |
+| 9 | `JAVA-B01-N09` | [[10_CONCEPTS/Java/Core/Java Zones DST and Formatting]] | `JAVA-TIME-B01` |
 
-# Version contract
+## Version contract
 
 ```text
 1Z0-829 → compile and API reasoning against Java SE 17
 1Z0-830 → compile and API reasoning against Java SE 21
 ```
 
-For this route, the tested contracts are intentionally shared unless a card says otherwise:
+The B01 mechanisms are shared in both lanes unless a question explicitly says otherwise. Runtime examples execute in both JDK lanes to prevent accidental API leakage.
 
-- primitive conversions and promotions are unchanged;
-- `String`, `StringBuilder` and final text-block behavior are shared;
-- the core `java.time` contracts used here are shared;
-- runtime examples execute in both JDK lanes to prevent accidental API leakage.
-
-# Knowledge slices
-
-## JAVA-B01A — Values and expressions
+## Practice inventory
 
 ```text
-primitive domains and literal types
-binary, octal, decimal and hexadecimal literals
-underscores in numeric literals
-widening and narrowing primitive conversion
-unary and binary numeric promotion
-compound assignment conversion
-integer division and remainder
-overflow and floating-point special values
-operator precedence and short-circuiting
-boxing, unboxing, wrapper caches and equality
-parsing and valueOf
-Math rounding, exact arithmetic and edge cases
+JAVA-VALUES-B01 cards    25
+JAVA-TEXT-B01 cards      25
+JAVA-TIME-B01 cards      25
+compile/output drills    15
+positive proof classes    3
 ```
 
-Published: **25 cards** with IDs `JAVA-VALUES-B01-C001..C025`.
+The drills require compile/no-compile, exact output, exception type, identity/equality, mutation tracing, DST transition reasoning or formatter analysis.
 
-## JAVA-B01B — Strings, builders and text blocks
+## Confirmed executable evidence
+
+GitHub Actions run `30065610629`:
 
 ```text
-String immutability and pooling
-compile-time constants and interning
-concatenation evaluation order
-index-based methods and boundary behavior
-equality, comparison and searching
-strip, trim, blank and empty semantics
-literal replacement versus regex replacement
-split behavior and trailing empty elements
-formatted strings
-text-block opening, indentation and closing delimiter rules
-text-block escapes: \s and line continuation
-StringBuilder mutation, capacity-independent semantics and aliasing
+JDK 17 compile and runtime assertions  PASS
+JDK 21 compile and runtime assertions  PASS
 ```
 
-Published: **25 cards** with IDs `JAVA-TEXT-B01-C001..C025`.
-
-## JAVA-B01C — Date-time and zones
-
-```text
-immutable temporal objects
-LocalDate, LocalTime and LocalDateTime
-Instant and epoch-based reasoning
-Period versus Duration
-supported and unsupported temporal units
-month-end adjustment
-ZoneId, ZoneOffset, ZonedDateTime and OffsetDateTime
-DST gaps and overlaps
-same-instant versus same-local transformations
-DateTimeFormatter patterns and resolver behavior
-locale-sensitive formatting
-TemporalAdjusters
-```
-
-Published: **25 cards** with IDs `JAVA-TIME-B01-C001..C025`.
-
-# Drill model
-
-The 15 drills are not definition recall. Every drill requires at least one of:
-
-```text
-compile / does not compile
-exact output
-exception type
-identity versus equality
-mutation trace
-DST transition reasoning
-formatter parse result
-```
-
-Allocation:
-
-| Drill family | Count |
-|---|---:|
-| Values and promotions | 4 |
-| String and text blocks | 5 |
-| Date-time and zones | 6 |
-| **Total** | **15** |
-
-# Executable evidence
-
-GitHub Actions run `30065610629` executed the dedicated `JAVA-B01 Proof` matrix:
-
-```text
-JDK 17  compile and runtime assertions  PASS
-JDK 21  compile and runtime assertions  PASS
-```
-
-The matrix compiles the same proof sources with the matching `--release` value and executes:
+Executed classes:
 
 ```text
 lab.b01.ValuesProof
@@ -198,20 +113,9 @@ lab.b01.TextProof
 lab.b01.DateTimeProof
 ```
 
-# Evidence policy
+## Determinism contract
 
-Each statement must resolve to one of these evidence classes:
-
-```text
-language conversion or expression rule → JLS 21 / JLS 17
-String or wrapper API result           → Java SE API
-text-block lexical rule                → JLS text-block sections
-java.time behavior                     → Java SE API
-DST transition                         → ZoneRules plus explicit ZoneId
-exact execution result                 → JAVA-B01 lab source
-```
-
-Environment-dependent defaults are forbidden in deterministic questions:
+Exact questions avoid environment-dependent defaults:
 
 ```text
 no system default locale
@@ -222,47 +126,35 @@ no unspecified charset
 
 Use explicit `Locale`, `ZoneId`, `Clock` or fixed values.
 
-# Study sequence
+## Learner workflow
 
-```mermaid
-flowchart LR
-    A[Primitive values] --> B[Promotions and operators]
-    B --> C[Wrappers and Math]
-    C --> D[String identity and methods]
-    D --> E[StringBuilder mutation]
-    E --> F[Text blocks]
-    F --> G[Local temporal types]
-    G --> H[Period and Duration]
-    H --> I[Instant and zones]
-    I --> J[DST gaps and overlaps]
-    J --> K[Format and parse]
-    K --> L[Mixed drills]
-```
+1. Open the first atomic note.
+2. Follow **Next concept** links.
+3. Answer active recall before opening cards.
+4. Complete the related card batch.
+5. Attempt drills without executing code.
+6. Write predictions for proof classes.
+7. Run the JDK 17/21 lab.
+8. Record card outcomes through [[00_HOME/Card Review Dashboard]].
 
-# Completion gate
+## Completion status
 
 ```text
-[x] JAVA21-1.1 mapped to canonical, cards, drills and lab source
-[x] JAVA21-1.2 mapped to canonical, cards, drills and lab source
-[x] JAVA21-1.3 mapped to canonical, cards, drills and lab source
-[x] 75 stable machine-readable base-card IDs
-[x] 15 stable drill IDs
-[x] deterministic zones and locales
-[x] explicit Java 17/21 lane contract
-[x] no JDBC counted in this route
-[x] execute the lab on JDK 17 and JDK 21 in CI
-[x] attach CI run ID `30065610629`
-[ ] add delayed-review performance data
+[x] 9 atomic concepts
+[x] 75 stable base-card IDs
+[x] 15 drills
+[x] Java 17/21 version contract
+[x] deterministic temporal examples
+[x] JDK 17 and JDK 21 CI evidence
+[x] objective status lab-proven
+[ ] learner delayed-review history
+[ ] timed mixed mocks
 ```
 
-# Route status
+## Sources and navigation
 
-`JAVA-B01` is **lab-proven** for its initial certification quota. Knowledge, cards, drills and executable assertions are published; both JDK runtime lanes pass. Learner retention and timed-performance evidence remain a later progress layer and do not block the route's technical readiness.
-
-# Next route
-
-```text
-JAVA-B02 — Control Flow and Java 21 Pattern Switch
-```
-
-B02 may assume all B01 conversion, operator and text-output rules.
+- [[98_SOURCES/Java SE 17 1Z0-829 Sources]]
+- [[98_SOURCES/Java SE 21 1Z0-830 Sources]]
+- [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]]
+- [[00_HOME/Oracle Java 17 and 21 Certification Program]]
+- **Next route:** [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]]
