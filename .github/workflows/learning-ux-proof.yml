@@ -1,0 +1,103 @@
+name: Learning UX Proof
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "00_HOME/Java Learning Cockpit.md"
+      - "00_HOME/Java Learning Dashboard.md"
+      - "00_HOME/Card Review Dashboard.md"
+      - "00_HOME/Java Weakness Repair Center.md"
+      - "00_HOME/Obsidian Learning Interface Setup.md"
+      - "01_MAPS/Java Learning Journey.canvas"
+      - "70_PROGRESS/Java Learning Progress Dashboard.md"
+      - "90_TEMPLATES/Atomic Lesson UX Template.md"
+      - "90_TEMPLATES/Learning Session Template.md"
+      - "90_TEMPLATES/Route Learning UX Standard.md"
+      - ".obsidian/snippets/learning-experience.css"
+      - ".github/workflows/learning-ux-proof.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  learning-ux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run structural and cross-link audits
+        run: |
+          python .github/scripts/audit_vault_v2.py
+          python .github/scripts/audit_cross_links_with_overrides.py
+
+      - name: Validate learning journey Canvas
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('01_MAPS/Java Learning Journey.canvas')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          nodes = data.get('nodes', [])
+          edges = data.get('edges', [])
+          node_ids = [node.get('id') for node in nodes]
+          assert len(node_ids) == len(set(node_ids)), 'duplicate Canvas node id'
+          assert all(node_ids), 'Canvas node without id'
+          known = set(node_ids)
+          for edge in edges:
+              assert edge.get('fromNode') in known, f"missing fromNode: {edge}"
+              assert edge.get('toNode') in known, f"missing toNode: {edge}"
+          for node in nodes:
+              if node.get('type') == 'file':
+                  target = Path(node['file'])
+                  assert target.exists(), f"missing Canvas file target: {target}"
+          print(f'Canvas PASS: {len(nodes)} nodes, {len(edges)} edges')
+          PY
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Mermaid CLI
+        run: npm install --global @mermaid-js/mermaid-cli@11.12.0
+
+      - name: Render learner-facing Mermaid diagrams
+        run: |
+          set -euo pipefail
+          mkdir -p .audit/ux-rendered
+          diagrams=(
+            ".audit/mermaid/00_HOME__Java__Learning__Cockpit.md__001.mmd"
+            ".audit/mermaid/00_HOME__Card__Review__Dashboard.md__001.mmd"
+            ".audit/mermaid/90_TEMPLATES__Atomic__Lesson__UX__Template.md__001.mmd"
+          )
+          for diagram in "${diagrams[@]}"; do
+            test -f "$diagram"
+            output=".audit/ux-rendered/$(basename "${diagram%.mmd}").svg"
+            mmdc \
+              --input "$diagram" \
+              --output "$output" \
+              --backgroundColor transparent \
+              --puppeteerConfigFile .github/mermaid-puppeteer.json
+          done
+
+      - name: Publish summary
+        run: |
+          {
+            echo "## Learning UX Proof"
+            echo
+            echo "- Structural vault audit: PASS"
+            echo "- Cross-link graph audit: PASS"
+            echo "- Learning Journey Canvas: PASS"
+            echo "- Learner-facing Mermaid diagrams: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
