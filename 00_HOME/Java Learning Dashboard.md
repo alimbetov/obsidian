@@ -15,6 +15,9 @@ lab_proven_routes:
   - JAVA-B03
 published_base_cards: 250
 published_drills: 70
+cssclasses:
+  - learning-dashboard
+  - wide-page
 tags:
   - java
   - navigation
@@ -25,90 +28,32 @@ tags:
 
 # Java Learning Dashboard
 
-> [!summary]
-> Главная пользовательская точка входа в Java 11/17/21 и Oracle certification tracks. Здесь выбирается не папка, а режим работы: изучение нового механизма, повторение карточек, compile/output drills или исполняемый lab.
+> [!start]
+> Для ежедневной работы открывай [[00_HOME/Java Learning Cockpit]]. Эта страница является каталогом маршрутов, atomic concepts, practice bank и executable evidence.
 
-## Continue learning
+## Опубликованные маршруты
 
-| Status | Route | Open |
-|---|---|---|
-| `lab-proven` | JAVA-B01 — Values, Text and Date-Time | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap]] |
-| `lab-proven` | JAVA-B02 — Control Flow and Pattern Switch | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]] |
-| `lab-proven` | JAVA-B03 — Object Model, Records and Record Patterns | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap]] |
-| `next` | JAVA-B05 — Collections, Generics and Sequenced Collections | planned next route |
+| Status | Route | Atomic notes | Cards | Drills | Открыть |
+|---|---|---:|---:|---:|---|
+| `lab-proven` | JAVA-B01 — Values, Text and Date-Time | 9 | 75 | 15 | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap]] |
+| `lab-proven` | JAVA-B02 — Control Flow and Pattern Switch | 8 | 60 | 20 | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]] |
+| `lab-proven` | JAVA-B03 — Object Model and Record Patterns | 12 | 115 | 35 | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap]] |
+| `next` | JAVA-B05 — Collections, Generics and Sequenced Collections | — | — | — | planned |
 
-## Choose today's mode
+## Выбрать маршрут по задаче
 
-### 1. Learn a new mechanism
+> [!learn]
+> **Нужно понять базовые значения, текст или date-time:** [[10_CONCEPTS/Java/Core/Java Values Text and Date-Time|JAVA-B01 hub]]
 
-Start from the current route hub and move through its atomic notes using **Next concept** links.
+> [!learn]
+> **Нужно научиться точно трассировать выполнение:** [[10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch|JAVA-B02 hub]]
 
-- [[10_CONCEPTS/Java/Core/Java Values Text and Date-Time|JAVA-B01 canonical hub]]
-- [[10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch|JAVA-B02 canonical hub]]
-- [[10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns|JAVA-B03 canonical hub]]
-
-### 2. Review cards
-
-```bash
-python .github/scripts/card_progress.py audit \
-  --root . \
-  --progress 70_PROGRESS/card-progress.json \
-  --catalog-output .audit/card-catalog.json \
-  --queue-output .audit/card-review-queue.md
-```
-
-Then open `.audit/card-review-queue.md`.
-
-For first initialization:
-
-```bash
-python .github/scripts/card_progress.py sync \
-  --root . \
-  --progress 70_PROGRESS/card-progress.json
-```
-
-Record an outcome:
-
-```bash
-python .github/scripts/card_progress.py record \
-  --card-id JAVA-FLOW-B02-C001 \
-  --outcome correct-confident \
-  --confidence 4
-```
-
-Detailed workflow: [[00_HOME/Card Review Dashboard]].
-
-### 3. Solve compile/output drills
-
-- [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Drills|B01 — 15 drills]]
-- [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Drills|B02 — 20 drills]]
-- [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Drills|B03 — 35 drills]]
-
-Protocol:
-
-```text
-1. Fix Java version.
-2. Predict compile/no-compile.
-3. If it compiles, predict exact output or exception.
-4. Write the mechanism before revealing the answer.
-5. Run the matching lab proof.
-```
-
-### 4. Run executable evidence
-
-- [[50_LABS/Java/JAVA-B01/README|B01 proof on JDK 17 and 21]]
-- [[50_LABS/Java/JAVA-B02/README|B02 positive and expected-failure proof]]
-- [[50_LABS/Java/JAVA-B03/README|B03 object-model and record-pattern proof]]
-
-### 5. Compare Java versions
-
-- [[00_HOME/Java 11 17 21 Complete Knowledge Program]]
-- [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]]
-- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap]]
+> [!learn]
+> **Нужно понять создание объектов, dispatch, records и sealed hierarchy:** [[10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns|JAVA-B03 hub]]
 
 ## JAVA-B01 concept map
 
-| Order | Concept | Practice |
+| # | Atomic concept | Practice batch |
 |---:|---|---|
 | 1 | [[10_CONCEPTS/Java/Core/Java Primitive Values and Literals]] | `JAVA-VALUES-B01` |
 | 2 | [[10_CONCEPTS/Java/Core/Java Numeric Promotion and Casting]] | `JAVA-VALUES-B01` |
@@ -122,7 +67,7 @@ Protocol:
 
 ## JAVA-B02 concept map
 
-| Order | Concept | Practice |
+| # | Atomic concept | Practice batch |
 |---:|---|---|
 | 1 | [[10_CONCEPTS/Java/Core/Java Conditions and Definite Assignment]] | `JAVA-FLOW-B02` |
 | 2 | [[10_CONCEPTS/Java/Core/Java Loops Transfers and Labels]] | `JAVA-FLOW-B02` |
@@ -135,7 +80,7 @@ Protocol:
 
 ## JAVA-B03 concept map
 
-| Order | Concept | Practice |
+| # | Atomic concept | Practice batch |
 |---:|---|---|
 | 1 | [[10_CONCEPTS/Java/Object Model/Java Object Creation Reachability and Lifecycle]] | `JAVA-OBJECT-B03` |
 | 2 | [[10_CONCEPTS/Java/Object Model/Java Nested Local and Anonymous Classes]] | `JAVA-OBJECT-B03` |
@@ -150,53 +95,26 @@ Protocol:
 | 11 | [[10_CONCEPTS/Java/Object Model/Java Record Patterns]] | `JAVA-TYPES-B03` |
 | 12 | [[10_CONCEPTS/Java/Object Model/Java Nested Patterns and Exhaustiveness]] | `JAVA-TYPES-B03` |
 
-## Current delivered inventory
+## Практика и доказательства
+
+| Route | Cards | Drills | Lab |
+|---|---|---|---|
+| B01 | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01A Values Cards|values]] · [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01B Text Cards|text]] · [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01C Date-Time Cards|time]] | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Drills|15]] | [[50_LABS/Java/JAVA-B01/README]] |
+| B02 | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02A Control Flow Cards|flow]] · [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02B Switch Cards|switch]] · [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02C Pattern Switch Cards|patterns]] | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Drills|20]] | [[50_LABS/Java/JAVA-B02/README]] |
+| B03 | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03A Object Lifecycle Cards|objects]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03B Initialization and Scope Cards|init]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03C Inheritance and Interfaces Cards|inheritance]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03D Records Sealed and Patterns Cards|types]] | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Drills|35]] | [[50_LABS/Java/JAVA-B03/README]] |
+
+## Управление обучением
+
+- [[00_HOME/Card Review Dashboard]] — due cards и outcome recording.
+- [[00_HOME/Java Weakness Repair Center]] — ошибка → механизм → repair.
+- [[70_PROGRESS/Java Learning Progress Dashboard]] — weekly learner review.
+- [[01_MAPS/Java Learning Journey.canvas]] — visual journey.
+- [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]] — version boundary.
+
+## Что будет дальше
 
 ```text
-lab-proven Java exam routes       3
-atomic concept notes             29
-base cards                       250
-drills                            70
-positive proof classes             9
-expected compile failures         28
-JDK lanes                      17, 21
+JAVA-B05 — Collections, Generics and Sequenced Collections
 ```
 
-## User navigation model
-
-```mermaid
-flowchart LR
-    DASH[Java Dashboard] --> ROUTE[Route Roadmap]
-    ROUTE --> HUB[Canonical Hub]
-    HUB --> ATOMIC[Atomic Concept]
-    ATOMIC --> CARDS[Cards]
-    CARDS --> DRILLS[Drills]
-    DRILLS --> LAB[Executable Lab]
-    LAB --> REVIEW[Progress Review]
-    REVIEW --> NEXT[Next Concept or Route]
-```
-
-## Master navigation
-
-- [[00_HOME/Oracle Java 17 and 21 Certification Program]]
-- [[30_CERTIFICATIONS/Certification MOC]]
-- [[00_HOME/Knowledge Route Registry]]
-- [[00_HOME/Certification 99 Percent Readiness Dashboard]]
-- [[01_MAPS/Java Certification Routes.canvas]]
-- [[01_MAPS/Certification 99 Percent Map.canvas]]
-
-## Definition of done for a learner
-
-A route is not personally mastered only because its material is `lab-proven`.
-
-Recommended learner gate:
-
-```text
-all atomic notes read
-active recall answered without notes
-all base cards initialized in progress registry
-repetitions >= 3 for core cards
-all drills attempted before answer reveal
-lab predictions written before execution
-mixed timed mock threshold reached later
-```
+Новый repository route не означает, что learner обязан немедленно переходить дальше. Сначала проверь текущий weakest mechanism в [[70_PROGRESS/Java Learning Progress Dashboard]].
