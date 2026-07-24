@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "routes": [
+    {
+      "id": "SPRING-MVC-B02",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Spring MVC REST Map.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Spring/MVC/REST Endpoints ResponseEntity and RestTemplate.md",
+        "10_CONCEPTS/Spring/MVC/Spring MVC REST Visual Deep Dive.md",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Cards.md",
+        "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Assessment.md",
+        "40_PRODUCTION_CASES/Spring/Spring MVC REST Production Cases.md",
+        "50_LABS/Spring/SPRING-MVC-B02/README.md",
+        "01_MAPS/Spring MVC REST Map.canvas",
+        "98_SOURCES/Spring MVC REST and RestTemplate Sources.md",
+        "70_PROGRESS/README.md"
+      ]
+    }
+  ]
+}
