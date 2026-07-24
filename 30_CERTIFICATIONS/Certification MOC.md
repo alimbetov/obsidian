@@ -121,7 +121,8 @@ Every route must include Java 11 baseline, Java 17 exam semantics and Java 21 pr
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Cards|SPRING-BOOT-B01]] | 30 | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Cards|SPRING-BOOT-B02]] | 35 | published |
 | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Cards|SPRING-MVC-B01]] | 35 | published |
-| **Total** | **388** | |
+| [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Cards|SPRING-MVC-B02]] | 25 | published |
+| **Total** | **413** | |
 
 # Spring route hubs
 
@@ -133,6 +134,7 @@ Every route must include Java 11 baseline, Java 17 exam semantics and Java 21 pr
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
 
 # Database route
 
@@ -169,6 +171,6 @@ Additional sections strengthen the card but do not replace the mandatory contrac
 # Next implementation routes
 
 ```text
-Spring: SPRING-MVC-B02 — REST Endpoints and HTTP Clients
+Spring: SPRING-SEC-B01 — Authentication, Authorization and Method Security
 Java:   JAVA-B01 — Data, Text and Date-Time across Java 11/17/21
 ```
