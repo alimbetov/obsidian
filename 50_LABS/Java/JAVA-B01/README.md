@@ -2,8 +2,10 @@
 type: lab
 lab: JAVA-B01
 domain: java
-status: source-validated
-runtime_status: jdk21-local-pass
+status: lab-proven
+runtime_status: jdk17-jdk21-ci-pass
+verified_at: 2026-07-24
+ci_run_id: 30065610629
 java_versions:
   - 17
   - 21
@@ -23,7 +25,7 @@ tags:
 # JAVA-B01 Lab — Values, Text and Date-Time
 
 > [!summary]
-> This lab converts the highest-risk B01 rules into deterministic executable assertions. It contains no dependency on the machine's default locale, zone or current clock.
+> This lab converts the highest-risk B01 rules into deterministic executable assertions. It contains no dependency on the machine's default locale, zone or current clock. The same sources compile and pass on independent JDK 17 and JDK 21 GitHub Actions lanes.
 
 # Source files
 
@@ -114,16 +116,32 @@ java -cp build/java-b01-21 lab.b01.DateTimeProof
 
 Expected output is identical.
 
-# Current evidence status
+# Confirmed evidence
+
+Dedicated GitHub Actions run `30065610629` executed the `JAVA-B01 Proof` workflow:
+
+```text
+JDK 17 compile with --release 17  PASS
+JDK 17 ValuesProof                 PASS
+JDK 17 TextProof                   PASS
+JDK 17 DateTimeProof               PASS
+
+JDK 21 compile with --release 21  PASS
+JDK 21 ValuesProof                 PASS
+JDK 21 TextProof                   PASS
+JDK 21 DateTimeProof               PASS
+```
+
+Additional validation:
 
 ```text
 OpenJDK 21.0.10 local compile/run  PASS
-javac --release 17 source check    PASS
-JDK 17 independent runtime job     pending
-JDK 21 CI runtime job              pending
+all 15 documented drill results    VERIFIED
+objective traceability contract    PASS
+card catalog recognition           75/75
 ```
 
-The route remains `source-and-drill-backed`, not `lab-proven`, until independent JDK 17 and JDK 21 CI jobs are attached.
+The lab and objectives `JAVA21-1.1`, `JAVA21-1.2` and `JAVA21-1.3` are classified as `lab-proven`.
 
 # Determinism contract
 
@@ -140,7 +158,15 @@ no LocalDate.now()
 no Instant.now()
 ```
 
-# Recommended CI matrix
+# CI matrix
+
+The repository workflow is:
+
+```text
+.github/workflows/java-b01-proof.yml
+```
+
+Its matrix contract is:
 
 ```yaml
 strategy:
@@ -148,7 +174,7 @@ strategy:
     java: [17, 21]
 ```
 
-Each lane should compile with its own `--release` value and execute all three proof classes.
+Each lane compiles with its own `--release` value and executes all three proof classes.
 
 # Related
 
