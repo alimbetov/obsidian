@@ -43,10 +43,13 @@ tags:
 - `@RequestBody`: https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/org/springframework/web/bind/annotation/RequestBody.html
 - `ResponseEntity`: https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/org/springframework/http/ResponseEntity.html
 - `HttpEntity`: https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/org/springframework/http/HttpEntity.html
+- `RequestEntity`: https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/org/springframework/http/RequestEntity.html
 - `HttpHeaders`: https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/org/springframework/http/HttpHeaders.html
 - `HttpStatus`: https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/org/springframework/http/HttpStatus.html
 - `MediaType`: https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/org/springframework/http/MediaType.html
+- `ParameterizedTypeReference`: https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/org/springframework/core/ParameterizedTypeReference.html
 - `RestTemplate`: https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/org/springframework/web/client/RestTemplate.html
+- `ResponseErrorHandler`: https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/org/springframework/web/client/ResponseErrorHandler.html
 - `RestTemplateBuilder`: https://docs.spring.io/spring-boot/docs/2.5.x/api/org/springframework/boot/web/client/RestTemplateBuilder.html
 - `MockRestServiceServer`: https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/org/springframework/test/web/client/MockRestServiceServer.html
 
@@ -55,6 +58,7 @@ tags:
 - REST controllers and annotated methods: https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller.html
 - Message converters: https://docs.spring.io/spring-framework/reference/web/webmvc/message-converters.html
 - REST clients: https://docs.spring.io/spring-framework/reference/integration/rest-clients.html
+- REST error responses: https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-ann-rest-exceptions.html
 - Spring Boot REST clients: https://docs.spring.io/spring-boot/reference/io/rest-client.html
 
 # Stable architectural conclusions
@@ -63,7 +67,7 @@ tags:
 REST endpoint method
 → request mapping condition match
 → request body/path/query/header resolution
-→ validation and conversion
+→ conversion and validation
 → controller method
 → ResponseEntity or return-value handler
 → HttpMessageConverter
@@ -74,7 +78,7 @@ For clients:
 
 ```text
 RestTemplate method
-→ request entity and URI expansion
+→ URI expansion and request entity
 → ClientHttpRequestFactory
 → message conversion
 → status/error handling
@@ -86,22 +90,28 @@ RestTemplate method
 | Concern | Spring 5.3 / Boot 2.5 exam baseline | Current production delta |
 |---|---|---|
 | REST server | `@RestController`, mapping annotations, `ResponseEntity` | same core model |
-| Error body | custom DTO, `@ExceptionHandler`, `ResponseStatusException` | `ProblemDetail` and `ErrorResponse` abstractions available |
-| REST client | `RestTemplate`, `RestTemplateBuilder` | `RestClient` and `WebClient` are preferred for new code in many contexts |
+| Error body | custom DTO, `@ExceptionHandler`, `ResponseEntityExceptionHandler` | `ProblemDetail` and `ErrorResponse` abstractions available |
+| REST client | `RestTemplate`, `RestTemplateBuilder` | `RestClient` for modern synchronous code; `WebClient` for reactive flows |
 | Servlet namespace | `javax.servlet` | `jakarta.servlet` |
-| HTTP status type | `HttpStatus` | `HttpStatusCode` abstraction also appears in newer APIs |
+| HTTP status type | `HttpStatus` | newer APIs also expose `HttpStatusCode` |
 
 # Evidence policy
 
-Runtime PASS requires:
+The route is **reading-ready**. Runtime proof remains a separate gate. After converting the guided scenarios into an executable module, run:
 
 ```bash
 mvn --batch-mode --no-transfer-progress \
   -f 50_LABS/Spring/SPRING-MVC-B02/pom.xml test
 ```
 
+Do not mark the route runtime-ready until the module exists and the command passes in CI.
+
 # Related material
 
-- [[10_CONCEPTS/Spring/MVC/REST Endpoints ResponseEntity and RestTemplate]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
+- [[10_CONCEPTS/Spring/MVC/REST Endpoints ResponseEntity and RestTemplate]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Cards]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Drills]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Assessment]]
+- [[40_PRODUCTION_CASES/Spring/Spring MVC REST Contract Production Cases]]
 - [[50_LABS/Spring/SPRING-MVC-B02/README]]
