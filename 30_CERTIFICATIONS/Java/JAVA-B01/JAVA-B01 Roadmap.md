@@ -3,9 +3,10 @@ type: learning-route
 route: JAVA-B01
 domain: java
 subdomain: values-text-date-time
-status: implementation-ready
-evidence_status: source-and-drill-backed
+status: published
+evidence_status: lab-proven
 verified_at: 2026-07-24
+ci_run_id: 30065610629
 java_versions:
   - 17
   - 21
@@ -20,6 +21,10 @@ base_card_target: 75
 drill_card_target: 15
 published_base_cards: 75
 published_drills: 15
+card_batches:
+  - JAVA-VALUES-B01
+  - JAVA-TEXT-B01
+  - JAVA-TIME-B01
 tags:
   - java
   - java-17
@@ -34,7 +39,7 @@ tags:
 # JAVA-B01 — Values, Strings, Text Blocks and Date-Time
 
 > [!summary]
-> `JAVA-B01` is the first executable certification domain. It establishes the value, conversion, text and temporal rules reused by later compile/output questions. Java 17 and Java 21 share the core behavior covered here; the exact exam lane is still recorded on every question.
+> `JAVA-B01` is the first executable certification domain. It establishes the value, conversion, text and temporal rules reused by later compile/output questions. Java 17 and Java 21 share the core behavior covered here; the exact exam lane is still recorded on every question. The route is independently compile/run proven on JDK 17 and JDK 21.
 
 # Why this route is first
 
@@ -62,9 +67,9 @@ Without these rules, questions about overload resolution, collections, streams, 
 
 | Objective | Scope | Route evidence |
 |---|---|---|
-| `JAVA21-1.1` | primitives, wrappers, Math, promotions, casts and boolean expressions | values cards, drills and `ValuesProof` |
-| `JAVA21-1.2` | String, StringBuilder and text blocks | text cards, drills and `TextProof` |
-| `JAVA21-1.3` | date/time, period, duration, instant, zones and DST | date-time cards, drills and `DateTimeProof` |
+| `JAVA21-1.1` | primitives, wrappers, Math, promotions, casts and boolean expressions | `JAVA-VALUES-B01` cards, drills and `ValuesProof` |
+| `JAVA21-1.2` | String, StringBuilder and text blocks | `JAVA-TEXT-B01` cards, drills and `TextProof` |
+| `JAVA21-1.3` | date/time, period, duration, instant, zones and DST | `JAVA-TIME-B01` cards, drills and `DateTimeProof` |
 
 # Route artifacts
 
@@ -92,7 +97,7 @@ For this route, the tested contracts are intentionally shared unless a card says
 - primitive conversions and promotions are unchanged;
 - `String`, `StringBuilder` and final text-block behavior are shared;
 - the core `java.time` contracts used here are shared;
-- runtime examples must still be executed in both JDK lanes to prevent accidental API leakage.
+- runtime examples execute in both JDK lanes to prevent accidental API leakage.
 
 # Knowledge slices
 
@@ -113,7 +118,7 @@ parsing and valueOf
 Math rounding, exact arithmetic and edge cases
 ```
 
-Target: **25 cards**.
+Published: **25 cards** with IDs `JAVA-VALUES-B01-C001..C025`.
 
 ## JAVA-B01B — Strings, builders and text blocks
 
@@ -132,7 +137,7 @@ text-block escapes: \s and line continuation
 StringBuilder mutation, capacity-independent semantics and aliasing
 ```
 
-Target: **25 cards**.
+Published: **25 cards** with IDs `JAVA-TEXT-B01-C001..C025`.
 
 ## JAVA-B01C — Date-time and zones
 
@@ -151,7 +156,7 @@ locale-sensitive formatting
 TemporalAdjusters
 ```
 
-Target: **25 cards**.
+Published: **25 cards** with IDs `JAVA-TIME-B01-C001..C025`.
 
 # Drill model
 
@@ -175,6 +180,23 @@ Allocation:
 | String and text blocks | 5 |
 | Date-time and zones | 6 |
 | **Total** | **15** |
+
+# Executable evidence
+
+GitHub Actions run `30065610629` executed the dedicated `JAVA-B01 Proof` matrix:
+
+```text
+JDK 17  compile and runtime assertions  PASS
+JDK 21  compile and runtime assertions  PASS
+```
+
+The matrix compiles the same proof sources with the matching `--release` value and executes:
+
+```text
+lab.b01.ValuesProof
+lab.b01.TextProof
+lab.b01.DateTimeProof
+```
 
 # Evidence policy
 
@@ -223,19 +245,19 @@ flowchart LR
 [x] JAVA21-1.1 mapped to canonical, cards, drills and lab source
 [x] JAVA21-1.2 mapped to canonical, cards, drills and lab source
 [x] JAVA21-1.3 mapped to canonical, cards, drills and lab source
-[x] 75 stable base-card IDs
+[x] 75 stable machine-readable base-card IDs
 [x] 15 stable drill IDs
 [x] deterministic zones and locales
 [x] explicit Java 17/21 lane contract
 [x] no JDBC counted in this route
-[ ] execute the lab on JDK 17 and JDK 21 in CI
-[ ] attach CI run IDs
+[x] execute the lab on JDK 17 and JDK 21 in CI
+[x] attach CI run ID `30065610629`
 [ ] add delayed-review performance data
 ```
 
 # Route status
 
-The knowledge and question assets are complete for the initial B01 quota. The route is **not yet marked `lab-proven`** because CI execution on both JDK lanes has not been attached.
+`JAVA-B01` is **lab-proven** for its initial certification quota. Knowledge, cards, drills and executable assertions are published; both JDK runtime lanes pass. Learner retention and timed-performance evidence remain a later progress layer and do not block the route's technical readiness.
 
 # Next route
 
