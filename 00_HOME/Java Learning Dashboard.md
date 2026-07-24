@@ -105,6 +105,7 @@ tags:
 
 ## Управление обучением
 
+- [[00_HOME/Knowledge Route Registry]] — центральный machine-governed реестр.
 - [[00_HOME/Card Review Dashboard]] — due cards и outcome recording.
 - [[00_HOME/Java Weakness Repair Center]] — ошибка → механизм → repair.
 - [[70_PROGRESS/Java Learning Progress Dashboard]] — weekly learner review.
