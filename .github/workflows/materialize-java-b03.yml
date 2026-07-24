@@ -1,0 +1,43 @@
+name: Materialize JAVA-B03
+
+on:
+  push:
+    branches:
+      - agent/java-b03-object-model-record-patterns
+    paths:
+      - tools/java-b03-materialize.py
+      - .github/workflows/materialize-java-b03.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout stacked branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/java-b03-object-model-record-patterns
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Materialize verified payload
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python tools/java-b03-materialize.py
+
+      - name: Commit permanent JAVA-B03 route
+        run: |
+          rm -f tools/java-b03-materialize.py
+          rm -f .github/workflows/materialize-java-b03.yml
+          chmod +x 50_LABS/Java/JAVA-B03/run.sh
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "docs: add JAVA-B03 object model route"
+          git push origin HEAD:agent/java-b03-object-model-record-patterns
