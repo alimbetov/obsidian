@@ -1,0 +1,1 @@
+non-sealed class NonSealedWithoutSealedParent {}

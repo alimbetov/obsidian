@@ -1,0 +1,229 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap.md",
+      "x": 0,
+      "y": 0,
+      "width": 440,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "n1",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Object Creation Reachability and Lifecycle.md",
+      "x": -720,
+      "y": 300,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "n2",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Nested Local and Anonymous Classes.md",
+      "x": -240,
+      "y": 300,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "n3",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Fields Initializers and Constructor Order.md",
+      "x": 240,
+      "y": 300,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "n4",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Overloading Varargs and Method Selection.md",
+      "x": 720,
+      "y": 300,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "n5",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Scope Encapsulation Immutability and var.md",
+      "x": -720,
+      "y": 560,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "n6",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Inheritance Overriding Hiding and Polymorphism.md",
+      "x": -240,
+      "y": 560,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "n7",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Abstract Classes and Interfaces.md",
+      "x": 240,
+      "y": 560,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "n8",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Records.md",
+      "x": 720,
+      "y": 560,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "n9",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Enums.md",
+      "x": -720,
+      "y": 820,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "n10",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Sealed Types.md",
+      "x": -240,
+      "y": 820,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "n11",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Record Patterns.md",
+      "x": 240,
+      "y": 820,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "n12",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Nested Patterns and Exhaustiveness.md",
+      "x": 720,
+      "y": 820,
+      "width": 400,
+      "height": 160
+    },
+    {
+      "id": "cards",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03A Object Lifecycle Cards.md",
+      "x": -600,
+      "y": 1120,
+      "width": 420,
+      "height": 160,
+      "color": "5"
+    },
+    {
+      "id": "drills",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Drills.md",
+      "x": 0,
+      "y": 1120,
+      "width": 420,
+      "height": 160,
+      "color": "5"
+    },
+    {
+      "id": "lab",
+      "type": "file",
+      "file": "50_LABS/Java/JAVA-B03/README.md",
+      "x": 600,
+      "y": 1120,
+      "width": 420,
+      "height": 160,
+      "color": "5"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-root",
+      "fromNode": "root",
+      "toNode": "n1"
+    },
+    {
+      "id": "e1",
+      "fromNode": "n1",
+      "toNode": "n2"
+    },
+    {
+      "id": "e2",
+      "fromNode": "n2",
+      "toNode": "n3"
+    },
+    {
+      "id": "e3",
+      "fromNode": "n3",
+      "toNode": "n4"
+    },
+    {
+      "id": "e4",
+      "fromNode": "n4",
+      "toNode": "n5"
+    },
+    {
+      "id": "e5",
+      "fromNode": "n5",
+      "toNode": "n6"
+    },
+    {
+      "id": "e6",
+      "fromNode": "n6",
+      "toNode": "n7"
+    },
+    {
+      "id": "e7",
+      "fromNode": "n7",
+      "toNode": "n8"
+    },
+    {
+      "id": "e8",
+      "fromNode": "n8",
+      "toNode": "n9"
+    },
+    {
+      "id": "e9",
+      "fromNode": "n9",
+      "toNode": "n10"
+    },
+    {
+      "id": "e10",
+      "fromNode": "n10",
+      "toNode": "n11"
+    },
+    {
+      "id": "e11",
+      "fromNode": "n11",
+      "toNode": "n12"
+    },
+    {
+      "id": "e-bottom-0",
+      "fromNode": "n12",
+      "toNode": "cards"
+    },
+    {
+      "id": "e-bottom-1",
+      "fromNode": "n12",
+      "toNode": "drills"
+    },
+    {
+      "id": "e-bottom-2",
+      "fromNode": "n12",
+      "toNode": "lab"
+    }
+  ]
+}
