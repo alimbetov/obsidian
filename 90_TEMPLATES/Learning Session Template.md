@@ -44,7 +44,7 @@ Java version:
 Ссылка:
 
 ```text
-[[ATOMIC_CONCEPT]]
+<ATOMIC_CONCEPT_WIKILINK>
 ```
 
 Запиши только:
