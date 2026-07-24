@@ -1,0 +1,141 @@
+/*
+Learning Experience UI for this vault.
+Enable in Obsidian: Appearance -> CSS snippets -> learning-experience.
+The snippet is intentionally plugin-independent.
+*/
+
+.learning-cockpit,
+.learning-dashboard,
+.review-dashboard,
+.progress-dashboard,
+.repair-center {
+  --file-line-width: 1120px;
+}
+
+.learning-cockpit .markdown-preview-sizer,
+.learning-dashboard .markdown-preview-sizer,
+.review-dashboard .markdown-preview-sizer,
+.progress-dashboard .markdown-preview-sizer,
+.repair-center .markdown-preview-sizer {
+  max-width: 1120px;
+}
+
+.learning-cockpit h1,
+.learning-dashboard h1,
+.review-dashboard h1,
+.progress-dashboard h1,
+.repair-center h1 {
+  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
+}
+
+.learning-cockpit h2,
+.learning-dashboard h2,
+.review-dashboard h2,
+.progress-dashboard h2,
+.repair-center h2 {
+  border-bottom: 1px solid var(--background-modifier-border);
+  padding-bottom: 0.35rem;
+  margin-top: 2rem;
+}
+
+.learning-cockpit table,
+.learning-dashboard table,
+.review-dashboard table,
+.progress-dashboard table,
+.repair-center table {
+  width: 100%;
+}
+
+.learning-cockpit .callout,
+.learning-dashboard .callout,
+.review-dashboard .callout,
+.progress-dashboard .callout,
+.repair-center .callout,
+.learning-session .callout,
+.atomic-lesson .callout {
+  border-radius: 14px;
+  border-width: 1px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+  margin: 1rem 0;
+}
+
+.callout[data-callout="start"] {
+  --callout-color: 52, 168, 83;
+  --callout-icon: lucide-play-circle;
+}
+
+.callout[data-callout="learn"] {
+  --callout-color: 66, 133, 244;
+  --callout-icon: lucide-book-open;
+}
+
+.callout[data-callout="recall"] {
+  --callout-color: 126, 87, 194;
+  --callout-icon: lucide-brain;
+}
+
+.callout[data-callout="practice"] {
+  --callout-color: 245, 124, 0;
+  --callout-icon: lucide-pencil-ruler;
+}
+
+.callout[data-callout="prove"] {
+  --callout-color: 0, 137, 123;
+  --callout-icon: lucide-flask-conical;
+}
+
+.callout[data-callout="repair"] {
+  --callout-color: 211, 47, 47;
+  --callout-icon: lucide-wrench;
+}
+
+.callout[data-callout="checkpoint"] {
+  --callout-color: 84, 110, 122;
+  --callout-icon: lucide-gauge;
+}
+
+.learning-cockpit code,
+.learning-dashboard code,
+.review-dashboard code,
+.progress-dashboard code,
+.repair-center code {
+  font-size: 0.92em;
+}
+
+.learning-cockpit .internal-link,
+.learning-dashboard .internal-link,
+.review-dashboard .internal-link,
+.progress-dashboard .internal-link,
+.repair-center .internal-link {
+  font-weight: 600;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.route-hub {
+  --file-line-width: 980px;
+}
+
+.route-hub .markdown-preview-sizer {
+  max-width: 980px;
+}
+
+@media (max-width: 900px) {
+  .learning-cockpit,
+  .learning-dashboard,
+  .review-dashboard,
+  .progress-dashboard,
+  .repair-center,
+  .route-hub {
+    --file-line-width: 100%;
+  }
+
+  .learning-cockpit table,
+  .learning-dashboard table,
+  .review-dashboard table,
+  .progress-dashboard table,
+  .repair-center table {
+    font-size: 0.9rem;
+  }
+}

@@ -3,6 +3,9 @@ type: dashboard
 domain: knowledge-system
 status: active
 verified_at: 2026-07-24
+cssclasses:
+  - review-dashboard
+  - wide-page
 tags:
   - progress
   - review
@@ -12,30 +15,23 @@ tags:
 
 # Card Review Dashboard
 
-> [!summary]
-> Рабочий dashboard для learning state по каждому стабильному `card_id`. Source of truth — `70_PROGRESS/card-progress.json`; каталог карточек автоматически извлекается из опубликованных headings.
+> [!recall]
+> Source of truth для каждой карточки — `70_PROGRESS/card-progress.json`. Review нужен не для подсчёта «хороших» и «плохих» ответов, а для выбора правильного следующего вмешательства.
 
-## Return to learning
+## Быстрые переходы
 
+- [[00_HOME/Java Learning Cockpit]]
+- [[70_PROGRESS/Java Learning Progress Dashboard]]
+- [[00_HOME/Java Weakness Repair Center]]
 - [[00_HOME/Java Learning Dashboard]]
-- [[00_HOME/Certification 99 Percent Readiness Dashboard]]
-- [[30_CERTIFICATIONS/Certification MOC]]
 
-## First-time setup
-
-The current progress file may be empty even when cards are published. Initialize one record per discovered `card_id`:
+## Первый запуск
 
 ```bash
 python .github/scripts/card_progress.py sync \
   --root . \
   --progress 70_PROGRESS/card-progress.json
-```
 
-This preserves existing records and adds only missing cards.
-
-Then verify the catalog:
-
-```bash
 python .github/scripts/card_progress.py audit \
   --root . \
   --progress 70_PROGRESS/card-progress.json \
@@ -43,29 +39,41 @@ python .github/scripts/card_progress.py audit \
   --queue-output .audit/card-review-queue.md
 ```
 
-Open:
+Открой `.audit/card-review-queue.md`. Dataview не требуется.
 
-```text
-.audit/card-review-queue.md
-```
-
-The queue requires no Dataview plugin.
-
-## Daily workflow
+## Review loop
 
 ```mermaid
 flowchart LR
-    OPEN[Open due queue] --> ANSWER[Answer without notes]
-    ANSWER --> RATE[Record outcome and confidence]
-    RATE --> GAP{Wrong or guessed?}
-    GAP -->|yes| NOTE[Open atomic concept]
-    NOTE --> PREDICT[Predict drill or lab]
-    PREDICT --> RECORD[Record repaired outcome later]
-    GAP -->|no| NEXT[Next due card]
-    RECORD --> NEXT
+    OPEN["Открыть due card"] --> RETRIEVE["Ответить без заметки"]
+    RETRIEVE --> CONF["Оценить уверенность"]
+    CONF --> TYPE{"Тип результата"}
+    TYPE -->|correct-confident| NEXT["Следующая card"]
+    TYPE -->|correct-guessed| CONTRAST["Контрастный пример"]
+    TYPE -->|wrong-attention| READ["Перечитать version/wording"]
+    TYPE -->|wrong-confusion| COMPARE["Сравнить похожие правила"]
+    TYPE -->|wrong-concept| REPAIR["Вернуться к mental model"]
+    CONTRAST --> LATER["Повторить позже"]
+    READ --> LATER
+    COMPARE --> LATER
+    REPAIR --> LATER
+    LATER --> NEXT
 ```
 
-## Record Java outcomes
+## Пять диагностических типов ошибок
+
+| Тип | Что произошло | Нужное действие |
+|---|---|---|
+| `attention` | пропущено слово, версия, отрицание или тип selector | перечитать условие, выделить boundary |
+| `retrieval` | правило знакомо, но не извлеклось вовремя | короткое отложенное повторение |
+| `discrimination` | смешаны два похожих правила | сделать side-by-side contrast |
+| `concept` | неверна причинная модель | atomic note → объяснение → drill → lab prediction |
+| `transfer` | правило известно, но не применяется в новом коде | решить новый пример без шаблона |
+
+> [!important]
+> Не увеличивай объём повторения в ответ на концептуальную ошибку. Увеличивай точность repair: один механизм, один контраст, один доказательный пример.
+
+## Запись результата
 
 ### Correct and confident
 
@@ -91,81 +99,48 @@ python .github/scripts/card_progress.py record \
 
 ```bash
 python .github/scripts/card_progress.py record \
-  --card-id JAVA-SWITCH-B02-C014 \
+  --card-id JAVA-INHERIT-B03-C014 \
   --outcome wrong-concept \
   --confidence 1 \
-  --note "Forgot switch-expression exhaustiveness"
+  --note "Mixed overload selection with runtime overriding"
 ```
 
-## Repair routes for Java
+## Когда остановить review
 
-| Failure pattern | Open atomic concept |
-|---|---|
-| invalid literal or octal confusion | [[10_CONCEPTS/Java/Core/Java Primitive Values and Literals]] |
-| promotion or cast confusion | [[10_CONCEPTS/Java/Core/Java Numeric Promotion and Casting]] |
-| wrapper identity or null unboxing | [[10_CONCEPTS/Java/Core/Java Wrappers Boxing and Math]] |
-| String pool or regex method | [[10_CONCEPTS/Java/Core/Java String Identity and Operations]] |
-| mutable alias | [[10_CONCEPTS/Java/Core/Java StringBuilder Mutation]] |
-| text-block output | [[10_CONCEPTS/Java/Core/Java Text Blocks]] |
-| Period versus Duration | [[10_CONCEPTS/Java/Core/Java Period Duration and Instant]] |
-| zone/DST/formatter | [[10_CONCEPTS/Java/Core/Java Zones DST and Formatting]] |
-| definite assignment | [[10_CONCEPTS/Java/Core/Java Conditions and Definite Assignment]] |
-| loop or label trace | [[10_CONCEPTS/Java/Core/Java Loops Transfers and Labels]] |
-| reachability | [[10_CONCEPTS/Java/Core/Java Reachability Rules]] |
-| classic switch | [[10_CONCEPTS/Java/Core/Java Classic Switch]] |
-| `yield` or expression exhaustiveness | [[10_CONCEPTS/Java/Core/Java Switch Expressions]] |
-| pattern-variable scope | [[10_CONCEPTS/Java/Core/Java Pattern Matching for instanceof]] |
-| Java 21 guards/null | [[10_CONCEPTS/Java/Core/Java 21 Pattern Switch]] |
-| dominance/sealed coverage | [[10_CONCEPTS/Java/Core/Java Switch Dominance and Exhaustiveness]] |
+Перейди в repair mode, если:
 
-## Outcome interpretation
+```text
+3 conceptual/confusion errors подряд
+confidence систематически выше реальной точности
+ты читаешь ответы вместо попытки вспомнить
+скорость растёт, а объяснение механизма исчезает
+```
 
-| Outcome | Required follow-up |
-|---|---|
-| `correct-confident` | continue; interval grows normally |
-| `correct-guessed` | read the focused atomic note; retry soon |
-| `wrong-attention` | re-read exact wording and version |
-| `wrong-confusion` | open a comparison note and solve contrast cards |
-| `wrong-concept` | return to mechanism, predict a drill and lab outcome |
+## Размеры сессии
 
-## Mastery rule
+| Сессия | Due cards | New cards | Drills | Repair |
+|---|---:|---:|---:|---|
+| 20–30 минут | 8–12 | 0–3 | 0–1 | одна ошибка |
+| 45–60 минут | 15–20 | 5–8 | 1–2 | один focused loop |
+| 80–100 минут | 20–30 | 8–12 | 3–4 | repair + lab prediction |
 
-A card is not mastered because it was answered correctly once.
+Не добавляй новые карточки, если due queue растёт быстрее, чем очищается.
 
-Recommended minimum:
+## Mastery gate
 
 ```text
 repetitions >= 3
 confidence >= 4
 last_outcome = correct-confident
-no wrong-concept or wrong-confusion in the last two events
+нет wrong-concept/wrong-confusion в двух последних событиях
+механизм объясняется без текста
+решается новый contrast example
 ```
 
-Candidate readiness additionally requires mixed timed mock performance.
+Один правильный ответ не равен mastery. Candidate readiness дополнительно требует mixed timed performance.
 
-## Suggested session sizes
+## Дальше
 
-| Session | New cards | Review cards | Drills |
-|---|---:|---:|---:|
-| short, 20–30 min | 5 | 10 | 1 |
-| normal, 45–60 min | 10 | 20 | 2–3 |
-| deep, 90 min | 15 | 30 | 4–5 + lab prediction |
-
-Do not introduce new cards when the due queue is growing faster than it is being cleared.
-
-## Obsidian usage
-
-The generated queue links directly to card headings. Atomic concept notes provide the repair path. Avoid duplicating progress in note frontmatter; one JSON record per `card_id` remains the authoritative state.
-
-Optional future integrations:
-
-- Shell Commands for `sync`, `due` and `record`;
-- QuickAdd capture for outcome/confidence;
-- DataviewJS read-only summaries over generated JSON.
-
-## Related
-
-- [[70_PROGRESS/README]]
-- [[00_HOME/Java Learning Dashboard]]
-- [[00_HOME/Certification 99 Percent Readiness Dashboard]]
-- [[30_CERTIFICATIONS/Certification MOC]]
+- Ошибка по конкретной теме: [[00_HOME/Java Weakness Repair Center]]
+- Итоги недели: [[70_PROGRESS/Java Learning Progress Dashboard]]
+- Следующая учебная сессия: [[90_TEMPLATES/Learning Session Template]]
