@@ -39,7 +39,7 @@ tags:
 - **Master:** [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]]
 - **Domain map:** [[01_MAPS/Spring Map]]
 - **Previous:** [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
-- **Next:** `SPRING-MVC-B02 — REST Endpoints and HTTP Clients`
+- **Next:** [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
 - **Canvas:** [[01_MAPS/Spring MVC DispatcherServlet Map.canvas]]
 
 # Objective traceability
@@ -202,6 +202,4 @@ SPRING-MVC-B02
 
 # Next route
 
-```text
-SPRING-MVC-B02 — REST Endpoints and HTTP Clients
-```
+[[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
