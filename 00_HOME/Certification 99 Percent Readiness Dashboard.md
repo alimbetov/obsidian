@@ -8,6 +8,7 @@ target_candidate_readiness: 99
 certifications:
   - spring-2V0-72.22
   - java-1Z0-829
+  - java-1Z0-830
   - java-concurrency
 platform_programs:
   - java-11-17-21
@@ -21,95 +22,31 @@ tags:
 # Certification 99 Percent Readiness Dashboard
 
 > [!summary]
-> Material readiness measures objective-linked repository evidence. Candidate readiness measures stable timed performance. Java is tracked in two complementary models: Java 17 `1Z0-829` exam readiness and complete Java 11/17/21 platform knowledge.
+> Material readiness measures objective-linked repository evidence. Candidate readiness measures retained knowledge and timed performance. These values must not be mixed: a route can be technically `lab-proven` while the learner has not yet mastered it.
 
-# Entry points
+## Operational entry points
 
-- [[00_HOME/Java 11 17 21 Complete Knowledge Program]]
-- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
-- [[01_MAPS/Java 11 17 21 LTS Map.canvas]]
-- [[01_MAPS/Spring MVC REST Map.canvas]]
-- [[01_MAPS/Certification 99 Percent Map.canvas]]
+- [[00_HOME/Java Learning Dashboard]]
 - [[00_HOME/Card Review Dashboard]]
 - [[00_HOME/Knowledge Route Registry]]
+- [[30_CERTIFICATIONS/Certification MOC]]
+- [[01_MAPS/Java Certification Routes.canvas]]
+- [[01_MAPS/Certification 99 Percent Map.canvas]]
 
-# Readiness model
+## Readiness model
 
 ```mermaid
 flowchart LR
-    MATERIAL["Material readiness"] --> OBJ["Objective traceability 25%"]
-    MATERIAL --> VERTICAL["Vertical evidence 75%"]
-    VERTICAL --> THEORY["Canonical and visual"]
-    VERTICAL --> CARDS["Cards and assessment"]
-    VERTICAL --> TRANSFER["Cases, labs and sources"]
-    JAVA["Java platform readiness"] --> J11["Java 11 baseline"]
-    JAVA --> J17["Java 17 certification"]
-    JAVA --> J21["Java 21 production"]
-    CANDIDATE["Candidate readiness"] --> MOCK["Timed mock scores"]
+    MATERIAL[Material readiness] --> OBJ[Objective traceability]
+    MATERIAL --> THEORY[Canonical and atomic knowledge]
+    MATERIAL --> PRACTICE[Cards drills cases]
+    MATERIAL --> EVIDENCE[Labs and sources]
+    CANDIDATE[Candidate readiness] --> REVIEW[Delayed review]
+    CANDIDATE --> MOCK[Timed mocks]
+    CANDIDATE --> WEAK[Weakest-domain threshold]
 ```
 
-# Current certification machine scores
-
-> [!warning]
-> The table below reflects the last completed audit before `SPRING-MVC-B02`. New final percentages must be copied only from a successful workflow artifact after the B02 route run completes.
-
-| Track | Last verified overall | Objective traceability | Vertical slices | Target |
-|---|---:|---:|---:|---:|
-| Spring Professional Develop 2V0-72.22 | **76.30%** | 62.11% | 81.03% | 99% |
-| Java SE 17 Developer 1Z0-829 | **4.50%** | 4.00% | 4.67% | 99% |
-| Java Concurrency | **45.70%** | 40.00% | 47.60% | 99% |
-
-These are repository-evidence scores, not pass probabilities.
-
-# Java 11, 17 and 21 platform readiness
-
-## Requirement
-
-```text
-Every Java route must cover:
-Java 11  compatibility and migration baseline
-Java 17  exact certification semantics
-Java 21  production delta and version traps
-```
-
-## Verified machine score
-
-| Layer | Evidence coverage |
-|---|---:|
-| Shared Java domains | **10.83%** |
-| Java 11 compatibility layer | **19.17%** |
-| Java 17 certification layer | **15.00%** |
-| Java 21 production layer | **16.39%** |
-| **Overall Java platform** | **15.35%** |
-
-Published route:
-
-- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap]]
-- [[10_CONCEPTS/Java/Versions/Java 11 17 21 LTS Evolution]]
-- [[10_CONCEPTS/Java/Versions/Java 11 17 21 Visual Deep Dive]]
-- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Cards]]
-- [[40_PRODUCTION_CASES/Java/Java 11 17 21 Migration Cases]]
-- [[50_LABS/Java/JAVA-LTS-B01/README]]
-- [[98_SOURCES/Java 11 17 21 Official Sources]]
-
-# Corrected learning-system status
-
-- [x] Per-card progress registry.
-- [x] SM-2-inspired scheduler.
-- [x] Spring objective matrix.
-- [x] Java 17 capability matrix.
-- [x] Java Concurrency objective matrix.
-- [x] Java 11/17/21 domain-version manifest.
-- [x] Java version-coverage audit.
-- [x] 148 legacy Spring cards normalized.
-- [x] `SPRING-BOOT-B01`, `SPRING-BOOT-B02`, `SPRING-MVC-B01`, `SPRING-MVC-B02` vertical slices.
-- [x] `JAVA-LTS-B01` complete vertical slice.
-- [x] JDK 11/17/21 matrix verified.
-- [ ] Timed mock engine and results.
-
-# Objective status scale
+## Status scale
 
 ```text
 unmapped       0%
@@ -121,82 +58,143 @@ mock-covered  95%
 complete     100%
 ```
 
-# Spring 2V0-72.22
+The status describes repository evidence, not exam pass probability.
 
-## Newly added Spring MVC REST evidence
+# Java current delivery
 
-`SPRING-MVC-B02` closes the REST and client objective gap that was previously listed as critical:
+## Published routes
+
+| Route | Atomic notes | Base cards | Drills | Executable evidence | Status |
+|---|---:|---:|---:|---|---|
+| JAVA-LTS-B01 | route slice | 30 | migration cases | JDK 11/17/21 | published |
+| JAVA-B01 | 9 | 75 | 15 | 3 proof classes, JDK 17/21 | lab-proven |
+| JAVA-B02 | 8 | 60 | 20 | 2 positive classes + 11 negative cases, JDK 17/21 | lab-proven |
+
+## Delivered Java exam inventory
 
 ```text
-SPRING-3.2.1 REST endpoints for multiple HTTP verbs
-SPRING-3.2.2 RestTemplate client operations
+lab-proven exam routes             2
+atomic concepts                   17
+base cards                       135
+compile/output drills             35
+positive proof classes             5
+expected compile-fail cases       11
+runtime baselines             17, 21
 ```
 
-Published B02 artifacts:
+## Java objective progress
 
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
-- [[10_CONCEPTS/Spring/MVC/REST Endpoints ResponseEntity and RestTemplate]]
-- [[10_CONCEPTS/Spring/MVC/Spring MVC REST Visual Deep Dive]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Cards]]
-- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Assessment]]
-- [[40_PRODUCTION_CASES/Spring/Spring MVC REST Production Cases]]
-- [[50_LABS/Spring/SPRING-MVC-B02/README]]
-- [[98_SOURCES/Spring MVC REST and RestTemplate Sources]]
+### Java 21 `1Z0-830`
 
-## Critical remaining objectives after B02
+Lab-proven objectives:
 
 ```text
+JAVA21-1.1 primitives, wrappers, promotions and boolean expressions
+JAVA21-1.2 String, StringBuilder and text blocks
+JAVA21-1.3 date-time, Period, Duration, Instant, zones and DST
+JAVA21-2.1 program flow and final pattern switch
+```
+
+Other objectives remain roadmap or previously published supporting evidence.
+
+### Java 17 `1Z0-829`
+
+```text
+JAVA-B01 values, text and date-time   lab-proven route evidence
+JAVA-B02 control flow                 lab-proven route evidence
+JAVA-B03 ... JAVA-B11                 planned or supporting evidence
+```
+
+## Next Java implementation order
+
+```text
+JAVA-B03  Object Model, Records, Sealed Types, Record Patterns
+JAVA-B05  Collections, Generics, Sequenced Collections
+JAVA-B06  Lambdas and Streams
+JAVA-B04  Exceptions and Try-with-resources
+JAVA-B07  Modules and Deployment
+JAVA-B08  Concurrency and Virtual Threads
+JAVA-B09  I/O, NIO.2 and Serialization
+JAVA-B10  JDBC for 1Z0-829
+JAVA-B11  Localization
+JAVA-SUP-B01 Logging, Annotations and supplementary Generics
+```
+
+## Material gaps before 99%
+
+- remaining Java routes;
+- visual deep dives and production cases for B01/B02;
+- pre-test and post-test assessments;
+- mixed mini-mock bank;
+- 800-card Java 21 target and 200 drills;
+- six timed full mocks;
+- refreshed aggregate machine score from a fully successful workflow.
+
+## Candidate readiness gaps
+
+The progress registry has not yet accumulated learner history. Candidate readiness requires:
+
+```text
+card registry initialized
+core cards repeated at least 3 times
+confidence calibration recorded
+wrong-concept events repaired through canonical notes and labs
+mixed timed mocks completed
+last 3 mocks above target
+no weak domain below threshold
+```
+
+Use [[00_HOME/Card Review Dashboard]] to initialize and record learning state.
+
+# Spring status
+
+Spring has extensive published material across Core, Boot, MVC, AOP, Cache, Transactions, Data JPA and Testing.
+
+The aggregate vault workflow currently fails at the independent `SPRING-MVC-B02 REST and RestTemplate tests`. Structural, card, objective and Java route checks pass before that regression. Do not copy a new overall percentage until the aggregate workflow succeeds completely.
+
+Remaining major Spring domains include:
+
+```text
+Security
+Actuator and custom health/metrics
+JdbcTemplate and translated data-access exceptions
+explicit MockMvc route
 SpEL
-JdbcTemplate and result-set callbacks
-translated DataAccessException handling
-explicit MockMvc objective route
-Spring Security
-Actuator endpoints and security
-custom metrics
-custom health indicators
+mixed drill bank and timed mocks
 ```
 
-## Spring registration gate
+# Java Concurrency
+
+The advanced concurrency route has canonical and visual foundations plus labs, but still requires its dedicated full card bank, production cases, controlled labs and timed mini-mocks.
+
+- [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]]
+
+# Readiness governance
+
+## Do not manually invent scores
+
+A percentage is publishable only when it comes from a successful audit artifact using the current manifests and card catalog.
+
+Until then, use artifact counts and objective statuses shown above.
+
+## Route completion versus learner mastery
 
 ```text
-[x] SPRING-MVC-B02
-[ ] SPRING-SEC-B01
-[ ] SPRING-ACT-B01
-[ ] SPRING-JDBC-B01
-[ ] SPRING-WEBTEST-B01
-[ ] SPRING-SPEL-B01
-[ ] mixed exam-drill bank
-[ ] 6 full 60-question / 130-minute mocks
-[ ] last 3 mocks >= 90%
-[ ] no domain below 85%
+route lab-proven
+    ≠ learner mastered
+
+learner mastered
+    = repeated recall
+    + repaired conceptual errors
+    + successful mixed drills
+    + stable timed mock performance
 ```
 
-# Java 1Z0-829
+## Current action
 
 ```text
-exact baseline             Java 17
-required Java 11 context   compatibility and migration
-required Java 21 context   production delta and version traps
-unmapped exam domains      10 / 11
-base exam cards             0 / 720
-exam drills                 0 / 180
-full timed mocks            0 / 6
-```
-
-Required preliminary route is complete and runtime-proven:
-
-- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap]].
-
-Next Java implementation route:
-
-```text
-JAVA-B01 — Data, Text and Date-Time across Java 11/17/21
-```
-
-# Current delivery order
-
-```text
-Spring: SPRING-SEC-B01
-Java:   JAVA-B01
-Then:   ACT, JDBC, WEBTEST, SPEL, drills, mocks
+1. Use Java Learning Dashboard for B01/B02.
+2. Initialize per-card progress.
+3. Start JAVA-B03 in a separate route PR.
+4. Repair the unrelated Spring MVC B02 regression separately.
 ```
