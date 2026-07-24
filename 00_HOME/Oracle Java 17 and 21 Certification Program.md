@@ -2,6 +2,7 @@
 type: certification-program
 domain: java
 status: active
+verified_at: 2026-07-24
 certification:
   - java-1Z0-829
   - java-1Z0-830
@@ -9,6 +10,10 @@ java_versions:
   - 17
   - 21
 target_material_readiness: 99
+published_routes:
+  - JAVA-B01
+  - JAVA-B02
+next_route: JAVA-B03
 tags:
   - java
   - oracle
@@ -21,61 +26,69 @@ tags:
 # Oracle Java 17 and 21 Certification Program
 
 > [!summary]
-> One cumulative knowledge system prepares for both Oracle exams without mixing baselines. Shared Java rules are written once. Java 17 and Java 21 compile/API lanes, exam-exclusive objectives, drills and timed mocks remain separate.
+> One cumulative knowledge system prepares for both Oracle exams without mixing baselines. Shared mechanisms are written once as canonical hubs and atomic notes; Java 17 and Java 21 compile/API lanes, objectives and mocks remain separate.
 
-# Main entry points
+## Operational entry
+
+- **Start or continue learning:** [[00_HOME/Java Learning Dashboard]]
+- **Visual navigation:** [[01_MAPS/Java Certification Routes.canvas]]
+- **Certification MOC:** [[30_CERTIFICATIONS/Certification MOC]]
+- **Readiness:** [[00_HOME/Certification 99 Percent Readiness Dashboard]]
+- **Review queue:** [[00_HOME/Card Review Dashboard]]
+
+## Exact exam lanes
 
 | Track | Exact baseline | Roadmap | Source index |
 |---|---:|---|---|
 | Java SE 17 Developer `1Z0-829` | Java 17 | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | [[98_SOURCES/Java SE 17 1Z0-829 Sources]] |
 | Java SE 21 Developer Professional `1Z0-830` | Java 21 | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | [[98_SOURCES/Java SE 21 1Z0-830 Sources]] |
 
-Mandatory comparison:
+Mandatory comparison: [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]].
 
-- [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]].
-
-Platform context:
-
-- [[00_HOME/Java 11 17 21 Complete Knowledge Program]];
-- [[30_CERTIFICATIONS/Java/JAVA-LTS-B01/JAVA-LTS-B01 Roadmap]];
-- [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]].
-
-# Why one program but two exam lanes
+## Why one program but two lanes
 
 ```mermaid
 flowchart TD
-    SHARED[Shared Java canonical knowledge] --> J17[Java 17 exact lane]
+    SHARED[Shared canonical hubs and atomic concepts] --> J17[Java 17 exact lane]
     SHARED --> J21[Java 21 exact lane]
     J17 --> E829[1Z0-829 objective evidence]
     J21 --> E830[1Z0-830 objective evidence]
-    E829 --> M829[Java 17 timed mocks]
-    E830 --> M830[Java 21 timed mocks]
+    E829 --> M829[Java 17 drills and mocks]
+    E830 --> M830[Java 21 drills and mocks]
 ```
 
-Shared domains:
+## Published routes
+
+### JAVA-B01 — Values, Text and Date-Time
 
 ```text
-values/text/date-time
-program flow
-object model
-exceptions
-arrays/collections/generics
-streams/lambdas
-modules/deployment
-concurrency foundations
-I/O/NIO/serialization
-localization
-supplementary logging/annotations
+9 atomic concepts
+75 cards
+15 drills
+3 proof classes
+JDK 17 and 21 PASS
+status: lab-proven
 ```
 
-Exam-exclusive emphasis:
+- [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap]]
+- [[10_CONCEPTS/Java/Core/Java Values Text and Date-Time]]
+
+### JAVA-B02 — Control Flow and Pattern Switch
 
 ```text
-1Z0-829 → JDBC as a direct objective
-1Z0-830 → pattern switch, record patterns, sequenced collections, virtual threads
+8 atomic concepts
+60 cards
+20 drills
+2 positive proof classes
+11 expected compile failures
+JDK 17 and 21 PASS
+status: lab-proven
 ```
 
-# Correct answer protocol
+- [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]]
+- [[10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch]]
+
+## Correct-answer protocol
 
 Before solving any question:
 
@@ -83,74 +96,48 @@ Before solving any question:
 1. Identify exam code.
 2. Select Java 17 or Java 21 baseline.
 3. Decide compile/no-compile under that exact release.
-4. Resolve overload and type inference.
-5. Predict runtime output or exception.
+4. Resolve conversions, overloads and inference.
+5. Predict output or exception.
 6. Check API availability in the selected release.
-7. Reject options that belong only to the other exam lane.
+7. Reject options that belong only to the other lane.
 ```
 
-# Artifact contract for every domain
+## Route artifact contract
 
 ```text
-roadmap
-pre-test
-canonical mechanism note
-visual deep dive
+route roadmap
+canonical hub
+atomic concept notes
 base cards with stable IDs
-Java 17 drills
-Java 21 drills
+version-bound drills
 production and migration cases
-positive compile tests
+positive compile/runtime tests
 negative compile tests
-runtime-output tests
-post-test
 official JLS/API/JEP/tool sources
 objective mapping
+progress and timed mocks
 ```
 
-# Shared-card policy
+## Route inventory
 
-A card is shared only when its code and answer are identical under both versions.
+| Route | Shared | 1Z0-829 | 1Z0-830 | Critical delta | Status |
+|---|---:|---:|---:|---|---|
+| `JAVA-B01` Values/Text/Date-Time | yes | yes | yes | exact API/version traps | lab-proven |
+| `JAVA-B02` Program Flow | partial | yes | yes | Java 21 pattern switch | lab-proven |
+| `JAVA-B03` Object Model | partial | yes | yes | Java 21 record patterns | next |
+| `JAVA-B04` Exceptions | yes | yes | yes | mostly shared | planned |
+| `JAVA-B05` Collections/Generics | partial | yes | yes | sequenced collections | planned |
+| `JAVA-B06` Streams/Lambdas | yes | yes | yes | encounter-order interactions | planned |
+| `JAVA-B07` Modules/Deployment | yes | yes | yes | tool baseline | planned |
+| `JAVA-B08` Concurrency | partial | yes | yes | virtual threads | planned |
+| `JAVA-B09` I/O/NIO/Serialization | yes | yes | yes | exact API baseline | planned |
+| `JAVA-B10` JDBC | no | direct objective | no direct objective | 829-only quota | planned |
+| `JAVA-B11` Localization | yes | yes | yes | formatter behavior | planned |
+| `JAVA-SUP-B01` Supplementary | supporting | supplementary | supplementary | logging/annotations/generics | planned |
 
-```yaml
-card_id: JAVA-B04-C012
-applies_to:
-  - java-17
-  - java-21
-objective_ids:
-  - JAVA17-4.1
-  - JAVA21-4.1
-```
+## Java 21 feature gates
 
-A version-specific card must not claim shared applicability:
-
-```yaml
-card_id: JAVA21-B02-D007
-applies_to:
-  - java-21
-feature: pattern-switch
-```
-
-# Route inventory
-
-| Route | Shared | 1Z0-829 | 1Z0-830 | Critical delta |
-|---|---:|---:|---:|---|
-| `JAVA-B01` Values/Text/Date-Time | yes | yes | yes | exact API/version traps |
-| `JAVA-B02` Program Flow | partial | yes | yes | Java 21 pattern switch |
-| `JAVA-B03` Object Model | partial | yes | yes | Java 21 record patterns |
-| `JAVA-B04` Exceptions | yes | yes | yes | mostly shared |
-| `JAVA-B05` Collections/Generics | partial | yes | yes | Java 21 sequenced collections |
-| `JAVA-B06` Streams/Lambdas | yes | yes | yes | encounter-order interactions |
-| `JAVA-B07` Modules/Deployment | yes | yes | yes | tool baseline |
-| `JAVA-B08` Concurrency | partial | yes | yes | Java 21 virtual threads |
-| `JAVA-B09` I/O/NIO/Serialization | yes | yes | yes | exact API baseline |
-| `JAVA-B10` JDBC | no | yes | no direct objective | Java 17 exam-exclusive |
-| `JAVA-B11` Localization | yes | yes | yes | exact formatter behavior |
-| `JAVA-SUP-B01` Supplementary | yes | supplementary | supplementary | logging/annotations/generics |
-
-# Required Java 21 delta route
-
-The following content cannot remain a short appendix:
+The following require independent Java 21 evidence rather than a short appendix:
 
 ```text
 pattern matching for switch
@@ -159,17 +146,17 @@ sequenced collections
 virtual threads
 ```
 
-Each requires:
+Each must have:
 
-- canonical semantics;
-- compile-fail traps on Java 17;
-- compile-pass evidence on Java 21;
-- at least 20 focused cards across the relevant domain;
-- integration into mixed Java 21 mocks.
+- final Java 21 semantics;
+- Java 17 compile-fail or unavailability boundary;
+- Java 21 compile/run evidence;
+- focused cards and mixed drills;
+- integration into Java 21 mocks.
 
-# Required Java 17 direct route
+## Java 17 JDBC gate
 
-JDBC must retain a dedicated `JAVA-B10` route for `1Z0-829`:
+`JAVA-B10` remains a dedicated `1Z0-829` route:
 
 ```text
 Connection
@@ -181,49 +168,37 @@ commit / rollback / savepoints
 resource ownership
 ```
 
-It remains useful for production Java 21 developers, but it must not count as evidence for missing `1Z0-830` objectives.
+It remains production knowledge for Java 21 developers but must not count toward missing `1Z0-830` objectives.
 
-# Target material
+## Target material
 
 | Track | Base cards | Drills | Full mocks |
 |---|---:|---:|---:|
 | `1Z0-829` | 720 | 180 | 6 |
 | `1Z0-830` | 800 | 200 | 6 |
-| Shared cross-version bank | 500+ reused cards | 120 comparison drills | 6 migration mini-mocks |
+| Shared cross-version bank | 500+ reused | 120 comparison drills | 6 migration mini-mocks |
 
-The totals are not additive because shared cards satisfy both tracks through multiple objective mappings.
+The totals are not additive because shared cards can satisfy both tracks through separate objective mappings.
 
-# Machine truth
-
-```text
-.github/objectives/java-1Z0-829.json
-.github/objectives/java-1Z0-830.json
-.github/java-version-coverage.json
-.github/scripts/audit_objective_traceability.py
-.github/scripts/audit_java_version_coverage.py
-70_PROGRESS/card-progress.json
-```
-
-# Current state
+## Current state
 
 ```text
-JAVA-LTS-B01                    published
-1Z0-829 master roadmap          published
-1Z0-829 detailed content        mostly absent
-1Z0-830 objective manifest      created
-1Z0-830 master roadmap          created
-1Z0-830 detailed content        absent
-concurrency theory              strong but not exam-normalized
-Java 17/21 full mocks           absent
+JAVA-LTS-B01                  published
+JAVA-B01                      lab-proven
+JAVA-B02                      lab-proven
+atomic concept notes          17
+base exam cards              135
+drills                         35
+Java 17/21 full mocks           0
+learner progress history        not initialized
 ```
 
-# Delivery order
+## Delivery order
 
 ```mermaid
 flowchart LR
-    MATRIX[Delta matrix] --> B1[JAVA-B01]
-    B1 --> B2[JAVA-B02]
-    B2 --> B3[JAVA-B03]
+    B1[JAVA-B01 complete] --> B2[JAVA-B02 complete]
+    B2 --> B3[JAVA-B03 next]
     B3 --> B5[JAVA-B05]
     B5 --> B6[JAVA-B06]
     B6 --> B4[JAVA-B04]
@@ -233,16 +208,13 @@ flowchart LR
     B9 --> B10[JAVA-B10 829 only]
     B10 --> B11[JAVA-B11]
     B11 --> SUP[JAVA-SUP-B01]
-    SUP --> DRILLS[Version drills]
-    DRILLS --> MOCKS[829 and 830 mocks]
+    SUP --> MOCKS[Version-bound mocks]
 ```
 
-# Immediate next slice
+## Immediate next slice
 
 ```text
-JAVA-B01 — values, strings, text blocks and date/time
-JAVA-B02 — flow control and pattern matching for switch
-JAVA-B03 — object model, records, sealed classes and record patterns
+JAVA-B03 — Object Model, Records, Sealed Types and Record Patterns
 ```
 
-This slice creates the language foundation required by later collections, streams, concurrency and module questions.
+B03 may assume all B01 expression/text rules and B02 flow/switch rules.
