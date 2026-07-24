@@ -1,12 +1,6 @@
 name: Materialize JAVA-B03
 
 on:
-  push:
-    branches:
-      - agent/java-b03-object-model-record-patterns
-    paths:
-      - tools/java-b03-materialize.py
-      - .github/workflows/materialize-java-b03.yml
   pull_request:
     branches:
       - agent/java-17-21-certification-tracks
@@ -37,14 +31,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python tools/java-b03-materialize.py
 
-      - name: Commit permanent JAVA-B03 route
+      - name: Commit permanent JAVA-B03 content
         run: |
-          rm -f tools/JAVA-B03-MATERIALIZATION.md
-          rm -f tools/java-b03-materialize.*
-          rm -f .github/workflows/materialize-java-b03.yml
+          rm -f .github/workflows/java-b03-proof.yml
           chmod +x 50_LABS/Java/JAVA-B03/run.sh
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add 01_MAPS 10_CONCEPTS 30_CERTIFICATIONS 50_LABS
+          if git diff --cached --quiet; then
+            echo "JAVA-B03 content is already materialized"
+            exit 0
+          fi
           git commit -m "docs: add JAVA-B03 object model route"
           git push origin HEAD:agent/java-b03-object-model-record-patterns
