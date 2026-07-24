@@ -1,0 +1,57 @@
+name: JAVA-B01 Proof
+
+on:
+  push:
+    paths:
+      - "50_LABS/Java/JAVA-B01/**"
+      - "30_CERTIFICATIONS/Java/JAVA-B01/**"
+      - "10_CONCEPTS/Java/Core/Java Values Text and Date-Time.md"
+      - ".github/workflows/java-b01-proof.yml"
+  pull_request:
+    paths:
+      - "50_LABS/Java/JAVA-B01/**"
+      - "30_CERTIFICATIONS/Java/JAVA-B01/**"
+      - "10_CONCEPTS/Java/Core/Java Values Text and Date-Time.md"
+      - ".github/workflows/java-b01-proof.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  java-b01-proof:
+    name: JDK ${{ matrix.java }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: [17, 21]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+
+      - name: Compile JAVA-B01 proof sources
+        shell: bash
+        run: |
+          rm -rf build/java-b01-${{ matrix.java }}
+          mkdir -p build/java-b01-${{ matrix.java }}
+          javac \
+            --release ${{ matrix.java }} \
+            -d build/java-b01-${{ matrix.java }} \
+            50_LABS/Java/JAVA-B01/src/main/java/lab/b01/*.java
+
+      - name: Run values proof
+        run: java -cp build/java-b01-${{ matrix.java }} lab.b01.ValuesProof
+
+      - name: Run text proof
+        run: java -cp build/java-b01-${{ matrix.java }} lab.b01.TextProof
+
+      - name: Run date-time proof
+        run: java -cp build/java-b01-${{ matrix.java }} lab.b01.DateTimeProof
