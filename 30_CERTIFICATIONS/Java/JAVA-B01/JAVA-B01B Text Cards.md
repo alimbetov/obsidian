@@ -2,7 +2,7 @@
 type: certification-batch
 domain: java
 subdomain: strings-builders-text-blocks
-batch: JAVA-B01B
+batch: JAVA-TEXT-B01
 status: published
 card_count: 25
 java_versions:
@@ -29,7 +29,7 @@ tags:
 
 ---
 
-## JAVA-B01B-C001 — What does String immutability mean operationally?
+## JAVA-TEXT-B01-C001 — What does String immutability mean operationally?
 
 ### Russian Translation
 
@@ -48,7 +48,7 @@ A variable may be reassigned, but the original String object is still immutable.
 
 ---
 
-## JAVA-B01B-C002 — Which Strings are placed in the string pool?
+## JAVA-TEXT-B01-C002 — Which Strings are placed in the string pool?
 
 ### Russian Translation
 
@@ -67,7 +67,7 @@ A concatenation involving a nonconstant variable normally occurs at runtime and 
 
 ---
 
-## JAVA-B01B-C003 — What does `new String("java")` guarantee?
+## JAVA-TEXT-B01-C003 — What does `new String("java")` guarantee?
 
 ### Russian Translation
 
@@ -86,7 +86,7 @@ Calling `intern()` on the new object returns the pooled canonical reference.
 
 ---
 
-## JAVA-B01B-C004 — How is mixed numeric and String concatenation evaluated?
+## JAVA-TEXT-B01-C004 — How is mixed numeric and String concatenation evaluated?
 
 ### Russian Translation
 
@@ -105,7 +105,7 @@ Parentheses can force arithmetic before concatenation.
 
 ---
 
-## JAVA-B01B-C005 — When is String concatenation a compile-time constant?
+## JAVA-TEXT-B01-C005 — When is String concatenation a compile-time constant?
 
 ### Russian Translation
 
@@ -124,7 +124,7 @@ A `final String` initialized with a constant expression can participate.
 
 ---
 
-## JAVA-B01B-C006 — What index is valid for `charAt`?
+## JAVA-TEXT-B01-C006 — What index is valid for `charAt`?
 
 ### Russian Translation
 
@@ -143,7 +143,7 @@ The end index convention used by `substring` does not apply to `charAt`.
 
 ---
 
-## JAVA-B01B-C007 — What are the bounds for `substring(begin, end)`?
+## JAVA-TEXT-B01-C007 — What are the bounds for `substring(begin, end)`?
 
 ### Russian Translation
 
@@ -162,7 +162,7 @@ Reversing the indexes or exceeding length throws `StringIndexOutOfBoundsExceptio
 
 ---
 
-## JAVA-B01B-C008 — What does `indexOf` return when no match exists?
+## JAVA-TEXT-B01-C008 — What does `indexOf` return when no match exists?
 
 ### Russian Translation
 
@@ -181,7 +181,7 @@ A return value of zero means a match at the first character, not “not found.�
 
 ---
 
-## JAVA-B01B-C009 — How do `equals`, `equalsIgnoreCase` and `==` differ for Strings?
+## JAVA-TEXT-B01-C009 — How do `equals`, `equalsIgnoreCase` and `==` differ for Strings?
 
 ### Russian Translation
 
@@ -200,7 +200,7 @@ Always trace how each reference was produced before predicting `==`.
 
 ---
 
-## JAVA-B01B-C010 — What does `compareTo` guarantee?
+## JAVA-TEXT-B01-C010 — What does `compareTo` guarantee?
 
 ### Russian Translation
 
@@ -219,7 +219,7 @@ Do not expect only `-1`, `0` or `1`.
 
 ---
 
-## JAVA-B01B-C011 — How do `isEmpty` and `isBlank` differ?
+## JAVA-TEXT-B01-C011 — How do `isEmpty` and `isBlank` differ?
 
 ### Russian Translation
 
@@ -238,7 +238,7 @@ Whitespace content still contributes to length.
 
 ---
 
-## JAVA-B01B-C012 — How do `trim` and `strip` differ?
+## JAVA-TEXT-B01-C012 — How do `trim` and `strip` differ?
 
 ### Russian Translation
 
@@ -257,7 +257,7 @@ For pure ASCII spaces they often look identical, hiding the broader `strip` cont
 
 ---
 
-## JAVA-B01B-C013 — Does `String.replace` use regular expressions?
+## JAVA-TEXT-B01-C013 — Does `String.replace` use regular expressions?
 
 ### Russian Translation
 
@@ -276,7 +276,7 @@ For pure ASCII spaces they often look identical, hiding the broader `strip` cont
 
 ---
 
-## JAVA-B01B-C014 — Why can `split` return fewer elements than visible separators suggest?
+## JAVA-TEXT-B01-C014 — Why can `split` return fewer elements than visible separators suggest?
 
 ### Russian Translation
 
@@ -295,7 +295,7 @@ The delimiter is a regex, so metacharacters such as `.` or `|` require escaping.
 
 ---
 
-## JAVA-B01B-C015 — What is returned by `String.formatted`?
+## JAVA-TEXT-B01-C015 — What is returned by `String.formatted`?
 
 ### Russian Translation
 
@@ -314,7 +314,7 @@ Locale-sensitive output should not rely on the process default in deterministic 
 
 ---
 
-## JAVA-B01B-C016 — What is the first content character of a legal text block?
+## JAVA-TEXT-B01-C016 — What is the first content character of a legal text block?
 
 ### Russian Translation
 
@@ -333,7 +333,7 @@ Only optional whitespace may appear between the opening delimiter and that line 
 
 ---
 
-## JAVA-B01B-C017 — How is incidental indentation removed from a text block?
+## JAVA-TEXT-B01-C017 — How is incidental indentation removed from a text block?
 
 ### Russian Translation
 
@@ -352,7 +352,7 @@ Moving only the closing delimiter can change the resulting String.
 
 ---
 
-## JAVA-B01B-C018 — Does a text block normally end with a newline?
+## JAVA-TEXT-B01-C018 — Does a text block normally end with a newline?
 
 ### Russian Translation
 
@@ -371,7 +371,7 @@ Count the final `\n` explicitly in exact-output questions.
 
 ---
 
-## JAVA-B01B-C019 — What does `\s` mean in a String or text block?
+## JAVA-TEXT-B01-C019 — What does `\s` mean in a String or text block?
 
 ### Russian Translation
 
@@ -390,7 +390,7 @@ It is a Java escape, not the regex whitespace token in this context.
 
 ---
 
-## JAVA-B01B-C020 — What does a backslash at the physical end of a text-block line do?
+## JAVA-TEXT-B01-C020 — What does a backslash at the physical end of a text-block line do?
 
 ### Russian Translation
 
@@ -409,7 +409,7 @@ This is distinct from writing the two-character sequence `\` plus `n`.
 
 ---
 
-## JAVA-B01B-C021 — Are text blocks templates or structured JSON/XML values?
+## JAVA-TEXT-B01-C021 — Are text blocks templates or structured JSON/XML values?
 
 ### Russian Translation
 
@@ -428,7 +428,7 @@ Do not attribute string-template behavior to final Java 17/21 text blocks.
 
 ---
 
-## JAVA-B01B-C022 — Which StringBuilder methods mutate the same object?
+## JAVA-TEXT-B01-C022 — Which StringBuilder methods mutate the same object?
 
 ### Russian Translation
 
@@ -447,7 +447,7 @@ Most return the same builder for chaining.
 
 ---
 
-## JAVA-B01B-C023 — What happens when two variables alias one StringBuilder?
+## JAVA-TEXT-B01-C023 — What happens when two variables alias one StringBuilder?
 
 ### Russian Translation
 
@@ -466,7 +466,7 @@ Do not reason about mutable builders as if they were immutable Strings.
 
 ---
 
-## JAVA-B01B-C024 — What happens when `StringBuilder.setLength` increases the length?
+## JAVA-TEXT-B01-C024 — What happens when `StringBuilder.setLength` increases the length?
 
 ### Russian Translation
 
@@ -485,7 +485,7 @@ The new positions are not ordinary space characters.
 
 ---
 
-## JAVA-B01B-C025 — Does StringBuilder provide content-based `equals`?
+## JAVA-TEXT-B01-C025 — Does StringBuilder provide content-based `equals`?
 
 ### Russian Translation
 
