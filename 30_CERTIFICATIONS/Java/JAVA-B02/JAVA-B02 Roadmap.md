@@ -3,9 +3,10 @@ type: learning-route
 route: JAVA-B02
 domain: java
 subdomain: control-flow-pattern-switch
-status: implementation-ready
-evidence_status: source-card-drill-backed
+status: lab-proven
+evidence_status: jdk17-jdk21-ci-pass
 verified_at: 2026-07-24
+ci_run_id: 30089425851
 java_versions:
   - 17
   - 21
@@ -31,7 +32,7 @@ tags:
 # JAVA-B02 — Control Flow and Java 21 Pattern Switch
 
 > [!summary]
-> `JAVA-B02` establishes deterministic reasoning about conditions, loops, transfers, classic switch, switch expressions and the final Java 21 pattern-switch model. Shared mechanisms are compiled against Java 17 and Java 21; pattern labels, guards, null labels, broadened reference selectors and enhanced-switch exhaustiveness are isolated to the Java 21 lane.
+> `JAVA-B02` establishes deterministic reasoning about conditions, loops, transfers, classic switch, switch expressions and the final Java 21 pattern-switch model. Shared mechanisms are compiled against Java 17 and Java 21; pattern labels, guards, null labels, broadened reference selectors and enhanced-switch exhaustiveness are isolated to the Java 21 lane. Dedicated CI run `30089425851` passed both version lanes.
 
 # Why this route follows JAVA-B01
 
@@ -177,6 +178,19 @@ Java 21 negative source      dominance/exhaustiveness/guard failures must be rej
 
 The lab has no external dependencies and no environment-dependent output.
 
+# Confirmed CI evidence
+
+Dedicated GitHub Actions run `30089425851` produced:
+
+```text
+JDK 17 shared compile/runtime                 PASS
+JDK 17 shared expected-failure bank          PASS
+JDK 17 qualified-enum version trap           PASS
+JDK 21 shared compile/runtime                 PASS
+JDK 21 final pattern-switch runtime proof    PASS
+JDK 21 dominance/exhaustiveness failure bank PASS
+```
+
 # Study sequence
 
 ```mermaid
@@ -203,11 +217,11 @@ flowchart LR
 [x] positive shared proof source
 [x] positive Java 21 pattern source
 [x] expected compile-fail source bank
-[ ] execute shared proof on JDK 17
-[ ] execute shared and pattern proof on JDK 21
-[ ] confirm all negative cases fail in their intended lanes
-[ ] mark JAVA-B02 and JAVA21-2.1 lab-proven
-[ ] attach workflow run ID
+[x] execute shared proof on JDK 17
+[x] execute shared and pattern proof on JDK 21
+[x] confirm all negative cases fail in their intended lanes
+[x] mark JAVA-B02 and JAVA21-2.1 lab-proven
+[x] attach workflow run ID 30089425851
 ```
 
 # Next route
