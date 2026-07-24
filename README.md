@@ -72,23 +72,37 @@ status: lab-proven
 - [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]]
 - [[10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch]]
 
+### JAVA-B03 — Object Model, Records and Record Patterns
+
+```text
+12 atomic concepts
+115 base cards
+35 drills
+4 positive proof classes
+17 expected compile failures
+JDK 17 and 21 proof lanes
+status: lab-proven
+```
+
+- [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap]]
+- [[10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns]]
+- [[01_MAPS/Java Object Model and Record Patterns Map.canvas]]
+
 ### Navigation inventory
 
 ```text
-canonical route hubs             2
-atomic Java concept notes       17
+canonical route hubs             3
+atomic Java concept notes       29
 Java learning dashboard          1
 Java certification Canvas        1
-machine-registered Java routes   2
+machine-registered Java routes   3
 ```
 
 ### Next Java route
 
 ```text
-JAVA-B03 — Object Model, Records, Sealed Types and Record Patterns
+JAVA-B05 — Collections, Generics and Sequenced Collections
 ```
-
-B03 should be implemented in a separate route PR after this foundation and navigation slice is reviewed.
 
 ## Java certification lanes
 
@@ -155,7 +169,7 @@ Mermaid rendering
 route-specific executable proof workflows
 ```
 
-Dedicated Java B01 and B02 workflows pass on JDK 17 and JDK 21. The aggregate vault workflow may also report unrelated Spring route regressions; route-specific proof remains separately visible.
+Dedicated Java B01, B02 and B03 workflows pass on JDK 17 and JDK 21. The aggregate vault workflow may also report unrelated Spring route regressions; route-specific proof remains separately visible.
 
 ## Published non-Java areas
 

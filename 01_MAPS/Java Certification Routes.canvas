@@ -1,39 +1,340 @@
 {
   "nodes": [
-    {"id":"dashboard","type":"file","file":"00_HOME/Java Learning Dashboard.md","x":0,"y":0,"width":460,"height":200,"color":"4"},
-    {"id":"program","type":"file","file":"00_HOME/Oracle Java 17 and 21 Certification Program.md","x":-560,"y":0,"width":460,"height":190,"color":"6"},
-    {"id":"moc","type":"file","file":"30_CERTIFICATIONS/Certification MOC.md","x":560,"y":0,"width":420,"height":180,"color":"6"},
-    {"id":"java17","type":"file","file":"30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap.md","x":-540,"y":300,"width":470,"height":190,"color":"3"},
-    {"id":"java21","type":"file","file":"30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap.md","x":40,"y":300,"width":470,"height":190,"color":"5"},
-    {"id":"delta","type":"file","file":"30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix.md","x":620,"y":300,"width":440,"height":180,"color":"1"},
-    {"id":"b01","type":"file","file":"30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap.md","x":-430,"y":620,"width":420,"height":180,"color":"3"},
-    {"id":"b02","type":"file","file":"30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap.md","x":120,"y":620,"width":420,"height":180,"color":"5"},
-    {"id":"b03","type":"text","text":"NEXT ROUTE\nJAVA-B03\nObject Model\nRecords\nSealed Types\nRecord Patterns","x":670,"y":620,"width":360,"height":220,"color":"6"},
-    {"id":"b01hub","type":"file","file":"10_CONCEPTS/Java/Core/Java Values Text and Date-Time.md","x":-430,"y":920,"width":440,"height":180,"color":"3"},
-    {"id":"b02hub","type":"file","file":"10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch.md","x":120,"y":920,"width":440,"height":180,"color":"5"},
-    {"id":"review","type":"file","file":"00_HOME/Card Review Dashboard.md","x":670,"y":920,"width":400,"height":180,"color":"4"},
-    {"id":"b01atomic","type":"text","text":"JAVA-B01 ATOMIC NOTES\n1 Primitive literals\n2 Promotion and casting\n3 Wrappers and Math\n4 String identity\n5 StringBuilder\n6 Text blocks\n7 Local date-time\n8 Period Duration Instant\n9 Zones DST Formatting","x":-470,"y":1210,"width":490,"height":330,"color":"3"},
-    {"id":"b02atomic","type":"text","text":"JAVA-B02 ATOMIC NOTES\n1 Conditions and assignment\n2 Loops transfers labels\n3 Reachability\n4 Classic switch\n5 Switch expressions\n6 instanceof patterns\n7 Java 21 pattern switch\n8 Dominance exhaustiveness","x":100,"y":1210,"width":500,"height":310,"color":"5"},
-    {"id":"evidence","type":"text","text":"EVIDENCE LOOP\nCards → Drills → Prediction → Lab → Progress registry → Delayed review","x":690,"y":1210,"width":400,"height":220,"color":"1"}
+    {
+      "id": "dashboard",
+      "type": "file",
+      "file": "00_HOME/Java Learning Dashboard.md",
+      "x": 0,
+      "y": 0,
+      "width": 460,
+      "height": 200,
+      "color": "4"
+    },
+    {
+      "id": "program",
+      "type": "file",
+      "file": "00_HOME/Oracle Java 17 and 21 Certification Program.md",
+      "x": -560,
+      "y": 0,
+      "width": 460,
+      "height": 190,
+      "color": "6"
+    },
+    {
+      "id": "moc",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Certification MOC.md",
+      "x": 560,
+      "y": 0,
+      "width": 420,
+      "height": 180,
+      "color": "6"
+    },
+    {
+      "id": "java17",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap.md",
+      "x": -540,
+      "y": 300,
+      "width": 470,
+      "height": 190,
+      "color": "3"
+    },
+    {
+      "id": "java21",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap.md",
+      "x": 40,
+      "y": 300,
+      "width": 470,
+      "height": 190,
+      "color": "5"
+    },
+    {
+      "id": "delta",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix.md",
+      "x": 620,
+      "y": 300,
+      "width": 440,
+      "height": 180,
+      "color": "1"
+    },
+    {
+      "id": "b01",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap.md",
+      "x": -430,
+      "y": 620,
+      "width": 420,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "b02",
+      "type": "file",
+      "file": "30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap.md",
+      "x": 120,
+      "y": 620,
+      "width": 420,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "b03",
+      "type": "file",
+      "x": 670,
+      "y": 620,
+      "width": 420,
+      "height": 180,
+      "color": "2",
+      "file": "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap.md"
+    },
+    {
+      "id": "b01hub",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Core/Java Values Text and Date-Time.md",
+      "x": -430,
+      "y": 920,
+      "width": 440,
+      "height": 180,
+      "color": "3"
+    },
+    {
+      "id": "b02hub",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch.md",
+      "x": 120,
+      "y": 920,
+      "width": 440,
+      "height": 180,
+      "color": "5"
+    },
+    {
+      "id": "review",
+      "type": "file",
+      "file": "00_HOME/Card Review Dashboard.md",
+      "x": 670,
+      "y": 920,
+      "width": 400,
+      "height": 180,
+      "color": "4"
+    },
+    {
+      "id": "b01atomic",
+      "type": "text",
+      "text": "JAVA-B01 ATOMIC NOTES\n1 Primitive literals\n2 Promotion and casting\n3 Wrappers and Math\n4 String identity\n5 StringBuilder\n6 Text blocks\n7 Local date-time\n8 Period Duration Instant\n9 Zones DST Formatting",
+      "x": -470,
+      "y": 1210,
+      "width": 490,
+      "height": 330,
+      "color": "3"
+    },
+    {
+      "id": "b02atomic",
+      "type": "text",
+      "text": "JAVA-B02 ATOMIC NOTES\n1 Conditions and assignment\n2 Loops transfers labels\n3 Reachability\n4 Classic switch\n5 Switch expressions\n6 instanceof patterns\n7 Java 21 pattern switch\n8 Dominance exhaustiveness",
+      "x": 100,
+      "y": 1210,
+      "width": 500,
+      "height": 310,
+      "color": "5"
+    },
+    {
+      "id": "evidence",
+      "type": "text",
+      "text": "EVIDENCE LOOP\nCards → Drills → Prediction → Lab → Progress registry → Delayed review",
+      "x": 690,
+      "y": 1210,
+      "width": 400,
+      "height": 220,
+      "color": "1"
+    },
+    {
+      "id": "b03hub",
+      "type": "file",
+      "file": "10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns.md",
+      "x": 670,
+      "y": 920,
+      "width": 450,
+      "height": 180,
+      "color": "2"
+    },
+    {
+      "id": "b03atomic",
+      "type": "text",
+      "text": "JAVA-B03 ATOMIC NOTES\n1 Lifecycle and reachability\n2 Nested/local/anonymous\n3 Initialization order\n4 Overloading and varargs\n5 Scope/encapsulation/var\n6 Inheritance/polymorphism\n7 Abstract/interface\n8 Records\n9 Enums\n10 Sealed types\n11 Record patterns\n12 Nested patterns/exhaustiveness",
+      "x": 650,
+      "y": 1210,
+      "width": 500,
+      "height": 360,
+      "color": "2"
+    },
+    {
+      "id": "b05",
+      "type": "text",
+      "text": "NEXT ROUTE\nJAVA-B05\nCollections\nGenerics\nSequenced Collections",
+      "x": 1220,
+      "y": 620,
+      "width": 360,
+      "height": 220,
+      "color": "6"
+    }
   ],
   "edges": [
-    {"id":"e1","fromNode":"program","fromSide":"right","toNode":"dashboard","toSide":"left"},
-    {"id":"e2","fromNode":"dashboard","fromSide":"right","toNode":"moc","toSide":"left"},
-    {"id":"e3","fromNode":"dashboard","fromSide":"bottom","toNode":"java17","toSide":"top"},
-    {"id":"e4","fromNode":"dashboard","fromSide":"bottom","toNode":"java21","toSide":"top"},
-    {"id":"e5","fromNode":"java17","fromSide":"right","toNode":"delta","toSide":"left"},
-    {"id":"e6","fromNode":"java21","fromSide":"right","toNode":"delta","toSide":"left"},
-    {"id":"e7","fromNode":"java17","fromSide":"bottom","toNode":"b01","toSide":"top"},
-    {"id":"e8","fromNode":"java21","fromSide":"bottom","toNode":"b01","toSide":"top"},
-    {"id":"e9","fromNode":"b01","fromSide":"right","toNode":"b02","toSide":"left"},
-    {"id":"e10","fromNode":"b02","fromSide":"right","toNode":"b03","toSide":"left"},
-    {"id":"e11","fromNode":"b01","fromSide":"bottom","toNode":"b01hub","toSide":"top"},
-    {"id":"e12","fromNode":"b02","fromSide":"bottom","toNode":"b02hub","toSide":"top"},
-    {"id":"e13","fromNode":"b01hub","fromSide":"bottom","toNode":"b01atomic","toSide":"top"},
-    {"id":"e14","fromNode":"b02hub","fromSide":"bottom","toNode":"b02atomic","toSide":"top"},
-    {"id":"e15","fromNode":"b01atomic","fromSide":"right","toNode":"evidence","toSide":"left"},
-    {"id":"e16","fromNode":"b02atomic","fromSide":"right","toNode":"evidence","toSide":"left"},
-    {"id":"e17","fromNode":"evidence","fromSide":"top","toNode":"review","toSide":"bottom"},
-    {"id":"e18","fromNode":"review","fromSide":"top","toNode":"dashboard","toSide":"bottom"}
+    {
+      "id": "e1",
+      "fromNode": "program",
+      "fromSide": "right",
+      "toNode": "dashboard",
+      "toSide": "left"
+    },
+    {
+      "id": "e2",
+      "fromNode": "dashboard",
+      "fromSide": "right",
+      "toNode": "moc",
+      "toSide": "left"
+    },
+    {
+      "id": "e3",
+      "fromNode": "dashboard",
+      "fromSide": "bottom",
+      "toNode": "java17",
+      "toSide": "top"
+    },
+    {
+      "id": "e4",
+      "fromNode": "dashboard",
+      "fromSide": "bottom",
+      "toNode": "java21",
+      "toSide": "top"
+    },
+    {
+      "id": "e5",
+      "fromNode": "java17",
+      "fromSide": "right",
+      "toNode": "delta",
+      "toSide": "left"
+    },
+    {
+      "id": "e6",
+      "fromNode": "java21",
+      "fromSide": "right",
+      "toNode": "delta",
+      "toSide": "left"
+    },
+    {
+      "id": "e7",
+      "fromNode": "java17",
+      "fromSide": "bottom",
+      "toNode": "b01",
+      "toSide": "top"
+    },
+    {
+      "id": "e8",
+      "fromNode": "java21",
+      "fromSide": "bottom",
+      "toNode": "b01",
+      "toSide": "top"
+    },
+    {
+      "id": "e9",
+      "fromNode": "b01",
+      "fromSide": "right",
+      "toNode": "b02",
+      "toSide": "left"
+    },
+    {
+      "id": "e10",
+      "fromNode": "b02",
+      "fromSide": "right",
+      "toNode": "b03",
+      "toSide": "left"
+    },
+    {
+      "id": "e11",
+      "fromNode": "b01",
+      "fromSide": "bottom",
+      "toNode": "b01hub",
+      "toSide": "top"
+    },
+    {
+      "id": "e12",
+      "fromNode": "b02",
+      "fromSide": "bottom",
+      "toNode": "b02hub",
+      "toSide": "top"
+    },
+    {
+      "id": "e13",
+      "fromNode": "b01hub",
+      "fromSide": "bottom",
+      "toNode": "b01atomic",
+      "toSide": "top"
+    },
+    {
+      "id": "e14",
+      "fromNode": "b02hub",
+      "fromSide": "bottom",
+      "toNode": "b02atomic",
+      "toSide": "top"
+    },
+    {
+      "id": "e15",
+      "fromNode": "b01atomic",
+      "fromSide": "right",
+      "toNode": "evidence",
+      "toSide": "left"
+    },
+    {
+      "id": "e16",
+      "fromNode": "b02atomic",
+      "fromSide": "right",
+      "toNode": "evidence",
+      "toSide": "left"
+    },
+    {
+      "id": "e17",
+      "fromNode": "evidence",
+      "fromSide": "top",
+      "toNode": "review",
+      "toSide": "bottom"
+    },
+    {
+      "id": "e18",
+      "fromNode": "review",
+      "fromSide": "top",
+      "toNode": "dashboard",
+      "toSide": "bottom"
+    },
+    {
+      "id": "e19",
+      "fromNode": "b03",
+      "fromSide": "bottom",
+      "toNode": "b03hub",
+      "toSide": "top"
+    },
+    {
+      "id": "e20",
+      "fromNode": "b03hub",
+      "fromSide": "bottom",
+      "toNode": "b03atomic",
+      "toSide": "top"
+    },
+    {
+      "id": "e21",
+      "fromNode": "b03atomic",
+      "fromSide": "right",
+      "toNode": "evidence",
+      "toSide": "left"
+    },
+    {
+      "id": "e22",
+      "fromNode": "b03",
+      "fromSide": "right",
+      "toNode": "b05",
+      "toSide": "left"
+    }
   ]
 }

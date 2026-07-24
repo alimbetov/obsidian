@@ -198,8 +198,8 @@ learner progress history        not initialized
 ```mermaid
 flowchart LR
     B1[JAVA-B01 complete] --> B2[JAVA-B02 complete]
-    B2 --> B3[JAVA-B03 next]
-    B3 --> B5[JAVA-B05]
+    B2 --> B3[JAVA-B03 complete]
+    B3 --> B5[JAVA-B05 next]
     B5 --> B6[JAVA-B06]
     B6 --> B4[JAVA-B04]
     B4 --> B7[JAVA-B07]
@@ -214,7 +214,7 @@ flowchart LR
 ## Immediate next slice
 
 ```text
-JAVA-B03 — Object Model, Records, Sealed Types and Record Patterns
+JAVA-B05 — Collections, Generics and Sequenced Collections
 ```
 
-B03 may assume all B01 expression/text rules and B02 flow/switch rules.
+B05 may assume B01 expression rules, B02 flow rules and B03 object-model and generic-type foundations.

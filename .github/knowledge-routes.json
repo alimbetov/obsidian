@@ -120,10 +120,54 @@
       ]
     },
     {
+      "id": "JAVA-B03",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "00_HOME/Java Learning Dashboard.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap.md",
+        "10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns.md",
+        "00_HOME/Knowledge Route Registry.md",
+        "01_MAPS/Java Object Model and Record Patterns Map.canvas"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns.md",
+        "10_CONCEPTS/Java/Object Model/Java Object Creation Reachability and Lifecycle.md",
+        "10_CONCEPTS/Java/Object Model/Java Nested Local and Anonymous Classes.md",
+        "10_CONCEPTS/Java/Object Model/Java Fields Initializers and Constructor Order.md",
+        "10_CONCEPTS/Java/Object Model/Java Overloading Varargs and Method Selection.md",
+        "10_CONCEPTS/Java/Object Model/Java Scope Encapsulation Immutability and var.md",
+        "10_CONCEPTS/Java/Object Model/Java Inheritance Overriding Hiding and Polymorphism.md",
+        "10_CONCEPTS/Java/Object Model/Java Abstract Classes and Interfaces.md",
+        "10_CONCEPTS/Java/Object Model/Java Records.md",
+        "10_CONCEPTS/Java/Object Model/Java Enums.md",
+        "10_CONCEPTS/Java/Object Model/Java Sealed Types.md",
+        "10_CONCEPTS/Java/Object Model/Java Record Patterns.md",
+        "10_CONCEPTS/Java/Object Model/Java Nested Patterns and Exhaustiveness.md",
+        "01_MAPS/Java Object Model and Record Patterns Map.canvas",
+        "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03A Object Lifecycle Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03B Initialization and Scope Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03C Inheritance and Interfaces Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03D Records Sealed and Patterns Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Drills.md",
+        "50_LABS/Java/JAVA-B03/README.md",
+        "98_SOURCES/Java SE 17 1Z0-829 Sources.md",
+        "98_SOURCES/Java SE 21 1Z0-830 Sources.md"
+      ]
+    },
+    {
       "id": "SPRING-CORE",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap.md",
-      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -166,7 +210,11 @@
       "id": "SPRING-AOP-CACHE",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap.md",
-      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -193,7 +241,11 @@
       "id": "SPRING-TX",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap.md",
-      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -215,7 +267,11 @@
       "id": "SPRING-DATA-JPA",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap.md",
-      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -237,7 +293,11 @@
       "id": "SPRING-TEST",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap.md",
-      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -259,7 +319,11 @@
       "id": "SPRING-BOOT-B01",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md",
-      "entry_points": ["README.md", "01_MAPS/Spring Map.md", "00_HOME/Knowledge Route Registry.md"],
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Spring Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
       "indexes": [
         "30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap.md",
         "01_MAPS/Spring Map.md",
@@ -280,7 +344,11 @@
       "id": "DB-B01",
       "status": "published",
       "hub": "30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap.md",
-      "entry_points": ["README.md", "01_MAPS/Databases Map.md", "00_HOME/Knowledge Route Registry.md"],
+      "entry_points": [
+        "README.md",
+        "01_MAPS/Databases Map.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
       "indexes": [
         "30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap.md",
         "01_MAPS/Databases Map.md",

@@ -55,9 +55,9 @@ Machine controls:
 |---|---|---|
 | Spring 2V0-72.22 | [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring 99 Percent Master Roadmap]] | multiple published routes |
 | Java 11/17/21 platform | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] | `JAVA-LTS-B01` published |
-| Oracle Java 17 + 21 | [[00_HOME/Oracle Java 17 and 21 Certification Program]] | B01 and B02 lab-proven |
-| Java `1Z0-829` | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | B01 and B02 published |
-| Java `1Z0-830` | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | B01 and B02 published |
+| Oracle Java 17 + 21 | [[00_HOME/Oracle Java 17 and 21 Certification Program]] | B01, B02 and B03 lab-proven |
+| Java `1Z0-829` | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | B01, B02 and B03 published |
+| Java `1Z0-830` | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | B01, B02 and B03 published |
 | Java Concurrency | [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]] | foundation published |
 
 # Java certification navigation
@@ -113,14 +113,34 @@ JDK 17 / JDK 21 PASS
 
 Atomic start: [[10_CONCEPTS/Java/Core/Java Conditions and Definite Assignment]].
 
+## JAVA-B03 — Object Model, Records and Record Patterns
+
+Status: **lab-proven**.
+
+```text
+12 atomic concepts
+115 base cards
+35 drills
+4 positive proof classes
+17 expected compile failures
+JDK 17 / JDK 21 PASS
+```
+
+- [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap]]
+- [[10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns]]
+- [[50_LABS/Java/JAVA-B03/README]]
+- [[01_MAPS/Java Object Model and Record Patterns Map.canvas]]
+
+Atomic start: [[10_CONCEPTS/Java/Object Model/Java Object Creation Reachability and Lifecycle]].
+
 ## Java route sequence
 
 | Order | Route | Java 17 | Java 21 | Status |
 |---:|---|---|---|---|
 | 1 | JAVA-B01 Values/Text/Date-Time | included | included | lab-proven |
 | 2 | JAVA-B02 Control Flow | included | pattern-switch delta | lab-proven |
-| 3 | JAVA-B03 Object Model | records/sealed | record patterns | next |
-| 4 | JAVA-B05 Collections/Generics | included | sequenced collections | planned |
+| 3 | JAVA-B03 Object Model | records/sealed | record patterns | lab-proven |
+| 4 | JAVA-B05 Collections/Generics | included | sequenced collections | next |
 | 5 | JAVA-B06 Lambdas/Streams | included | included | planned |
 | 6 | JAVA-B04 Exceptions/Resources | included | included | planned |
 | 7 | JAVA-B07 Modules/Deployment | included | included | planned |
@@ -133,12 +153,12 @@ Atomic start: [[10_CONCEPTS/Java/Core/Java Conditions and Definite Assignment]].
 ## Java progress inventory
 
 ```text
-published exam routes          2
-atomic notes                  17
-base cards                   135
-drills                        35
-positive proof classes         5
-expected compile failures     11
+published exam routes          3
+atomic notes                  29
+base cards                   250
+drills                        70
+positive proof classes         9
+expected compile failures     28
 ```
 
 Use [[00_HOME/Java Learning Dashboard]] for the operational learning flow.
@@ -167,7 +187,7 @@ Use [[00_HOME/Java Learning Dashboard]] for the operational learning flow.
 | Spring MVC B01 | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]] |
 | Spring MVC B02 | [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]] |
 
-The aggregate workflow currently has an unrelated `SPRING-MVC-B02` regression; Java B01/B02 route-specific checks pass separately.
+The aggregate workflow currently has an unrelated `SPRING-MVC-B02` regression; Java B01/B02/B03 route-specific checks pass separately.
 
 # Database navigation
 

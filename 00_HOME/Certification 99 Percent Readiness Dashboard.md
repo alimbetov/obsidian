@@ -69,16 +69,17 @@ The status describes repository evidence, not exam pass probability.
 | JAVA-LTS-B01 | route slice | 30 | migration cases | JDK 11/17/21 | published |
 | JAVA-B01 | 9 | 75 | 15 | 3 proof classes, JDK 17/21 | lab-proven |
 | JAVA-B02 | 8 | 60 | 20 | 2 positive classes + 11 negative cases, JDK 17/21 | lab-proven |
+| JAVA-B03 | 12 | 115 | 35 | 4 positive classes + 17 negative cases, JDK 17/21 | lab-proven |
 
 ## Delivered Java exam inventory
 
 ```text
-lab-proven exam routes             2
-atomic concepts                   17
-base cards                       135
-compile/output drills             35
-positive proof classes             5
-expected compile-fail cases       11
+lab-proven exam routes             3
+atomic concepts                   29
+base cards                       250
+compile/output drills             70
+positive proof classes             9
+expected compile-fail cases       28
 runtime baselines             17, 21
 ```
 
@@ -93,6 +94,7 @@ JAVA21-1.1 primitives, wrappers, promotions and boolean expressions
 JAVA21-1.2 String, StringBuilder and text blocks
 JAVA21-1.3 date-time, Period, Duration, Instant, zones and DST
 JAVA21-2.1 program flow and final pattern switch
+JAVA21-3.1..3.7 object model, initialization, overloading, inheritance, interfaces, records, enums, sealed types and record patterns
 ```
 
 Other objectives remain roadmap or previously published supporting evidence.
@@ -102,13 +104,13 @@ Other objectives remain roadmap or previously published supporting evidence.
 ```text
 JAVA-B01 values, text and date-time   lab-proven route evidence
 JAVA-B02 control flow                 lab-proven route evidence
-JAVA-B03 ... JAVA-B11                 planned or supporting evidence
+JAVA-B03 object model                  lab-proven route evidence
+JAVA-B04 ... JAVA-B11                 planned or supporting evidence
 ```
 
 ## Next Java implementation order
 
 ```text
-JAVA-B03  Object Model, Records, Sealed Types, Record Patterns
 JAVA-B05  Collections, Generics, Sequenced Collections
 JAVA-B06  Lambdas and Streams
 JAVA-B04  Exceptions and Try-with-resources
@@ -123,7 +125,7 @@ JAVA-SUP-B01 Logging, Annotations and supplementary Generics
 ## Material gaps before 99%
 
 - remaining Java routes;
-- visual deep dives and production cases for B01/B02;
+- visual deep dives and production cases for B01/B02/B03;
 - pre-test and post-test assessments;
 - mixed mini-mock bank;
 - 800-card Java 21 target and 200 drills;
@@ -193,8 +195,8 @@ learner mastered
 ## Current action
 
 ```text
-1. Use Java Learning Dashboard for B01/B02.
+1. Use Java Learning Dashboard for B01/B02/B03.
 2. Initialize per-card progress.
-3. Start JAVA-B03 in a separate route PR.
+3. Continue with JAVA-B05 in a separate route PR.
 4. Repair the unrelated Spring MVC B02 regression separately.
 ```

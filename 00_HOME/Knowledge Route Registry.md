@@ -54,8 +54,8 @@ Progress review
 |---|---|---|
 | Java 11/17/21 platform | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] | active |
 | Oracle Java 17 + 21 | [[00_HOME/Oracle Java 17 and 21 Certification Program]] | active |
-| Java `1Z0-829` | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | B01/B02 published |
-| Java `1Z0-830` | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | B01/B02 published |
+| Java `1Z0-829` | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | B01/B02/B03 published |
+| Java `1Z0-830` | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | B01/B02/B03 published |
 | Java Concurrency | [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]] | foundation published |
 
 ### JAVA-LTS-B01 — Java 11, 17 and 21 Evolution
@@ -100,31 +100,46 @@ Status: `lab-proven`, JDK 17/21 PASS.
 
 Status: `lab-proven`, JDK 17/21 PASS.
 
+### JAVA-B03 — Object Model, Records and Record Patterns
+
+| Role | Artifact |
+|---|---|
+| Roadmap | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap]] |
+| Canonical hub | [[10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns]] |
+| Atomic concepts | 12 linked notes |
+| Canvas | [[01_MAPS/Java Object Model and Record Patterns Map.canvas]] |
+| Cards | 115 across lifecycle, initialization, inheritance and type batches |
+| Drills | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Drills|35 drills]] |
+| Lab | [[50_LABS/Java/JAVA-B03/README]] |
+| Negative evidence | 17 expected compile failures |
+| Sources | [[98_SOURCES/Java SE 17 1Z0-829 Sources]], [[98_SOURCES/Java SE 21 1Z0-830 Sources]] |
+
+Status: `lab-proven`, JDK 17/21 PASS.
+
 ### Current Java inventory
 
 ```text
-published exam routes            2
-atomic concept notes            17
-base cards                      135
-drills                           35
-positive proof classes            5
-expected compile-fail cases      11
+published exam routes            3
+atomic concept notes            29
+base cards                      250
+drills                           70
+positive proof classes            9
+expected compile-fail cases      28
 ```
 
 ### Next Java routes
 
 | Order | Route | Status |
 |---:|---|---|
-| 1 | `JAVA-B03` — Object Model, Records, Sealed Types, Record Patterns | next |
-| 2 | `JAVA-B05` — Collections, Generics, Sequenced Collections | planned |
-| 3 | `JAVA-B06` — Lambdas and Streams | planned |
-| 4 | `JAVA-B04` — Exceptions and Try-with-resources | planned |
-| 5 | `JAVA-B07` — Modules and Deployment | planned |
-| 6 | `JAVA-B08` — Concurrency and Virtual Threads | planned |
-| 7 | `JAVA-B09` — I/O, NIO.2 and Serialization | planned |
-| 8 | `JAVA-B10` — JDBC for 1Z0-829 | planned |
-| 9 | `JAVA-B11` — Localization | planned |
-| 10 | `JAVA-SUP-B01` — Logging, Annotations and supplementary Generics | planned |
+| 1 | `JAVA-B05` — Collections, Generics, Sequenced Collections | next |
+| 2 | `JAVA-B06` — Lambdas and Streams | planned |
+| 3 | `JAVA-B04` — Exceptions and Try-with-resources | planned |
+| 4 | `JAVA-B07` — Modules and Deployment | planned |
+| 5 | `JAVA-B08` — Concurrency and Virtual Threads | planned |
+| 6 | `JAVA-B09` — I/O, NIO.2 and Serialization | planned |
+| 7 | `JAVA-B10` — JDBC for 1Z0-829 | planned |
+| 8 | `JAVA-B11` — Localization | planned |
+| 9 | `JAVA-SUP-B01` — Logging, Annotations and supplementary Generics | planned |
 
 ## Java Concurrency
 

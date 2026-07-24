@@ -14,12 +14,13 @@
     ]
   },
   "coverage": {
-    "mapped_objectives": 3,
-    "lab_proven_objectives": 2,
+    "mapped_objectives": 4,
+    "lab_proven_objectives": 3,
     "total_objectives": 11,
     "implemented_routes": [
       "JAVA-B01",
-      "JAVA-B02"
+      "JAVA-B02",
+      "JAVA-B03"
     ]
   },
   "objectives": [
@@ -91,10 +92,32 @@
       "id": "JAVA-B03",
       "section": "Object-Oriented Programming",
       "title": "Design classes, interfaces, records, enums and sealed hierarchies",
-      "status": "unmapped",
+      "status": "lab-proven",
       "weight": 13,
-      "mapping_granularity": "domain",
+      "mapping_granularity": "route",
       "evidence": {
+        "canonical": [
+          "10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns.md"
+        ],
+        "card_prefixes": [
+          "JAVA-OBJECT-B03-C",
+          "JAVA-INIT-B03-C",
+          "JAVA-INHERIT-B03-C",
+          "JAVA-TYPES-B03-C"
+        ],
+        "cases": [
+          "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Drills.md"
+        ],
+        "labs": [
+          "50_LABS/Java/JAVA-B03/README.md",
+          "50_LABS/Java/JAVA-B03/run.sh",
+          "50_LABS/Java/JAVA-B03/src/shared/java/lab/b03/InitializationProof.java",
+          "50_LABS/Java/JAVA-B03/src/shared/java/lab/b03/ObjectModelProof.java",
+          "50_LABS/Java/JAVA-B03/src/shared/java/lab/b03/RecordsSealedProof.java"
+        ],
+        "roadmaps": [
+          "30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap.md"
+        ],
         "sources": [
           "98_SOURCES/Java SE 17 1Z0-829 Sources.md"
         ]
