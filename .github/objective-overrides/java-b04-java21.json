@@ -4,7 +4,7 @@
   "objective_updates": [
     {
       "id": "JAVA21-4.1",
-      "status": "source-complete",
+      "status": "lab-proven",
       "mapping_granularity": "route",
       "route_hint": "JAVA-B04",
       "evidence": {
