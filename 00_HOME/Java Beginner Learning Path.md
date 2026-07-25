@@ -150,6 +150,26 @@ flowchart LR
 - отличать immutable collection от unmodifiable view;
 - понимать границу Java 17 и Java 21 Sequenced Collections.
 
+## Ступень 6 — поведение как значение и поток обработки
+
+Начни с:
+
+- [[10_CONCEPTS/Java/Functional/Java Functional Interfaces and Lambda Target Typing]]
+- затем [[30_CERTIFICATIONS/Java/JAVA-B06/JAVA-B06 Roadmap]]
+
+После ступени ученик должен уметь:
+
+- объяснять functional interface и SAM;
+- читать lambda через target type;
+- понимать effectively-final capture;
+- различать method и constructor references;
+- видеть source, intermediate и terminal operations;
+- предсказывать lazy traversal и short-circuit;
+- выбирать `map`, `filter`, `flatMap`, reduction и collector;
+- безопасно обрабатывать пустые Optional results;
+- не использовать shared mutable state в parallel stream;
+- выбирать parallel execution только после анализа workload и измерений.
+
 ## Как проверять понимание
 
 Не спрашивай только «что такое X?». Используй четыре типа вопросов.
