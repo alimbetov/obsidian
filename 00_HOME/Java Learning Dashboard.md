@@ -2,19 +2,22 @@
 type: dashboard
 domain: java
 status: active
-verified_at: 2026-07-24
+verified_at: 2026-07-25
 current_next_route: JAVA-B05
 published_routes:
   - JAVA-LTS-B01
   - JAVA-B01
   - JAVA-B02
   - JAVA-B03
+  - JAVA-B04
 lab_proven_routes:
   - JAVA-B01
   - JAVA-B02
   - JAVA-B03
-published_base_cards: 250
-published_drills: 70
+  - JAVA-B04
+published_base_cards: 286
+published_drills: 90
+atomic_notes: 35
 cssclasses:
   - learning-dashboard
   - wide-page
@@ -29,27 +32,53 @@ tags:
 # Java Learning Dashboard
 
 > [!start]
-> Для ежедневной работы открывай [[00_HOME/Java Learning Cockpit]]. Эта страница является каталогом маршрутов, atomic concepts, practice bank и executable evidence.
+> **Первый раз изучаешь Java или обучаешь школьника/студента:** открой [[00_HOME/Java Beginner Learning Path]].  
+> **Уже умеешь читать Java-код:** для ежедневной работы используй [[00_HOME/Java Learning Cockpit]].
+
+## Два режима входа
+
+| Режим | Для кого | Начать |
+|---|---|---|
+| Beginner path | школьник, студент, начинающий | [[00_HOME/Java Beginner Learning Path]] |
+| Route catalog | разработчик, certification candidate | эта страница |
 
 ## Опубликованные маршруты
 
-| Status | Route | Atomic notes | Cards | Drills | Открыть |
-|---|---|---:|---:|---:|---|
-| `lab-proven` | JAVA-B01 — Values, Text and Date-Time | 9 | 75 | 15 | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap]] |
-| `lab-proven` | JAVA-B02 — Control Flow and Pattern Switch | 8 | 60 | 20 | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]] |
-| `lab-proven` | JAVA-B03 — Object Model and Record Patterns | 12 | 115 | 35 | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap]] |
-| `next` | JAVA-B05 — Collections, Generics and Sequenced Collections | — | — | — | planned |
+| Status | Route | Beginner entry | Atomic notes | Cards | Drills | Roadmap |
+|---|---|---|---:|---:|---:|---|
+| `lab-proven` | JAVA-B01 — Values, Text and Date-Time | [[10_CONCEPTS/Java/Foundations/Java B01 Beginner Bridge|bridge]] | 9 | 75 | 15 | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap]] |
+| `lab-proven` | JAVA-B02 — Control Flow and Pattern Switch | [[10_CONCEPTS/Java/Foundations/Java B02 Beginner Bridge|bridge]] | 8 | 60 | 20 | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]] |
+| `lab-proven` | JAVA-B03 — Object Model and Record Patterns | [[10_CONCEPTS/Java/Foundations/Java B03 Beginner Bridge|bridge]] | 12 | 115 | 35 | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap]] |
+| `lab-proven` | JAVA-B04 — Exceptions and Resource Safety | roadmap starts with beginner model | 6 | 36 | 20 | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Roadmap]] |
+| `next` | JAVA-B05 — Collections, Generics and Sequenced Collections | — | — | — | — | planned |
+
+## Нулевая ступень
+
+Перед B01 начинающий должен понять:
+
+- [[10_CONCEPTS/Java/Foundations/Java Mental Model for Beginners]]
+
+Она объясняет:
+
+```text
+значение → переменная → выражение → statement
+class → object → reference
+source → compilation → execution
+```
 
 ## Выбрать маршрут по задаче
 
 > [!learn]
-> **Нужно понять базовые значения, текст или date-time:** [[10_CONCEPTS/Java/Core/Java Values Text and Date-Time|JAVA-B01 hub]]
+> **Значения, строки, даты:** [[10_CONCEPTS/Java/Core/Java Values Text and Date-Time|JAVA-B01 hub]]
 
 > [!learn]
-> **Нужно научиться точно трассировать выполнение:** [[10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch|JAVA-B02 hub]]
+> **Условия, циклы, switch, patterns:** [[10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch|JAVA-B02 hub]]
 
 > [!learn]
-> **Нужно понять создание объектов, dispatch, records и sealed hierarchy:** [[10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns|JAVA-B03 hub]]
+> **Объекты, initialization, inheritance, records:** [[10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns|JAVA-B03 hub]]
+
+> [!learn]
+> **Exceptions, stack traces и resource cleanup:** [[10_CONCEPTS/Java/Exceptions/Java Exceptions and Resource Safety|JAVA-B04 hub]]
 
 ## JAVA-B01 concept map
 
@@ -95,20 +124,32 @@ tags:
 | 11 | [[10_CONCEPTS/Java/Object Model/Java Record Patterns]] | `JAVA-TYPES-B03` |
 | 12 | [[10_CONCEPTS/Java/Object Model/Java Nested Patterns and Exhaustiveness]] | `JAVA-TYPES-B03` |
 
+## JAVA-B04 concept map
+
+| # | Atomic concept | Учебный фокус |
+|---:|---|---|
+| 1 | [[10_CONCEPTS/Java/Exceptions/Java Why Programs Fail and Exception Flow]] | normal vs exceptional path |
+| 2 | [[10_CONCEPTS/Java/Exceptions/Java Checked Unchecked Exceptions and Errors]] | hierarchy и compiler contract |
+| 3 | [[10_CONCEPTS/Java/Exceptions/Java Try Catch Finally]] | handler и cleanup |
+| 4 | [[10_CONCEPTS/Java/Exceptions/Java Throw Throws and Custom Exceptions]] | failure API |
+| 5 | [[10_CONCEPTS/Java/Exceptions/Java Multi-catch and Precise Rethrow]] | exact type handling |
+| 6 | [[10_CONCEPTS/Java/Exceptions/Java Try-with-resources and Suppressed Exceptions]] | deterministic resource lifecycle |
+
 ## Практика и доказательства
 
-| Route | Cards | Drills | Lab |
-|---|---|---|---|
-| B01 | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01A Values Cards|values]] · [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01B Text Cards|text]] · [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01C Date-Time Cards|time]] | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Drills|15]] | [[50_LABS/Java/JAVA-B01/README]] |
-| B02 | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02A Control Flow Cards|flow]] · [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02B Switch Cards|switch]] · [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02C Pattern Switch Cards|patterns]] | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Drills|20]] | [[50_LABS/Java/JAVA-B02/README]] |
-| B03 | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03A Object Lifecycle Cards|objects]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03B Initialization and Scope Cards|init]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03C Inheritance and Interfaces Cards|inheritance]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03D Records Sealed and Patterns Cards|types]] | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Drills|35]] | [[50_LABS/Java/JAVA-B03/README]] |
+| Route | Cards | Drills | Cases | Lab |
+|---|---|---|---|---|
+| B01 | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01A Values Cards|values]] · [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01B Text Cards|text]] · [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01C Date-Time Cards|time]] | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Drills|15]] | — | [[50_LABS/Java/JAVA-B01/README]] |
+| B02 | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02A Control Flow Cards|flow]] · [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02B Switch Cards|switch]] · [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02C Pattern Switch Cards|patterns]] | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Drills|20]] | — | [[50_LABS/Java/JAVA-B02/README]] |
+| B03 | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03A Object Lifecycle Cards|objects]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03B Initialization and Scope Cards|init]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03C Inheritance and Interfaces Cards|inheritance]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03D Records Sealed and Patterns Cards|types]] | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Drills|35]] | — | [[50_LABS/Java/JAVA-B03/README]] |
+| B04 | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Cards|36]] | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Drills|20]] | [[40_PRODUCTION_CASES/Java/Java Exceptions Production Cases|8]] | [[50_LABS/Java/JAVA-B04/README|JDK 17/21 PASS]] |
 
 ## Управление обучением
 
-- [[00_HOME/Knowledge Route Registry]] — центральный machine-governed реестр.
+- [[00_HOME/Knowledge Route Registry]] — machine-governed registry.
 - [[00_HOME/Card Review Dashboard]] — due cards и outcome recording.
-- [[00_HOME/Java Weakness Repair Center]] — ошибка → механизм → repair.
-- [[70_PROGRESS/Java Learning Progress Dashboard]] — weekly learner review.
+- [[00_HOME/Java Weakness Repair Center]] — ошибка → mechanism → repair.
+- [[70_PROGRESS/Java Learning Progress Dashboard]] — weekly review.
 - [[01_MAPS/Java Learning Journey.canvas]] — visual journey.
 - [[30_CERTIFICATIONS/Java/Java 17 and 21 Exam Delta Matrix]] — version boundary.
 
@@ -117,5 +158,3 @@ tags:
 ```text
 JAVA-B05 — Collections, Generics and Sequenced Collections
 ```
-
-Новый repository route не означает, что learner обязан немедленно переходить дальше. Сначала проверь текущий weakest mechanism в [[70_PROGRESS/Java Learning Progress Dashboard]].

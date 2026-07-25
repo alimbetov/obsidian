@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "routes": [
+    {
+      "id": "JAVA-B04",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "00_HOME/Java Beginner Learning Path.md",
+        "00_HOME/Java Learning Dashboard.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Roadmap.md",
+        "10_CONCEPTS/Java/Exceptions/Java Exceptions and Resource Safety.md",
+        "00_HOME/Java Learning Dashboard.md"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Java/Exceptions/Java Exceptions and Resource Safety.md",
+        "10_CONCEPTS/Java/Exceptions/Java Why Programs Fail and Exception Flow.md",
+        "10_CONCEPTS/Java/Exceptions/Java Checked Unchecked Exceptions and Errors.md",
+        "10_CONCEPTS/Java/Exceptions/Java Try Catch Finally.md",
+        "10_CONCEPTS/Java/Exceptions/Java Throw Throws and Custom Exceptions.md",
+        "10_CONCEPTS/Java/Exceptions/Java Multi-catch and Precise Rethrow.md",
+        "10_CONCEPTS/Java/Exceptions/Java Try-with-resources and Suppressed Exceptions.md",
+        "30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Drills.md",
+        "40_PRODUCTION_CASES/Java/Java Exceptions Production Cases.md",
+        "50_LABS/Java/JAVA-B04/README.md",
+        "98_SOURCES/Java SE 17 1Z0-829 Sources.md",
+        "98_SOURCES/Java SE 21 1Z0-830 Sources.md"
+      ]
+    }
+  ]
+}

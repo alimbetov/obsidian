@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "track_id": "JAVA-1Z0-830",
+  "objective_updates": [
+    {
+      "id": "JAVA21-4.1",
+      "status": "lab-proven",
+      "mapping_granularity": "route",
+      "route_hint": "JAVA-B04",
+      "evidence": {
+        "canonical": [
+          "10_CONCEPTS/Java/Exceptions/Java Exceptions and Resource Safety.md"
+        ],
+        "card_prefixes": [
+          "JAVA-EXCEPT-B04-C"
+        ],
+        "cases": [
+          "30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Drills.md",
+          "40_PRODUCTION_CASES/Java/Java Exceptions Production Cases.md"
+        ],
+        "labs": [
+          "50_LABS/Java/JAVA-B04/README.md",
+          "50_LABS/Java/JAVA-B04/run.sh",
+          "50_LABS/Java/JAVA-B04/src/main/java/lab/b04/ExceptionProof.java"
+        ],
+        "roadmaps": [
+          "30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Roadmap.md"
+        ],
+        "sources": [
+          "98_SOURCES/Java SE 21 1Z0-830 Sources.md"
+        ]
+      }
+    }
+  ]
+}
