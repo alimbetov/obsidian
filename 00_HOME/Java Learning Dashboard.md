@@ -14,7 +14,6 @@ lab_proven_routes:
   - JAVA-B01
   - JAVA-B02
   - JAVA-B03
-source_complete_routes:
   - JAVA-B04
 published_base_cards: 286
 published_drills: 90
@@ -50,7 +49,7 @@ tags:
 | `lab-proven` | JAVA-B01 — Values, Text and Date-Time | [[10_CONCEPTS/Java/Foundations/Java B01 Beginner Bridge|bridge]] | 9 | 75 | 15 | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap]] |
 | `lab-proven` | JAVA-B02 — Control Flow and Pattern Switch | [[10_CONCEPTS/Java/Foundations/Java B02 Beginner Bridge|bridge]] | 8 | 60 | 20 | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]] |
 | `lab-proven` | JAVA-B03 — Object Model and Record Patterns | [[10_CONCEPTS/Java/Foundations/Java B03 Beginner Bridge|bridge]] | 12 | 115 | 35 | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap]] |
-| `source-complete` | JAVA-B04 — Exceptions and Resource Safety | roadmap starts with beginner model | 6 | 36 | 20 | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Roadmap]] |
+| `lab-proven` | JAVA-B04 — Exceptions and Resource Safety | roadmap starts with beginner model | 6 | 36 | 20 | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Roadmap]] |
 | `next` | JAVA-B05 — Collections, Generics and Sequenced Collections | — | — | — | — | planned |
 
 ## Нулевая ступень
@@ -143,7 +142,7 @@ source → compilation → execution
 | B01 | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01A Values Cards|values]] · [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01B Text Cards|text]] · [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01C Date-Time Cards|time]] | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Drills|15]] | — | [[50_LABS/Java/JAVA-B01/README]] |
 | B02 | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02A Control Flow Cards|flow]] · [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02B Switch Cards|switch]] · [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02C Pattern Switch Cards|patterns]] | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Drills|20]] | — | [[50_LABS/Java/JAVA-B02/README]] |
 | B03 | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03A Object Lifecycle Cards|objects]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03B Initialization and Scope Cards|init]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03C Inheritance and Interfaces Cards|inheritance]] · [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03D Records Sealed and Patterns Cards|types]] | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Drills|35]] | — | [[50_LABS/Java/JAVA-B03/README]] |
-| B04 | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Cards|36]] | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Drills|20]] | [[40_PRODUCTION_CASES/Java/Java Exceptions Production Cases|8]] | [[50_LABS/Java/JAVA-B04/README]] |
+| B04 | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Cards|36]] | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Drills|20]] | [[40_PRODUCTION_CASES/Java/Java Exceptions Production Cases|8]] | [[50_LABS/Java/JAVA-B04/README|JDK 17/21 PASS]] |
 
 ## Управление обучением
 
