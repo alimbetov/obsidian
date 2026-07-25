@@ -1,0 +1,37 @@
+name: JAVA-B04 Proof
+
+on:
+  pull_request:
+    paths:
+      - "10_CONCEPTS/Java/Exceptions/**"
+      - "30_CERTIFICATIONS/Java/JAVA-B04/**"
+      - "40_PRODUCTION_CASES/Java/Java Exceptions Production Cases.md"
+      - "50_LABS/Java/JAVA-B04/**"
+      - ".github/workflows/java-b04-proof.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  java-b04:
+    name: JDK ${{ matrix.java }} exceptions proof
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        java: ["17", "21"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+
+      - name: Run JAVA-B04 proof
+        run: JAVA_RELEASE=${{ matrix.java }} bash 50_LABS/Java/JAVA-B04/run.sh
