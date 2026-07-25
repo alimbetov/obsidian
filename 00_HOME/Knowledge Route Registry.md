@@ -60,8 +60,8 @@ Progress review
 | Student-friendly Java | [[00_HOME/Java Beginner Learning Path]] | B01–B04 entry layer published |
 | Java 11/17/21 platform | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] | active |
 | Oracle Java 17 + 21 | [[00_HOME/Oracle Java 17 and 21 Certification Program]] | active |
-| Java `1Z0-829` | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | B01/B02/B03 lab-proven, B04 source-complete |
-| Java `1Z0-830` | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | B01/B02/B03 lab-proven, B04 source-complete |
+| Java `1Z0-829` | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | B01–B04 lab-proven |
+| Java `1Z0-830` | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | B01–B04 lab-proven |
 | Java Concurrency | [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]] | foundation published |
 
 ### JAVA-LTS-B01 — Java 11, 17 and 21 Evolution
@@ -140,12 +140,13 @@ Status: `lab-proven`, JDK 17/21 PASS.
 | Negative evidence | 6 expected compile failures |
 | Sources | [[98_SOURCES/Java SE 17 1Z0-829 Sources]], [[98_SOURCES/Java SE 21 1Z0-830 Sources]] |
 
-Status: `source-complete`; dedicated JDK 17/21 workflow added.
+Status: `lab-proven`; JDK 17/21 PASS in GitHub Actions run `30148997725`.
 
 ### Current Java inventory
 
 ```text
 published exam routes            4
+lab-proven exam routes           4
 atomic concept notes            35
 beginner foundation/bridges       4
 base cards                      286
@@ -188,7 +189,7 @@ expected compile-fail cases      34
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
 
-The aggregate workflow currently exposes an unrelated `SPRING-MVC-B02` regression separately from passing Java route workflows.
+The aggregate vault workflow currently exposes an unrelated `SPRING-MVC-B02` regression separately from passing Java route workflows.
 
 ## Database route
 
@@ -210,7 +211,7 @@ The aggregate workflow currently exposes an unrelated `SPRING-MVC-B02` regressio
 [x] atomic concepts link practice and evidence
 [x] stable card IDs remain progress-compatible
 [x] objective and route overrides added for B04
-[x] dedicated JDK 17/21 proof workflow added
+[x] dedicated JDK 17/21 proof workflow passed
 [ ] all Java certification domains complete
 [ ] learner progress registry initialized and used
 [ ] timed mock bank complete
