@@ -29,7 +29,7 @@ expect_compile_failure NotEffectivelyFinal 'import java.util.function.*; class N
 expect_compile_failure WrongPredicateReturn 'import java.util.function.*; class WrongPredicateReturn { Predicate<String> p = s -> s.length(); }'
 expect_compile_failure ReassignCaptured 'import java.util.function.*; class ReassignCaptured { void test(){ int n=1; Runnable r=()->System.out.println(n); n=2; } }'
 expect_compile_failure BadMethodReference 'import java.util.function.*; class BadMethodReference { Supplier<String> s = String::trim; }'
-expect_compile_failure SortedNonComparable 'import java.util.stream.*; class SortedNonComparable { record X(int n){} void t(){ Stream.of(new X(1)).sorted(); } }'
+expect_compile_failure IncompatibleComparator 'import java.util.stream.*; class IncompatibleComparator { record X(int n){} void t(){ Stream.of(new X(1)).sorted(String::compareTo); } }'
 
 rm -rf "$OUT"
 echo "JAVA-B06 expected compile-failure bank PASS"
