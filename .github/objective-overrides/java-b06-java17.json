@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "track_id": "JAVA-1Z0-829",
+  "objective_updates": [
+    {
+      "id": "JAVA-B06",
+      "status": "lab-proven",
+      "mapping_granularity": "route",
+      "route_hint": "JAVA-B06",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Java/Functional/Java Lambdas and Streams.md"],
+        "card_prefixes": ["JAVA-LAMBDA-B06-C", "JAVA-STREAM-B06-C"],
+        "cases": [
+          "30_CERTIFICATIONS/Java/JAVA-B06/JAVA-B06 Drills.md",
+          "40_PRODUCTION_CASES/Java/Java Lambdas and Streams Production Cases.md"
+        ],
+        "labs": [
+          "50_LABS/Java/JAVA-B06/README.md",
+          "50_LABS/Java/JAVA-B06/run.sh",
+          "50_LABS/Java/JAVA-B06/src/main/java/lab/b06/LambdaStreamProof.java",
+          "50_LABS/Java/JAVA-B06/src/main/java/lab/b06/ParallelReductionProof.java"
+        ],
+        "roadmaps": ["30_CERTIFICATIONS/Java/JAVA-B06/JAVA-B06 Roadmap.md"],
+        "sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]
+      }
+    }
+  ]
+}
