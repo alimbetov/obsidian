@@ -122,6 +122,28 @@ Status: `lab-proven`, JDK 17/21 PASS.
 
 Status: `lab-proven`; dedicated JDK 17/21 workflow is awaiting CI validation in PR #8.
 
+## Published Java concurrency route
+
+- [[10_CONCEPTS/Java/Concurrency/Concurrency Learning Path]]
+- [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]]
+- [[50_LABS/Java/Concurrency/README]]
+
+## Published Spring route hubs
+
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring AOP and Cache Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Transaction Management Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Data JPA Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Testing Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B01/SPRING-BOOT-B01 Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-BOOT-B02/SPRING-BOOT-B02 Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
+- [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
+
+## Published database route
+
+- [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap]]
+
 ## Current Java inventory
 
 ```text
@@ -147,17 +169,11 @@ expected compile-fail cases      50
 | 5 | `JAVA-B11` — Localization | planned |
 | 6 | `JAVA-SUP-B01` — Logging, Annotations and supplementary Generics | planned |
 
-## Other routes
-
-- Java Concurrency: [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]]
-- Spring: [[30_CERTIFICATIONS/Spring/2V0-72.22/Spring Core Card Roadmap]]
-- Database: [[30_CERTIFICATIONS/Databases/DB-B01/DB-B01 Roadmap]]
-
 ## Registry quality checklist
 
 ```text
 [x] beginner path points to B01-B06
-[x] published Java routes listed explicitly
+[x] every published route hub has a registry edge
 [x] canonical hubs link atomic concepts
 [x] atomic concepts link practice and evidence
 [x] stable card IDs remain progress-compatible
