@@ -63,7 +63,7 @@ Cockpit
 | JAVA-B01 | Values, Text and Date-Time | [[10_CONCEPTS/Java/Foundations/Java B01 Beginner Bridge|bridge]] | 9 | 75 | 15 | lab-proven |
 | JAVA-B02 | Control Flow and Pattern Switch | [[10_CONCEPTS/Java/Foundations/Java B02 Beginner Bridge|bridge]] | 8 | 60 | 20 | lab-proven |
 | JAVA-B03 | Object Model and Record Patterns | [[10_CONCEPTS/Java/Foundations/Java B03 Beginner Bridge|bridge]] | 12 | 115 | 35 | lab-proven |
-| JAVA-B04 | Exceptions and Resource Safety | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Roadmap|beginner roadmap]] | 6 | 36 | 20 | source-complete |
+| JAVA-B04 | Exceptions and Resource Safety | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Roadmap|beginner roadmap]] | 6 | 36 | 20 | lab-proven |
 | JAVA-B05 | Collections, Generics and Sequenced Collections | — | — | — | — | next |
 
 ```text
@@ -156,7 +156,7 @@ Mermaid rendering
 route-specific JDK proof workflows
 ```
 
-B01, B02, B03 and B04 have dedicated JDK 17/21 proof workflows. Aggregate vault failures from an unrelated route do not erase route-specific evidence.
+B01, B02, B03 and B04 have dedicated JDK 17/21 proof workflows. JAVA-B04 proof run `30148997725` passed both lanes and its six expected compile failures.
 
 ## Published non-Java areas
 
