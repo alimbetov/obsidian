@@ -120,7 +120,7 @@ Status: `lab-proven`, JDK 17/21 PASS.
 | Negative evidence | 6 expected compile failures |
 | Sources | [[98_SOURCES/Java SE 17 1Z0-829 Sources]], [[98_SOURCES/Java SE 21 1Z0-830 Sources]] |
 
-Status: `lab-proven`; dedicated JDK 17/21 workflow added in PR #8.
+Status: `lab-proven`; dedicated JDK 17/21 workflow is awaiting CI validation in PR #8.
 
 ## Current Java inventory
 
