@@ -57,11 +57,11 @@ Progress review
 
 | Track | Roadmap | Status |
 |---|---|---|
-| Student-friendly Java | [[00_HOME/Java Beginner Learning Path]] | B01–B04 entry layer published |
+| Student-friendly Java | [[00_HOME/Java Beginner Learning Path]] | B01–B05 entry layer published |
 | Java 11/17/21 platform | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] | active |
 | Oracle Java 17 + 21 | [[00_HOME/Oracle Java 17 and 21 Certification Program]] | active |
-| Java `1Z0-829` | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | B01–B04 lab-proven |
-| Java `1Z0-830` | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | B01–B04 lab-proven |
+| Java `1Z0-829` | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | B01–B05 lab-proven |
+| Java `1Z0-830` | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | B01–B05 lab-proven |
 | Java Concurrency | [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]] | foundation published |
 
 ### JAVA-LTS-B01 — Java 11, 17 and 21 Evolution
@@ -142,32 +142,49 @@ Status: `lab-proven`, JDK 17/21 PASS.
 
 Status: `lab-proven`; JDK 17/21 PASS in GitHub Actions run `30148997725`.
 
+### JAVA-B05 — Collections, Generics and Sequenced Collections
+
+| Role | Artifact |
+|---|---|
+| Roadmap / beginner entry | [[30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Roadmap]] |
+| Beginner bridge | [[10_CONCEPTS/Java/Collections/Java Array to Collection Beginner Bridge]] |
+| Canonical hub | [[10_CONCEPTS/Java/Collections/Java Collections Generics and Sequenced Collections]] |
+| Atomic concepts | 8 student-friendly notes |
+| Cards | [[30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Cards|48 cards]] |
+| Drills | [[30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Drills|24 drills]] |
+| Production cases | [[40_PRODUCTION_CASES/Java/Java Collections and Generics Production Cases|10 cases]] |
+| Lab | [[50_LABS/Java/JAVA-B05/README]] |
+| Runtime proof | collection contracts, hashing, ordering, PECS, immutable views, Java 21 sequencing |
+| Negative evidence | Java 21 API rejected under `--release 17` plus compile-fail generics bank |
+| Sources | [[98_SOURCES/Java SE 17 1Z0-829 Sources]], [[98_SOURCES/Java SE 21 1Z0-830 Sources]] |
+
+Status: `lab-proven`; JDK 17/21 PASS in GitHub Actions run `30164422955`.
+
 ### Current Java inventory
 
 ```text
-published exam routes            4
-lab-proven exam routes           4
-atomic concept notes            35
-beginner foundation/bridges       4
-base cards                      286
-drills                           90
-Java production cases             8
-positive proof classes           10
-expected compile-fail cases      34
+published exam routes            5
+lab-proven exam routes           5
+atomic concept notes            43
+beginner foundation/bridges       5
+base cards                      334
+drills                          114
+Java production cases            18
+positive proof classes           12
+expected compile-fail cases      44
 ```
 
 ### Next Java routes
 
 | Order | Route | Status |
 |---:|---|---|
-| 1 | `JAVA-B05` — Collections, Generics, Sequenced Collections | next |
-| 2 | `JAVA-B06` — Lambdas and Streams | planned |
-| 3 | `JAVA-B07` — Modules and Deployment | planned |
-| 4 | `JAVA-B08` — Concurrency and Virtual Threads | planned; theory exists |
-| 5 | `JAVA-B09` — I/O, NIO.2 and Serialization | planned |
-| 6 | `JAVA-B10` — JDBC for 1Z0-829 | planned |
-| 7 | `JAVA-B11` — Localization | planned |
-| 8 | `JAVA-SUP-B01` — Logging, Annotations and supplementary Generics | planned |
+| 1 | `JAVA-B06` — Lambdas and Streams | next |
+| 2 | `JAVA-B07` — Modules and Deployment | planned |
+| 3 | `JAVA-B08` — Concurrency and Virtual Threads | planned; theory exists |
+| 4 | `JAVA-B09` — I/O, NIO.2 and Serialization | planned |
+| 5 | `JAVA-B10` — JDBC for 1Z0-829 | planned |
+| 6 | `JAVA-B11` — Localization | planned |
+| 7 | `JAVA-SUP-B01` — Logging, Annotations and supplementary Generics | planned |
 
 ## Java Concurrency
 
@@ -205,12 +222,12 @@ The aggregate vault workflow currently exposes an unrelated `SPRING-MVC-B02` reg
 ## Registry quality checklist
 
 ```text
-[x] beginner path points to B01-B04
+[x] beginner path points to B01-B05
 [x] published Java routes listed explicitly
 [x] canonical hubs link atomic concepts
 [x] atomic concepts link practice and evidence
 [x] stable card IDs remain progress-compatible
-[x] objective and route overrides added for B04
+[x] objective and route overrides added for B05
 [x] dedicated JDK 17/21 proof workflow passed
 [ ] all Java certification domains complete
 [ ] learner progress registry initialized and used

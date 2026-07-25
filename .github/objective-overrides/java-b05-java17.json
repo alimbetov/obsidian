@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "track_id": "JAVA-1Z0-829",
+  "objective_updates": [
+    {
+      "id": "JAVA-B05",
+      "status": "lab-proven",
+      "mapping_granularity": "route",
+      "route_hint": "JAVA-B05",
+      "evidence": {
+        "canonical": ["10_CONCEPTS/Java/Collections/Java Collections Generics and Sequenced Collections.md"],
+        "card_prefixes": ["JAVA-COLLECTIONS-B05-C"],
+        "cases": [
+          "30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Drills.md",
+          "40_PRODUCTION_CASES/Java/Java Collections and Generics Production Cases.md"
+        ],
+        "labs": [
+          "50_LABS/Java/JAVA-B05/README.md",
+          "50_LABS/Java/JAVA-B05/run.sh",
+          "50_LABS/Java/JAVA-B05/src/main/java/lab/b05/CollectionProof.java"
+        ],
+        "roadmaps": ["30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Roadmap.md"],
+        "sources": ["98_SOURCES/Java SE 17 1Z0-829 Sources.md"]
+      }
+    }
+  ]
+}
