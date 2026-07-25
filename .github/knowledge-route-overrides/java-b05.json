@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "routes": [
+    {
+      "id": "JAVA-B05",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "00_HOME/Java Beginner Learning Path.md",
+        "00_HOME/Java Learning Dashboard.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Roadmap.md",
+        "10_CONCEPTS/Java/Collections/Java Collections Generics and Sequenced Collections.md",
+        "00_HOME/Java Learning Dashboard.md"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Java/Collections/Java Collections Generics and Sequenced Collections.md",
+        "10_CONCEPTS/Java/Collections/Java Array to Collection Beginner Bridge.md",
+        "10_CONCEPTS/Java/Collections/Java List Set Map Queue and Deque.md",
+        "10_CONCEPTS/Java/Collections/Java Collection Implementations and Internals.md",
+        "10_CONCEPTS/Java/Collections/Java Equality Hashing and Mutable Keys.md",
+        "10_CONCEPTS/Java/Collections/Java Comparable Comparator and Ordering.md",
+        "10_CONCEPTS/Java/Generics/Java Generics Invariance Wildcards and PECS.md",
+        "10_CONCEPTS/Java/Generics/Java Generic Methods Erasure and Heap Pollution.md",
+        "10_CONCEPTS/Java/Collections/Java Immutable Unmodifiable and Sequenced Collections.md",
+        "30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Drills.md",
+        "40_PRODUCTION_CASES/Java/Java Collections and Generics Production Cases.md",
+        "50_LABS/Java/JAVA-B05/README.md"
+      ]
+    }
+  ]
+}
