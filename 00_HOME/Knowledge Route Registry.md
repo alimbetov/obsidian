@@ -2,7 +2,7 @@
 type: route-registry
 domain: knowledge-system
 status: active
-verified_at: 2026-07-24
+verified_at: 2026-07-25
 tags:
   - navigation
   - roadmap
@@ -13,10 +13,12 @@ tags:
 # Knowledge Route Registry
 
 > [!summary]
-> Единая точка навигации по published learning routes. Каждый route должен иметь понятный пользовательский вход, canonical hub, focused concepts, stable cards, practice evidence, sources и progress path.
+> Единая точка навигации по published learning routes. Каждый route должен иметь понятный вход для начинающего, canonical hub, focused concepts, stable cards, practice evidence, sources и progress path.
 
 ## Global entry points
 
+- [[00_HOME/Java Beginner Learning Path]]
+- [[00_HOME/Java Learning Cockpit]]
 - [[00_HOME/Java Learning Dashboard]]
 - [[00_HOME/Certification 99 Percent Readiness Dashboard]]
 - [[00_HOME/Card Review Dashboard]]
@@ -24,14 +26,17 @@ tags:
 - [[01_MAPS/Java Certification Routes.canvas]]
 - [[01_MAPS/Certification 99 Percent Map.canvas]]
 - [[90_TEMPLATES/Cross-Linking Standard]]
+- [[90_TEMPLATES/Student-Friendly Atomic Lesson Standard]]
 - [[70_PROGRESS/README]]
 
 ## Published route contract
 
 ```text
-Dashboard / MOC
+Beginner path / Dashboard / MOC
     ↓
 Route roadmap
+    ↓
+Beginner bridge or simple model
     ↓
 Canonical hub
     ↓
@@ -52,10 +57,11 @@ Progress review
 
 | Track | Roadmap | Status |
 |---|---|---|
+| Student-friendly Java | [[00_HOME/Java Beginner Learning Path]] | B01–B04 entry layer published |
 | Java 11/17/21 platform | [[00_HOME/Java 11 17 21 Complete Knowledge Program]] | active |
 | Oracle Java 17 + 21 | [[00_HOME/Oracle Java 17 and 21 Certification Program]] | active |
-| Java `1Z0-829` | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | B01/B02/B03 published |
-| Java `1Z0-830` | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | B01/B02/B03 published |
+| Java `1Z0-829` | [[30_CERTIFICATIONS/Java/1Z0-829/Java SE 17 99 Percent Master Roadmap]] | B01/B02/B03 lab-proven, B04 source-complete |
+| Java `1Z0-830` | [[30_CERTIFICATIONS/Java/1Z0-830/Java SE 21 99 Percent Master Roadmap]] | B01/B02/B03 lab-proven, B04 source-complete |
 | Java Concurrency | [[30_CERTIFICATIONS/Java/Concurrency/Java Concurrency 99 Percent Roadmap]] | foundation published |
 
 ### JAVA-LTS-B01 — Java 11, 17 and 21 Evolution
@@ -75,6 +81,7 @@ Status: complete vertical slice with JDK 11/17/21 matrix.
 
 | Role | Artifact |
 |---|---|
+| Beginner bridge | [[10_CONCEPTS/Java/Foundations/Java B01 Beginner Bridge]] |
 | Roadmap | [[30_CERTIFICATIONS/Java/JAVA-B01/JAVA-B01 Roadmap]] |
 | Canonical hub | [[10_CONCEPTS/Java/Core/Java Values Text and Date-Time]] |
 | Atomic concepts | 9 linked notes |
@@ -89,6 +96,7 @@ Status: `lab-proven`, JDK 17/21 PASS.
 
 | Role | Artifact |
 |---|---|
+| Beginner bridge | [[10_CONCEPTS/Java/Foundations/Java B02 Beginner Bridge]] |
 | Roadmap | [[30_CERTIFICATIONS/Java/JAVA-B02/JAVA-B02 Roadmap]] |
 | Canonical hub | [[10_CONCEPTS/Java/Core/Java Control Flow and Pattern Switch]] |
 | Atomic concepts | 8 linked notes |
@@ -104,6 +112,7 @@ Status: `lab-proven`, JDK 17/21 PASS.
 
 | Role | Artifact |
 |---|---|
+| Beginner bridge | [[10_CONCEPTS/Java/Foundations/Java B03 Beginner Bridge]] |
 | Roadmap | [[30_CERTIFICATIONS/Java/JAVA-B03/JAVA-B03 Roadmap]] |
 | Canonical hub | [[10_CONCEPTS/Java/Object Model/Java Object Model Records and Record Patterns]] |
 | Atomic concepts | 12 linked notes |
@@ -116,15 +125,34 @@ Status: `lab-proven`, JDK 17/21 PASS.
 
 Status: `lab-proven`, JDK 17/21 PASS.
 
+### JAVA-B04 — Exceptions and Resource Safety
+
+| Role | Artifact |
+|---|---|
+| Roadmap / beginner entry | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Roadmap]] |
+| Canonical hub | [[10_CONCEPTS/Java/Exceptions/Java Exceptions and Resource Safety]] |
+| Atomic concepts | 6 student-friendly notes |
+| Cards | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Cards|36 cards]] |
+| Drills | [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Drills|20 drills]] |
+| Production cases | [[40_PRODUCTION_CASES/Java/Java Exceptions Production Cases|8 cases]] |
+| Lab | [[50_LABS/Java/JAVA-B04/README]] |
+| Runtime proof | catch/finally, cause, close order, suppressed, initializer cleanup |
+| Negative evidence | 6 expected compile failures |
+| Sources | [[98_SOURCES/Java SE 17 1Z0-829 Sources]], [[98_SOURCES/Java SE 21 1Z0-830 Sources]] |
+
+Status: `source-complete`; dedicated JDK 17/21 workflow added.
+
 ### Current Java inventory
 
 ```text
-published exam routes            3
-atomic concept notes            29
-base cards                      250
-drills                           70
-positive proof classes            9
-expected compile-fail cases      28
+published exam routes            4
+atomic concept notes            35
+beginner foundation/bridges       4
+base cards                      286
+drills                           90
+Java production cases             8
+positive proof classes           10
+expected compile-fail cases      34
 ```
 
 ### Next Java routes
@@ -133,13 +161,12 @@ expected compile-fail cases      28
 |---:|---|---|
 | 1 | `JAVA-B05` — Collections, Generics, Sequenced Collections | next |
 | 2 | `JAVA-B06` — Lambdas and Streams | planned |
-| 3 | `JAVA-B04` — Exceptions and Try-with-resources | planned |
-| 4 | `JAVA-B07` — Modules and Deployment | planned |
-| 5 | `JAVA-B08` — Concurrency and Virtual Threads | planned |
-| 6 | `JAVA-B09` — I/O, NIO.2 and Serialization | planned |
-| 7 | `JAVA-B10` — JDBC for 1Z0-829 | planned |
-| 8 | `JAVA-B11` — Localization | planned |
-| 9 | `JAVA-SUP-B01` — Logging, Annotations and supplementary Generics | planned |
+| 3 | `JAVA-B07` — Modules and Deployment | planned |
+| 4 | `JAVA-B08` — Concurrency and Virtual Threads | planned; theory exists |
+| 5 | `JAVA-B09` — I/O, NIO.2 and Serialization | planned |
+| 6 | `JAVA-B10` — JDBC for 1Z0-829 | planned |
+| 7 | `JAVA-B11` — Localization | planned |
+| 8 | `JAVA-SUP-B01` — Logging, Annotations and supplementary Generics | planned |
 
 ## Java Concurrency
 
@@ -161,7 +188,7 @@ expected compile-fail cases      28
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B01/SPRING-MVC-B01 Roadmap]]
 - [[30_CERTIFICATIONS/Spring/2V0-72.22/SPRING-MVC-B02/SPRING-MVC-B02 Roadmap]]
 
-The aggregate vault workflow currently exposes an unrelated `SPRING-MVC-B02` regression separately from passing Java route workflows.
+The aggregate workflow currently exposes an unrelated `SPRING-MVC-B02` regression separately from passing Java route workflows.
 
 ## Database route
 
@@ -177,13 +204,13 @@ The aggregate vault workflow currently exposes an unrelated `SPRING-MVC-B02` reg
 ## Registry quality checklist
 
 ```text
-[x] README points to current dashboard
+[x] beginner path points to B01-B04
 [x] published Java routes listed explicitly
 [x] canonical hubs link atomic concepts
-[x] atomic concepts link previous/next, cards, drills, lab and sources
+[x] atomic concepts link practice and evidence
 [x] stable card IDs remain progress-compatible
-[x] dedicated Java Canvas exists
-[x] Java LTS runtime lanes declared
+[x] objective and route overrides added for B04
+[x] dedicated JDK 17/21 proof workflow added
 [ ] all Java certification domains complete
 [ ] learner progress registry initialized and used
 [ ] timed mock bank complete
