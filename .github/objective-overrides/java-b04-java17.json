@@ -4,7 +4,7 @@
   "objective_updates": [
     {
       "id": "JAVA-B04",
-      "status": "source-complete",
+      "status": "lab-proven",
       "mapping_granularity": "route",
       "evidence": {
         "canonical": [
