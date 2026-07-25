@@ -5,6 +5,7 @@ route: JAVA-B05
 status: published
 evidence_status: lab-proven
 verified_at: 2026-07-25
+proof_run: 30164422955
 java_versions: [17, 21]
 certifications: [java-1Z0-829, java-1Z0-830]
 objectives: [JAVA-B05, JAVA21-5.1]
@@ -22,6 +23,16 @@ tags: [java, collections, generics, sequenced-collections, roadmap]
 
 > [!summary]
 > Route goal: научиться выбирать структуру данных по операции, понимать её внутренний механизм и безопасно использовать generics от Java 17 до Java 21.
+
+## Evidence status
+
+```text
+JDK 17 collections/generics proof       PASS
+JDK 17 Java 21 API negative boundary    PASS
+JDK 21 collections/generics proof       PASS
+JDK 21 sequenced collections proof      PASS
+GitHub Actions run 30164422955
+```
 
 ## Beginner bridge
 
@@ -100,7 +111,7 @@ Canonical hub:
 
 ## Version boundary
 
-Java 17 покрывает базовые Collections Framework и generics. Java 21 добавляет sequenced interfaces и единый first/last/reversed API. Negative bank компилируется отдельно для обеих версий.
+Java 17 покрывает базовые Collections Framework и generics. Java 21 добавляет sequenced interfaces и единый first/last/reversed API. Negative bank доказывает, что Java 21 API недоступен при `--release 17`.
 
 ## Navigation
 
@@ -108,4 +119,4 @@ Java 17 покрывает базовые Collections Framework и generics. Jav
 - [[00_HOME/Java Learning Dashboard]]
 - [[00_HOME/Knowledge Route Registry]]
 - **Previous:** [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Roadmap]]
-- **Next:** [[30_CERTIFICATIONS/Java/JAVA-B06/JAVA-B06 Roadmap]]
+- **Next planned route:** `JAVA-B06 — Lambdas and Streams`
