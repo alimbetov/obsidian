@@ -1,0 +1,29 @@
+name: JAVA-B06 Proof
+
+on:
+  pull_request:
+    paths:
+      - '10_CONCEPTS/Java/Functional/**'
+      - '10_CONCEPTS/Java/Streams/**'
+      - '30_CERTIFICATIONS/Java/JAVA-B06/**'
+      - '40_PRODUCTION_CASES/Java/Java Lambdas and Streams Production Cases.md'
+      - '50_LABS/Java/JAVA-B06/**'
+      - '.github/knowledge-route-overrides/java-b06.json'
+      - '.github/objective-overrides/java-b06-*.json'
+      - '.github/workflows/java-b06-proof.yml'
+  workflow_dispatch:
+
+jobs:
+  proof:
+    strategy:
+      matrix:
+        java: ['17', '21']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - name: Run JAVA-B06 proofs
+        run: bash 50_LABS/Java/JAVA-B06/run.sh
