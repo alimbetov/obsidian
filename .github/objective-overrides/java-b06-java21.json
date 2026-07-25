@@ -3,7 +3,7 @@
   "track_id": "JAVA-1Z0-830",
   "objective_updates": [
     {
-      "id": "JAVA-B06",
+      "id": "JAVA21-6.1",
       "status": "lab-proven",
       "mapping_granularity": "route",
       "route_hint": "JAVA-B06",
