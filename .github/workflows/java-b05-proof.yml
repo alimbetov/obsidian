@@ -1,0 +1,29 @@
+name: JAVA-B05 Proof
+
+on:
+  pull_request:
+    paths:
+      - '10_CONCEPTS/Java/Collections/**'
+      - '10_CONCEPTS/Java/Generics/**'
+      - '30_CERTIFICATIONS/Java/JAVA-B05/**'
+      - '40_PRODUCTION_CASES/Java/Java Collections and Generics Production Cases.md'
+      - '50_LABS/Java/JAVA-B05/**'
+      - '.github/knowledge-route-overrides/java-b05.json'
+      - '.github/objective-overrides/java-b05-*.json'
+      - '.github/workflows/java-b05-proof.yml'
+  workflow_dispatch:
+
+jobs:
+  proof:
+    strategy:
+      matrix:
+        java: ['17', '21']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - name: Run JAVA-B05 proofs
+        run: bash 50_LABS/Java/JAVA-B05/run.sh
