@@ -3,8 +3,9 @@ type: certification-roadmap
 domain: java
 route: JAVA-B04
 status: published
-evidence_status: source-complete
+evidence_status: lab-proven
 verified_at: 2026-07-25
+proof_run: 30148997725
 java_versions: [17, 21]
 certifications:
   - java-1Z0-829
@@ -29,6 +30,14 @@ tags: [java, exceptions, resources, roadmap]
 
 > [!summary]
 > Route goal: понять, как Java сообщает о невозможности продолжить обычный путь, как программа ищет обработчик и как гарантированно освобождает файлы, соединения и другие ресурсы.
+
+## Evidence status
+
+```text
+JDK 17 runtime + negative compile bank — PASS
+JDK 21 runtime + negative compile bank — PASS
+GitHub Actions run 30148997725
+```
 
 ## Для кого этот маршрут
 
@@ -99,7 +108,7 @@ Canonical hub:
 
 ## Практика
 
-- [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Cards]] — 36 карточек трёх уровней.
+- [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Cards]] — 36 карточек от beginner recall до exam traps.
 - [[30_CERTIFICATIONS/Java/JAVA-B04/JAVA-B04 Drills]] — 20 compile/output задач.
 - [[40_PRODUCTION_CASES/Java/Java Exceptions Production Cases]] — 8 практических случаев.
 - [[50_LABS/Java/JAVA-B04/README]] — executable proof Java 17/21.
