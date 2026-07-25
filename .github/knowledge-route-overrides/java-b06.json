@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "routes": [
+    {
+      "id": "JAVA-B06",
+      "status": "published",
+      "hub": "30_CERTIFICATIONS/Java/JAVA-B06/JAVA-B06 Roadmap.md",
+      "entry_points": [
+        "README.md",
+        "00_HOME/Java Beginner Learning Path.md",
+        "00_HOME/Java Learning Dashboard.md",
+        "00_HOME/Knowledge Route Registry.md"
+      ],
+      "indexes": [
+        "30_CERTIFICATIONS/Java/JAVA-B06/JAVA-B06 Roadmap.md",
+        "10_CONCEPTS/Java/Functional/Java Lambdas and Streams.md",
+        "00_HOME/Java Learning Dashboard.md"
+      ],
+      "artifacts": [
+        "10_CONCEPTS/Java/Functional/Java Lambdas and Streams.md",
+        "10_CONCEPTS/Java/Functional/Java Functional Interfaces and Lambda Target Typing.md",
+        "10_CONCEPTS/Java/Functional/Java Lambda Capture and Method References.md",
+        "10_CONCEPTS/Java/Streams/Java Stream Pipeline Laziness and Single Use.md",
+        "10_CONCEPTS/Java/Streams/Java Stream Mapping Filtering and Flattening.md",
+        "10_CONCEPTS/Java/Streams/Java Stream Reduction and Collectors.md",
+        "10_CONCEPTS/Java/Streams/Java Primitive Streams Optional and Statistics.md",
+        "10_CONCEPTS/Java/Streams/Java Parallel Streams Safety and Performance.md",
+        "30_CERTIFICATIONS/Java/JAVA-B06/JAVA-B06 Cards.md",
+        "30_CERTIFICATIONS/Java/JAVA-B06/JAVA-B06 Drills.md",
+        "40_PRODUCTION_CASES/Java/Java Lambdas and Streams Production Cases.md",
+        "50_LABS/Java/JAVA-B06/README.md"
+      ]
+    }
+  ]
+}
