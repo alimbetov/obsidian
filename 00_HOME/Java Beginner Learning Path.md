@@ -133,6 +133,23 @@ flowchart LR
 - использовать try-with-resources;
 - объяснять suppressed exception.
 
+## Ступень 5 — коллекции и безопасные типы
+
+Начни с:
+
+- [[10_CONCEPTS/Java/Collections/Java Array to Collection Beginner Bridge]]
+- затем [[30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Roadmap]]
+
+После ступени ученик должен уметь:
+
+- выбирать между `List`, `Set`, `Map`, `Queue` и `Deque`;
+- объяснять, почему `ArrayList`, `HashMap` и `ArrayDeque` подходят для разных операций;
+- соблюдать контракт `equals()` / `hashCode()`;
+- не использовать изменяемые hash keys;
+- применять `Comparable`, `Comparator`, wildcards и PECS;
+- отличать immutable collection от unmodifiable view;
+- понимать границу Java 17 и Java 21 Sequenced Collections.
+
 ## Как проверять понимание
 
 Не спрашивай только «что такое X?». Используй четыре типа вопросов.
