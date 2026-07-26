@@ -9,7 +9,7 @@
       "route_hint": "JAVA-B05",
       "evidence": {
         "canonical": ["10_CONCEPTS/Java/Collections/Java Collections Generics and Sequenced Collections.md"],
-        "card_prefixes": ["JAVA-COLLECTIONS-B05-C"],
+        "card_prefixes": ["JAVA-B05-C"],
         "cases": [
           "30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Drills.md",
           "40_PRODUCTION_CASES/Java/Java Collections and Generics Production Cases.md"
