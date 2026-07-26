@@ -9,7 +9,7 @@
       "route_hint": "JAVA-B06",
       "evidence": {
         "canonical": ["10_CONCEPTS/Java/Functional/Java Lambdas and Streams.md"],
-        "card_prefixes": ["JAVA-LAMBDA-B06-C", "JAVA-STREAM-B06-C"],
+        "card_prefixes": ["JAVA-B06-C"],
         "cases": [
           "30_CERTIFICATIONS/Java/JAVA-B06/JAVA-B06 Drills.md",
           "40_PRODUCTION_CASES/Java/Java Lambdas and Streams Production Cases.md"
