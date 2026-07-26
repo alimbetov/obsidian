@@ -1,81 +1,262 @@
 ---
-type: card-bank
+type: certification-batch
+domain: java
 route: JAVA-B05
+batch: JAVA-B05
 status: published
-cards: 48
+card_count: 48
 java_versions: [17, 21]
+objectives:
+  - JAVA-B05
+  - JAVA21-5.1
+tags: [java, collections, generics, sequenced-collections, active-recall]
 ---
 
-# JAVA-B05 Cards
+# JAVA-B05 — Collections, Generics and Sequenced Collections Cards
 
-## Beginner bridge
+## Navigation
 
-1. **Почему array fixed-size?** Его length задаётся при создании объекта массива и не меняется.
-2. **Что добавляет `List` поверх array mental model?** Dynamic logical size и collection API.
-3. **Главное свойство `Set`?** Не более одного элемента для одной logical equality position.
-4. **Главное свойство `Map`?** Equal key связан максимум с одним current value.
-5. **FIFO structure?** `Queue`, обычно `ArrayDeque`.
-6. **LIFO без legacy `Stack`?** `Deque.push/pop/peek`.
+- [[30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Roadmap]]
+- [[10_CONCEPTS/Java/Collections/Java Collections Generics and Sequenced Collections]]
+- [[30_CERTIFICATIONS/Java/JAVA-B05/JAVA-B05 Drills]]
+- [[50_LABS/Java/JAVA-B05/README]]
 
-## Interfaces and contracts
+## JAVA-B05-C001 — Why is an array fixed-size?
 
-7. **`poll()` на пустой queue?** `null`.
-8. **`remove()` на пустой queue?** `NoSuchElementException`.
-9. **Что возвращает `Map.put`?** Previous value или `null`.
-10. **Почему `Map` не extends `Collection`?** Entry key/value model не является single-element collection contract.
-11. **Допускает ли `List` duplicates?** Да.
-12. **Может ли `Set.add` вернуть `false`?** Да, если equal element уже присутствует.
+> [!answer]- Answer
+> Its length is fixed when the array object is created and cannot change.
 
-## Implementations and Big-O
+## JAVA-B05-C002 — What does List add over an array mental model?
 
-13. **`ArrayList.get(i)` average complexity?** O(1).
-14. **`ArrayList` insertion in middle?** O(n) из-за shifting.
-15. **`HashMap.get` average complexity?** O(1), при корректном hashing.
-16. **`TreeMap.get` complexity?** O(log n).
-17. **Почему `LinkedList.get(i)` O(n)?** Нужно пройти nodes.
-18. **Почему Big-O недостаточно?** Не учитывает allocations, locality, constants, hash/comparator cost.
-19. **Default queue/deque choice?** `ArrayDeque`.
-20. **Когда нужен `LinkedHashMap`?** Нужны hash lookup и predictable encounter/access order.
+> [!answer]- Answer
+> A dynamic logical size and the Collection API.
 
-## Equality and hashing
+## JAVA-B05-C003 — What is the defining property of Set?
 
-21. **Equal objects и hash codes?** Equal обязаны иметь одинаковый hash.
-22. **Unequal objects могут иметь одинаковый hash?** Да, collision допустим.
-23. **Что происходит после mutation hash key?** Lookup может искать в другом bucket.
-24. **Лучший key type?** Immutable value object/record со stable identity.
-25. **Исправляет ли `IdentityHashMap` плохой equality contract?** Нет.
-26. **Когда HashMap вызывает equals?** После bucket/hash candidate narrowing.
+> [!answer]- Answer
+> At most one element may occupy a given logical equality position.
 
-## Ordering
+## JAVA-B05-C004 — What is the defining property of Map?
 
-27. **`Comparable`?** Natural order типа.
-28. **`Comparator`?** Внешняя стратегия order.
-29. **Почему нельзя `a-b` в comparator?** Integer overflow нарушает ordering.
-30. **Что значит compare result zero в `TreeSet`?** Та же sorted position; второй элемент не добавится.
-31. **Как избежать collapse по price?** Добавить tie-breaker.
-32. **Как задать null policy?** `nullsFirst`/`nullsLast`.
+> [!answer]- Answer
+> One equal key maps to at most one current value.
 
-## Generics
+## JAVA-B05-C005 — Which abstraction models FIFO?
 
-33. **Является ли `List<Integer>` subtype `List<Number>`?** Нет, generics invariant.
-34. **Почему invariance безопасна?** Запрещает добавить иной subtype через widened reference.
-35. **`? extends Number`: что безопасно читать?** `Number`.
-36. **Можно ли добавить `Integer` в `List<? extends Number>`?** Нет.
-37. **`? super Integer`: что можно добавить?** `Integer` и его subtypes.
-38. **Что безопасно читать из `? super Integer`?** `Object`.
-39. **PECS?** Producer Extends, Consumer Super.
-40. **`List<?>` и add?** Только `null` universally safe.
+> [!answer]- Answer
+> Queue, commonly implemented with ArrayDeque.
 
-## Erasure and pollution
+## JAVA-B05-C006 — Which abstraction models LIFO without legacy Stack?
 
-41. **Где объявляется type parameter generic method?** Перед return type.
-42. **Есть ли runtime class `List<String>`?** Нет отдельной reified class.
-43. **Почему запрещён `new T()`?** Erasure не даёт runtime constructor type.
-44. **Почему raw types опасны?** Отключают generic checks и создают unchecked paths.
-45. **Heap pollution?** Parameterized reference указывает на incompatible object/content.
-46. **Почему generic arrays запрещены?** Arrays reified/covariant, generics erased/invariant.
+> [!answer]- Answer
+> Deque with push, pop and peek.
 
-## Immutability and Java 21
+## JAVA-B05-C007 — What does poll return on an empty queue?
 
-47. **Unmodifiable view vs immutable snapshot?** View отражает source changes; snapshot independent.
-48. **Что возвращает `SequencedCollection.reversed()`?** Reverse-ordered view с first/last semantics.
+> [!answer]- Answer
+> null.
+
+## JAVA-B05-C008 — What does remove do on an empty queue?
+
+> [!answer]- Answer
+> It throws NoSuchElementException.
+
+## JAVA-B05-C009 — What does Map.put return?
+
+> [!answer]- Answer
+> The previous value associated with the key, or null.
+
+## JAVA-B05-C010 — Why does Map not extend Collection?
+
+> [!answer]- Answer
+> Its key-value entry model is not a single-element collection contract.
+
+## JAVA-B05-C011 — Does List permit duplicates?
+
+> [!answer]- Answer
+> Yes.
+
+## JAVA-B05-C012 — Can Set.add return false?
+
+> [!answer]- Answer
+> Yes, when an equal element is already present.
+
+## JAVA-B05-C013 — What is the average complexity of ArrayList.get?
+
+> [!answer]- Answer
+> O(1).
+
+## JAVA-B05-C014 — What is the complexity of inserting into the middle of ArrayList?
+
+> [!answer]- Answer
+> O(n) because later elements must shift.
+
+## JAVA-B05-C015 — What is the average complexity of HashMap.get?
+
+> [!answer]- Answer
+> O(1), assuming an effective hash distribution.
+
+## JAVA-B05-C016 — What is the complexity of TreeMap.get?
+
+> [!answer]- Answer
+> O(log n).
+
+## JAVA-B05-C017 — Why is LinkedList.get(i) O(n)?
+
+> [!answer]- Answer
+> Nodes must be traversed to reach the requested position.
+
+## JAVA-B05-C018 — Why is Big-O alone insufficient?
+
+> [!answer]- Answer
+> It omits allocation cost, locality, constants and hash or comparator cost.
+
+## JAVA-B05-C019 — What is the default queue or deque choice?
+
+> [!answer]- Answer
+> ArrayDeque.
+
+## JAVA-B05-C020 — When is LinkedHashMap appropriate?
+
+> [!answer]- Answer
+> When hash lookup and predictable encounter or access order are both required.
+
+## JAVA-B05-C021 — What hash rule must equal objects satisfy?
+
+> [!answer]- Answer
+> Equal objects must produce equal hash codes.
+
+## JAVA-B05-C022 — May unequal objects have the same hash code?
+
+> [!answer]- Answer
+> Yes. Collisions are permitted.
+
+## JAVA-B05-C023 — Why is mutating a hash key dangerous?
+
+> [!answer]- Answer
+> A later lookup may search a different bucket from the one containing the entry.
+
+## JAVA-B05-C024 — What is a robust key type?
+
+> [!answer]- Answer
+> An immutable value object or record with stable equality and hashing.
+
+## JAVA-B05-C025 — Does IdentityHashMap repair a broken equality contract?
+
+> [!answer]- Answer
+> No. It deliberately uses reference identity instead of logical equality.
+
+## JAVA-B05-C026 — When does HashMap use equals?
+
+> [!answer]- Answer
+> After hash and bucket narrowing identifies candidate entries.
+
+## JAVA-B05-C027 — What does Comparable define?
+
+> [!answer]- Answer
+> The natural order of a type.
+
+## JAVA-B05-C028 — What does Comparator define?
+
+> [!answer]- Answer
+> An external ordering strategy.
+
+## JAVA-B05-C029 — Why is a - b unsafe in a comparator?
+
+> [!answer]- Answer
+> Integer overflow can violate the comparator contract.
+
+## JAVA-B05-C030 — What does compare result zero mean in TreeSet?
+
+> [!answer]- Answer
+> The elements occupy the same sorted position, so the second is not added.
+
+## JAVA-B05-C031 — How do you avoid element collapse in a price comparator?
+
+> [!answer]- Answer
+> Add a deterministic tie-breaker such as id.
+
+## JAVA-B05-C032 — How do you define null ordering?
+
+> [!answer]- Answer
+> Use Comparator.nullsFirst or Comparator.nullsLast.
+
+## JAVA-B05-C033 — Is List<Integer> a subtype of List<Number>?
+
+> [!answer]- Answer
+> No. Generic types are invariant.
+
+## JAVA-B05-C034 — Why is generic invariance safe?
+
+> [!answer]- Answer
+> It prevents inserting an incompatible subtype through a widened reference.
+
+## JAVA-B05-C035 — What can be safely read from ? extends Number?
+
+> [!answer]- Answer
+> Number.
+
+## JAVA-B05-C036 — Can Integer be added to List<? extends Number>?
+
+> [!answer]- Answer
+> No, because the exact captured subtype is unknown.
+
+## JAVA-B05-C037 — What can be added to List<? super Integer>?
+
+> [!answer]- Answer
+> Integer values and values of its subtypes.
+
+## JAVA-B05-C038 — What can be safely read from ? super Integer?
+
+> [!answer]- Answer
+> Object.
+
+## JAVA-B05-C039 — What does PECS mean?
+
+> [!answer]- Answer
+> Producer Extends, Consumer Super.
+
+## JAVA-B05-C040 — What may be added to List<?>?
+
+> [!answer]- Answer
+> Only null is universally safe.
+
+## JAVA-B05-C041 — Where is a generic method type parameter declared?
+
+> [!answer]- Answer
+> Before the return type.
+
+## JAVA-B05-C042 — Is List<String> a distinct runtime class?
+
+> [!answer]- Answer
+> No. Type arguments are erased.
+
+## JAVA-B05-C043 — Why is new T() forbidden?
+
+> [!answer]- Answer
+> Erasure removes the runtime constructor type information required to instantiate T.
+
+## JAVA-B05-C044 — Why are raw types dangerous?
+
+> [!answer]- Answer
+> They disable generic checks and introduce unchecked compatibility paths.
+
+## JAVA-B05-C045 — What is heap pollution?
+
+> [!answer]- Answer
+> A parameterized reference points to data incompatible with its declared type argument.
+
+## JAVA-B05-C046 — Why are generic arrays forbidden?
+
+> [!answer]- Answer
+> Arrays are reified and covariant, while generics are erased and invariant.
+
+## JAVA-B05-C047 — Unmodifiable view versus immutable snapshot?
+
+> [!answer]- Answer
+> A view may reflect source changes; a snapshot is independent of later source mutation.
+
+## JAVA-B05-C048 — What does SequencedCollection.reversed return?
+
+> [!answer]- Answer
+> A reverse-ordered view that preserves first and last semantics.
